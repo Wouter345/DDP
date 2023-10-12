@@ -1,0 +1,648 @@
+!SESSION 2023-10-11 17:39:40.192 -----------------------------------------------
+eclipse.buildId=2023.1
+java.version=11.0.16.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data ./project_sw
+
+This is a continuation of log file /users/students/r0792566/Documents/SW_package/sw_project/project_sw/.metadata/.bak_0.log
+Created Time: 2023-10-11 18:16:40.888
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.889
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.890
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.895
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.896
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.907
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.908
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.920
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.921
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.923
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.924
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.931
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.932
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.975
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:40.977
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:43.982
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:43.994
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:43.999
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:44.000
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:44.012
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:44.014
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:44.036
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:44.037
+!MESSAGE XSCT Command: [fpga -file /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.353
+!MESSAGE XSCT command with result: [fpga -file /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.363
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.371
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.372
+!MESSAGE XSCT Command: [loadhw -hw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.382
+!MESSAGE XSCT command with result: [loadhw -hw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Result: [null, rsa_project_wrapper_0]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.384
+!MESSAGE XSCT Command: [configparams force-mem-access 1], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.388
+!MESSAGE XSCT command with result: [configparams force-mem-access 1], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.389
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.397
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.398
+!MESSAGE XSCT Command: [source /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.400
+!MESSAGE XSCT command with result: [source /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.402
+!MESSAGE XSCT Command: [ps7_init], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.630
+!MESSAGE XSCT command with result: [ps7_init], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.631
+!MESSAGE XSCT Command: [ps7_post_config], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.637
+!MESSAGE XSCT command with result: [ps7_post_config], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.638
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.645
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.646
+!MESSAGE XSCT Command: [dow /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.858
+!MESSAGE XSCT command with result: [dow /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.860
+!MESSAGE XSCT Command: [configparams force-mem-access 0], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.880
+!MESSAGE XSCT command with result: [configparams force-mem-access 0], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.890
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.898
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.899
+!MESSAGE XSCT Command: [con], Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:16:46.914
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-20: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:16:46.917
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '9'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:20:46.706
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-10: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:20:46.709
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-10: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:20:46.710
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-10: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:20:46.713
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-10: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:20:46.714
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:20:46.715
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-10: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:20:46.717
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-10: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:20:54.761
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '10'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:21:34.935
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:21:34.938
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:21:34.939
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:21:34.941
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:21:34.943
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:21:34.944
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:21:34.946
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:21:42.723
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '11'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:15.377
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:15.380
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:15.381
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:15.383
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:23:15.384
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:15.386
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:15.387
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-24: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:23:23.222
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '12'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:28.452
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-25: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:28.455
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-25: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:28.456
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-25: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:28.459
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-25: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:23:28.460
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:28.461
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-25: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:23:28.463
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-25: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:23:36.189
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '13'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:42.848
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-22: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:42.850
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-22: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:42.851
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-22: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:42.854
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-22: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:28:42.855
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:42.856
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-22: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:42.858
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-22: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:28:50.936
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '14'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:56.455
+!MESSAGE XSCT Command: [disconnect tcfchan#19], Thread: Thread-1168
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:56.458
+!MESSAGE XSCT command with result: [disconnect tcfchan#19], Result: [null, ]. Thread: Thread-1168
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.458
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.462
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#25]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.463
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.471
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.472
+!MESSAGE XSCT Command: [version -server], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.474
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2023.1]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.475
+!MESSAGE XSCT Command: [version], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.476
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2023.1.0
+SW Build 0 on 2023-05-03-16:48:11
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.477
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.483
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.484
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.495
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.496
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.501
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.502
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.513
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.514
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.519
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.520
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.531
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.532
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.538
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.539
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.550
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.551
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.556
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.558
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.569
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.570
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.575
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA (closed)]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:28:57.577
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA (closed)" && level==1}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:00.596
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA (closed)" && level==1}], Result: [null, ]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:03.612
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA (closed)" && level==1}], Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:06.624
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA (closed)" && level==1}], Result: [null, ]. Thread: Worker-26: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.913
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.914
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#25]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.916
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.921
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.923
+!MESSAGE XSCT Command: [version -server], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.925
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2023.1]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.926
+!MESSAGE XSCT Command: [version], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.928
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2023.1.0
+SW Build 0 on 2023-05-03-16:48:11
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.929
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.934
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.935
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.946
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.947
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.952
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.953
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.965
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.966
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.970
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.972
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.983
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.984
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.989
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:11.990
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.001
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.002
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.007
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.009
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.020
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.022
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.027
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.028
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.039
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.040
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.052
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.053
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.054
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.055
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.062
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.063
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.105
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:12.106
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.109
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.121
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.126
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.128
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.139
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.141
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.162
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:15.164
+!MESSAGE XSCT Command: [fpga -file /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.479
+!MESSAGE XSCT command with result: [fpga -file /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.487
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.495
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.496
+!MESSAGE XSCT Command: [loadhw -hw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.508
+!MESSAGE XSCT command with result: [loadhw -hw /users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Result: [null, rsa_project_wrapper_0]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.509
+!MESSAGE XSCT Command: [configparams force-mem-access 1], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.511
+!MESSAGE XSCT command with result: [configparams force-mem-access 1], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.512
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.519
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.520
+!MESSAGE XSCT Command: [source /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.525
+!MESSAGE XSCT command with result: [source /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.526
+!MESSAGE XSCT Command: [ps7_init], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.784
+!MESSAGE XSCT command with result: [ps7_init], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.785
+!MESSAGE XSCT Command: [ps7_post_config], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.791
+!MESSAGE XSCT command with result: [ps7_post_config], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.792
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.798
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:17.800
+!MESSAGE XSCT Command: [dow /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:18.004
+!MESSAGE XSCT command with result: [dow /users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:18.005
+!MESSAGE XSCT Command: [configparams force-mem-access 0], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:18.025
+!MESSAGE XSCT command with result: [configparams force-mem-access 0], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:18.032
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:18.038
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:18.040
+!MESSAGE XSCT Command: [con], Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:29:18.054
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-23: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-11 18:29:18.057
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '10'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:30:40.509
+!MESSAGE XSCT Command: [disconnect tcfchan#25], Thread: Thread-1238
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-11 18:30:40.512
+!MESSAGE XSCT command with result: [disconnect tcfchan#25], Result: [null, ]. Thread: Thread-1238

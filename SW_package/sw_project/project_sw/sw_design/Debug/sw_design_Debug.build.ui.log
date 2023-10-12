@@ -1,0 +1,50 @@
+2023-10-11T18:28:42.87238900255-18:28:42 **** Incremental Build of configuration Debug for project sw_design ****
+000-make all 
+000-make[1]: Entering directory '/users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug'
+000-make --no-print-directory pre-build
+000-a9-linaro-pre-build-step
+000- 
+000-make --no-print-directory main-build
+000-Building file: ../src/montgomery.c
+000-Invoking: ARM v7 gcc compiler
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
+000-../src/montgomery.c: In function 'SUB_COND':
+000/sw_design/src/montgomery.c46-1-1implicit declaration of function 'mp_sub' [-Wimplicit-function-declaration]1-../src/montgomery.c:46:25: warning: implicit declaration of function 'mp_sub' [-Wimplicit-function-declaration]
+000-   46 |                         mp_sub(u,n,res,size);
+000-      |                         ^~~~~~
+000/sw_design/src/montgomery.c47-1-1'return' with a value, in function returning void [-Wreturn-type]1-../src/montgomery.c:47:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+000-   47 |                         return 0;
+000-      |                                ^
+000/sw_design/src/montgomery.c41-1-1declared here0-../src/montgomery.c:41:6: note: declared here
+000-   41 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+000-      |      ^~~~~~~~
+000/sw_design/src/montgomery.c55-1-1'return' with a value, in function returning void [-Wreturn-type]1-../src/montgomery.c:55:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+000-   55 |                         return 0;
+000-      |                                ^
+000/sw_design/src/montgomery.c41-1-1declared here0-../src/montgomery.c:41:6: note: declared here
+000-   41 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+000-      |      ^~~~~~~~
+000-../src/montgomery.c: In function 'montMul':
+000/sw_design/src/montgomery.c116-1-1implicit declaration of function 'xil_printf' [-Wimplicit-function-declaration]1-../src/montgomery.c:116:9: warning: implicit declaration of function 'xil_printf' [-Wimplicit-function-declaration]
+000-  116 |         xil_printf("t number:   \n");
+000-      |         ^~~~~~~~~~
+000/sw_design/src/montgomery.c117-1-1implicit declaration of function 'customprint' [-Wimplicit-function-declaration]1-../src/montgomery.c:117:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
+000-  117 |         customprint(t,l);
+000-      |         ^~~~~~~~~~~
+000-Finished building: ../src/montgomery.c
+000- 
+000-Building target: sw_design.elf
+000-Invoking: ARM v7 gcc linker
+000-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L/users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bsplib/lib -o "sw_design.elf"  ./src/platform/interface.o ./src/platform/platform.o  ./src/asm_func.o ./src/main.o ./src/montgomery.o ./src/mp_arith.o ./src/testvector.o ./src/warmup.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+000-Finished building target: sw_design.elf
+000- 
+000-Invoking: ARM v7 Print Size
+000-arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
+000-   text	   data	    bss	    dec	    hex	filename
+000-  70839	   3328	  22648	  96815	  17a2f	sw_design.elf
+000-Finished building: sw_design.elf.size
+000- 
+000-make[1]: Leaving directory '/users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug'
+00255-
+18:28:43 Build Finished (took 522ms)
+

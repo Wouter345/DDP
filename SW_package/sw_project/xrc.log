@@ -1,0 +1,11 @@
+Wed Oct 11 17:39:48 2023: Server was asked to start on port: '43991'
+Wed Oct 11 17:39:48 2023: Server is using token UUID: '75c6e685-85dc-43e9-8a7d-374a1510b46b'
+Wed Oct 11 17:39:48 2023: Attempting to start server on port '43991'
+Wed Oct 11 17:39:48 2023: XRC main fifo: created main fifo '/tmp/xrcmain75c6e685-85dc-43e9-8a7d-374a1510b46b', fd read = 11
+Wed Oct 11 17:39:48 2023: Running Rule Check Server
+Wed Oct 11 17:39:48 2023: Version 1.6.1
+Wed Oct 11 17:39:49 2023: Rule Check Server: Accepted socket connection from client
+Wed Oct 11 17:39:49 2023: EXCHANGE_TOKEN received, server token: 75c6e685-85dc-43e9-8a7d-374a1510b46b, passed token: 75c6e685-85dc-43e9-8a7d-374a1510b46b
+Wed Oct 11 18:30:41 2023: STOP_SERVER received, server token: 75c6e685-85dc-43e9-8a7d-374a1510b46b, passed token: 75c6e685-85dc-43e9-8a7d-374a1510b46b
+Wed Oct 11 18:30:41 2023: Socket received request to stop server.
+Wed Oct 11 18:30:41 2023: SERVER: destructor for server bound to port 43991
