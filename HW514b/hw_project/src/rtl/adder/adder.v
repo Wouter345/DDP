@@ -125,7 +125,7 @@ module mpadder(
 
             // Idle state; Here the FSM waits for the start signal
             // Enable input registers to fetch the inputs A and B when start is received
-            2'd0: begin
+            1'd0: begin
                 regA_en        <= 1'b1;
                 regB_en        <= 1'b1;
                 regSum_en      <= 1'b1;
@@ -137,7 +137,7 @@ module mpadder(
 
             // Enable registers, switch muxsel, no carryin
             // Calculate the first addition
-            2'd1: begin
+            1'd1: begin
                                 regA_en        <= 1'b0;
                                 regB_en        <= 1'b0;
                                 regSum_en      <= 1'b1;
@@ -167,15 +167,15 @@ module mpadder(
     always @(*)
     begin
         case(state)
-            2'd0: begin
+            1'd0: begin
                 if(start)
-                    nextstate <= 2'd1;
+                    nextstate <= 1'd1;
                 else
-                    nextstate <= 2'd0;
+                    nextstate <= 1'd0;
                 end
-            2'd1 : nextstate <= 2'd0;    
+            1'd1 : nextstate <= 1'd0;    
             
-            default: nextstate <= 2'd0;
+            default: nextstate <= 1'd0;
         endcase
     end
 
@@ -187,7 +187,7 @@ module mpadder(
                 always @(posedge clk)
                 begin
                     if(~resetn) regDone <= 1'd0;
-                    else        regDone <= (state==2'd1) ? 1'b1 : 1'b0;;
+                    else        regDone <= (state==1'd1) ? 1'b1 : 1'b0;;
                 end
 
                 assign done = regDone;
