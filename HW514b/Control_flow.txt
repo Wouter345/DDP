@@ -1,8 +1,7 @@
 Control flow
 
 	
-State:		Calculate bits		Bits available
-0		load input		/
-1		0-513			/
-2		514-1027		0-513
-0		/			0-1027
+State:		Calculate bits				Bits available
+0		load 514:1026  calculate 0-513		/
+1		calculate 514:1026			0-513
+0		/					0-1027
