@@ -1,5 +1,55 @@
 .text
 
+.global opt1
+.func opt1, opt1
+.type opt1, %function
+
+opt1:
+push {r4-r12}
+mov r4, #0 @j=0
+mov r5, #0 @C=0
+add r1, r1, r0, lsl #2 @add 4*i to pointer t --> t[i]
+add r3, r3, r0, lsl #2 @add 4*i to pointer b --> b[i]
+ldr r7, [r3] @ load b[i]
+for_loop:
+	ldr r6, [r2], #4 @load a[*] from 0 to ...
+	ldr r8, [r1], #4 @load t[i+j] from j=0 to ...
+	umull r10, r11, r7, r6 @a[j] * b[i]
+	add r9, r8, r5   @ t[i+j] + C
+	adc r10, r10, 0  @ add carry
+	add r8, r9, r11  @t[i+j] = sum 32LSB
+	adc r5, r10, 0   @C = MSB32
+	str
+
+
+
+
+end_loop:
+
+pop {r4-r12}
+bx lr
+.endfunc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.text
+
 .global add_3
 .func add_3, add_3
 .type add_3, %function
@@ -82,7 +132,7 @@ multiply:
 
 @ add Rx, Ry, Rz	//Rx = Ry + Rz  second operand can be constant
 @ sub Rx, Ry, Rz	//Rx = Ry - Rz second operand can be constant
-@ addc Rx, Ry, Rz	//Rx = Ry + Rz + CARRY   one operand can be constant
+@ adc Rx, Ry, Rz	//Rx = Ry + Rz + CARRY   one operand can be constant
 @ cmp Rx, Ry		//compares Rx and Ry and if they are equal sets Z flag, otherwise resets Z flag (works by subtracting two values and checks if result is zero)
 @ b{cond} <label>		//Jumps to given label in the code if given condition is satisfied
 @ umull Rn, Rm, Rx, Ry 	//{Rm, Rn} = Rx * Ry Multiplies unsigned 32bit values in Rx and Ry. Stores the higher 32 bits in Rm, and lower in Rn

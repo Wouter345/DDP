@@ -1,11 +1,14 @@
-Wed Oct 18 15:23:57 2023: Server was asked to start on port: '42147'
-Wed Oct 18 15:23:57 2023: Server is using token UUID: 'c68ef3b6-5a94-4ac0-a32a-0ce9ee48a83b'
-Wed Oct 18 15:23:57 2023: Attempting to start server on port '42147'
-Wed Oct 18 15:23:57 2023: XRC main fifo: created main fifo '/tmp/xrcmainc68ef3b6-5a94-4ac0-a32a-0ce9ee48a83b', fd read = 11
-Wed Oct 18 15:23:57 2023: Running Rule Check Server
-Wed Oct 18 15:23:57 2023: Version 1.6.1
-Wed Oct 18 15:23:57 2023: Rule Check Server: Accepted socket connection from client
-Wed Oct 18 15:23:57 2023: EXCHANGE_TOKEN received, server token: c68ef3b6-5a94-4ac0-a32a-0ce9ee48a83b, passed token: c68ef3b6-5a94-4ac0-a32a-0ce9ee48a83b
-Wed Oct 18 15:51:32 2023: STOP_SERVER received, server token: c68ef3b6-5a94-4ac0-a32a-0ce9ee48a83b, passed token: c68ef3b6-5a94-4ac0-a32a-0ce9ee48a83b
-Wed Oct 18 15:51:32 2023: Socket received request to stop server.
-Wed Oct 18 15:51:32 2023: SERVER: destructor for server bound to port 42147
+Wed Oct 18 16:50:55 2023: Server was asked to start on port: '46239'
+Wed Oct 18 16:50:55 2023: Server is using token UUID: '8bd43da4-af20-49ae-894a-4cc7f029bcbf'
+Wed Oct 18 16:50:55 2023: Attempting to start server on port '46239'
+Wed Oct 18 16:50:55 2023: XRC main fifo: created main fifo '/tmp/xrcmain8bd43da4-af20-49ae-894a-4cc7f029bcbf', fd read = 11
+Wed Oct 18 16:50:55 2023: Running Rule Check Server
+Wed Oct 18 16:50:55 2023: Version 1.6.1
+Wed Oct 18 16:50:56 2023: Rule Check Server: Accepted socket connection from client
+Wed Oct 18 16:50:56 2023: EXCHANGE_TOKEN received, server token: 8bd43da4-af20-49ae-894a-4cc7f029bcbf, passed token: 8bd43da4-af20-49ae-894a-4cc7f029bcbf
+Wed Oct 18 18:28:46 2023: STOP_SERVER received, server token: 8bd43da4-af20-49ae-894a-4cc7f029bcbf, passed token: 8bd43da4-af20-49ae-894a-4cc7f029bcbf
+Wed Oct 18 18:28:46 2023: Socket received request to stop server.
+Wed Oct 18 18:28:46 2023: SERVER: destructor for server bound to port 46239
+Wed Oct 18 18:28:46 2023: XRC main fifo: Good unlink of /tmp/xrcmain8bd43da4-af20-49ae-894a-4cc7f029bcbf
+Wed Oct 18 18:28:46 2023: Server exiting with status 0.
+Wed Oct 18 18:28:46 2023: Closing log file.

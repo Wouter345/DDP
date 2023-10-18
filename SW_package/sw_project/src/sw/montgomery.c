@@ -47,8 +47,8 @@ void montMul(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t 
 
 
 	for (int i=0; i<size; i++) {
-		C = 0;
 
+		C = 0;
 		for (int j=0; j<size-i; j++) {
 			sum = ((uint64_t)t[i+j]) + ((uint64_t)a[j])*((uint64_t)b[i]) + ((uint64_t)C);
 			C = (uint32_t)(sum>>32);

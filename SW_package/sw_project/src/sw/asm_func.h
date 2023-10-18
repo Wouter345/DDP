@@ -10,6 +10,16 @@
 
 #include <stdint.h>
 
+//C = 0;
+//for (int j=0; j<size-i; j++) {
+//	sum = ((uint64_t)t[i+j]) + ((uint64_t)a[j])*((uint64_t)b[i]) + ((uint64_t)C);
+//	C = (uint32_t)(sum>>32);
+//	t[i+j] = (uint32_t)sum;
+//}
+
+void opt1(uint32_t i, uint32_t *t, uint32_t *a, uint32_t *b);
+
+
 // a will be in register R0, b in R1, c in R2
 // Result is stored in register r0
 uint32_t add_3(uint32_t a, uint32_t b, uint32_t c);
@@ -25,6 +35,10 @@ uint32_t arr_copy(uint32_t *a, uint32_t *b, uint32_t n);
 // pointer to m array is stored in [SP]
 // pointer to n array is stored in [SP, #4] (one position above m)
 void multiply(uint32_t i, uint32_t *t, uint32_t *a, uint32_t *b, uint32_t *m, uint32_t *n);
+
+
+
+
 
 
 #endif /* ASM_FUNC_H_ */
