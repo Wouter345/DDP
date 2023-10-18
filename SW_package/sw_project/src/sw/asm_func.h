@@ -16,8 +16,13 @@
 //	C = (uint32_t)(sum>>32);
 //	t[i+j] = (uint32_t)sum;
 //}
+//
+//sum = ((uint64_t)t[size])+((uint64_t)C);
+//C = (uint32_t)(sum>>32);
+//t[size] = (uint32_t)sum;
+//t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
 
-void opt1(uint32_t i, uint32_t *t, uint32_t *a, uint32_t *b);
+void opt1(uint32_t i, uint32_t *t, uint32_t *a, uint32_t *b, uint32_t size);
 
 
 // a will be in register R0, b in R1, c in R2
@@ -34,7 +39,7 @@ uint32_t arr_copy(uint32_t *a, uint32_t *b, uint32_t n);
 // i is in R0, pointer to t array in R1, a array in R2, b array in R3
 // pointer to m array is stored in [SP]
 // pointer to n array is stored in [SP, #4] (one position above m)
-void multiply(uint32_t i, uint32_t *t, uint32_t *a, uint32_t *b, uint32_t *m, uint32_t *n);
+void multiply(int32_t i, uint32_t *t, uint32_t *a, uint32_t *b, uint32_t *m, uint32_t *n);
 
 
 
