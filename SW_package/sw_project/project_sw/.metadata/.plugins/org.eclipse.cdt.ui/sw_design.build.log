@@ -1,13 +1,13 @@
-18:28:42 **** Incremental Build of configuration Debug for project sw_design ****
+15:47:39 **** Incremental Build of configuration Debug for project sw_design ****
 make all 
-make[1]: Entering directory '/users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug'
+make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 make --no-print-directory pre-build
 a9-linaro-pre-build-step
  
 make --no-print-directory main-build
 Building file: ../src/montgomery.c
 Invoking: ARM v7 gcc compiler
-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
 ../src/montgomery.c: In function 'SUB_COND':
 ../src/montgomery.c:46:25: warning: implicit declaration of function 'mp_sub' [-Wimplicit-function-declaration]
    46 |                         mp_sub(u,n,res,size);
@@ -25,26 +25,26 @@ arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcp
    41 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
       |      ^~~~~~~~
 ../src/montgomery.c: In function 'montMul':
-../src/montgomery.c:116:9: warning: implicit declaration of function 'xil_printf' [-Wimplicit-function-declaration]
-  116 |         xil_printf("t number:   \n");
+../src/montgomery.c:93:9: warning: implicit declaration of function 'xil_printf' [-Wimplicit-function-declaration]
+   93 |         xil_printf("t number:   \n");
       |         ^~~~~~~~~~
-../src/montgomery.c:117:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
-  117 |         customprint(t,l);
+../src/montgomery.c:94:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
+   94 |         customprint(t,l);
       |         ^~~~~~~~~~~
 Finished building: ../src/montgomery.c
  
 Building target: sw_design.elf
 Invoking: ARM v7 gcc linker
-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L/users/students/r0792566/Documents/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bsplib/lib -o "sw_design.elf"  ./src/platform/interface.o ./src/platform/platform.o  ./src/asm_func.o ./src/main.o ./src/montgomery.o ./src/mp_arith.o ./src/testvector.o ./src/warmup.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bsplib/lib -o "sw_design.elf"  ./src/platform/interface.o ./src/platform/platform.o  ./src/asm_func.o ./src/main.o ./src/montgomery.o ./src/mp_arith.o ./src/testvector.o ./src/warmup.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
 Finished building target: sw_design.elf
  
 Invoking: ARM v7 Print Size
 arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  70839	   3328	  22648	  96815	  17a2f	sw_design.elf
+  70903	   3328	  22648	  96879	  17a6f	sw_design.elf
 Finished building: sw_design.elf.size
  
-make[1]: Leaving directory '/users/students/r0792566/Documents/SW_package/sw_project/project_sw/sw_design/Debug'
+make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 
-18:28:43 Build Finished (took 522ms)
+15:47:39 Build Finished (took 525ms)
 
