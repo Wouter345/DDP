@@ -77,25 +77,22 @@ void mod_add(uint32_t *a, uint32_t *b, uint32_t *N, uint32_t *res, uint32_t size
 
 // Calculates res = (a - b) mod N.
 // a and b represent operands, N is the modulus. They are large integers stored in uint32_t arrays of size elements
-void mod_sub(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *res, uint32_t size)
+void mod_sub(uint32_t *a, uint32_t *b, uint32_t *N, uint32_t *res, uint32_t size)
 {
-    for(int i=size-1; i>=0; i--){
+	uint32_t temp;
+	uint8_t i;
+	uint32_t negative_carry = 0;
+	for (i=0; i < size; i++) {
+		temp = a[i] - b[i] - negative_carry;
+		res[i] = (uint32_t) temp; //Cast to 32 bit
+		if (a[i] > b[i] + negative_carry) {
+			negative_carry = 0;
+		} else {
+			negative_carry = 1;
+		}
+	}
+	if (negative_carry==1) { //b is greater than a
+		mp_add(res, N, res, size);
+	}
 
-        // if a > b then do a-b<n
-        if (a[i]>b[i]){
-            mp_sub(a,b,res,size);
-            return 0;
-        }
-
-        // if a < b then do n+a-b
-        if (a[i]<b[i]){
-            mp_add(a,n,res,size);
-            mp_sub(res,b,res,size);
-            return 0;
-        }
-    }
-    // if a is equal to b, a-b is 0
-    for (int i=0; i<size; i++){
-        res[i] = 0;
-    }
 }
