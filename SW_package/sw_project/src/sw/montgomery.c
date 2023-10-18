@@ -11,22 +11,23 @@
 //Subtract n array from u if u is larger than n. u has SIZE+1 elements, n has SIZE+1 elements, n[SIZE] =0
 void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
 {
-    uint8_t i;
-    uint32_t negative_carry = 0;
-    for (i=0; i < size; i++) {
-        res[i] = t_prime[i] - n[i] - negative_carry;
-            if (t_prime[i] >= n[i]) {
-                negative_carry = 0;
-            } else {
-                negative_carry = 1;
-            }
-        }
-    if (negative_carry==1 && t_prime[size] == 0) { //b is greater than a
-        for (i=0; i < size; i++) {
-            res[i] = t_prime[i];
-        }
-    }
+	for(int i=size-1; i>=0; i--){
+	// if a > b then do a-b<n
+		if (u[i]>n[i]){
+			mp_sub(u,n,res,size);
+			return 0;
+		}
+
+		// if a < b then do n+a-b
+		if (u[i]<n[i]){
+			for (int j=0; j<size; j++){
+				res[j] = u[j];
+			}
+			return 0;
+		}
+	}
 }
+
 
 
 
