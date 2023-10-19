@@ -53,7 +53,7 @@ module hweval_montgomery(
                 start    <= 1'b0;           
                 
                 state    <= done ? 2'b10 : 2'b01;
-            endsourc
+            end
             
             else begin
                 in_a     <= in_b ^ result[1023:0];
