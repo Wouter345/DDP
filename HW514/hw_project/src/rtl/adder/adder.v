@@ -17,25 +17,23 @@ module mpadder(
     // Describe a 1027-bit register for A
     // It will save the input data when enable signal is high
 
-    reg           regA_en;
     wire [1026:0] regA_in;
     reg  [1026:0] regA_out;
     always @(posedge clk)
     begin
         if(~resetn)         regA_out <= 1027'd0;
-        else if (regA_en)   regA_out <= regA_in;
+        else    regA_out <= regA_in;
     end
     
 // Task 2
     // Describe a 1027-bit register for B
-
-    reg           regB_en;
+    
     wire [1026:0] regB_in;
     reg  [1026:0] regB_out;
     always @(posedge clk)
     begin
         if(~resetn)         regB_out <= 1027'd0;
-        else if (regB_en)   regB_out <= regB_in;
+        else    regB_out <= regB_in;
     end
     
 // Task 3
@@ -45,9 +43,9 @@ module mpadder(
     //   - the output of regA shifted-right by 200
     // Also connect the output of Mux to regA's input
     
-    reg           muxA_sel;
+    reg           muxAB_sel;
     wire [1026:0] muxA_Out;
-    assign muxA_Out = (muxA_sel == 0) ? in_a : {514'b0,regA_out[1026:514]};
+    assign muxA_Out = (muxAB_sel == 0) ? in_a : regA_out >> 514;
 
     assign regA_in = muxA_Out;
    
@@ -58,9 +56,8 @@ module mpadder(
     assign MuxBin_Out = (subtract == 0)? in_b : ~in_b;
     
     // Describe a 2-input 1027-bit Multiplexer for B
-    reg           muxB_sel;
     wire [1026:0] muxB_Out;
-    assign muxB_Out = (muxB_sel == 0) ? MuxBin_Out : {514'b0,regB_out[1026:514]};
+    assign muxB_Out = (muxAB_sel == 0) ? MuxBin_Out : regB_out >> 514;
     
     assign regB_in = muxB_Out;
     
@@ -123,7 +120,7 @@ module mpadder(
 // Task 10
     // Describe output, previous 5 calculations from regSum and last calculation
     wire      carry;
-    
+ 
     assign carry = subtract ^ regSum[1027];
     assign result = {carry,regSum[1026:0]};
 
@@ -149,46 +146,34 @@ module mpadder(
             // Idle state; Here the FSM waits for the start signal
             // Enable input registers to fetch the inputs A and B when start is received
             2'd0: begin
-                regA_en        <= 1'b1;
-                regB_en        <= 1'b1;
                 regSum_en      <= 1'b0;
                 regCout_en     <= 1'b0;
-                muxA_sel       <= 1'b0;
-                muxB_sel       <= 1'b0;
+                muxAB_sel      <= 1'b0;
                 muxsub_sel     <= 1'b0;
             end
 
             // Enable registers, switch muxsel, no carryin
             // Calculate the first addition
             2'd1: begin
-                                regA_en        <= 1'b1;
-                                regB_en        <= 1'b1;
-                                regSum_en      <= 1'b1;
-                                regCout_en     <= 1'b1;
-                                muxA_sel       <= 1'b1;
-                                muxB_sel       <= 1'b1;  
-                                muxsub_sel     <= 1'b1;
+                regSum_en      <= 1'b1;
+                regCout_en     <= 1'b1;
+                muxAB_sel      <= 1'b1;
+                muxsub_sel     <= 1'b1;
             end
 
             // Calculate the second addition
             2'd2: begin
-                                regA_en        <= 1'b1;
-                                regB_en        <= 1'b1;
-                                regSum_en      <= 1'b1;
-                                regCout_en     <= 1'b1;
-                                muxA_sel       <= 1'b1;
-                                muxB_sel       <= 1'b1;
-                                muxsub_sel     <= 1'b0;
+                regSum_en      <= 1'b1;
+                regCout_en     <= 1'b1;
+                muxAB_sel      <= 1'b1;
+                muxsub_sel     <= 1'b0;
             end
 
             default: begin
-                                regA_en        <= 1'b0;
-                                regB_en        <= 1'b0;
-                                regSum_en      <= 1'b1;
-                                regCout_en     <= 1'b0;
-                                muxA_sel       <= 1'b0;
-                                muxB_sel       <= 1'b0;
-                                muxsub_sel     <= 1'b0;
+                regSum_en      <= 1'b1;
+                regCout_en     <= 1'b0;
+                muxAB_sel      <= 1'b0;
+                muxsub_sel     <= 1'b0;
             end
 
         endcase
