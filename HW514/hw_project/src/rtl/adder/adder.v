@@ -110,11 +110,7 @@ module mpadder(
     wire muxsub_in;
     assign muxsub_in = (muxsub_sel == 0) ? regCout : subtract;
     
-    reg  muxCarryIn_sel;
-    wire muxCarryIn;
-    assign muxCarryIn = (muxCarryIn_sel == 0) ? 1'b0 : muxsub_in;
     
-    //assign muxCarryIn = (muxCarryIn_sel == 0)? 1'b0 : ((muxsub_sel == 0) ? regCout : subtract);
     
 // Task 9
     // Connect the inputs of adder to the outputs of A and B registers
@@ -122,7 +118,7 @@ module mpadder(
 
     assign operandA = regA_out;
     assign operandB = regB_out;
-    assign carry_in = muxCarryIn;
+    assign carry_in = muxsub_in;
     
 // Task 10
     // Describe output, previous 5 calculations from regSum and last calculation
@@ -159,7 +155,6 @@ module mpadder(
                 regCout_en     <= 1'b0;
                 muxA_sel       <= 1'b0;
                 muxB_sel       <= 1'b0;
-                muxCarryIn_sel <= 1'b0;
                 muxsub_sel     <= 1'b0;
             end
 
@@ -172,7 +167,6 @@ module mpadder(
                                 regCout_en     <= 1'b1;
                                 muxA_sel       <= 1'b1;
                                 muxB_sel       <= 1'b1;  
-                                muxCarryIn_sel <= 1'b1;
                                 muxsub_sel     <= 1'b1;
             end
 
@@ -184,7 +178,6 @@ module mpadder(
                                 regCout_en     <= 1'b1;
                                 muxA_sel       <= 1'b1;
                                 muxB_sel       <= 1'b1;
-                                muxCarryIn_sel <= 1'b1;
                                 muxsub_sel     <= 1'b0;
             end
 
@@ -195,7 +188,6 @@ module mpadder(
                                 regCout_en     <= 1'b0;
                                 muxA_sel       <= 1'b0;
                                 muxB_sel       <= 1'b0;
-                                muxCarryIn_sel <= 1'b0;
                                 muxsub_sel     <= 1'b0;
             end
 
