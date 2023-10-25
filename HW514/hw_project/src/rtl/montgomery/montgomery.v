@@ -39,7 +39,7 @@ module montgomery(
     always @(posedge clk)
     begin
         if(~resetn)         regB_out <= 1024'd0;
-        else if (regBM_en)  regB_out <= in_b;
+        else if (regBM_en)   regB_out <= in_b;
     end
   
   // Task 3
@@ -50,22 +50,21 @@ module montgomery(
     always @(posedge clk)
     begin
         if(~resetn)         regM_out <= 1024'd0;
-        else if (regBM_en)  regM_out <= in_m;
+        else if (regBM_en)   regM_out <= in_m;
     end
     
   // Task 4
     // Describe a 1028 bit register for result
-    reg           shift;
     reg           regC_en;
     wire [1027:0] regC_in;
     reg  [1027:0] regC_out;
     always @(posedge clk)
     begin
         if(~resetn)         regC_out <= 1028'd0;
-        else if (state == 4'd5) regC_out <= regC_out >> 1;
+        if (state == 4'd3)  regC_out <= regC_out >> 1;
+        //else if (state == 0)regC_out <= 1028'd0;
         else if (regC_en)   regC_out <= regC_in;
     end
-    
     
   // Task 5
     // Describe a 2-input 1024-bit Multiplexer for A
@@ -76,7 +75,7 @@ module montgomery(
     
     reg           muxA_sel;
     wire [1023:0] muxA_Out;
-    assign muxA_Out = (muxA_sel == 0) ? in_a : regA_out >> 1;
+    assign muxA_Out = (muxA_sel == 0) ? in_a : {1'b0,regA_out[1023:1]};
     assign regA_in = muxA_Out;
  
     
@@ -109,7 +108,7 @@ module montgomery(
 
   
     
-    assign regC_in = (state == 4'd8) ? Sum >> 1: Sum;
+    assign regC_in = (state == 4'd4) ? Sum >> 1: Sum;
     assign result = regC_out;
     
     reg [10:0] count;
@@ -174,32 +173,6 @@ module montgomery(
             4'd2: begin
                 regA_en <= 1'b0;
                 regBM_en <= 1'b0;
-                regC_en <= 1'b0;
-                muxA_sel <= 1'b1;
-                muxInput2_sel <= 1'b0;
-                count_en <= 1'b0;
-                subtract <= 1'b0;
-                reset <= 1'b0;
-                start_signal <= 1'b0;
-                resetn_signal <= 1'b1;
-            end
-            
-            4'd3: begin
-                regA_en <= 1'b0;
-                regBM_en <= 1'b0;
-                regC_en <= 1'b0;
-                muxA_sel <= 1'b1;
-                muxInput2_sel <= 1'b0;
-                count_en <= 1'b0;
-                subtract <= 1'b0;
-                reset <= 1'b0;
-                start_signal <= 1'b0;
-                resetn_signal <= 1'b1;
-            end
-            
-            4'd4: begin
-                regA_en <= 1'b0;
-                regBM_en <= 1'b0;
                 regC_en <= 1'b1;
                 muxA_sel <= 1'b1;
                 muxInput2_sel <= 1'b0;
@@ -210,10 +183,10 @@ module montgomery(
                 resetn_signal <= 1'b1;
             end
 
-            4'd5: begin
+            4'd3: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
-                regC_en <= 1'b0;
+                regC_en <= 1'b1;
                 muxA_sel <= 1'b1;
                 muxInput2_sel <= 1'b1;
                 count_en <= 1'b0;
@@ -224,33 +197,7 @@ module montgomery(
                 else start_signal <= 1'b0;
             end
             
-            4'd6: begin
-                regA_en <= 1'b0;
-                regBM_en  <= 1'b0;
-                regC_en <= 1'b0;
-                muxA_sel <= 1'b1;
-                muxInput2_sel <= 1'b1;
-                count_en <= 1'b0;
-                subtract <= 1'b0;
-                reset <= 1'b0;
-                resetn_signal <= 1'b1;
-                start_signal <= 1'b0;
-            end
-            
-            4'd7: begin
-                regA_en <= 1'b0;
-                regBM_en  <= 1'b0;
-                regC_en <= 1'b0;
-                muxA_sel <= 1'b1;
-                muxInput2_sel <= 1'b1;
-                count_en <= 1'b0;
-                subtract <= 1'b0;
-                reset <= 1'b0;
-                resetn_signal <= 1'b1;
-                start_signal <= 1'b0;
-            end
-            
-            4'd8: begin
+            4'd4: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= 1'b1;
@@ -264,7 +211,7 @@ module montgomery(
             end
 
 
-            4'd9: begin
+            4'd5: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= 1'b0;
@@ -277,7 +224,7 @@ module montgomery(
                 start_signal <= 1'b1;
             end
             
-            4'd10: begin
+            4'd6: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= 1'b0;
@@ -290,7 +237,7 @@ module montgomery(
                 start_signal <= 1'b0;
             end
             
-            4'd11: begin
+            4'd7: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= 1'b0;
@@ -303,7 +250,7 @@ module montgomery(
                 start_signal <= 1'b0;
             end
 
-            4'd12: begin
+            4'd8: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 if (Sum[1027]) regC_en <= 1'b0;
@@ -353,26 +300,30 @@ module montgomery(
                 if(operandA)
                     nextstate <= 4'd2;    
                 else
-                    nextstate <= 4'd5;
-            4'd2 : nextstate <= 4'd3;
-            4'd3 : nextstate <= 4'd4;
-            4'd4 : nextstate <= 4'd5;
-            4'd5 : begin
+                    nextstate <= 4'd3;
+            4'd2 : begin
+                if (done2 == 1'b1) 
+                    nextstate <= 4'd3;
+                else
+                    nextstate <= 4'd2;
+                end
+             4'd3 : begin
                 if (operandC[0]) 
-                    nextstate <= 4'd6;
-                else if (count == 11'd1024) nextstate <= 4'd9;
+                    nextstate <= 4'd4;
+                else if (count == 11'd1024) nextstate <= 4'd5;
                 else nextstate <= 4'd1;
                 end
+             4'd4 : begin
+                if (done2 == 1'b1)
+                  if (count == 11'd1024) nextstate <= 4'd5;
+                  else  nextstate <= 4'd1;
+                else
+                    nextstate <= 4'd4;
+                end
+             4'd5 : nextstate <= 4'd6;
              4'd6 : nextstate <= 4'd7;
              4'd7 : nextstate <= 4'd8;
-             4'd8 : begin
-                        if (count == 11'd1024) nextstate <= 4'd9;
-                        else  nextstate <= 4'd1;
-                    end
-             4'd9 : nextstate <= 4'd10;
-             4'd10 : nextstate <= 4'd11;
-             4'd11 : nextstate <= 4'd12;
-             4'd12 : nextstate <= 4'd0;
+             4'd8 : nextstate <= 4'd0;
             
              default: nextstate <= 4'd0;
         endcase
@@ -386,7 +337,7 @@ module montgomery(
                 always @(posedge clk)
                 begin
                     if(~resetn) regDone <= 1'd0;
-                    else        regDone <= (state==4'd12) ? 1'b1 : 1'b0;
+                    else        regDone <= (state==4'd8) ? 1'b1 : 1'b0;
                 end
 
                 assign done = regDone;
