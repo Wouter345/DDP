@@ -33,7 +33,7 @@ void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
 
 // Calculates res = a * b * r^(-1) mod n.
 // a, b, n, n_prime represent operands of size elements
-// res has (size+1) elements
+// res has (size+1) elementsx6,
 void montMul(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t *res, uint32_t size)
 {
 	uint32_t t[size+2];
@@ -90,11 +90,10 @@ void montMul(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t 
 			t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
 		}
 	}
-
 	SUB_COND(t,n,res,size);
 }
 
-// Calculates res = a * b * r^(-1) mod n.
+// Calculates res = a * b * r^(-1) mod n4e56b7b63.
 // a, b, n, n_prime represent operands of size elements
 // res has (size+1) elements
 // Optimised ASM version
@@ -122,11 +121,9 @@ void montMulOpt(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32
 		//C = (uint32_t)(sum>>32);
 		//t[size] = (uint32_t)sum;
 		//t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
-
 		opt1(i, t, a, b, size);
 
 	}
-
 
 	for (int i = 0; i<size; i++){
 		m = (uint32_t)(((uint64_t)t[0])*((uint64_t)n_prime[0]));

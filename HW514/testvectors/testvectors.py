@@ -7,6 +7,21 @@ import sys
 operation = 0
 seed = "random"
 
+seed = 2023
+M = helpers.getModulus(1024)
+A = helpers.getRandomInt(1024) % M
+B = helpers.getRandomInt(1024) % M
+
+C = SW.MontMul(A, B, M)
+D = HW.MontMul(A, B, M)
+
+e = (C - D)
+print("in_a    <= 1024'h", str(hex(A))[2:], ";")  # 1024-bits
+print("in_b    <= 1024'h", str(hex(B))[2:], ";")  # 1024-bits
+print("in_m    <= 1024'h", str(hex(M))[2:], ";")  # 1024-bits
+print("expected <= 1024'h", str(hex(D))[2:], ";")
+print("(A*B*R^-1) mod M = ", hex(C))  # 102
+
 print ("TEST VECTOR GENERATOR FOR DDP\n")
 
 if len(sys.argv) in [2,3,4]:

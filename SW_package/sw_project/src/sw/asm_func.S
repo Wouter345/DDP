@@ -7,7 +7,7 @@
 opt1:
 push {r4-r12}
 ldr r4, [sp, #36] @load fifth input size
-sub r12, r4, r0 @r12 = size-i
+sub r12, r4, r0 @j=r12 = size-i
 mov r5, #0 @C=0
 add r1, r1, r0, lsl #2 @add 4*i to pointer t --> t[i]
 add r3, r3, r0, lsl #2 @add 4*i to pointer b --> b[i]
@@ -16,20 +16,20 @@ for_loop:
 	ldr r6, [r2], #4 @load a[j] and increment pointer
 	ldr r8, [r1] @load t[i+j]
 	umull r10, r11, r7, r6 @a[j] * b[i] r10=32LSB and r11=32MSB
-	add r9, r8, r5   @ t[i+j] + C
-	adc r11, r11, 0  @ add carry
-	add r8, r9, r10  @t[i+j] = a*b+t+c {32LSB}
-	adc r5, r11, 0   @C = {32MSB}
+	adds r9, r8, r5   @ t[i+j] + C
+	adc r11, r11, #0  @ add carry
+	adds r8, r9, r10  @t[i+j] = a*b+t+c {32LSB}
+	adc r5, r11, #0   @C = {32MSB}
 	str r8, [r1], #4 @store t[i+j] and increment pointer
 	subs r12, r12, #1 @decrease j by 1
 	bne for_loop	@ if j!=0 branch back to for_loop
 end_loop:
-add r1, r1, r4, lsl #2 @update pointer r1 to t[size]
+@add r1, r1, r4, lsl #2 @update pointer r1 to t[size]
 ldr r8, [r1] @ load value t[size]
-add r8, r8, r5 @ t[size] = t+C
+adds r8, r8, r5 @ t[size] = t+C
 str r8, [r1], #4 @ store value t[size] and increment pointer to size+1
 ldr r8, [r1] @ load value t[size+1]
-adc r8, r8, 0
+adc r8, r8, #0 @t[size+1] = t+C
 str r8, [r1]
 
 pop {r4-r12}

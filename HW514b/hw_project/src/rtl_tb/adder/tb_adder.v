@@ -140,9 +140,9 @@ module tb_adder();
 
     // Test subtraction with large test vectors. 
     // You can generate your own vectors with testvector generator python script.
-    perform_sub(1027'h3,
-                1027'h8);
-    expected  = 1028'hfe495ee3fb1734c7ae156682d49ccc6e1183ba0b751da2bda6abfeb5dcd0cbb5c21c25b434efa38934e3efe636653d9e8805d634b2dfda860200da734ca9a204ad5a5b6def6b2e78f6a09e5bffeb50ff5a1221a79963a704e0598012195cfaa56475e5c2388850f0574cf6976dfdafba0c5d5827acc7349ecac435d1b33fbf300;
+    perform_sub(1027'h8,
+                1027'h3);
+    expected  = 1028'h5;
     wait (done==1);
     result_ok = (expected==result);
     $display("result calculated=%x", result);

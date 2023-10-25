@@ -34,7 +34,7 @@ module mpadder(
 // Task 3
     // Describe a 514-bit register for B
 
-    reg           regB_en;
+    reg          regB_en;
     reg  [513:0] regB_out;
     always @(posedge clk)
     begin

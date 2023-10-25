@@ -86,7 +86,7 @@ module rsa (
       // A state for dummy computation for this example. Because this
       // computation takes only single cycle, go to TX state immediately
       STATE_COMPUTE : begin
-        next_state <= STATE_TX;
+        next_state <= (done) ? STATE_TX : state;    
       end
 
       // Wait, if dma is not idle. Otherwise, start dma operation and go to
@@ -126,6 +126,9 @@ module rsa (
   always@(posedge clk)
     state <= (~resetn) ? STATE_IDLE : next_state;
 
+  wire [1027:0] Res;
+  wire done;
+  montgomery mult(clk, 1'b1, 1'b1, 1024'h2, 1024'h3, 1024'h8, Res, done);
 
   // Here is a register for the computation. Sample the dma data input in
   // STATE_RX_WAIT. Update the data with a dummy operation in STATE_COMP.
@@ -135,7 +138,8 @@ module rsa (
   always@(posedge clk)
     case (state)
       STATE_RX_WAIT : r_data <= (dma_done) ? dma_rx_data : r_data;
-      STATE_COMPUTE : r_data <= {32'h00000000, r_data[991:0]};
+//      STATE_COMPUTE : r_data <= {32'hDEADBEEF, r_data[991:0]};
+      STATE_COMPUTE : r_data <= Res;
     endcase
   assign dma_tx_data = r_data;
 

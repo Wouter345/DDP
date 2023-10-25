@@ -34,12 +34,20 @@ void customprint(uint32_t *in, int length) {
     }
 
     str[j] = '\0'; // Null-terminate the string
-    xil_printf("Number is: ");
     xil_printf("0x");
     xil_printf("%s\n", str);
-    xil_printf("\n\n");
 }
 
+void customp(uint32_t *in)
+{
+    int32_t i;
+
+    xil_printf("=");
+    for (i = 0; i < 34; i++) {
+    	xil_printf("0x%x,", in[i]);
+    }
+    xil_printf("\n\r");
+}
 
 void warmup()
 {
@@ -93,6 +101,9 @@ void warmup()
 	  * 	2) calculates the sum of the values in b_ar
 	  *   	You may want to create a extra variable for the sum
     **/
+
+
+
 
 	//int32_t a_ar[10];
     //int32_t b_ar[] = {1, 2, 3, 4};
