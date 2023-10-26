@@ -11278,3 +11278,884 @@ org.eclipse.tcf.core.ErrorReport: TCF error report:
 
 !ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:10:32.140
 !MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '54'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:16:54.993
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-54: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:16:54.997
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-54: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:16:54.998
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-54: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:16:55.001
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-54: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:16:55.003
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:16:55.004
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-54: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:16:55.006
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-54: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2023-10-26 14:16:55.435
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:22.486
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-57: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:22.489
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-57: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:22.491
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-57: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:22.494
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-57: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:17:22.495
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:22.497
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-57: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:22.500
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-57: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:17:32.443
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '43'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:37.445
+!MESSAGE XSCT Command: [disconnect tcfchan#96], Thread: Thread-4610
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:37.448
+!MESSAGE XSCT command with result: [disconnect tcfchan#96], Result: [null, ]. Thread: Thread-4610
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.449
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.453
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#98]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.455
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.462
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.465
+!MESSAGE XSCT Command: [version -server], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.467
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2023.1]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.468
+!MESSAGE XSCT Command: [version], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.471
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2023.1.0
+SW Build 0 on 2023-05-03-16:48:11
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.473
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.478
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.480
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.492
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.493
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.499
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.501
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.513
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.514
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.519
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.521
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.532
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.533
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.538
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.539
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.551
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.552
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.557
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.559
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.570
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.572
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.578
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.579
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.591
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.592
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.605
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.607
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.610
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.612
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.623
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.625
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.667
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:38.668
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.672
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.688
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.693
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.695
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.706
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.708
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.731
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:41.733
+!MESSAGE XSCT Command: [fpga -file /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:44.049
+!MESSAGE XSCT command with result: [fpga -file /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:44.063
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:44.071
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:44.074
+!MESSAGE XSCT Command: [loadhw -hw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.668
+!MESSAGE XSCT command with result: [loadhw -hw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Result: [null, rsa_project_wrapper_53]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.670
+!MESSAGE XSCT Command: [configparams force-mem-access 1], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.672
+!MESSAGE XSCT command with result: [configparams force-mem-access 1], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.673
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.680
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.681
+!MESSAGE XSCT Command: [source /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.684
+!MESSAGE XSCT command with result: [source /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.686
+!MESSAGE XSCT Command: [ps7_init], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.908
+!MESSAGE XSCT command with result: [ps7_init], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.911
+!MESSAGE XSCT Command: [ps7_post_config], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.917
+!MESSAGE XSCT command with result: [ps7_post_config], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.920
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.927
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:46.929
+!MESSAGE XSCT Command: [dow /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:47.129
+!MESSAGE XSCT command with result: [dow /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:47.131
+!MESSAGE XSCT Command: [configparams force-mem-access 0], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:47.156
+!MESSAGE XSCT command with result: [configparams force-mem-access 0], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:47.163
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY org.eclipse.cdt.debug.ui.memory.floatingpoint.FPRendering 4 5013 2023-10-26 14:17:47.165
+!MESSAGE Failure in retrieving base address.
+!STACK 1
+org.eclipse.debug.core.DebugException: Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.internal.debug.ui.model.TCFDebugTask.getD(TCFDebugTask.java:51)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock.getBigBaseAddress(TCFMemoryBlock.java:396)
+	at org.eclipse.cdt.debug.ui.memory.floatingpoint.FPRendering.init(FPRendering.java:288)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock$9.run(TCFMemoryBlock.java:813)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4930)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4451)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at com.xilinx.ide.application.ui.Application.start(Application.java:80)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1420)
+Caused by: org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+!SUBENTRY 1 org.eclipse.tcf.debug.ui 4 5012 2023-10-26 14:17:47.165
+!MESSAGE Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+!STACK 0
+org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:47.170
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:47.171
+!MESSAGE XSCT Command: [con], Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY org.eclipse.cdt.debug.ui.memory.traditional.TraditionalRendering 4 5013 2023-10-26 14:17:47.173
+!MESSAGE Failure in retrieving base address.
+!STACK 1
+org.eclipse.debug.core.DebugException: Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.internal.debug.ui.model.TCFDebugTask.getD(TCFDebugTask.java:51)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock.getBigBaseAddress(TCFMemoryBlock.java:396)
+	at org.eclipse.cdt.debug.ui.memory.traditional.TraditionalRendering.init(TraditionalRendering.java:333)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock$9.run(TCFMemoryBlock.java:813)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4930)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4451)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at com.xilinx.ide.application.ui.Application.start(Application.java:80)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1420)
+Caused by: org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+!SUBENTRY 1 org.eclipse.tcf.debug.ui 4 5012 2023-10-26 14:17:47.173
+!MESSAGE Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+!STACK 0
+org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:17:47.164
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:17:47.187
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-57: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:17:47.192
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '55'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:04.691
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-52: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:04.695
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-52: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:04.696
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-52: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:04.699
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-52: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:18:04.700
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:04.702
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-52: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:04.705
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-52: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:18:13.759
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '44'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:24.380
+!MESSAGE XSCT Command: [disconnect tcfchan#98], Thread: Thread-4675
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:24.384
+!MESSAGE XSCT command with result: [disconnect tcfchan#98], Result: [null, ]. Thread: Thread-4675
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.382
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.387
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#100]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.388
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.396
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.397
+!MESSAGE XSCT Command: [version -server], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.400
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2023.1]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.401
+!MESSAGE XSCT Command: [version], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.403
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2023.1.0
+SW Build 0 on 2023-05-03-16:48:11
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.405
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.410
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.412
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.424
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.426
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.432
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.434
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.446
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.447
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.452
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.454
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.465
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.466
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.471
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.473
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.484
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.486
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.491
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.493
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.504
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.506
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.511
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.513
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.525
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.527
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.538
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.539
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.541
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.543
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.555
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.557
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.598
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:25.600
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.605
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.622
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.627
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.629
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.641
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.643
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.667
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:28.669
+!MESSAGE XSCT Command: [fpga -file /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:30.986
+!MESSAGE XSCT command with result: [fpga -file /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:30.999
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:31.008
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:31.010
+!MESSAGE XSCT Command: [loadhw -hw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.511
+!MESSAGE XSCT command with result: [loadhw -hw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Result: [null, rsa_project_wrapper_54]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.513
+!MESSAGE XSCT Command: [configparams force-mem-access 1], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.515
+!MESSAGE XSCT command with result: [configparams force-mem-access 1], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.516
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.523
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.525
+!MESSAGE XSCT Command: [source /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.527
+!MESSAGE XSCT command with result: [source /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.528
+!MESSAGE XSCT Command: [ps7_init], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.771
+!MESSAGE XSCT command with result: [ps7_init], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.773
+!MESSAGE XSCT Command: [ps7_post_config], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.781
+!MESSAGE XSCT command with result: [ps7_post_config], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.783
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.791
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:33.792
+!MESSAGE XSCT Command: [dow /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:34.006
+!MESSAGE XSCT command with result: [dow /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:34.008
+!MESSAGE XSCT Command: [configparams force-mem-access 0], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:34.027
+!MESSAGE XSCT command with result: [configparams force-mem-access 0], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:34.034
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY org.eclipse.cdt.debug.ui.memory.floatingpoint.FPRendering 4 5013 2023-10-26 14:18:34.039
+!MESSAGE Failure in retrieving base address.
+!STACK 1
+org.eclipse.debug.core.DebugException: Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.internal.debug.ui.model.TCFDebugTask.getD(TCFDebugTask.java:51)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock.getBigBaseAddress(TCFMemoryBlock.java:396)
+	at org.eclipse.cdt.debug.ui.memory.floatingpoint.FPRendering.init(FPRendering.java:288)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock$9.run(TCFMemoryBlock.java:813)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4930)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4451)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at com.xilinx.ide.application.ui.Application.start(Application.java:80)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1420)
+Caused by: org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+!SUBENTRY 1 org.eclipse.tcf.debug.ui 4 5012 2023-10-26 14:18:34.039
+!MESSAGE Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+!STACK 0
+org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:34.042
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:34.043
+!MESSAGE XSCT Command: [con], Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY org.eclipse.cdt.debug.ui.memory.traditional.TraditionalRendering 4 5013 2023-10-26 14:18:34.047
+!MESSAGE Failure in retrieving base address.
+!STACK 1
+org.eclipse.debug.core.DebugException: Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.internal.debug.ui.model.TCFDebugTask.getD(TCFDebugTask.java:51)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock.getBigBaseAddress(TCFMemoryBlock.java:396)
+	at org.eclipse.cdt.debug.ui.memory.traditional.TraditionalRendering.init(TraditionalRendering.java:333)
+	at org.eclipse.tcf.internal.debug.ui.model.TCFMemoryBlock$9.run(TCFMemoryBlock.java:813)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:185)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4930)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:4451)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$5.run(PartRenderingEngine.java:1160)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1049)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:155)
+	at org.eclipse.ui.internal.Workbench.lambda$3(Workbench.java:658)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:338)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:557)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:154)
+	at com.xilinx.ide.application.ui.Application.start(Application.java:80)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:203)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:137)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:107)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:401)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:255)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:657)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:594)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1447)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1420)
+Caused by: org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+!SUBENTRY 1 org.eclipse.tcf.debug.ui 4 5012 2023-10-26 14:18:34.047
+!MESSAGE Debugger request failed.
+TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+!STACK 0
+org.eclipse.tcf.core.ErrorReport: TCF error report:
+  Command: Expressions create "JTAG-jsn-TUL-1234-tulA-4ba00477-0.0", null, "00117d94"
+  Time: 2023-10-26 14:18:34.038
+  Error text: At col 5: Illegal characters at the end of expression. Invalid expression
+  Error code: 18
+
+	at org.eclipse.tcf.core.Command.toError(Command.java:267)
+	at org.eclipse.tcf.core.Command.toError(Command.java:252)
+	at org.eclipse.tcf.internal.services.remote.ExpressionsProxy$2.done(ExpressionsProxy.java:185)
+	at org.eclipse.tcf.core.Command.result(Command.java:122)
+	at org.eclipse.tcf.core.AbstractChannel.handleInput(AbstractChannel.java:1128)
+	at org.eclipse.tcf.core.AbstractChannel$1$1.run(AbstractChannel.java:371)
+	at org.eclipse.tcf.EventQueue.run(EventQueue.java:98)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:34.058
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-50: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-10-26 14:18:34.061
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '56'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:52.287
+!MESSAGE XSCT Command: [disconnect tcfchan#100], Thread: Thread-4728
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-10-26 14:18:52.289
+!MESSAGE XSCT command with result: [disconnect tcfchan#100], Result: [null, ]. Thread: Thread-4728

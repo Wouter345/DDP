@@ -118,6 +118,26 @@ pop {r4-r12}
 bx lr
 .endfunc
 
+
+.text
+
+.global opt4
+.func opt4, opt4
+.type opt4, %function
+
+opt4:
+push {r4-r12}
+mov r7, #0
+opt4_loop:
+	str r7, [r0], #4
+	subs r1, #1
+	bne opt4_loop
+end4_loop:
+
+pop {r4-r12}
+bx lr
+.endfunc
+
 .text
 
 .global add_3

@@ -1,6 +1,6 @@
 Nothing to build in platform 'rsa_project_wrapper'
 
-14:10:08 **** Incremental Build of configuration Debug for project sw_design ****
+14:18:04 **** Incremental Build of configuration Debug for project sw_design ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 make --no-print-directory pre-build
@@ -31,14 +31,17 @@ arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcp
    92 |                         customp(t);
       |                         ^~~~~~~
 ../src/montgomery.c: In function 'montMulOpt':
-../src/montgomery.c:111:17: warning: implicit declaration of function 'opt1' [-Wimplicit-function-declaration]
-  111 |                 opt1(i, t, a, b, size);
+../src/montgomery.c:108:9: warning: implicit declaration of function 'opt4' [-Wimplicit-function-declaration]
+  108 |         opt4(t, size+2);
+      |         ^~~~
+../src/montgomery.c:112:17: warning: implicit declaration of function 'opt1' [-Wimplicit-function-declaration]
+  112 |                 opt1(i, t, a, b, size);
       |                 ^~~~
-../src/montgomery.c:115:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
-  115 |                 opt2(t, n, n_prime, size);
+../src/montgomery.c:116:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
+  116 |                 opt2(t, n, n_prime, size);
       |                 ^~~~
-../src/montgomery.c:117:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
-  117 |                 opt3(i, t, a, b, size);
+../src/montgomery.c:118:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
+  118 |                 opt3(i, t, a, b, size);
       |                 ^~~~
 Finished building: ../src/montgomery.c
  
@@ -50,11 +53,11 @@ Finished building target: sw_design.elf
 Invoking: ARM v7 Print Size
 arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  71663	   3328	  22648	  97639	  17d67	sw_design.elf
+  71599	   3328	  22648	  97575	  17d27	sw_design.elf
 Finished building: sw_design.elf.size
  
 make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
-14:10:09 **** Incremental Build of configuration Debug for project sw_design_system ****
+14:18:05 **** Incremental Build of configuration Debug for project sw_design_system ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design_system/Debug'
 Generating bif file for the system project

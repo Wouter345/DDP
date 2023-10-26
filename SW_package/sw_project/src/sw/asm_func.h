@@ -54,6 +54,10 @@ void opt2(uint32_t *t, uint32_t *n, uint32_t *n_prime, uint32_t size);
 //}
 void opt3(uint32_t i, uint32_t *t, uint32_t *a, uint32_t *b, uint32_t size);
 
+//	for (int i=0; i<size+2; i++) {
+//		t[i] = 0;
+//	}
+void opt3(uint32_t *t, uint32_t size);
 
 
 // a will be in register R0, b in R1, c in R2
