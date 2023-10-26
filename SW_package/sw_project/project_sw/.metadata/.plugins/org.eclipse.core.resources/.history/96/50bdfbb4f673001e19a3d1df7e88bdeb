@@ -1,0 +1,56 @@
+/******************************************************************
+ * This is the main file for the Software Sessions
+ *
+ */
+
+#include <stdint.h>
+#include <inttypes.h>
+#include <math.h>
+
+#include "common.h"
+
+// Uncomment for Session SW1
+// extern void warmup();
+
+// Uncomment for Session SW2 onwards
+//#include "mp_arith.h"
+//#include "montgomery.h"
+//#include "asm_func.h"
+
+
+int main()
+{
+    init_platform();
+    init_performance_counters(1);
+
+    // Hello World template
+    //----------------------
+    xil_printf("Begin\n\r");
+    uint32_t a[32]         = { 0x61a49a9c, 0x6fb5f967, 0xfaf54986, 0xb985cf60, 0x2dc80545, 0x5ab25309, 0x4b9c30c3, 0x824463da, 0xf61fc6ae, 0x76f5b3f3, 0x9f79680a, 0xe68fb5e7, 0x002903fc, 0xa7fed85a, 0xef5e844c, 0xe49b167e, 0x58a4ca45, 0xa32c6e5e, 0x481a7e34, 0x48ad9948, 0xc751ec1b, 0x9a818c40, 0xee6abeb8, 0xd7cf0c78, 0xc8288dc3, 0xd7085144, 0x01ea8d38, 0xd37dfab8, 0xc0e189c2, 0x2b222040, 0xa4b53db1, 0x90c83cc2 };
+    uint32_t b[32]         = { 0xe2fac514, 0xcb31fe1f, 0x9756cbda, 0x63fc5c4d, 0x4b67593f, 0x0dffecb7, 0xf3abee2a, 0x6666cb0f, 0x78c50c99, 0xeaf5a77f, 0x37b88f54, 0xfd5c5841, 0xde108a75, 0x776f78ef, 0x8125999a, 0xfa068ec9, 0xf428b9a6, 0x47ad5298, 0x841d96e7, 0xfeafbec3, 0xf723b835, 0x9bff6a63, 0xf1a65f8c, 0xc4bea09f, 0x28a287c7, 0xfdc55e59, 0x99563b13, 0xe7100985, 0xc922c53a, 0xcd05b7f0, 0x8752b974, 0x84932ff2 };
+    uint32_t n[32]         = { 0x674cbf1f, 0x595e6f8f, 0xb259f87d, 0xab82ffa9, 0x3f920e32, 0xbbd7e4da, 0xe5b7f63c, 0x8a4087e5, 0x93072f03, 0x6168ad49, 0x5e68388b, 0x20d20727, 0x6422a03e, 0xe547630d, 0x503af15d, 0x0afbb1f0, 0x024b92b9, 0x91de2d14, 0x2f4bad0f, 0x3161333e, 0x68ca2eb4, 0x2bd64447, 0x15f38b87, 0x60de7d32, 0x562f5343, 0x6190178a, 0xcc541fad, 0x8fb005c7, 0xda769f97, 0xb7cf41e3, 0x75d68147, 0x9796281f };
+    uint32_t n_prime[32]   = { 0x81620321, 0xa69159a2, 0x9260c0e2, 0x6e2ef4f2, 0xf1a8f7a8, 0x2b75808a, 0x17e76547, 0xdf8e6be1, 0xbb5aabff, 0xff07777c, 0x9f3948b3, 0x8e28971c, 0xaa4a0249, 0x16ec757b, 0xe2880447, 0x926d1c58, 0xe30c3635, 0x8420aa03, 0xbb620d67, 0x3d692cfd, 0x1ea85b75, 0x092c503d, 0xa2f610ed, 0xb0c1f03a, 0xb0cac9e3, 0x98a7677a, 0xe81a2eb3, 0x8922433e, 0xce90102b, 0xc98defe9, 0xe8eb8336, 0x691d2646 };
+
+    uint32_t res[33] = {0};
+    xil_printf("Hello World!\n\r");
+
+START_TIMING;
+	//montMul(a,b,n,n_prime,res,32);
+    montMulOpt(a,b,n,n_prime,res,32);
+
+STOP_TIMING;
+
+	xil_printf("\n\n");
+	int length = sizeof(res) / sizeof(res[0]);
+	customprint(res, length);
+
+	xil_printf("End\n\r");
+
+    // SW1: warmup exercise
+    //----------------------
+    // warmup();
+
+    cleanup_platform();
+
+    return 0;
+}

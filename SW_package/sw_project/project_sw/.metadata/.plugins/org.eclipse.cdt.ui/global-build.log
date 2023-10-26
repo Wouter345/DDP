@@ -1,6 +1,6 @@
 Nothing to build in platform 'rsa_project_wrapper'
 
-18:26:20 **** Incremental Build of configuration Debug for project sw_design ****
+13:56:33 **** Incremental Build of configuration Debug for project sw_design ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 make --no-print-directory pre-build
@@ -11,8 +11,8 @@ Building file: ../src/main.c
 Invoking: ARM v7 gcc compiler
 arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
 ../src/main.c: In function 'main':
-../src/main.c:38:5: warning: implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]
-   38 |     montMulOpt(a,b,n,n_prime,res,32);
+../src/main.c:39:5: warning: implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]
+   39 |     montMulOpt(a,b,n,n_prime,res,32);
       |     ^~~~~~~~~~
 ../src/main.c:45:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
    45 |         customprint(res, length);
@@ -27,11 +27,11 @@ Finished building target: sw_design.elf
 Invoking: ARM v7 Print Size
 arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  72495	   3328	  22648	  98471	  180a7	sw_design.elf
+  71663	   3328	  22648	  97639	  17d67	sw_design.elf
 Finished building: sw_design.elf.size
  
 make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
-18:26:22 **** Incremental Build of configuration Debug for project sw_design_system ****
+13:56:34 **** Incremental Build of configuration Debug for project sw_design_system ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design_system/Debug'
 Generating bif file for the system project
