@@ -1,21 +1,44 @@
-2023-10-26T13:56:33.13355600255-13:56:33 **** Incremental Build of configuration Debug for project sw_design ****
+2023-10-26T14:10:08.81888600255-14:10:08 **** Incremental Build of configuration Debug for project sw_design ****
 000-make all 
 000-make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 000-make --no-print-directory pre-build
 000-a9-linaro-pre-build-step
 000- 
 000-make --no-print-directory main-build
-000-Building file: ../src/main.c
+000-Building file: ../src/montgomery.c
 000-Invoking: ARM v7 gcc compiler
-000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
-000-../src/main.c: In function 'main':
-000/sw_design/src/main.c39-1-1implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]1-../src/main.c:39:5: warning: implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]
-000-   39 |     montMulOpt(a,b,n,n_prime,res,32);
-000-      |     ^~~~~~~~~~
-000/sw_design/src/main.c45-1-1implicit declaration of function 'customprint' [-Wimplicit-function-declaration]1-../src/main.c:45:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
-000-   45 |         customprint(res, length);
-000-      |         ^~~~~~~~~~~
-000-Finished building: ../src/main.c
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
+000-../src/montgomery.c: In function 'SUB_COND':
+000/sw_design/src/montgomery.c17-1-1implicit declaration of function 'mp_sub' [-Wimplicit-function-declaration]1-../src/montgomery.c:17:25: warning: implicit declaration of function 'mp_sub' [-Wimplicit-function-declaration]
+000-   17 |                         mp_sub(u,n,res,size);
+000-      |                         ^~~~~~
+000/sw_design/src/montgomery.c18-1-1'return' with a value, in function returning void [-Wreturn-type]1-../src/montgomery.c:18:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+000-   18 |                         return 0;
+000-      |                                ^
+000/sw_design/src/montgomery.c12-1-1declared here0-../src/montgomery.c:12:6: note: declared here
+000-   12 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+000-      |      ^~~~~~~~
+000/sw_design/src/montgomery.c26-1-1'return' with a value, in function returning void [-Wreturn-type]1-../src/montgomery.c:26:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+000-   26 |                         return 0;
+000-      |                                ^
+000/sw_design/src/montgomery.c12-1-1declared here0-../src/montgomery.c:12:6: note: declared here
+000-   12 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+000-      |      ^~~~~~~~
+000-../src/montgomery.c: In function 'montMul':
+000/sw_design/src/montgomery.c92-1-1implicit declaration of function 'customp' [-Wimplicit-function-declaration]1-../src/montgomery.c:92:25: warning: implicit declaration of function 'customp' [-Wimplicit-function-declaration]
+000-   92 |                         customp(t);
+000-      |                         ^~~~~~~
+000-../src/montgomery.c: In function 'montMulOpt':
+000/sw_design/src/montgomery.c111-1-1implicit declaration of function 'opt1' [-Wimplicit-function-declaration]1-../src/montgomery.c:111:17: warning: implicit declaration of function 'opt1' [-Wimplicit-function-declaration]
+000-  111 |                 opt1(i, t, a, b, size);
+000-      |                 ^~~~
+000/sw_design/src/montgomery.c115-1-1implicit declaration of function 'opt2' [-Wimplicit-function-declaration]1-../src/montgomery.c:115:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
+000-  115 |                 opt2(t, n, n_prime, size);
+000-      |                 ^~~~
+000/sw_design/src/montgomery.c117-1-1implicit declaration of function 'opt3' [-Wimplicit-function-declaration]1-../src/montgomery.c:117:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
+000-  117 |                 opt3(i, t, a, b, size);
+000-      |                 ^~~~
+000-Finished building: ../src/montgomery.c
 000- 
 000-Building target: sw_design.elf
 000-Invoking: ARM v7 gcc linker
@@ -30,5 +53,5 @@
 000- 
 000-make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 00255-
-13:56:33 Build Finished (took 579ms)
+14:10:09 Build Finished (took 578ms)
 

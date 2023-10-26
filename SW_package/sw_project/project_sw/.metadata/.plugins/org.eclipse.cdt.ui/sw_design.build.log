@@ -1,21 +1,44 @@
-13:56:33 **** Incremental Build of configuration Debug for project sw_design ****
+14:10:08 **** Incremental Build of configuration Debug for project sw_design ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 make --no-print-directory pre-build
 a9-linaro-pre-build-step
  
 make --no-print-directory main-build
-Building file: ../src/main.c
+Building file: ../src/montgomery.c
 Invoking: ARM v7 gcc compiler
-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
-../src/main.c: In function 'main':
-../src/main.c:39:5: warning: implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]
-   39 |     montMulOpt(a,b,n,n_prime,res,32);
-      |     ^~~~~~~~~~
-../src/main.c:45:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
-   45 |         customprint(res, length);
-      |         ^~~~~~~~~~~
-Finished building: ../src/main.c
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
+../src/montgomery.c: In function 'SUB_COND':
+../src/montgomery.c:17:25: warning: implicit declaration of function 'mp_sub' [-Wimplicit-function-declaration]
+   17 |                         mp_sub(u,n,res,size);
+      |                         ^~~~~~
+../src/montgomery.c:18:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+   18 |                         return 0;
+      |                                ^
+../src/montgomery.c:12:6: note: declared here
+   12 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+      |      ^~~~~~~~
+../src/montgomery.c:26:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+   26 |                         return 0;
+      |                                ^
+../src/montgomery.c:12:6: note: declared here
+   12 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+      |      ^~~~~~~~
+../src/montgomery.c: In function 'montMul':
+../src/montgomery.c:92:25: warning: implicit declaration of function 'customp' [-Wimplicit-function-declaration]
+   92 |                         customp(t);
+      |                         ^~~~~~~
+../src/montgomery.c: In function 'montMulOpt':
+../src/montgomery.c:111:17: warning: implicit declaration of function 'opt1' [-Wimplicit-function-declaration]
+  111 |                 opt1(i, t, a, b, size);
+      |                 ^~~~
+../src/montgomery.c:115:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
+  115 |                 opt2(t, n, n_prime, size);
+      |                 ^~~~
+../src/montgomery.c:117:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
+  117 |                 opt3(i, t, a, b, size);
+      |                 ^~~~
+Finished building: ../src/montgomery.c
  
 Building target: sw_design.elf
 Invoking: ARM v7 gcc linker
@@ -30,5 +53,5 @@ Finished building: sw_design.elf.size
  
 make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 
-13:56:33 Build Finished (took 579ms)
+14:10:09 Build Finished (took 578ms)
 

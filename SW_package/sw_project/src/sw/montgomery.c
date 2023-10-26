@@ -106,44 +106,14 @@ void montMulOpt(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32
 		t[i] = 0;
 	}
 
-	uint64_t m;
-	uint32_t C;
-	uint64_t sum;
-
 	int32_t i;
 	for (i=0; i<size; i++) {
 		opt1(i, t, a, b, size);
 	}
 
 	for (int i = 0; i<size; i++){
-//		m = (uint32_t)(((uint64_t)t[0])*((uint64_t)n_prime[0]));
-//		sum = ((uint64_t)t[0]) + (uint64_t)((uint64_t)m)*((uint64_t)n[0]);
-//		C = (uint32_t)(sum>>32);
-//
-//		for (int j=1; j<size; j++){
-//			sum = ((uint64_t)t[j]) + ((uint64_t)m)*((uint64_t)n[j])+((uint64_t)C);
-//			C = (uint32_t)(sum>>32);
-//			t[j-1] = (uint32_t)sum;
-//		}
-//
-//		sum = ((uint64_t)t[size]) + ((uint64_t)C);
-//		C = (uint32_t)(sum>>32);
-//		t[size-1] = (uint32_t)(sum);
-//		t[size] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
-//		t[size+1] = 0;
 		opt2(t, n, n_prime, size);
 
-
-//		for (int j=i+1; j<size; j++){
-//			sum = ((uint64_t)t[size-1]) + ((uint64_t)b[j])*((uint64_t)a[size-j+i]);
-//			C = (uint32_t)(sum>>32);
-//			t[size-1] = (uint32_t)sum;
-//
-//			sum = ((uint64_t)t[size]) + ((uint64_t)C);
-//			C = (uint32_t)(sum>>32);
-//			t[size] = (uint32_t)sum;
-//			t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
-//		}
 		opt3(i, t, a, b, size);
 	}
 
