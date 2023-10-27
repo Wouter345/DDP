@@ -1,0 +1,5 @@
+original: 	206_589 cycles
+opt1:		158_252 cycles
+opt2: 		 78_999 cycles 
+opt3: 		 23_887 cycles
+opt4:		 23_830 cycles

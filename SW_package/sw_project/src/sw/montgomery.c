@@ -102,9 +102,6 @@ void montMul(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t 
 void montMulOpt(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t *res, uint32_t size)
 {
 	uint32_t t[size+2];
-//	for (int i=0; i<size+2; i++) {
-//		t[i] = 0;
-//	}
 	opt4(t, size+2);
 
 	int32_t i;

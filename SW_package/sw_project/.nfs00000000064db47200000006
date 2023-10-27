@@ -1,0 +1,8 @@
+Fri Oct 27 10:32:17 2023: Server was asked to start on port: '45961'
+Fri Oct 27 10:32:17 2023: Server is using token UUID: '1ddb1725-f1d6-44bb-9763-cc5ae96fd511'
+Fri Oct 27 10:32:17 2023: Attempting to start server on port '45961'
+Fri Oct 27 10:32:17 2023: XRC main fifo: created main fifo '/tmp/xrcmain1ddb1725-f1d6-44bb-9763-cc5ae96fd511', fd read = 11
+Fri Oct 27 10:32:17 2023: Running Rule Check Server
+Fri Oct 27 10:32:17 2023: Version 1.6.1
+Fri Oct 27 10:32:17 2023: Rule Check Server: Accepted socket connection from client
+Fri Oct 27 10:32:18 2023: EXCHANGE_TOKEN received, server token: 1ddb1725-f1d6-44bb-9763-cc5ae96fd511, passed token: 1ddb1725-f1d6-44bb-9763-cc5ae96fd511
