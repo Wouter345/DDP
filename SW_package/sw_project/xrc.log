@@ -1,14 +1,8 @@
-Thu Oct 26 10:41:04 2023: Server was asked to start on port: '43699'
-Thu Oct 26 10:41:04 2023: Server is using token UUID: '183b83d8-c055-4627-8a5f-81e52ce4d531'
-Thu Oct 26 10:41:04 2023: Attempting to start server on port '43699'
-Thu Oct 26 10:41:04 2023: XRC main fifo: created main fifo '/tmp/xrcmain183b83d8-c055-4627-8a5f-81e52ce4d531', fd read = 11
-Thu Oct 26 10:41:04 2023: Running Rule Check Server
-Thu Oct 26 10:41:04 2023: Version 1.6.1
-Thu Oct 26 10:41:08 2023: Rule Check Server: Accepted socket connection from client
-Thu Oct 26 10:41:09 2023: EXCHANGE_TOKEN received, server token: 183b83d8-c055-4627-8a5f-81e52ce4d531, passed token: 183b83d8-c055-4627-8a5f-81e52ce4d531
-Thu Oct 26 14:18:54 2023: STOP_SERVER received, server token: 183b83d8-c055-4627-8a5f-81e52ce4d531, passed token: 183b83d8-c055-4627-8a5f-81e52ce4d531
-Thu Oct 26 14:18:54 2023: Socket received request to stop server.
-Thu Oct 26 14:18:54 2023: SERVER: destructor for server bound to port 43699
-Thu Oct 26 14:18:54 2023: XRC main fifo: Good unlink of /tmp/xrcmain183b83d8-c055-4627-8a5f-81e52ce4d531
-Thu Oct 26 14:18:54 2023: Server exiting with status 0.
-Thu Oct 26 14:18:54 2023: Closing log file.
+Fri Oct 27 12:21:22 2023: Server was asked to start on port: '36661'
+Fri Oct 27 12:21:22 2023: Server is using token UUID: '9d4cacc4-7f5e-4d82-b514-84087e817902'
+Fri Oct 27 12:21:22 2023: Attempting to start server on port '36661'
+Fri Oct 27 12:21:22 2023: XRC main fifo: created main fifo '/tmp/xrcmain9d4cacc4-7f5e-4d82-b514-84087e817902', fd read = 11
+Fri Oct 27 12:21:22 2023: Running Rule Check Server
+Fri Oct 27 12:21:22 2023: Version 1.6.1
+Fri Oct 27 12:21:22 2023: Rule Check Server: Accepted socket connection from client
+Fri Oct 27 12:21:22 2023: EXCHANGE_TOKEN received, server token: 9d4cacc4-7f5e-4d82-b514-84087e817902, passed token: 9d4cacc4-7f5e-4d82-b514-84087e817902

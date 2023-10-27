@@ -61,7 +61,6 @@ void montMul(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t 
 		t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
 	}
 
-
 	for (int i = 0; i<size; i++){
 		m = (uint32_t)(((uint64_t)t[0])*((uint64_t)n_prime[0]));
 		sum = ((uint64_t)t[0]) + (uint64_t)((uint64_t)m)*((uint64_t)n[0]);
@@ -88,9 +87,6 @@ void montMul(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t 
 			t[size] = (uint32_t)sum;
 			t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
 		}
-		if (i==1) {
-			customp(t);
-		}
 	}
 	SUB_COND(t,n,res,size);
 }
@@ -105,9 +101,10 @@ void montMulOpt(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32
 	opt4(t, size+2);
 
 	int32_t i;
-	for (i=0; i<size; i++) {
-		opt1(i, t, a, b, size);
-	}
+//	for (i=0; i<size; i++) {
+//		opt1(i, t, a, b, size);
+//	}
+	opt5(size,t,a,b);
 
 	for (int i = 0; i<size; i++){
 		opt2(t, n, n_prime, size);

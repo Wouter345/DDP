@@ -138,6 +138,52 @@ pop {r4-r12}
 bx lr
 .endfunc
 
+
+.text
+
+.global opt5
+.func opt5, opt5
+.type opt5, %function
+
+opt5:
+push {r4-r12}
+mov r4, #0				@set i=0
+str r1, [sp, #36]		@store pointer t
+str r2, [sp, #40]		@store pointer a
+opt5_loop1:
+	ldr r1, [sp, #36]
+	ldr r2, [sp, #40]
+	sub r12, r0, r4 		@j=r12 = size-i
+	mov r5, #0 				@C=0
+	add r1, r1, r4, lsl #2 	@add 4*i to pointer t --> t[i]
+	ldr r7, [r3], #4 		@ load b[i] and increment pointer
+	opt5_loop2:
+		ldr r6, [r2], #4 	@load a[j] and increment pointer
+		ldr r8, [r1] 		@load t[i+j]
+		umull r10, r11, r7, r6 @a[j] * b[i] r10=32LSB and r11=32MSB
+		adds r9, r8, r5   	@ t[i+j] + C
+		adc r11, r11, #0  	@ add carry
+		adds r8, r9, r10  	@t[i+j] = a*b+t+c {32LSB}
+		adc r5, r11, #0   	@C = {32MSB}
+		str r8, [r1], #4 	@store t[i+j] and increment pointer
+		subs r12, r12, #1 	@decrease j by 1
+		bne opt5_loop2		@ if j!=0 branch back to for_loop
+	end5_loop2:
+	ldr r8, [r1] 			@ load value t[size]
+	adds r8, r8, r5 		@ t[size] = t+C
+	str r8, [r1], #4 		@ store value t[size] and increment pointer to size+1
+	ldr r8, [r1] 			@ load value t[size+1]
+	adc r8, r8, #0 			@t[size+1] = t+C
+	str r8, [r1]
+	add r4, r4, #1			@i+=1
+	cmp r4, r0				@i==size
+	bne opt5_loop1
+end5_loop1:
+
+pop {r4-r12}
+bx lr
+.endfunc
+
 .text
 
 .global add_3

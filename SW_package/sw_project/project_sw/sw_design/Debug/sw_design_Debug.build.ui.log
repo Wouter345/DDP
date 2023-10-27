@@ -1,10 +1,22 @@
-2023-10-26T14:18:04.71948200255-14:18:04 **** Incremental Build of configuration Debug for project sw_design ****
+2023-10-27T12:50:45.86471900255-12:50:45 **** Incremental Build of configuration Debug for project sw_design ****
 000-make all 
 000-make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 000-make --no-print-directory pre-build
 000-a9-linaro-pre-build-step
 000- 
 000-make --no-print-directory main-build
+000-Building file: ../src/main.c
+000-Invoking: ARM v7 gcc compiler
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+000-../src/main.c: In function 'main':
+000/sw_design/src/main.c39-1-1implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]1-../src/main.c:39:5: warning: implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]
+000-   39 |     montMulOpt(a,b,n,n_prime,res,32);
+000-      |     ^~~~~~~~~~
+000/sw_design/src/main.c45-1-1implicit declaration of function 'customprint' [-Wimplicit-function-declaration]1-../src/main.c:45:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
+000-   45 |         customprint(res, length);
+000-      |         ^~~~~~~~~~~
+000-Finished building: ../src/main.c
+000- 
 000-Building file: ../src/montgomery.c
 000-Invoking: ARM v7 gcc compiler
 000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
@@ -24,23 +36,22 @@
 000/sw_design/src/montgomery.c12-1-1declared here0-../src/montgomery.c:12:6: note: declared here
 000-   12 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
 000-      |      ^~~~~~~~
-000-../src/montgomery.c: In function 'montMul':
-000/sw_design/src/montgomery.c92-1-1implicit declaration of function 'customp' [-Wimplicit-function-declaration]1-../src/montgomery.c:92:25: warning: implicit declaration of function 'customp' [-Wimplicit-function-declaration]
-000-   92 |                         customp(t);
-000-      |                         ^~~~~~~
 000-../src/montgomery.c: In function 'montMulOpt':
-000/sw_design/src/montgomery.c108-1-1implicit declaration of function 'opt4' [-Wimplicit-function-declaration]1-../src/montgomery.c:108:9: warning: implicit declaration of function 'opt4' [-Wimplicit-function-declaration]
-000-  108 |         opt4(t, size+2);
+000/sw_design/src/montgomery.c101-1-1implicit declaration of function 'opt4' [-Wimplicit-function-declaration]1-../src/montgomery.c:101:9: warning: implicit declaration of function 'opt4' [-Wimplicit-function-declaration]
+000-  101 |         opt4(t, size+2);
 000-      |         ^~~~
-000/sw_design/src/montgomery.c112-1-1implicit declaration of function 'opt1' [-Wimplicit-function-declaration]1-../src/montgomery.c:112:17: warning: implicit declaration of function 'opt1' [-Wimplicit-function-declaration]
-000-  112 |                 opt1(i, t, a, b, size);
+000/sw_design/src/montgomery.c107-1-1implicit declaration of function 'opt5' [-Wimplicit-function-declaration]1-../src/montgomery.c:107:9: warning: implicit declaration of function 'opt5' [-Wimplicit-function-declaration]
+000-  107 |         opt5(size,t,a,b);
+000-      |         ^~~~
+000/sw_design/src/montgomery.c110-1-1implicit declaration of function 'opt2' [-Wimplicit-function-declaration]1-../src/montgomery.c:110:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
+000-  110 |                 opt2(t, n, n_prime, size);
 000-      |                 ^~~~
-000/sw_design/src/montgomery.c116-1-1implicit declaration of function 'opt2' [-Wimplicit-function-declaration]1-../src/montgomery.c:116:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
-000-  116 |                 opt2(t, n, n_prime, size);
+000/sw_design/src/montgomery.c112-1-1implicit declaration of function 'opt3' [-Wimplicit-function-declaration]1-../src/montgomery.c:112:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
+000-  112 |                 opt3(i, t, a, b, size);
 000-      |                 ^~~~
-000/sw_design/src/montgomery.c118-1-1implicit declaration of function 'opt3' [-Wimplicit-function-declaration]1-../src/montgomery.c:118:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
-000-  118 |                 opt3(i, t, a, b, size);
-000-      |                 ^~~~
+000/sw_design/src/montgomery.c103-1-1unused variable 'i' [-Wunused-variable]1-../src/montgomery.c:103:17: warning: unused variable 'i' [-Wunused-variable]
+000-  103 |         int32_t i;
+000-      |                 ^
 000-Finished building: ../src/montgomery.c
 000- 
 000-Building target: sw_design.elf
@@ -51,10 +62,10 @@
 000-Invoking: ARM v7 Print Size
 000-arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
 000-   text	   data	    bss	    dec	    hex	filename
-000-  71599	   3328	  22648	  97575	  17d27	sw_design.elf
+000-  71663	   3328	  22648	  97639	  17d67	sw_design.elf
 000-Finished building: sw_design.elf.size
 000- 
 000-make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 00255-
-14:18:05 Build Finished (took 530ms)
+12:50:46 Build Finished (took 616ms)
 

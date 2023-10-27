@@ -57,7 +57,23 @@ void opt3(uint32_t i, uint32_t *t, uint32_t *a, uint32_t *b, uint32_t size);
 //	for (int i=0; i<size+2; i++) {
 //		t[i] = 0;
 //	}
-void opt3(uint32_t *t, uint32_t size);
+void opt4(uint32_t *t, uint32_t size);
+
+//for (int i=0; i<size; i++) {
+//
+//	C = 0;
+//	for (int j=0; j<size-i; j++) {
+//		sum = ((uint64_t)t[i+j]) + ((uint64_t)a[j])*((uint64_t)b[i]) + ((uint64_t)C);
+//		C = (uint32_t)(sum>>32);
+//		t[i+j] = (uint32_t)sum;
+//	}
+//
+//	sum = ((uint64_t)t[size])+((uint64_t)C);
+//	C = (uint32_t)(sum>>32);
+//	t[size] = (uint32_t)sum;
+//	t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
+//}
+void opt5(uint32_t size, uint32_t *t, uint32_t *a, uint32_t *b);
 
 
 // a will be in register R0, b in R1, c in R2
