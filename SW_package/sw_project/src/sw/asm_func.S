@@ -6,30 +6,29 @@
 
 opt1:
 push {r4-r12}
-ldr r4, [sp, #36] @load fifth input size
-sub r12, r4, r0 @j=r12 = size-i
-mov r5, #0 @C=0
-add r1, r1, r0, lsl #2 @add 4*i to pointer t --> t[i]
-add r3, r3, r0, lsl #2 @add 4*i to pointer b --> b[i]
-ldr r7, [r3] @ load b[i]
+ldr r4, [sp, #36] 		@load fifth input size
+sub r12, r4, r0 		@j=r12 = size-i
+mov r5, #0 				@C=0
+add r1, r1, r0, lsl #2 	@add 4*i to pointer t --> t[i]
+add r3, r3, r0, lsl #2 	@add 4*i to pointer b --> b[i]
+ldr r7, [r3] 			@ load b[i]
 opt1_loop:
-	ldr r6, [r2], #4 @load a[j] and increment pointer
-	ldr r8, [r1] @load t[i+j]
+	ldr r6, [r2], #4 	@load a[j] and increment pointer
+	ldr r8, [r1] 		@load t[i+j]
 	umull r10, r11, r7, r6 @a[j] * b[i] r10=32LSB and r11=32MSB
-	adds r9, r8, r5   @ t[i+j] + C
-	adc r11, r11, #0  @ add carry
-	adds r8, r9, r10  @t[i+j] = a*b+t+c {32LSB}
-	adc r5, r11, #0   @C = {32MSB}
-	str r8, [r1], #4 @store t[i+j] and increment pointer
-	subs r12, r12, #1 @decrease j by 1
-	bne opt1_loop	@ if j!=0 branch back to for_loop
+	adds r9, r8, r5   	@ t[i+j] + C
+	adc r11, r11, #0  	@ add carry
+	adds r8, r9, r10  	@t[i+j] = a*b+t+c {32LSB}
+	adc r5, r11, #0   	@C = {32MSB}
+	str r8, [r1], #4 	@store t[i+j] and increment pointer
+	subs r12, r12, #1 	@decrease j by 1
+	bne opt1_loop		@ if j!=0 branch back to for_loop
 end1_loop:
-@add r1, r1, r4, lsl #2 @update pointer r1 to t[size]
-ldr r8, [r1] @ load value t[size]
-adds r8, r8, r5 @ t[size] = t+C
-str r8, [r1], #4 @ store value t[size] and increment pointer to size+1
-ldr r8, [r1] @ load value t[size+1]
-adc r8, r8, #0 @t[size+1] = t+C
+ldr r8, [r1] 			@ load value t[size]
+adds r8, r8, r5 		@ t[size] = t+C
+str r8, [r1], #4 		@ store value t[size] and increment pointer to size+1
+ldr r8, [r1] 			@ load value t[size+1]
+adc r8, r8, #0 			@t[size+1] = t+C
 str r8, [r1]
 
 pop {r4-r12}
@@ -43,37 +42,38 @@ bx lr
 .type opt2, %function
 
 opt2:
+
 push {r4-r12}
-ldr r4, [r0] @load r4 = t[0]
-add r11, r0, #4 @pointer t[j], need to increment seperatly bc t[j-1] is needed later
-ldr r5, [r1], #4 @load r5 = n[0] and increment pointer
-ldr r6, [r2] @load r6 = n_prime[0]
-mul r7, r4, r6 @r7(m) = t[0]*n_prime[0]
-umull r8, r9, r7, r5 @ n[0]*m
-adds r8, r8, r4 @r8 = sum
-adc r9, #0		@r9 = C
-mov r8, r3 @set j = size
-subs r8, r8, #1 @decrease j by 1
+ldr r4, [r0] 			@load r4 = t[0]
+add r11, r0, #4 		@pointer t[j], need to increment seperatly bc t[j-1] is needed later
+ldr r5, [r1], #4 		@load r5 = n[0] and increment pointer
+ldr r6, [r2] 			@load r6 = n_prime[0]
+mul r7, r4, r6 			@r7(m) = t[0]*n_prime[0]
+umull r8, r9, r7, r5	@ n[0]*m
+adds r8, r8, r4 		@r8 = sum
+adc r9, #0				@r9 = C
+mov r8, r3 				@set j = size
+subs r8, r8, #1 		@decrease j by 1
 opt2_loop:
-	ldr r4, [r11], #4 @load t[j] and increment pointer
-	ldr r5, [r1], #4  @load n[j] and increment pointer
+	ldr r4, [r11], #4 	@load t[j] and increment pointer
+	ldr r5, [r1], #4  	@load n[j] and increment pointer
 	umull r6, r12, r7, r5 @m * n[j] r6=32LSB and r12=32MSB
-	adds r9, r4, r9   @ t[j] + C
-	adc r12, r12, #0  @ add carry
-	adds r6, r6, r9  @t[j-1] = m*n+t[j]+c {32LSB}
-	adc r9, r12, #0   @r9 = C = {32MSB}
-	str r6, [r0], #4 @str t[j-1] and increment pointer
-	subs r8, r8, #1 @decrease j by 1
-	bne opt2_loop   @branch
+	adds r9, r4, r9   	@ t[j] + C
+	adc r12, r12, #0  	@ add carry
+	adds r6, r6, r9  	@t[j-1] = m*n+t[j]+c {32LSB}
+	adc r9, r12, #0   	@r9 = C = {32MSB}
+	str r6, [r0], #4 	@str t[j-1] and increment pointer
+	subs r8, r8, #1 	@decrease j by 1
+	bne opt2_loop   	@branch
 end2_loop:
-ldr r4, [r11], #4 @load t[size] and increment pointer
-adds r6, r4, r9 @t[size-1] = t[size]+C
-str r6, [r0], #4 @store t[size-1]
-ldr r4, [r11] ,#4 @load t[size+1]
-adc r6, r4, #0 @t[size] = t[size+1] + carry(C)
-str r6, [r0], #4 @store t[size]
+ldr r4, [r11], #4 		@load t[size] and increment pointer
+adds r6, r4, r9 		@t[size-1] = t[size]+C
+str r6, [r0], #4 		@store t[size-1]
+ldr r4, [r11] ,#4 		@load t[size+1]
+adc r6, r4, #0 			@t[size] = t[size+1] + carry(C)
+str r6, [r0], #4 		@store t[size]
 mov r6, #0
-str r6, [r0] @store t[size+1]
+str r6, [r0] 			@store t[size+1]
 pop {r4-r12}
 bx lr
 .endfunc
@@ -88,31 +88,31 @@ bx lr
 
 opt3:
 push {r4-r12}
-ldr r4, [sp, #36] @load fifth input {size}
-sub r9, r4, #1 @r5 = size-1
-add r5, r1, r9, lsl #2 @add 4*(size-1) to pointer t --> r5=&t[size-1]
-add r11, r0, #1 @i+1
+ldr r4, [sp, #36] 		@load fifth input {size}
+sub r9, r4, #1 			@r5 = size-1
+add r5, r1, r9, lsl #2 	@add 4*(size-1) to pointer t --> r5=&t[size-1]
+add r11, r0, #1 		@i+1
 add r3, r3, r11, lsl #2 @set pointer b to b[i+1]
 add r2, r2, r9, lsl #2  @set pointer a to a[size-1]
-sub r12, r4, r11 @r12 = j = size-(i+1) number of loops
-ldr r7, [r5], #4 @load t[size-1] and increment pointer
-ldr r8, [r5], #4 @load t[size] and increment pointer
-ldr r4, [r5] @load t[size+1]
+sub r12, r4, r11 		@r12 = j = size-(i+1) number of loops
+ldr r7, [r5], #4 		@load t[size-1] and increment pointer
+ldr r8, [r5], #4 		@load t[size] and increment pointer
+ldr r4, [r5] 			@load t[size+1]
 cmp r12, #0
 beq end3_loop
 opt3_loop:
-	ldr r9, [r3], #4 @load b[j] and increment
-	ldr r10, [r2], #-4 @load a[size+i-j] and decrement pointer
+	ldr r9, [r3], #4 	@load b[j] and increment
+	ldr r10, [r2], #-4 	@load a[size+i-j] and decrement pointer
 	umull r6, r11, r9, r10 @a*b
-	adds r7, r7, r6 @update r7 = t[size-1] = a*b+t[size-1]
-	adcs r8, r11, r8  @update r8 = t[size] = C + t[size]
-	adc r4, r4, #0 @t[size+1] = t[size+1] + carry
+	adds r7, r7, r6 	@update r7 = t[size-1] = a*b+t[size-1]
+	adcs r8, r11, r8  	@update r8 = t[size] = C + t[size]
+	adc r4, r4, #0 		@t[size+1] = t[size+1] + carry
 	subs r12, r12, #1
 	bne opt3_loop
 end3_loop:
-str r4, [r5], #-4 @store t[size+1] and decrement pointer
-str r8, [r5], #-4  @store t[size] and decrement pointer
-str r7, [r5]	   @store t[size-1]
+str r4, [r5], #-4 		@store t[size+1] and decrement pointer
+str r8, [r5], #-4  		@store t[size] and decrement pointer
+str r7, [r5]	   		@store t[size-1]
 
 pop {r4-r12}
 bx lr
