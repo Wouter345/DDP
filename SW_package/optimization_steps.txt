@@ -3,3 +3,4 @@ opt1:		158_252 cycles
 opt2: 		 78_999 cycles 
 opt3: 		 23_887 cycles
 opt4:		 23_830 cycles
+opt5:		 23_066 cycles

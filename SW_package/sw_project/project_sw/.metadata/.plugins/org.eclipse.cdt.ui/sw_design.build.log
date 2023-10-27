@@ -1,58 +1,14 @@
-12:50:45 **** Incremental Build of configuration Debug for project sw_design ****
+13:29:53 **** Incremental Build of configuration Debug for project sw_design ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 make --no-print-directory pre-build
 a9-linaro-pre-build-step
  
 make --no-print-directory main-build
-Building file: ../src/main.c
+Building file: ../src/asm_func.S
 Invoking: ARM v7 gcc compiler
-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
-../src/main.c: In function 'main':
-../src/main.c:39:5: warning: implicit declaration of function 'montMulOpt' [-Wimplicit-function-declaration]
-   39 |     montMulOpt(a,b,n,n_prime,res,32);
-      |     ^~~~~~~~~~
-../src/main.c:45:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
-   45 |         customprint(res, length);
-      |         ^~~~~~~~~~~
-Finished building: ../src/main.c
- 
-Building file: ../src/montgomery.c
-Invoking: ARM v7 gcc compiler
-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
-../src/montgomery.c: In function 'SUB_COND':
-../src/montgomery.c:17:25: warning: implicit declaration of function 'mp_sub' [-Wimplicit-function-declaration]
-   17 |                         mp_sub(u,n,res,size);
-      |                         ^~~~~~
-../src/montgomery.c:18:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
-   18 |                         return 0;
-      |                                ^
-../src/montgomery.c:12:6: note: declared here
-   12 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
-      |      ^~~~~~~~
-../src/montgomery.c:26:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
-   26 |                         return 0;
-      |                                ^
-../src/montgomery.c:12:6: note: declared here
-   12 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
-      |      ^~~~~~~~
-../src/montgomery.c: In function 'montMulOpt':
-../src/montgomery.c:101:9: warning: implicit declaration of function 'opt4' [-Wimplicit-function-declaration]
-  101 |         opt4(t, size+2);
-      |         ^~~~
-../src/montgomery.c:107:9: warning: implicit declaration of function 'opt5' [-Wimplicit-function-declaration]
-  107 |         opt5(size,t,a,b);
-      |         ^~~~
-../src/montgomery.c:110:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
-  110 |                 opt2(t, n, n_prime, size);
-      |                 ^~~~
-../src/montgomery.c:112:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
-  112 |                 opt3(i, t, a, b, size);
-      |                 ^~~~
-../src/montgomery.c:103:17: warning: unused variable 'i' [-Wunused-variable]
-  103 |         int32_t i;
-      |                 ^
-Finished building: ../src/montgomery.c
+arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/asm_func.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/asm_func.d" -MT"src/asm_func.o" -o "src/asm_func.o" "../src/asm_func.S"
+Finished building: ../src/asm_func.S
  
 Building target: sw_design.elf
 Invoking: ARM v7 gcc linker
@@ -62,10 +18,10 @@ Finished building target: sw_design.elf
 Invoking: ARM v7 Print Size
 arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
    text	   data	    bss	    dec	    hex	filename
-  71663	   3328	  22648	  97639	  17d67	sw_design.elf
+  71663	   3328	  22664	  97655	  17d77	sw_design.elf
 Finished building: sw_design.elf.size
  
 make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 
-12:50:46 Build Finished (took 616ms)
+13:29:54 Build Finished (took 525ms)
 

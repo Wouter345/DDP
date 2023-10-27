@@ -89,9 +89,9 @@ bx lr
 opt3:
 push {r4-r12}
 ldr r4, [sp, #36] 		@load fifth input {size}
-sub r9, r4, #1 			@r5 = size-1
-add r5, r1, r9, lsl #2 	@add 4*(size-1) to pointer t --> r5=&t[size-1]
+sub r9, r4, #1 			@r9 = size-1
 add r11, r0, #1 		@i+1
+add r5, r1, r9, lsl #2 	@add 4*(size-1) to pointer t --> r5=&t[size-1]
 add r3, r3, r11, lsl #2 @set pointer b to b[i+1]
 add r2, r2, r9, lsl #2  @set pointer a to a[size-1]
 sub r12, r4, r11 		@r12 = j = size-(i+1) number of loops
@@ -148,11 +148,11 @@ bx lr
 opt5:
 push {r4-r12}
 mov r4, #0				@set i=0
-str r1, [sp, #36]		@store pointer t
-str r2, [sp, #40]		@store pointer a
+str r1, [sp, #4]		@store pointer t
+str r2, [sp, #8]		@store pointer a
 opt5_loop1:
-	ldr r1, [sp, #36]
-	ldr r2, [sp, #40]
+	ldr r2, [sp, #8]
+	ldr r1, [sp, #4]
 	sub r12, r0, r4 		@j=r12 = size-i
 	mov r5, #0 				@C=0
 	add r1, r1, r4, lsl #2 	@add 4*i to pointer t --> t[i]

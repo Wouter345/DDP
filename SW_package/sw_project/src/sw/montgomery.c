@@ -4,7 +4,10 @@
  */
 
 #include "montgomery.h"
+#include <inttypes.h>
+#include <math.h>
 
+#include "common.h"
 
 
 
@@ -100,12 +103,10 @@ void montMulOpt(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32
 	uint32_t t[size+2];
 	opt4(t, size+2);
 
-	int32_t i;
-//	for (i=0; i<size; i++) {
-//		opt1(i, t, a, b, size);
-//	}
 	opt5(size,t,a,b);
 
+
+	int32_t i;
 	for (int i = 0; i<size; i++){
 		opt2(t, n, n_prime, size);
 
