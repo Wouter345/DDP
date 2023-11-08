@@ -47,8 +47,10 @@ int main() {
     idata[i] = i+1;
   }
 
-  HWreg[RXADDR] = (uint32_t)&idata; // store address idata in reg1
-  HWreg[TXADDR] = (uint32_t)&odata; // store address odata in reg2
+  HWreg[0] = (uint32_t)&idata; // store address idata in reg1
+  HWreg[1] = (uint32_t)&idata; // store address odata in reg2
+  HWreg[2] = (uint32_t)&idata; // store address odata in reg3
+
 
   printf("RXADDR %08X\r\n", (unsigned int)HWreg[RXADDR]);
   printf("TXADDR %08X\r\n", (unsigned int)HWreg[TXADDR]);

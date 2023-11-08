@@ -13152,3 +13152,60 @@ Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: 
 
 !ENTRY com.xilinx.sdk.utils 1 0 2023-10-27 13:30:12.306
 !MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '43'
+!SESSION 2023-11-08 20:56:19.978 -----------------------------------------------
+eclipse.buildId=2023.1
+java.version=11.0.16.1
+java.vendor=Eclipse Adoptium
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_US
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -data ./project_sw
+
+!ENTRY org.eclipse.osgi 4 0 2023-11-08 20:56:22.083
+!MESSAGE Bundle reference:file:org.apache.log4j_1.2.15.v201012070815.jar not found.
+
+!ENTRY org.eclipse.osgi 4 0 2023-11-08 20:56:22.978
+!MESSAGE Bundle reference:file:org.slf4j.impl.log4j12_1.7.2.v20131105-2200.jar not found.
+
+!ENTRY org.eclipse.core.resources 2 10035 2023-11-08 20:56:30.347
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.ui 4 4 2023-11-08 20:56:43.128
+!MESSAGE Plug-in 'org.eclipse.ui.editors' contributed an invalid Menu Extension (Path: 'navigate' is invalid): org.eclipse.ui.edit.text.gotoLastEditPosition
+
+!ENTRY org.eclipse.launchbar.core 2 0 2023-11-08 20:56:56.624
+!MESSAGE Enablement expression is missing for descriptor type org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2023-11-08 20:56:56.626
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY org.eclipse.launchbar.core 2 0 2023-11-08 20:56:56.627
+!MESSAGE Enablement expression is missing for config provider for org.eclipse.cdt.debug.core.coreBuildDescriptorType
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:02.849
+!MESSAGE XSCT Command: [set sdk::sdk_chan tcfchan#0], Thread: Thread-31
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:02.851
+!MESSAGE XSCT Command: [::hsi::utils::init_repo], Thread: Worker-2: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:02.852
+!MESSAGE XSCT Command: [plnx-install-path  ; ::scw::scw_mode gui], Thread: Thread-14
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:02.854
+!MESSAGE XSCT command with result: [set sdk::sdk_chan tcfchan#0], Result: [null, tcfchan#0]. Thread: Thread-31
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:02.855
+!MESSAGE XSCT Command: [setws /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw], Thread: Thread-31
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:35.688
+!MESSAGE XSCT command with result: [::hsi::utils::init_repo], Result: [null, ]. Thread: Worker-2: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:35.690
+!MESSAGE XSCT command with result: [plnx-install-path  ; ::scw::scw_mode gui], Result: [null, ]. Thread: Thread-14
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:35.692
+!MESSAGE XSCT Command: [set query_var1 $::env(RDI_DATADIR)], Thread: Worker-2: Initializing s/w repositories
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:35.693
+!MESSAGE XSCT command with result: [setws /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw], Result: [null, ]. Thread: Thread-31
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-08 20:57:35.696
+!MESSAGE XSCT command with result: [set query_var1 $::env(RDI_DATADIR)], Result: [null, /esat/micas-data/software/Xilinx/vitis_2023.1/Vitis/2023.1/data]. Thread: Worker-2: Initializing s/w repositories

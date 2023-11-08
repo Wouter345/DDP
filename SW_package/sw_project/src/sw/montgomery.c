@@ -14,6 +14,10 @@
 //Subtract n array from u if u is larger than n. u has SIZE+1 elements, n has SIZE+1 elements, n[SIZE] =0
 void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
 {
+	if (u[32]!=0) {
+		mp_sub(u,n,res,size);
+		return 0;
+	}
 	for(int i=size-1; i>=0; i--){
 	// if a > b then do a-b<n
 		if (u[i]>n[i]){

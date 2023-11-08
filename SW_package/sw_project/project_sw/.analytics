@@ -251,3 +251,6 @@ timestamp=[2023-10-27 13:22:42], mode=BUILD, duration=0:00:00.477, duration_ms=4
 timestamp=[2023-10-27 13:22:49], mode=BUILD, duration=0:00:06.592, duration_ms=6592, data={name=sw_design_system, configuration=Debug, clean_build=false}
 timestamp=[2023-10-27 13:29:54], mode=BUILD, duration=0:00:00.535, duration_ms=535, data={name=sw_design, configuration=Debug, clean_build=false}
 timestamp=[2023-10-27 13:30:01], mode=BUILD, duration=0:00:06.990, duration_ms=6990, data={name=sw_design_system, configuration=Debug, clean_build=false}
+timestamp=[2023-11-08 20:56:57], mode=WORKBENCH_START, duration=0:00:26.515, duration_ms=26515, data={}
+timestamp=[2023-11-08 20:56:58], mode=WORKBENCH_UI_INIT, duration=0:00:00.963, duration_ms=963, data={editors_count=6, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=RemoteSystemsTempFiles,rsa_project_wrapper,sw_design,sw_design_system}
+timestamp=[2023-11-08 20:57:01], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.750, duration_ms=2750, data={}

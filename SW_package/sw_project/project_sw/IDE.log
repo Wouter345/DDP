@@ -7273,3 +7273,12 @@ con
 ----------------End of Script----------------
 
 13:30:12 INFO  : Launch script is exported to file '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design_system/_ide/scripts/debugger_sw_design-default.tcl'
+20:56:51 DEBUG : Logs will be stored at '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/IDE.log'.
+20:56:53 INFO  : Launching XSCT server: xsct -n  -interactive /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/temp_xsdb_launch_script.tcl
+20:56:59 INFO  : Registering command handlers for Vitis TCF services
+20:57:01 INFO  : Platform repository initialization has completed.
+20:57:02 INFO  : XSCT server has started successfully.
+20:57:02 INFO  : Successfully done setting XSCT server connection channel  
+20:57:35 INFO  : plnx-install-location is set to ''
+20:57:35 INFO  : Successfully done setting workspace for the tool. 
+20:57:35 INFO  : Successfully done query RDI_DATADIR 
