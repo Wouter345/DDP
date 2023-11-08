@@ -60,7 +60,11 @@ module rsa (
   // The state machine
   reg [2:0] state = STATE_IDLE;
   reg [2:0] next_state;
-
+  reg start;
+  reg reset2;
+  reg done;
+  
+  
   always@(*) begin
     // defaults
     next_state   <= STATE_IDLE;
@@ -70,9 +74,11 @@ module rsa (
       // Wait in IDLE state till a compute command
       STATE_IDLE: begin
         next_state <= (isCmdComp) ? STATE_RX : state;
+        start <= 1'b0;
+        reset2 <=1'b0;
       end
 
-      // Wait, if dma is not idle. Otherwise, start dma operation and go to
+      // Wait, if dma is dma_idlenot idle. Otherwise, start dma operation and go to
       // next state to wait its completion.
       STATE_RX: begin
         next_state <= (~dma_idle) ? STATE_RX_WAIT : state;
@@ -81,12 +87,14 @@ module rsa (
       // Wait the completion of dma.
       STATE_RX_WAIT : begin
         next_state <= (dma_done) ? STATE_COMPUTE : state;
+        reset2 <= 1'b1;
       end
 
       // A state for dummy computation for this example. Because this
       // computation takes only single cycle, go to TX state immediately
       STATE_COMPUTE : begin
         next_state <= (done) ? STATE_TX : state;    
+        start <= 1'b1;
       end
 
       // Wait, if dma is not idle. Otherwise, start dma operation and go to
@@ -127,8 +135,14 @@ module rsa (
     state <= (~resetn) ? STATE_IDLE : next_state;
 
   wire [1027:0] Res;
-  wire done;
-  montgomery mult(clk, 1'b1, 1'b1, 1024'h2, 1024'h3, 1024'h8, Res, done);
+  wire donemult;
+  montgomery mult(clk, reset2, start, 1024'h2, 1024'h3, 1024'h8, Res, donemult);
+  always @(posedge clk) begin
+    case (state)
+     STATE_COMPUTE : done <= donemult;
+     default : done<= 1'b0;
+   endcase
+  end
 
   // Here is a register for the computation. Sample the dma data input in
   // STATE_RX_WAIT. Update the data with a dummy operation in STATE_COMP.

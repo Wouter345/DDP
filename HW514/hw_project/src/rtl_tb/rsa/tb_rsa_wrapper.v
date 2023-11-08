@@ -171,13 +171,15 @@ module tb_rsa_wrapper();
 
   // Byte Addresses of 32-bit registers
   localparam  COMMAND = 0, // r0
-              RXADDR  = 4, // r1
-              TXADDR  = 8, // r2
+              R1  = 4, // r1
+              R2  = 8, // r2
+              R3 = 12,
               STATUS  = 0;
 
   // Byte Addresses of 1024-bit distant memory locations
   localparam  MEM0_ADDR  = 16'h00,
-              MEM1_ADDR  = 16'h80;
+              MEM1_ADDR  = 16'h80,
+              MEM2_ADDR  = 16'h100;
 
   reg [31:0] reg_status;
 
@@ -185,11 +187,13 @@ module tb_rsa_wrapper();
 
     #`LONG_WAIT
 
-    mem_write(MEM0_ADDR, 1024'd1);
-    mem_write(MEM1_ADDR, 1024'd2);
+    mem_write(MEM0_ADDR, 1024'd2);
+    mem_write(MEM1_ADDR, 1024'd3);
+    mem_write(MEM2_ADDR, 1024'd8);
 
-    reg_write(RXADDR, MEM0_ADDR);
-    reg_write(TXADDR, MEM1_ADDR);
+    reg_write(R1, MEM0_ADDR);
+    reg_write(R2, MEM1_ADDR);
+    reg_write(R3, MEM2_ADDR);
 
     reg_write(COMMAND, 32'h00000001);
     
