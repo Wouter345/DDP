@@ -140,7 +140,7 @@ print ("TEST VECTOR GENERATOR FOR DDP SW SESSIONS")
 if len(sys.argv) == 4:
   result = sys.argv[3]
 else:
-  result = 'no string given'
+  result = ''
 
 if len(sys.argv) >= 3:
   print ("--> Seed is ", sys.argv[2])
@@ -305,6 +305,8 @@ if operation == 6:
 
   a = getRandomMessage(1024,n)
   b = getRandomMessage(1024,n)
+#  a = 1
+#  b = 3847564738
   c = (a * b * r_inv) % n
 
   print ("a                      = ", hex(a).rstrip("L"))           # 1024-bits
@@ -321,15 +323,15 @@ if operation == 6:
   print ("uint32_t b[32]         = {", WriteConstants(b), "};")   # 1024-bits
   print ("uint32_t n[32]         = {", WriteConstants(n), "};")    # 1024-bits
   print ("uint32_t n_prime[32]   = {", WriteConstants(n_prime), "};")    # 1024-bits
-  print ("uint32_t res[32]       = {", WriteConstants(c), "};")    # 1024-bits
+  print ("uint32_t expected[32]       = {", WriteConstants(c), "};")    # 1024-bits
   
   print ("====================================================================")
 
-
-if result == hex(c).rstrip("L"):
-  print("same")
-else:
-  print("wrong")
-  print(result)
-  print(hex(c).rstrip("L"))
+if result:
+  if result == hex(c).rstrip("L"):
+    print("same")
+  else:
+    print("wrong")
+    print(result)
+    print(hex(c).rstrip("L"))
 
