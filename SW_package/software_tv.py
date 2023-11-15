@@ -323,16 +323,26 @@ if operation == 6:
   print ("uint32_t b[32]         = {", WriteConstants(b), "};")   # 1024-bits
   print ("uint32_t n[32]         = {", WriteConstants(n), "};")    # 1024-bits
   print ("uint32_t n_prime[32]   = {", WriteConstants(n_prime), "};")    # 1024-bits
-  print ("uint32_t expected[32]       = {", WriteConstants(c), "};")    # 1024-bits
+  print ("uint32_t expected[32]  = {", WriteConstants(c), "};")    # 1024-bits
   
   print ("====================================================================")
 
-  with open("testvectors.txt", "w") as f:
-      f.write(WriteConstants(a) + "\n")
-      f.write(WriteConstants(b) + "\n")
-      f.write(WriteConstants(n) + "\n")
-      f.write(WriteConstants(n_prime) + "\n")
-      f.write(WriteConstants(c) + "\n")
+  target = open("sw_project/src/sw/test.c", 'w')
+  target.truncate()
+
+  target.write(
+      "#include <stdint.h>                                              \n" +
+      "#include <stdalign.h>                                            \n" +
+      "                                                                 \n" +
+
+      "uint32_t a[32]         = {"+ WriteConstants(a)+ "};              \n" +
+      "uint32_t b[32]         = {" + WriteConstants(b) + "};            \n" +
+      "uint32_t n[32]         = {" + WriteConstants(n) + "};            \n" +
+      "uint32_t n_prime[32]   = {" + WriteConstants(n_prime) + "};      \n" +
+      "uint32_t expected[32]  = {" + WriteConstants(c) + "};            \n" )
+
+  target.close()
+
 
 if result:
   if result == hex(c).rstrip("L"):
