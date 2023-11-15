@@ -309,7 +309,7 @@ if operation == 6:
       "# ifndef test_    \n" +
       "# define test_    \n" +
       "# include <stdint.h>   \n")
-  loops = 50
+  loops = 1000
   for i in range(loops):
     seed = i
     setSeed(i)

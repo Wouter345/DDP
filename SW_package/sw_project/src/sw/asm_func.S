@@ -15,11 +15,7 @@ ldr r7, [r3] 			@ load b[i]
 opt1_loop:
 	ldr r6, [r2], #4 	@load a[j] and increment pointer
 	ldr r8, [r1] 		@load t[i+j]
-	umull r10, r11, r7, r6 @a[j] * b[i] r10=32LSB and r11=32MSB
-	adds r9, r8, r5   	@ t[i+j] + C
-	adc r11, r11, #0  	@ add carry
-	adds r8, r9, r10  	@t[i+j] = a*b+t+c {32LSB}
-	adc r5, r11, #0   	@C = {32MSB}
+	umaal r8, r5, r7, r6
 	str r8, [r1], #4 	@store t[i+j] and increment pointer
 	subs r12, r12, #1 	@decrease j by 1
 	bne opt1_loop		@ if j!=0 branch back to for_loop
@@ -57,12 +53,8 @@ subs r8, r8, #1 		@decrease j by 1
 opt2_loop:
 	ldr r4, [r11], #4 	@load t[j] and increment pointer
 	ldr r5, [r1], #4  	@load n[j] and increment pointer
-	umull r6, r12, r7, r5 @m * n[j] r6=32LSB and r12=32MSB
-	adds r9, r4, r9   	@ t[j] + C
-	adc r12, r12, #0  	@ add carry
-	adds r6, r6, r9  	@t[j-1] = m*n+t[j]+c {32LSB}
-	adc r9, r12, #0   	@r9 = C = {32MSB}
-	str r6, [r0], #4 	@str t[j-1] and increment pointer
+	umaal r4, r9, r7, r5
+	str r4, [r0], #4 	@str t[j-1] and increment pointer
 	subs r8, r8, #1 	@decrease j by 1
 	bne opt2_loop   	@branch
 end2_loop:
@@ -77,9 +69,6 @@ str r6, [r0] 			@store t[size+1]
 pop {r4-r12}
 bx lr
 .endfunc
-
-
-
 
 
 .text
@@ -156,11 +145,7 @@ opt5_loop1:
 	opt5_loop2:
 		ldr r6, [r2], #4 	@load a[j] and increment pointer
 		ldr r8, [r1] 		@load t[i+j]
-		umull r10, r11, r7, r6 @a[j] * b[i] r10=32LSB and r11=32MSB
-		adds r9, r8, r5   	@ t[i+j] + C
-		adc r11, r11, #0  	@ add carry
-		adds r8, r9, r10  	@t[i+j] = a*b+t+c {32LSB}
-		adc r5, r11, #0   	@C = {32MSB}
+		umaal r8, r5, r6, r7
 		str r8, [r1], #4 	@store t[i+j] and increment pointer
 		subs r12, r12, #1 	@decrease j by 1
 		bne opt5_loop2		@ if j!=0 branch back to for_loop
@@ -179,83 +164,6 @@ end5_loop1:
 pop {r4-r12}
 bx lr
 .endfunc
-
-.text
-
-.global add_3
-.func add_3, add_3
-.type add_3, %function
-
-add_3:
-add r0, r0, r1
-add r0, r0, r2
-bx lr
-.endfunc
-
-.text
-
-.global add_10
-.func add_10, add_10
-.type add_10, %function
-
-add_10:
-cmp r1, #0
-beq end_add
-mov r2, #0
-add_loop:
-	ldr r3, [r0], #4
-	add r2, r2, r3
-	subs r1, r1, #1
-	bne  add_loop
-	mov r0, r2
-end_add:
-bx lr
-.endfunc
-
-.text
-
-.global arr_copy
-.func arr_copy, arr_copy
-.type arr_copy, %function
-
-arr_copy:
-cmp r2, #0
-beq end_add
-copy_loop:
-	ldr r3, [r0], #4
-	str r3, [r1], #4
-	subs r2, r2, #1
-	bne  copy_loop
-end_copy:
-bx lr
-.endfunc
-
-.text
-
-.global multiply
-.func multiply, multiply
-.type multiply, %function
-
-multiply:
-	push {r4-r9}
-	// If more registers are used in the function make sure to do push them on the stack to preserve them
-	ldr r4, [sp, #24]		@m pointer is stored in R4
-	ldr r5, [sp, #28]		@n pointer is stored in R5
-	add r1, r1, r0, lsl #2
-	ldr r6, [r4] @load m[0]
-	ldr r7, [r5] @load n[0]
-	umull r8, r9, r6, r7 @[m[0] * n[0]
-	ldr r6, [r2] @load a[0]
-	ldr r7, [r3] @load b[0]
-	umull r4, r5, r6, r7 @a[0] * b[0]
-	adds r8, r8, r4
-	adc r9, r9, r5
-	stmia r1, {r8, r9}
-	pop {r4-r9}
-	bx lr
-.endfunc
-
-
 
 
 

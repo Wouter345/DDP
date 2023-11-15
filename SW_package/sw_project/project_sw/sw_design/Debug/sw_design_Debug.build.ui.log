@@ -1,4 +1,4 @@
-2023-11-15T13:07:43.86360900255-13:07:43 **** Incremental Build of configuration Debug for project sw_design ****
+2023-11-15T13:44:32.66468500255-13:44:32 **** Incremental Build of configuration Debug for project sw_design ****
 000-make all 
 000-make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 000-make --no-print-directory pre-build
@@ -15,11 +15,6 @@
 000-      |                 ^~~~~~~~~~
 000-Finished building: ../src/main.c
 000- 
-000-Building file: ../src/test.c
-000-Invoking: ARM v7 gcc compiler
-000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/test.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/test.d" -MT"src/test.o" -o "src/test.o" "../src/test.c"
-000-Finished building: ../src/test.c
-000- 
 000-Building target: sw_design.elf
 000-Invoking: ARM v7 gcc linker
 000-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bsplib/lib -o "sw_design.elf"  ./src/platform/interface.o ./src/platform/platform.o  ./src/asm_func.o ./src/main.o ./src/montgomery.o ./src/mp_arith.o ./src/test.o ./src/testvector.o ./src/warmup.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
@@ -28,10 +23,10 @@
 000-Invoking: ARM v7 Print Size
 000-arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
 000-   text	   data	    bss	    dec	    hex	filename
-000-  71207	  36328	  22664	 130199	  1fc97	sw_design.elf
+000-  70871	 663328	  22664	 756863	  b8c7f	sw_design.elf
 000-Finished building: sw_design.elf.size
 000- 
 000-make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 00255-
-13:07:44 Build Finished (took 817ms)
+13:44:33 Build Finished (took 578ms)
 

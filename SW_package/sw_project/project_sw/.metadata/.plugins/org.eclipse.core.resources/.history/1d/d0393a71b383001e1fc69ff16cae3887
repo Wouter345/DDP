@@ -1,0 +1,184 @@
+.text
+
+.global opt1
+.func opt1, opt1
+.type opt1, %function
+
+opt1:
+push {r4-r12}
+ldr r4, [sp, #36] 		@load fifth input size
+sub r12, r4, r0 		@j=r12 = size-i
+mov r5, #0 				@C=0
+add r1, r1, r0, lsl #2 	@add 4*i to pointer t --> t[i]
+add r3, r3, r0, lsl #2 	@add 4*i to pointer b --> b[i]
+ldr r7, [r3] 			@ load b[i]
+opt1_loop:
+	ldr r6, [r2], #4 	@load a[j] and increment pointer
+	ldr r8, [r1] 		@load t[i+j]
+	umaal r8, r5, r7, r6
+	str r8, [r1], #4 	@store t[i+j] and increment pointer
+	subs r12, r12, #1 	@decrease j by 1
+	bne opt1_loop		@ if j!=0 branch back to for_loop
+end1_loop:
+ldr r8, [r1] 			@ load value t[size]
+adds r8, r8, r5 		@ t[size] = t+C
+str r8, [r1], #4 		@ store value t[size] and increment pointer to size+1
+ldr r8, [r1] 			@ load value t[size+1]
+adc r8, r8, #0 			@t[size+1] = t+C
+str r8, [r1]
+
+pop {r4-r12}
+bx lr
+.endfunc
+
+.text
+
+.global opt2
+.func opt2, opt2
+.type opt2, %function
+
+opt2:
+
+push {r4-r12}
+ldr r4, [r0] 			@load r4 = t[0]
+add r11, r0, #4 		@pointer t[j], need to increment seperatly bc t[j-1] is needed later
+ldr r5, [r1], #4 		@load r5 = n[0] and increment pointer
+ldr r6, [r2] 			@load r6 = n_prime[0]
+mul r7, r4, r6 			@r7(m) = t[0]*n_prime[0]
+umull r8, r9, r7, r5	@ n[0]*m
+adds r8, r8, r4 		@r8 = sum
+adc r9, #0				@r9 = C
+mov r8, r3 				@set j = size
+subs r8, r8, #1 		@decrease j by 1
+opt2_loop:
+	ldr r4, [r11], #4 	@load t[j] and increment pointer
+	ldr r5, [r1], #4  	@load n[j] and increment pointer
+	umaal r6, r9, r7, r5
+	str r6, [r0], #4 	@str t[j-1] and increment pointer
+	subs r8, r8, #1 	@decrease j by 1
+	bne opt2_loop   	@branch
+end2_loop:
+ldr r4, [r11], #4 		@load t[size] and increment pointer
+adds r6, r4, r9 		@t[size-1] = t[size]+C
+str r6, [r0], #4 		@store t[size-1]
+ldr r4, [r11] ,#4 		@load t[size+1]
+adc r6, r4, #0 			@t[size] = t[size+1] + carry(C)
+str r6, [r0], #4 		@store t[size]
+mov r6, #0
+str r6, [r0] 			@store t[size+1]
+pop {r4-r12}
+bx lr
+.endfunc
+
+
+.text
+
+.global opt3
+.func opt3, opt3
+.type opt3, %function
+
+opt3:
+push {r4-r9}
+ldr r4, [sp, #24] 		@load fifth input {size}
+sub r5, r4, #1 			@r9 = size-1
+add r0, r0, #1 			@i+1
+add r1, r1, r5, lsl #2 	@add 4*(size-1) to pointer t --> r5=&t[size-1]
+add r3, r3, r0, lsl #2 @set pointer b to b[i+1]
+add r2, r2, r5, lsl #2  @set pointer a to a[size-1]
+sub r4, r4, r0 		@r12 = j = size-(i+1) number of loops
+ldmia r1, {r6-r8}		@load t[size-1], t[size], t[size+1]
+cmp r4, #0
+beq end3_loop
+opt3_loop:
+	ldr r5, [r3], #4 	@load b[j] and increment
+	ldr r0, [r2], #-4 	@load a[size+i-j] and decrement pointer
+	umull r5, r0, r5, r0 @a*b
+	adds r6, r6, r5 	@update r7 = t[size-1] = a*b+t[size-1]
+	adcs r7, r0, r7  	@update r8 = t[size] = C + t[size]
+	adc r8, r8, #0 		@t[size+1] = t[size+1] + carry
+	subs r4, r4, #1
+	bne opt3_loop
+end3_loop:
+stmia r1, {r6-r8}
+
+pop {r4-r9}
+bx lr
+.endfunc
+
+
+.text
+
+.global opt4
+.func opt4, opt4
+.type opt4, %function
+
+opt4:
+mov r2, #0
+opt4_loop:
+	str r2, [r0], #4
+	subs r1, #1
+	bne opt4_loop
+end4_loop:
+
+bx lr
+.endfunc
+
+
+.text
+
+.global opt5
+.func opt5, opt5
+.type opt5, %function
+
+opt5:
+push {r4-r12}
+mov r4, #0				@set i=0
+str r1, [sp, #4]		@store pointer t
+str r2, [sp, #8]		@store pointer a
+opt5_loop1:
+	ldr r2, [sp, #8]
+	ldr r1, [sp, #4]
+	sub r12, r0, r4 		@j=r12 = size-i
+	mov r5, #0 				@C=0
+	add r1, r1, r4, lsl #2 	@add 4*i to pointer t --> t[i]
+	ldr r7, [r3], #4 		@ load b[i] and increment pointer
+	opt5_loop2:
+		ldr r6, [r2], #4 	@load a[j] and increment pointer
+		ldr r8, [r1] 		@load t[i+j]
+		umaal r8, r5, r6, r7
+		str r8, [r1], #4 	@store t[i+j] and increment pointer
+		subs r12, r12, #1 	@decrease j by 1
+		bne opt5_loop2		@ if j!=0 branch back to for_loop
+	end5_loop2:
+	ldr r8, [r1] 			@ load value t[size]
+	adds r8, r8, r5 		@ t[size] = t+C
+	str r8, [r1], #4 		@ store value t[size] and increment pointer to size+1
+	ldr r8, [r1] 			@ load value t[size+1]
+	adc r8, r8, #0 			@t[size+1] = t+C
+	str r8, [r1]
+	add r4, r4, #1			@i+=1
+	cmp r4, r0				@i==size
+	bne opt5_loop1
+end5_loop1:
+
+pop {r4-r12}
+bx lr
+.endfunc
+
+
+
+
+@USEFUL FUNCTIONS
+
+@ add Rx, Ry, Rz	//Rx = Ry + Rz  second operand can be constant
+@ sub Rx, Ry, Rz	//Rx = Ry - Rz second operand can be constant
+@ adc Rx, Ry, Rz	//Rx = Ry + Rz + CARRY   one operand can be constant
+@ cmp Rx, Ry		//compares Rx and Ry and if they are equal sets Z flag, otherwise resets Z flag (works by subtracting two values and checks if result is zero)
+@ b{cond} <label>		//Jumps to given label in the code if given condition is satisfied
+@ umull Rn, Rm, Rx, Ry 	//{Rm, Rn} = Rx * Ry Multiplies unsigned 32bit values in Rx and Ry. Stores the higher 32 bits in Rm, and lower in Rn
+@ ldr Rx, [Ry]		//Loads from memory pointed by Ry to register Rx, see addressing modes for post increment, pre decrement
+@ str Rx, [Ry]		//Stores to memory pointed by Ry value in register Rx, see addressing modes for post increment, pre decrement
+@ pop {}			//Pops values from stack to specified registers in order they are specified
+@ push {}			//Push registers to stack in orded they are specified
+@ ldmia rx, {set of registers} //Loads to specified set of registers memory values, starting from rx. Increasing addresses
+@ stmia rx, {set of registers} //Stores specified set of registers in memory, starting from address pointed by rx. Increasing addresses

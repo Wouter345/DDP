@@ -95,7 +95,9 @@ void montMul(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32_t 
 			t[size+1] = (uint32_t)(((uint64_t)t[size+1]) + ((uint64_t)C));
 		}
 	}
+
 	SUB_COND(t,n,res,size);
+
 }
 
 // Calculates res = a * b * r^(-1) mod n4e56b7b63.
@@ -110,7 +112,6 @@ void montMulOpt(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32
 	opt5(size,t,a,b);
 
 
-	int32_t i;
 	for (int i = 0; i<size; i++){
 		opt2(t, n, n_prime, size);
 
@@ -118,6 +119,7 @@ void montMulOpt(uint32_t *a, uint32_t *b, uint32_t *n, uint32_t *n_prime, uint32
 	}
 
 	SUB_COND(t,n,res,size);
+
 }
 
 
