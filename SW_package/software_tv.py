@@ -327,6 +327,13 @@ if operation == 6:
   
   print ("====================================================================")
 
+  with open("testvectors.txt", "w") as f:
+      f.write(WriteConstants(a) + "\n")
+      f.write(WriteConstants(b) + "\n")
+      f.write(WriteConstants(n) + "\n")
+      f.write(WriteConstants(n_prime) + "\n")
+      f.write(WriteConstants(c) + "\n")
+
 if result:
   if result == hex(c).rstrip("L"):
     print("same")
