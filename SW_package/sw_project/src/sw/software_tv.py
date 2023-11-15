@@ -309,8 +309,8 @@ if operation == 6:
       "# ifndef test_    \n" +
       "# define test_    \n" +
       "# include <stdint.h>   \n")
-
-  for i in range(10):
+  loops = 10
+  for i in range(loops):
     [p,q,n] = getModuli(512)
   
     r = 2**1024
@@ -356,6 +356,32 @@ if operation == 6:
         "extern uint32_t n_prime"+str(i)+"[32];\n"
         "extern uint32_t expected"+str(i)+"[32];\n"
     )
+  target1.write("uint32_t lista["+str(loops)+"] = {")
+  for i in range(loops-1):
+      target1.write("a"+str(i)+", ")
+  target1.write("a"+str(loops)+"};")
+
+  target1.write("uint32_t listb["+str(loops)+"] = {")
+  for i in range(loops-1):
+      target1.write("b"+str(i)+", ")
+  target1.write("b"+str(loops)+"};")
+
+  target1.write("uint32_t listn["+str(loops)+"] = {")
+  for i in range(loops - 1):
+      target1.write("n" + str(i) + ", ")
+  target1.write("n" + str(loops) + "};")
+
+  target1.write("uint32_t listn_prime["+str(loops)+"] = {")
+  for i in range(loops - 1):
+      target1.write("n_prime" + str(i) + ", ")
+  target1.write("n_prime" + str(loops) + "};")
+
+  target1.write("uint32_t listexpected["+str(loops)+"] = {")
+  for i in range(loops - 1):
+      target1.write("expected" + str(i) + ", ")
+  target1.write("expected" + str(loops) + "};")
+
+  target2.write("uint32_t lista["+str(loops)+"], listb["+str(loops)+"], listn["+str(loops)+"], listn_prime["+str(loops)+"], listexpected["+str(loops)+"];")
   target2.write( "# endif /* test_ */    \n")
   target1.close()
   target2.close()
