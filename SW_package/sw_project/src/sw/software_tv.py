@@ -296,72 +296,71 @@ if operation == 6:
 
   print ("Test Vector for Multi Precision Montgomery Multiplication\n")
 
-  [p,q,n] = getModuli(512)
-  
-  r = 2**1024  
-  r_inv = Modinv(r, n)
-  
-  n_prime = (r - Modinv(n, r))
-
-  a = getRandomMessage(1024,n)
-  b = getRandomMessage(1024,n)
-#  a = 1
-#  b = 3847564738
-  c = (a * b * r_inv) % n
-
-  print ("a                      = ", hex(a).rstrip("L"))           # 1024-bits
-  print ("b                      = ", hex(b).rstrip("L"))           # 1024-bits
-  print ("n                      = ", hex(n).rstrip("L"))           # 1024-bits
-  print ("n_prime                = ", hex(n_prime).rstrip("L"))     # 1024-bits
-  print ("a * b                  = ", hex(a*b).rstrip("L"))         # 1024-bits
-  print ("(a * b * r-1) mod n    = ", hex(c).rstrip("L"))           # 1024-bits
-  
-  print ("====================================================================")
-  print ("Input variable declaration in C language\n")
-  
-  print ("uint32_t a[32]         = {", WriteConstants(a), "};")    # 1024-bits
-  print ("uint32_t b[32]         = {", WriteConstants(b), "};")   # 1024-bits
-  print ("uint32_t n[32]         = {", WriteConstants(n), "};")    # 1024-bits
-  print ("uint32_t n_prime[32]   = {", WriteConstants(n_prime), "};")    # 1024-bits
-  print ("uint32_t expected[32]  = {", WriteConstants(c), "};")    # 1024-bits
-  
-  print ("====================================================================")
-
-  target = open("test.c", 'w')
-  target.truncate()
-
-  target.write(
+  target1 = open("test.c", 'w')
+  target1.truncate()
+  target1.write(
       "#include <stdint.h>                                              \n" +
       "#include <stdalign.h>                                            \n" +
-      "                                                                 \n" +
+      "                                                                 \n")
 
-      "uint32_t a[32]         = {"+ WriteConstants(a)+ "};              \n" +
-      "uint32_t b[32]         = {" + WriteConstants(b) + "};            \n" +
-      "uint32_t n[32]         = {" + WriteConstants(n) + "};            \n" +
-      "uint32_t n_prime[32]   = {" + WriteConstants(n_prime) + "};      \n" +
-      "uint32_t expected[32]  = {" + WriteConstants(c) + "};            \n" )
-
-  target.close()
-
-  target = open("test.h", "w")
-  target.truncate()
-
-  target.write(
+  target2 = open("test.h", "w")
+  target2.truncate()
+  target2.write(
       "# ifndef test_    \n" +
       "# define test_    \n" +
       "# include <stdint.h>   \n")
 
-  target.write(
-      "extern uint32_t a[32];\n"
-      "extern uint32_t b[32];\n"
-      "extern uint32_t n[32];\n"
-      "extern uint32_t n_prime[32];\n"
-      "extern uint32_t expected[32];\n"
-  )
-      
+  for i in range(10):
+    [p,q,n] = getModuli(512)
+  
+    r = 2**1024
+    r_inv = Modinv(r, n)
+  
+    n_prime = (r - Modinv(n, r))
+
+    a = getRandomMessage(1024,n)
+    b = getRandomMessage(1024,n)
+#  a = 1
+#  b = 3847564738
+    c = (a * b * r_inv) % n
+
+  # print ("a                      = ", hex(a).rstrip("L"))           # 1024-bits
+  # print ("b                      = ", hex(b).rstrip("L"))           # 1024-bits
+  # print ("n                      = ", hex(n).rstrip("L"))           # 1024-bits
+  # print ("n_prime                = ", hex(n_prime).rstrip("L"))     # 1024-bits
+  # print ("a * b                  = ", hex(a*b).rstrip("L"))         # 1024-bits
+  # print ("(a * b * r-1) mod n    = ", hex(c).rstrip("L"))           # 1024-bits
+  #
+  # print ("====================================================================")
+  # print ("Input variable declaration in C language\n")
+  #
+  # print ("uint32_t a[32]         = {", WriteConstants(a), "};")    # 1024-bits
+  # print ("uint32_t b[32]         = {", WriteConstants(b), "};")   # 1024-bits
+  # print ("uint32_t n[32]         = {", WriteConstants(n), "};")    # 1024-bits
+  # print ("uint32_t n_prime[32]   = {", WriteConstants(n_prime), "};")    # 1024-bits
+  # print ("uint32_t expected[32]  = {", WriteConstants(c), "};")    # 1024-bits
+  #
+  # print ("====================================================================")
+
+    target1.write(
+        "uint32_t a"+str(i)+"[32]         = {"+ WriteConstants(a)+ "};              \n" +
+        "uint32_t b"+str(i)+"[32]         = {" + WriteConstants(b) + "};            \n" +
+        "uint32_t n"+str(i)+"[32]         = {" + WriteConstants(n) + "};            \n" +
+        "uint32_t n_prime"+str(i)+"[32]   = {" + WriteConstants(n_prime) + "};      \n" +
+        "uint32_t expected"+str(i)+"[32]  = {" + WriteConstants(c) + "};            \n" )
+
+    target2.write(
+        "extern uint32_t a"+str(i)+"[32];\n"
+        "extern uint32_t b"+str(i)+"[32];\n"
+        "extern uint32_t n"+str(i)+"[32];\n"
+        "extern uint32_t n_prime"+str(i)+"[32];\n"
+        "extern uint32_t expected"+str(i)+"[32];\n"
+    )
+  target2.write( "# endif /* test_ */    \n")
+  target1.close()
+  target2.close()
 
 
-  target.write( "# endif /* test_ */    \n")
 
 
 if result:
