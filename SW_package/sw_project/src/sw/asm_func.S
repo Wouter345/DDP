@@ -39,33 +39,30 @@ bx lr
 
 opt2:
 
-push {r4-r12}
+push {r4-r8}
 ldr r4, [r0] 			@load r4 = t[0]
-add r11, r0, #4 		@pointer t[j], need to increment seperatly bc t[j-1] is needed later
+add r8, r0, #4 			@pointer t[j], need to increment seperatly bc t[j-1] is needed later
 ldr r5, [r1], #4 		@load r5 = n[0] and increment pointer
-ldr r6, [r2] 			@load r6 = n_prime[0]
-mul r7, r4, r6 			@r7(m) = t[0]*n_prime[0]
-umull r8, r9, r7, r5	@ n[0]*m
-adds r8, r8, r4 		@r8 = sum
-adc r9, #0				@r9 = C
+ldr r2, [r2] 			@load r6 = n_prime[0]
+mul r7, r4, r2 			@r7(m) = t[0]*n_prime[0]
+umaal r4, r2, r7, r5
+
 subs r3, r3, #1 		@decrease j by 1
 opt2_loop:
-	ldr r4, [r11], #4 	@load t[j] and increment pointer
+	ldr r4, [r8], #4 	@load t[j] and increment pointer
 	ldr r5, [r1], #4  	@load n[j] and increment pointer
-	umaal r4, r9, r7, r5
+	umaal r4, r2, r7, r5
 	str r4, [r0], #4 	@str t[j-1] and increment pointer
 	subs r3, r3, #1 	@decrease j by 1
 	bne opt2_loop   	@branch
 end2_loop:
-ldr r4, [r11], #4 		@load t[size] and increment pointer
-adds r6, r4, r9 		@t[size-1] = t[size]+C
-str r6, [r0], #4 		@store t[size-1]
-ldr r4, [r11] ,#4 		@load t[size+1]
-adc r6, r4, #0 			@t[size] = t[size+1] + carry(C)
-str r6, [r0], #4 		@store t[size]
-mov r6, #0
-str r6, [r0] 			@store t[size+1]
-pop {r4-r12}
+ldr r3, [r8], #4 		@ load t[size]
+ldr r4, [r8], #4 		@ load t[size+1]
+adds r2, r3, r2 		@t[size-1] = t[size]+C
+adc r3, r4, #0 			@t[size] = t[size+1] + carry(C)
+mov r4, #0
+stmia r0, {r2, r3, r4}
+pop {r4-r8}
 bx lr
 .endfunc
 
