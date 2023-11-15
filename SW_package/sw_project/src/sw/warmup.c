@@ -35,7 +35,7 @@ void customprint(uint32_t *in, int length) {
 
     str[j] = '\0'; // Null-terminate the string
     xil_printf("0x");
-    xil_printf("%s\n", str);
+    xil_printf("%s\n\r", str);
 }
 
 void customp(uint32_t *in)
@@ -43,7 +43,7 @@ void customp(uint32_t *in)
     int32_t i;
 
     xil_printf("=");
-    for (i = 0; i < 34; i++) {
+    for (i = 0; i < 32; i++) {
     	xil_printf("0x%x,", in[i]);
     }
     xil_printf("\n\r");
