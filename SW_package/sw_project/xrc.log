@@ -6,3 +6,6 @@ Wed Nov 15 08:43:39 2023: Running Rule Check Server
 Wed Nov 15 08:43:39 2023: Version 1.6.1
 Wed Nov 15 08:43:41 2023: Rule Check Server: Accepted socket connection from client
 Wed Nov 15 08:43:42 2023: EXCHANGE_TOKEN received, server token: 1f21750b-265d-4e67-8842-8db50a0174af, passed token: 1f21750b-265d-4e67-8842-8db50a0174af
+Wed Nov 15 15:51:53 2023: STOP_SERVER received, server token: 1f21750b-265d-4e67-8842-8db50a0174af, passed token: 1f21750b-265d-4e67-8842-8db50a0174af
+Wed Nov 15 15:51:53 2023: Socket received request to stop server.
+Wed Nov 15 15:51:53 2023: SERVER: destructor for server bound to port 41221
