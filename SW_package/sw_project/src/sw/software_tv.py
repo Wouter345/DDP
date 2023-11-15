@@ -309,8 +309,10 @@ if operation == 6:
       "# ifndef test_    \n" +
       "# define test_    \n" +
       "# include <stdint.h>   \n")
-  loops = 10
+  loops = 50
   for i in range(loops):
+    seed = i
+    setSeed(i)
     [p,q,n] = getModuli(512)
   
     r = 2**1024
@@ -356,32 +358,32 @@ if operation == 6:
         "extern uint32_t n_prime"+str(i)+"[32];\n"
         "extern uint32_t expected"+str(i)+"[32];\n"
     )
-  target1.write("uint32_t lista["+str(loops)+"] = {")
+  target1.write("uint32_t *lista["+str(loops)+"] = {")
   for i in range(loops-1):
       target1.write("a"+str(i)+", ")
-  target1.write("a"+str(loops)+"};\n")
+  target1.write("a"+str(loops-1)+"};\n")
 
-  target1.write("uint32_t listb["+str(loops)+"] = {")
+  target1.write("uint32_t *listb["+str(loops)+"] = {")
   for i in range(loops-1):
       target1.write("b"+str(i)+", ")
-  target1.write("b"+str(loops)+"};\n")
+  target1.write("b"+str(loops-1)+"};\n")
 
-  target1.write("uint32_t listn["+str(loops)+"] = {")
+  target1.write("uint32_t *listn["+str(loops)+"] = {")
   for i in range(loops - 1):
       target1.write("n" + str(i) + ", ")
-  target1.write("n" + str(loops) + "};\n")
+  target1.write("n" + str(loops-1) + "};\n")
 
-  target1.write("uint32_t listn_prime["+str(loops)+"] = {")
+  target1.write("uint32_t *listn_prime["+str(loops)+"] = {")
   for i in range(loops - 1):
       target1.write("n_prime" + str(i) + ", ")
-  target1.write("n_prime" + str(loops) + "};\n")
+  target1.write("n_prime" + str(loops-1) + "};\n")
 
-  target1.write("uint32_t listexpected["+str(loops)+"] = {")
+  target1.write("uint32_t *listexpected["+str(loops)+"] = {")
   for i in range(loops - 1):
       target1.write("expected" + str(i) + ", ")
-  target1.write("expected" + str(loops) + "};\n")
+  target1.write("expected" + str(loops-1) + "};\n")
 
-  target2.write("uint32_t lista["+str(loops)+"], listb["+str(loops)+"], listn["+str(loops)+"], listn_prime["+str(loops)+"], listexpected["+str(loops)+"];")
+  target2.write("extern uint32_t *lista["+str(loops)+"], *listb["+str(loops)+"], *listn["+str(loops)+"], *listn_prime["+str(loops)+"], *listexpected["+str(loops)+"];")
   target2.write( "\n# endif /* test_ */    \n")
   target1.close()
   target2.close()

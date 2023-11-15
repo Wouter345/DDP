@@ -1,41 +1,68 @@
-2023-11-15T11:15:28.88338400255-11:15:28 **** Incremental Build of configuration Debug for project sw_design ****
+2023-11-15T12:00:40.87385300255-12:00:40 **** Incremental Build of configuration Debug for project sw_design ****
 000-make all 
 000-make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 000-make --no-print-directory pre-build
 000-a9-linaro-pre-build-step
 000- 
 000-make --no-print-directory main-build
-000-Building file: ../src/main.c
+000-Building file: ../src/montgomery.c
 000-Invoking: ARM v7 gcc compiler
-000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
-000-../src/main.c: In function 'main':
-000/sw_design/src/main.c37-1-1'a' undeclared (first use in this function)2a../src/main.c:37:28: error: 'a' undeclared (first use in this function)
-000-   37 |                 montMulOpt(a,b,n,n_prime,res,32);
-000-      |                            ^
-000/sw_design/src/main.c37-1-1each undeclared identifier is reported only once for each function it appears in0-../src/main.c:37:28: note: each undeclared identifier is reported only once for each function it appears in
-000/sw_design/src/main.c37-1-1'b' undeclared (first use in this function)2b../src/main.c:37:30: error: 'b' undeclared (first use in this function)
-000-   37 |                 montMulOpt(a,b,n,n_prime,res,32);
-000-      |                              ^
-000/sw_design/src/main.c37-1-1'n' undeclared (first use in this function)2n../src/main.c:37:32: error: 'n' undeclared (first use in this function)
-000-   37 |                 montMulOpt(a,b,n,n_prime,res,32);
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/montgomery.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/montgomery.d" -MT"src/montgomery.o" -o "src/montgomery.o" "../src/montgomery.c"
+000-../src/montgomery.c: In function 'SUB_COND':
+000/sw_design/src/montgomery.c19-1-1'return' with a value, in function returning void [-Wreturn-type]1-../src/montgomery.c:19:24: warning: 'return' with a value, in function returning void [-Wreturn-type]
+000-   19 |                 return 0;
+000-      |                        ^
+000/sw_design/src/montgomery.c15-1-1declared here0-../src/montgomery.c:15:6: note: declared here
+000-   15 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+000-      |      ^~~~~~~~
+000/sw_design/src/montgomery.c25-1-1'return' with a value, in function returning void [-Wreturn-type]1-../src/montgomery.c:25:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+000-   25 |                         return 0;
 000-      |                                ^
-000/sw_design/src/main.c37-1-1'n_prime' undeclared (first use in this function); did you mean 'n_prime9'?2n_prime../src/main.c:37:34: error: 'n_prime' undeclared (first use in this function); did you mean 'n_prime9'?
-000-   37 |                 montMulOpt(a,b,n,n_prime,res,32);
-000-      |                                  ^~~~~~~
-000-      |                                  n_prime9
-000/sw_design/src/main.c42-1-1implicit declaration of function 'customprint' [-Wimplicit-function-declaration]1-../src/main.c:42:17: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
-000-   42 |                 customprint(res, length);
-000-      |                 ^~~~~~~~~~~
-000/sw_design/src/main.c46-1-1'expected' undeclared (first use in this function); did you mean 'expected9'?2expected../src/main.c:46:29: error: 'expected' undeclared (first use in this function); did you mean 'expected9'?
-000-   46 |                         if (expected[i] != res[i]) {
-000-      |                             ^~~~~~~~
-000-      |                             expected9
-000/sw_design/src/main.c56-1-1implicit declaration of function 'customp' [-Wimplicit-function-declaration]1-../src/main.c:56:25: warning: implicit declaration of function 'customp' [-Wimplicit-function-declaration]
-000-   56 |                         customp(expected);
-000-      |                         ^~~~~~~
-000/sw_design0-1-1make[2]: *** [src/subdir.mk:52: src/main.o] Error 12-make[2]: *** [src/subdir.mk:52: src/main.o] Error 1
+000/sw_design/src/montgomery.c15-1-1declared here0-../src/montgomery.c:15:6: note: declared here
+000-   15 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+000-      |      ^~~~~~~~
+000/sw_design/src/montgomery.c33-1-1'return' with a value, in function returning void [-Wreturn-type]1-../src/montgomery.c:33:32: warning: 'return' with a value, in function returning void [-Wreturn-type]
+000-   33 |                         return 0;
+000-      |                                ^
+000/sw_design/src/montgomery.c15-1-1declared here0-../src/montgomery.c:15:6: note: declared here
+000-   15 | void SUB_COND(uint32_t *u, uint32_t *n, uint32_t *res, uint32_t size)
+000-      |      ^~~~~~~~
+000-../src/montgomery.c: In function 'montMulOpt':
+000/sw_design/src/montgomery.c108-1-1implicit declaration of function 'opt4' [-Wimplicit-function-declaration]1-../src/montgomery.c:108:9: warning: implicit declaration of function 'opt4' [-Wimplicit-function-declaration]
+000-  108 |         opt4(t, size+2);
+000-      |         ^~~~
+000/sw_design/src/montgomery.c110-1-1implicit declaration of function 'opt5' [-Wimplicit-function-declaration]1-../src/montgomery.c:110:9: warning: implicit declaration of function 'opt5' [-Wimplicit-function-declaration]
+000-  110 |         opt5(size,t,a,b);
+000-      |         ^~~~
+000/sw_design/src/montgomery.c115-1-1implicit declaration of function 'opt2' [-Wimplicit-function-declaration]1-../src/montgomery.c:115:17: warning: implicit declaration of function 'opt2' [-Wimplicit-function-declaration]
+000-  115 |                 opt2(t, n, n_prime, size);
+000-      |                 ^~~~
+000/sw_design/src/montgomery.c117-1-1implicit declaration of function 'opt3' [-Wimplicit-function-declaration]1-../src/montgomery.c:117:17: warning: implicit declaration of function 'opt3' [-Wimplicit-function-declaration]
+000-  117 |                 opt3(i, t, a, b, size);
+000-      |                 ^~~~
+000/sw_design/src/montgomery.c113-1-1unused variable 'i' [-Wunused-variable]1-../src/montgomery.c:113:17: warning: unused variable 'i' [-Wunused-variable]
+000-  113 |         int32_t i;
+000-      |                 ^
+000-In file included from ../src/common.h:10,
+000-                 from ../src/montgomery.c:10:
+000-../src/platform/performance.h: At top level:
+000/sw_design/src/platform/performance.h6-1-1'time_start' defined but not used [-Wunused-variable]1time_start../src/platform/performance.h:6:17: warning: 'time_start' defined but not used [-Wunused-variable]
+000-    6 | static uint32_t time_start;
+000-      |                 ^~~~~~~~~~
+000-Finished building: ../src/montgomery.c
+000- 
+000-Building target: sw_design.elf
+000-Invoking: ARM v7 gcc linker
+000-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bsplib/lib -o "sw_design.elf"  ./src/platform/interface.o ./src/platform/platform.o  ./src/asm_func.o ./src/main.o ./src/montgomery.o ./src/mp_arith.o ./src/test.o ./src/testvector.o ./src/warmup.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+000-Finished building target: sw_design.elf
+000- 
+000-Invoking: ARM v7 Print Size
+000-arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
+000-   text	   data	    bss	    dec	    hex	filename
+000-  71271	  36328	  22664	 130263	  1fcd7	sw_design.elf
+000-Finished building: sw_design.elf.size
+000- 
 000-make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
-000/sw_design0-1-1make[1]: *** [makefile:35: all] Error 22-make[1]: *** [makefile:35: all] Error 2
 00255-
-11:15:29 Build Finished (took 428ms)
+12:00:41 Build Finished (took 879ms)
 
