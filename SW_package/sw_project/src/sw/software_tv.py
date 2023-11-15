@@ -359,30 +359,30 @@ if operation == 6:
   target1.write("uint32_t lista["+str(loops)+"] = {")
   for i in range(loops-1):
       target1.write("a"+str(i)+", ")
-  target1.write("a"+str(loops)+"};")
+  target1.write("a"+str(loops)+"};\n")
 
   target1.write("uint32_t listb["+str(loops)+"] = {")
   for i in range(loops-1):
       target1.write("b"+str(i)+", ")
-  target1.write("b"+str(loops)+"};")
+  target1.write("b"+str(loops)+"};\n")
 
   target1.write("uint32_t listn["+str(loops)+"] = {")
   for i in range(loops - 1):
       target1.write("n" + str(i) + ", ")
-  target1.write("n" + str(loops) + "};")
+  target1.write("n" + str(loops) + "};\n")
 
   target1.write("uint32_t listn_prime["+str(loops)+"] = {")
   for i in range(loops - 1):
       target1.write("n_prime" + str(i) + ", ")
-  target1.write("n_prime" + str(loops) + "};")
+  target1.write("n_prime" + str(loops) + "};\n")
 
   target1.write("uint32_t listexpected["+str(loops)+"] = {")
   for i in range(loops - 1):
       target1.write("expected" + str(i) + ", ")
-  target1.write("expected" + str(loops) + "};")
+  target1.write("expected" + str(loops) + "};\n")
 
   target2.write("uint32_t lista["+str(loops)+"], listb["+str(loops)+"], listn["+str(loops)+"], listn_prime["+str(loops)+"], listexpected["+str(loops)+"];")
-  target2.write( "# endif /* test_ */    \n")
+  target2.write( "\n# endif /* test_ */    \n")
   target1.close()
   target2.close()
 
