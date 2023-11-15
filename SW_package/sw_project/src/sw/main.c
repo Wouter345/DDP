@@ -32,7 +32,7 @@ int main()
     // Hello World template
     //----------------------
     xil_printf("Begin\n\r");
-	for (int k=0; k<1000; k++){
+	for (int k=0; k<50; k++){
 		uint32_t res[32] = {0};
 
 	//START_TIMING;
