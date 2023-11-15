@@ -10901,3 +10901,406 @@ Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: 
 
 !ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 10:40:11.357
 !MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '35'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:53:21.863
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-32: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:53:21.866
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-32: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:53:21.867
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-32: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:53:21.869
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-32: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 10:53:21.870
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:53:21.872
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-32: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:53:21.874
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-32: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2023-11-15 10:53:22.579
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:16.468
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-33: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:16.471
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-33: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:16.472
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-33: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:16.475
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-33: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 10:57:16.476
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:16.478
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-33: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:16.479
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-33: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2023-11-15 10:57:16.942
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:44.446
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:44.449
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:44.450
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:44.454
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 10:57:44.455
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:44.458
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:44.459
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-39: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2023-11-15 10:57:44.805
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:53.232
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:53.235
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:53.236
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:53.239
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 10:57:53.240
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:53.242
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:57:53.243
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-37: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2023-11-15 10:57:53.692
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:58:13.937
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-38: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:58:13.940
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-38: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:58:13.942
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-38: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:58:13.944
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-38: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 10:58:13.946
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:58:13.947
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-38: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 10:58:13.949
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-38: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2023-11-15 10:58:14.441
+!MESSAGE Build step failed, canceling full build chain.
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:00:54.902
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-40: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:00:54.905
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-40: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:00:54.906
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-40: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:00:54.909
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-40: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 11:00:54.912
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:00:54.914
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-40: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:00:54.917
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-40: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 11:01:02.947
+!MESSAGE Tool usage for 'SDX_NO_OP_BUILD' updated to '36'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:05.935
+!MESSAGE XSCT Command: [disconnect tcfchan#66], Thread: Thread-2817
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:05.942
+!MESSAGE XSCT command with result: [disconnect tcfchan#66], Result: [null, ]. Thread: Thread-2817
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.937
+!MESSAGE XSCT Command: [connect -url tcp:127.0.0.1:3121], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.942
+!MESSAGE XSCT command with result: [connect -url tcp:127.0.0.1:3121], Result: [null, tcfchan#69]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.944
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.951
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.953
+!MESSAGE XSCT Command: [version -server], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.955
+!MESSAGE XSCT command with result: [version -server], Result: [null, 2023.1]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.956
+!MESSAGE XSCT Command: [version], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.958
+!MESSAGE XSCT command with result: [version], Result: [null, xsct 2023.1.0
+SW Build 0 on 2023-05-03-16:48:11
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.959
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.965
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.966
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.977
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.978
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.983
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.984
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.995
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:06.996
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.001
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.003
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.014
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.016
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.020
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.022
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.033
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.035
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.039
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.041
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.052
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.053
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.058
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.059
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.070
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.071
+!MESSAGE XSCT Command: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.082
+!MESSAGE XSCT command with result: [jtag targets -set -filter {name =~ "Xilinx TUL 1234-tulA" && level == 0}], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.084
+!MESSAGE XSCT Command: [jtag frequency], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.086
+!MESSAGE XSCT command with result: [jtag frequency], Result: [null, 15000000]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.089
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.098
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.099
+!MESSAGE XSCT Command: [rst -system], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.143
+!MESSAGE XSCT command with result: [rst -system], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:07.145
+!MESSAGE XSCT Command: [after 3000], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.149
+!MESSAGE XSCT command with result: [after 3000], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.162
+!MESSAGE XSCT Command: [jtag targets -filter {level == 0}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.167
+!MESSAGE XSCT command with result: [jtag targets -filter {level == 0}], Result: [null,   1* Xilinx TUL 1234-tulA]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.168
+!MESSAGE XSCT Command: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.181
+!MESSAGE XSCT command with result: [jtag targets -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==1}], Result: [null,      2  arm_dap (idcode 4ba00477 irlen 4)
+     3  xc7z020 (idcode 23727093 irlen 6 fpga)]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.183
+!MESSAGE XSCT Command: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.207
+!MESSAGE XSCT command with result: [targets -set -filter {jtag_cable_name =~ "Xilinx TUL 1234-tulA" && level==0 && jtag_device_ctx=="jsn-TUL-1234-tulA-23727093-0"}], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:10.208
+!MESSAGE XSCT Command: [fpga -file /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.524
+!MESSAGE XSCT command with result: [fpga -file /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/bitstream/rsa_project_wrapper.bit], Result: [null, ]. Thread: ModalContext
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.534
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.542
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.543
+!MESSAGE XSCT Command: [loadhw -hw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.555
+!MESSAGE XSCT command with result: [loadhw -hw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs], Result: [null, rsa_project_wrapper_0]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.556
+!MESSAGE XSCT Command: [configparams force-mem-access 1], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.559
+!MESSAGE XSCT command with result: [configparams force-mem-access 1], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.560
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~"APU*"}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.568
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~"APU*"}], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.569
+!MESSAGE XSCT Command: [source /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.572
+!MESSAGE XSCT command with result: [source /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/_ide/psinit/ps7_init.tcl], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.574
+!MESSAGE XSCT Command: [ps7_init], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.804
+!MESSAGE XSCT command with result: [ps7_init], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.805
+!MESSAGE XSCT Command: [ps7_post_config], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.811
+!MESSAGE XSCT command with result: [ps7_post_config], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.812
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.818
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:12.820
+!MESSAGE XSCT Command: [dow /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:13.019
+!MESSAGE XSCT command with result: [dow /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug/sw_design.elf], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:13.020
+!MESSAGE XSCT Command: [configparams force-mem-access 0], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:13.048
+!MESSAGE XSCT command with result: [configparams force-mem-access 0], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:13.055
+!MESSAGE XSCT Command: [targets -set -nocase -filter {name =~ "*A9*#0"}], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:13.062
+!MESSAGE XSCT command with result: [targets -set -nocase -filter {name =~ "*A9*#0"}], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:13.064
+!MESSAGE XSCT Command: [con], Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:01:13.081
+!MESSAGE XSCT command with result: [con], Result: [null, ]. Thread: Worker-40: Launching Debugger_sw_design-Default
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 11:01:13.086
+!MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '32'

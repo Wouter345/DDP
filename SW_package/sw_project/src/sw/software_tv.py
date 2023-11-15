@@ -352,11 +352,11 @@ if operation == 6:
       "# include <stdint.h>   \n")
 
   target.write(
-      "uint32_t a[32];\n"
-      "uint32_t b[32];\n"
-      "uint32_t n[32];\n"
-      "uint32_t n_prime[32];\n"
-      "uint32_t expected[32];\n"
+      "extern uint32_t a[32];\n"
+      "extern uint32_t b[32];\n"
+      "extern uint32_t n[32];\n"
+      "extern uint32_t n_prime[32];\n"
+      "extern uint32_t expected[32];\n"
   )
       
 

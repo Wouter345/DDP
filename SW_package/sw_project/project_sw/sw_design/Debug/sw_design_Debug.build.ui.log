@@ -1,12 +1,39 @@
-2023-11-15T10:40:03.77294600255-10:40:03 **** Incremental Build of configuration Debug for project sw_design ****
+2023-11-15T11:00:54.93256300255-11:00:54 **** Incremental Build of configuration Debug for project sw_design ****
 000-make all 
 000-make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 000-make --no-print-directory pre-build
 000-a9-linaro-pre-build-step
 000- 
 000-make --no-print-directory main-build
-000-make[2]: Nothing to be done for 'main-build'.
+000-Building file: ../src/main.c
+000-Invoking: ARM v7 gcc compiler
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+000-../src/main.c: In function 'main':
+000/sw_design/src/main.c49-1-1implicit declaration of function 'customprint' [-Wimplicit-function-declaration]1-../src/main.c:49:9: warning: implicit declaration of function 'customprint' [-Wimplicit-function-declaration]
+000-   49 |         customprint(res, length);
+000-      |         ^~~~~~~~~~~
+000/sw_design/src/main.c63-1-1implicit declaration of function 'customp' [-Wimplicit-function-declaration]1-../src/main.c:63:17: warning: implicit declaration of function 'customp' [-Wimplicit-function-declaration]
+000-   63 |                 customp(expected);
+000-      |                 ^~~~~~~
+000-Finished building: ../src/main.c
+000- 
+000-Building file: ../src/test.c
+000-Invoking: ARM v7 gcc compiler
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/test.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/test.d" -MT"src/test.o" -o "src/test.o" "../src/test.c"
+000-Finished building: ../src/test.c
+000- 
+000-Building target: sw_design.elf
+000-Invoking: ARM v7 gcc linker
+000-arm-none-eabi-gcc -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -Wl,-build-id=none -specs=Xilinx.spec -Wl,-T -Wl,../src/lscript.ld -L/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bsplib/lib -o "sw_design.elf"  ./src/platform/interface.o ./src/platform/platform.o  ./src/asm_func.o ./src/main.o ./src/montgomery.o ./src/mp_arith.o ./src/test.o ./src/testvector.o ./src/warmup.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+000-Finished building target: sw_design.elf
+000- 
+000-Invoking: ARM v7 Print Size
+000-arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
+000-   text	   data	    bss	    dec	    hex	filename
+000-  71303	   3968	  22664	  97935	  17e8f	sw_design.elf
+000-Finished building: sw_design.elf.size
+000- 
 000-make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 00255-
-10:40:04 Build Finished (took 277ms)
+11:00:55 Build Finished (took 619ms)
 

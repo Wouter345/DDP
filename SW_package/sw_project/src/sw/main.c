@@ -17,7 +17,8 @@
 #include "mp_arith.h"
 #include "montgomery.h"
 #include "asm_func.h"
-extern uint32_t a[32], b[32], n[32], n_prime[32], expected[32];
+#include "test.h"
+
 
 
 int main()
@@ -28,11 +29,6 @@ int main()
     // Hello World template
     //----------------------
     xil_printf("Begin\n\r");
-//    char st[100];
-//    int seed = 16;
-//    snprintf(st, sizeof(st), "python3 software_tv.py mont_mul %d", seed);
-//    system(st);
-    system("python3 r.py");
 
 //    uint32_t a[32]         = { 0xee3a56e1, 0x32cf7938, 0x21504278, 0xcac7ece2, 0x24f0dcef, 0x1c9af0f7, 0xb3657a95, 0xc525113d, 0xd1765227, 0x658cfc71, 0xda23ac79, 0x36e148b4, 0xb2aa3931, 0xe40e5821, 0xad8960b9, 0x46743d78, 0xd0cf6dad, 0xa7952a31, 0x1da21d5e, 0x6acea616, 0x64b4de80, 0xf1d3a5d9, 0x0197441f, 0x4265b286, 0x8307b2a3, 0x1d2fb464, 0x62f04129, 0x490e392e, 0xc1063d6c, 0x3832f47b, 0xe999d15c, 0x80019c2f };
 //    uint32_t b[32]         = { 0xfc632d25, 0x2e3dfa32, 0x53c4f62c, 0xc1486568, 0x432167cc, 0xbb17f7fd, 0xf41cb655, 0x8ca1f450, 0x95305ee4, 0x8a1b97cc, 0x9701a6da, 0x8c5c714b, 0x453c4acb, 0xa3772ae4, 0x081da0dd, 0xe57fefc6, 0x555c2fc9, 0x37a50c11, 0x7c3b4e9c, 0x77b6b674, 0x872d2b48, 0xdbd0953b, 0x690eeb9d, 0x7cfa833f, 0x8dd44b47, 0x5d154ce8, 0x523ed3e9, 0xc99eaf9d, 0xb7cc13ed, 0x06141c34, 0x80485228, 0x8010caa1 };
