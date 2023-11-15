@@ -36,7 +36,7 @@ int main()
 		uint32_t res[32] = {0};
 
 	//START_TIMING;
-		//montMul(a,b,n,n_prime,res,32);
+		//montMul(lista[k],listb[k],listn[k],listn_prime[k],res,32);
 		montMulOpt(lista[k],listb[k],listn[k],listn_prime[k],res,32);
 	//STOP_TIMING;
 

@@ -80,6 +80,8 @@ bx lr
 
 
 
+
+
 .text
 
 .global opt3
@@ -87,34 +89,30 @@ bx lr
 .type opt3, %function
 
 opt3:
-push {r4-r12}
-ldr r4, [sp, #36] 		@load fifth input {size}
-sub r9, r4, #1 			@r9 = size-1
-add r11, r0, #1 		@i+1
-add r5, r1, r9, lsl #2 	@add 4*(size-1) to pointer t --> r5=&t[size-1]
-add r3, r3, r11, lsl #2 @set pointer b to b[i+1]
-add r2, r2, r9, lsl #2  @set pointer a to a[size-1]
-sub r12, r4, r11 		@r12 = j = size-(i+1) number of loops
-ldr r7, [r5], #4 		@load t[size-1] and increment pointer
-ldr r8, [r5], #4 		@load t[size] and increment pointer
-ldr r4, [r5] 			@load t[size+1]
-cmp r12, #0
+push {r4-r9}
+ldr r4, [sp, #24] 		@load fifth input {size}
+sub r5, r4, #1 			@r9 = size-1
+add r0, r0, #1 			@i+1
+add r1, r1, r5, lsl #2 	@add 4*(size-1) to pointer t --> r5=&t[size-1]
+add r3, r3, r0, lsl #2 @set pointer b to b[i+1]
+add r2, r2, r5, lsl #2  @set pointer a to a[size-1]
+sub r4, r4, r0 		@r12 = j = size-(i+1) number of loops
+ldmia r1, {r6-r8}		@load t[size-1], t[size], t[size+1]
+cmp r4, #0
 beq end3_loop
 opt3_loop:
-	ldr r9, [r3], #4 	@load b[j] and increment
-	ldr r10, [r2], #-4 	@load a[size+i-j] and decrement pointer
-	umull r6, r11, r9, r10 @a*b
-	adds r7, r7, r6 	@update r7 = t[size-1] = a*b+t[size-1]
-	adcs r8, r11, r8  	@update r8 = t[size] = C + t[size]
-	adc r4, r4, #0 		@t[size+1] = t[size+1] + carry
-	subs r12, r12, #1
+	ldr r5, [r3], #4 	@load b[j] and increment
+	ldr r0, [r2], #-4 	@load a[size+i-j] and decrement pointer
+	umull r5, r0, r5, r0 @a*b
+	adds r6, r6, r5 	@update r7 = t[size-1] = a*b+t[size-1]
+	adcs r7, r0, r7  	@update r8 = t[size] = C + t[size]
+	adc r8, r8, #0 		@t[size+1] = t[size+1] + carry
+	subs r4, r4, #1
 	bne opt3_loop
 end3_loop:
-str r4, [r5], #-4 		@store t[size+1] and decrement pointer
-str r8, [r5], #-4  		@store t[size] and decrement pointer
-str r7, [r5]	   		@store t[size-1]
+stmia r1, {r6-r8}
 
-pop {r4-r12}
+pop {r4-r9}
 bx lr
 .endfunc
 
@@ -126,15 +124,13 @@ bx lr
 .type opt4, %function
 
 opt4:
-push {r4-r12}
-mov r7, #0
+mov r2, #0
 opt4_loop:
-	str r7, [r0], #4
+	str r2, [r0], #4
 	subs r1, #1
 	bne opt4_loop
 end4_loop:
 
-pop {r4-r12}
 bx lr
 .endfunc
 
