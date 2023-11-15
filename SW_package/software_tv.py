@@ -343,6 +343,8 @@ if operation == 6:
 
   target.close()
 
+  target = open("")
+
 
 if result:
   if result == hex(c).rstrip("L"):

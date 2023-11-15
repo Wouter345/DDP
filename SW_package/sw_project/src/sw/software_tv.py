@@ -343,6 +343,26 @@ if operation == 6:
 
   target.close()
 
+  target = open("test.h", "w")
+  target.truncate()
+
+  target.write(
+      "# ifndef test_    \n" +
+      "# define test_    \n" +
+      "# include <stdint.h>   \n")
+
+  target.write(
+      "uint32_t a[32];\n"
+      "uint32_t b[32];\n"
+      "uint32_t n[32];\n"
+      "uint32_t n_prime[32];\n"
+      "uint32_t expected[32];\n"
+  )
+      
+
+
+  target.write( "# endif /* test_ */    \n")
+
 
 if result:
   if result == hex(c).rstrip("L"):
