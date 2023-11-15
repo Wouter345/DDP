@@ -11304,3 +11304,30 @@ Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.]. Thread: 
 
 !ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 11:01:13.086
 !MESSAGE Tool usage for 'TCF_APP_DEBUG' updated to '32'
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:15:28.853
+!MESSAGE XSCT Command: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:15:28.857
+!MESSAGE XSCT command with result: [ ::hsi::utils::set_current_hw_sw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ], Result: [null, ]. Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:15:28.859
+!MESSAGE XSCT Command: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:15:28.861
+!MESSAGE XSCT command with result: [::hsi::utils::get_hw_sw_details -json /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/hw/rsa_project_wrapper.xsa /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, {"procname": "ps7_cortexa9_0",
+"osname": "standalone",
+"osver": "8.1",
+}]. Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 1 0 2023-11-15 11:15:28.863
+!MESSAGE Generating MD5 hash for file: /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss ...
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:15:28.865
+!MESSAGE XSCT Command: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdk.utils 0 0 2023-11-15 11:15:28.867
+!MESSAGE XSCT command with result: [::hsi::utils::closesw /users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/system.mss], Result: [null, ]. Thread: Worker-43: Build Project
+
+!ENTRY com.xilinx.sdx.core 1 0 2023-11-15 11:15:29.323
+!MESSAGE Build step failed, canceling full build chain.
