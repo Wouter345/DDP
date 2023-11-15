@@ -10,6 +10,7 @@ C_SRCS += \
 ../src/main.c \
 ../src/montgomery.c \
 ../src/mp_arith.c \
+../src/test.c \
 ../src/testvector.c \
 ../src/warmup.c 
 
@@ -21,6 +22,7 @@ OBJS += \
 ./src/main.o \
 ./src/montgomery.o \
 ./src/mp_arith.o \
+./src/test.o \
 ./src/testvector.o \
 ./src/warmup.o 
 
@@ -31,6 +33,7 @@ C_DEPS += \
 ./src/main.d \
 ./src/montgomery.d \
 ./src/mp_arith.d \
+./src/test.d \
 ./src/testvector.d \
 ./src/warmup.d 
 
