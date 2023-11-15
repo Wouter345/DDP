@@ -48,14 +48,13 @@ mul r7, r4, r6 			@r7(m) = t[0]*n_prime[0]
 umull r8, r9, r7, r5	@ n[0]*m
 adds r8, r8, r4 		@r8 = sum
 adc r9, #0				@r9 = C
-mov r8, r3 				@set j = size
-subs r8, r8, #1 		@decrease j by 1
+subs r3, r3, #1 		@decrease j by 1
 opt2_loop:
 	ldr r4, [r11], #4 	@load t[j] and increment pointer
 	ldr r5, [r1], #4  	@load n[j] and increment pointer
 	umaal r4, r9, r7, r5
 	str r4, [r0], #4 	@str t[j-1] and increment pointer
-	subs r8, r8, #1 	@decrease j by 1
+	subs r3, r3, #1 	@decrease j by 1
 	bne opt2_loop   	@branch
 end2_loop:
 ldr r4, [r11], #4 		@load t[size] and increment pointer
@@ -78,14 +77,14 @@ bx lr
 .type opt3, %function
 
 opt3:
-push {r4-r9}
-ldr r4, [sp, #24] 		@load fifth input {size}
+push {r4-r8}
+ldr r4, [sp, #20] 		@load fifth input {size}
 sub r5, r4, #1 			@r9 = size-1
 add r0, r0, #1 			@i+1
 add r1, r1, r5, lsl #2 	@add 4*(size-1) to pointer t --> r5=&t[size-1]
 add r3, r3, r0, lsl #2 @set pointer b to b[i+1]
 add r2, r2, r5, lsl #2  @set pointer a to a[size-1]
-sub r4, r4, r0 		@r12 = j = size-(i+1) number of loops
+sub r4, r4, r0 			@r12 = j = size-(i+1) number of loops
 ldmia r1, {r6-r8}		@load t[size-1], t[size], t[size+1]
 cmp r4, #0
 beq end3_loop
@@ -93,15 +92,15 @@ opt3_loop:
 	ldr r5, [r3], #4 	@load b[j] and increment
 	ldr r0, [r2], #-4 	@load a[size+i-j] and decrement pointer
 	umull r5, r0, r5, r0 @a*b
-	adds r6, r6, r5 	@update r7 = t[size-1] = a*b+t[size-1]
-	adcs r7, r0, r7  	@update r8 = t[size] = C + t[size]
+	adds r6, r6, r5 	@update r6 = t[size-1] = a*b+t[size-1]
+	adcs r7, r0, r7  	@update r7 = t[size] = C + t[size]
 	adc r8, r8, #0 		@t[size+1] = t[size+1] + carry
 	subs r4, r4, #1
 	bne opt3_loop
 end3_loop:
 stmia r1, {r6-r8}
 
-pop {r4-r9}
+pop {r4-r8}
 bx lr
 .endfunc
 
@@ -131,7 +130,7 @@ bx lr
 .type opt5, %function
 
 opt5:
-push {r4-r12}
+push {r4-r11}
 mov r4, #0				@set i=0
 opt5_loop1:
 	mov r9, r1
@@ -159,7 +158,7 @@ opt5_loop1:
 	bne opt5_loop1
 end5_loop1:
 
-pop {r4-r12}
+pop {r4-r11}
 bx lr
 .endfunc
 

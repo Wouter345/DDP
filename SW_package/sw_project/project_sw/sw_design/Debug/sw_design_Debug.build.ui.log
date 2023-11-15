@@ -1,18 +1,18 @@
-2023-11-15T14:28:28.41979900255-14:28:28 **** Incremental Build of configuration Debug for project sw_design ****
+2023-11-15T15:01:15.50999100255-15:01:15 **** Incremental Build of configuration Debug for project sw_design ****
 000-make all 
 000-make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 000-make --no-print-directory pre-build
 000-a9-linaro-pre-build-step
 000- 
 000-make --no-print-directory main-build
+000-Building file: ../src/asm_func.S
+000-Invoking: ARM v7 gcc compiler
+000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/asm_func.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/asm_func.d" -MT"src/asm_func.o" -o "src/asm_func.o" "../src/asm_func.S"
+000-Finished building: ../src/asm_func.S
+000- 
 000-Building file: ../src/main.c
 000-Invoking: ARM v7 gcc compiler
 000-arm-none-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -I/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/rsa_project_wrapper/export/rsa_project_wrapper/sw/rsa_project_wrapper/standalone_domain/bspinclude/include -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
-000-In file included from ../src/common.h:10,
-000-                 from ../src/main.c:11:
-000/sw_design/src/platform/performance.h6-1-1'time_start' defined but not used [-Wunused-variable]1time_start../src/platform/performance.h:6:17: warning: 'time_start' defined but not used [-Wunused-variable]
-000-    6 | static uint32_t time_start;
-000-      |                 ^~~~~~~~~~
 000-Finished building: ../src/main.c
 000- 
 000-Building target: sw_design.elf
@@ -23,10 +23,10 @@
 000-Invoking: ARM v7 Print Size
 000-arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
 000-   text	   data	    bss	    dec	    hex	filename
-000-  70871	  36328	  22664	 129863	  1fb47	sw_design.elf
+000-  71047	  36328	  22664	 130039	  1fbf7	sw_design.elf
 000-Finished building: sw_design.elf.size
 000- 
 000-make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 00255-
-14:28:29 Build Finished (took 579ms)
+15:01:16 Build Finished (took 632ms)
 
