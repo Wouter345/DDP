@@ -164,3 +164,308 @@ module rsa (
   assign status = {29'b0, dma_error, isStateIdle, isStateDone};
 
 endmodule
+
+
+module ladder(
+    input clk,
+    input resetn,
+    input start,
+    input [1023:0] in_x,
+    input [1023:0] in_m,
+    input [127:0]  in_e,
+    input [1023:0] in_r,
+    input [1023:0] in_r2,
+    input [31:0]   lene,
+    output [1023:0] result,
+    output          done
+ );
+
+
+    // Save inputs in registers
+    
+    
+    reg           regX_en;
+    wire [1023:0] regX_in;
+    reg  [1023:0] regX_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regX_out <= 1024'd0;
+        else if (regX_en)   regX_out <= in_x;
+    end
+    
+    reg           regXX_en;
+    wire [1023:0] regXX_in;
+    reg  [1023:0] regXX_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)          regXX_out <= 1024'd0;
+        else if (regXX_en)   regXX_out <= regXX_in;
+    end
+    
+    reg           regM_en;
+    wire [1023:0] regM_in;
+    reg  [1023:0] regM_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regM_out <= 1024'd0;
+        else if (regM_en)   regM_out <= in_m;
+    end
+    
+    reg          regE_en;
+    wire [127:0] regE_in;
+    reg  [127:0] regE_out;
+    reg shiftE;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regE_out <= 128'd0;
+        else if (shiftE)    regE_out <= regE_in << 1;
+        else if (regE_en)   regE_out <= in_e;
+    end
+    
+    reg          reglene_en;
+    reg  [31:0] reglene_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         reglene_out <= 128'd0;
+        else if (reglene_en)   reglene_out <= lene;
+    end
+    
+    wire          Ei;
+    assign Ei = regE_out[127];
+    
+    
+    reg           regA_en;
+    wire [1023:0] regA_in;
+    reg  [1023:0] regA_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regA_out <= 1024'd0;
+        else if (regA_en)   regA_out <= regA_in;
+    end
+    
+    reg           regR2_en;
+    wire [1023:0] regR2_in;
+    reg  [1023:0] regR2_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)          regR2_out <= 1024'd0;
+        else if (regR2_en)   regR2_out <= in_r2;
+    end
+    
+    // initiate montgomery multiplier
+    wire [1023:0] operandA;
+    wire [1023:0] operandB;
+    wire [1023:0] operandM;
+    
+    reg [1:0] select1;
+    reg [1:0] select2;
+    assign operandA = select1[1]? (select1[0]? regX_out: regXX_out) : (select1[0]? regA_out: regR2_out);
+    assign operandB = select2[1]? (select2[0]? 1023'd1: regXX_out) : (select2[0]? regA_out: regR2_out);
+    assign operandM = regM_out;
+      
+    
+    wire [1023:0] Res;
+    wire Done2;
+    reg start2;
+    
+    
+    
+    
+    montgomery mult(clk, res, start2, operandA, operandB, operandM, Res, Done2);
+    
+    assign regA_in = Res;
+    assign RegXX_in = Res;
+
+    
+    
+    reg [8:0] count;
+    reg count_en;
+    always @(posedge clk) begin
+      if (~resetn) count <= 8'b0;
+      else if (count_en)  count <= count +1;
+    end
+
+    // Task 11
+    // Describe state machine registers
+    // Think about how many bits you will need
+
+    reg [3:0] state, nextstate;
+
+    always @(posedge clk)
+    begin
+        if(~resetn)	state <= 2'd0;
+        else        state <= nextstate;
+    end
+
+// Task 12
+    // Define your states
+    // Describe your signals at each state
+    always @(*)
+    begin
+        case(state)
+
+            // Idle state; Here the FSM waits for the start signal
+            // Enable input registers to fetch the inputs A and B when start is received
+            2'd0: begin
+                regX_en <= 1'b1;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b1;
+                regM_en <= 1'b1;
+                regA_en <= 1'b1;
+                regR2_en <= 1'b1;
+                select1 <= 2'b00;
+                select2 <= 2'b00;
+                shiftE <= 1'b0;
+                count_en <= 1'b0;
+            end
+
+            // Enable registers, switch muxsel, no carryin
+            // Calculate the first addition
+            2'd1: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b1;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                shiftE <= 1'b0;
+                count_en <= 1'b0;
+            end
+
+            // Calculate the second addition
+            2'd2: begin
+                regX_en <= 1'b0;
+                regXX_en <= ~Ei;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= Ei;
+                regR2_en <= 1'b0;
+                select1 <= 2'b01;
+                select2 <= 2'b10;
+                shiftE <= 1'b0;
+                count_en <= 1'b0;
+
+            end
+            
+            2'd3: begin
+                regX_en <= 1'b0;
+                regXX_en <= Ei;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= ~Ei;
+                regR2_en <= 1'b0;
+                select1 <= {Ei,~Ei};
+                select2 <= {Ei,~Ei};
+                shiftE <= 1'b0;
+                count_en <= 1'b0;
+            end
+            
+            2'd4: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                select1 <= 2'b00;
+                select2 <= 2'b00;
+                shiftE <= 1'b1;
+                count_en <= 1'b1;
+            end
+            
+            2'd5: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b1;
+                regR2_en <= 1'b0;
+                select1 <= 2'b01;
+                select2 <= 2'b11;
+                shiftE <= 1'b0;
+                count_en <= 1'b0;
+            end
+            2'd6: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                select1 <=  2'b00;
+                select2 <= 2'b00;
+                shiftE <= 1'b0;
+                count_en <= 1'b0;
+            end
+       
+            
+            
+         
+            default: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                select1 <= 2'b0;
+                select2 <= 2'b0;
+                shiftE <= 1'b0;
+                count_en <= 1'b0;
+            end
+
+        endcase
+    end
+
+// Task 13
+    // Describe next_state logic
+
+    always @(*)
+    begin
+        case(state)
+            2'd0: begin
+                if(start) begin
+                    nextstate <= 2'd1;
+                    start2    <= 3'd1; 
+                end else
+                    nextstate <= 2'd0;
+                end
+            2'd1 : if(Done2) nextstate <= 3'd2;
+                   else      nextstate <= 3'd1;
+            
+            2'd2 : if(Done2) nextstate <= 3'd3;
+                   else      nextstate <= 3'd2;
+            
+            3'd3 : if(Done2) nextstate <= 3'd4;
+                   else      nextstate <= 3'd3;
+            3'd4 : if(count==reglene_out) nextstate <= 3'd5;
+                   else              nextstate <= 3'd2;
+            
+            3'd5 : if(Done2)  nextstate <= 3'd6;
+                   else       nextstate <= 3'd5;
+            
+            3'd6 : nextstate <= 3'd0;
+                   
+           
+            default: nextstate <= 2'd0;
+        endcase
+    end
+
+    // Task 14
+    // Describe done signal
+    // It should be high at the same clock cycle when the output ready
+
+                reg regDone;
+                always @(posedge clk)
+                begin
+                    if(~resetn) regDone <= 1'd0;
+                    else        regDone <= (state==3'd6) ? 1'b1 : 1'b0;;
+                end
+
+                assign done = regDone;
+                
+
+
+endmodule

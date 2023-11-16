@@ -1,11 +1,11 @@
-Wed Nov 15 08:43:39 2023: Server was asked to start on port: '41221'
-Wed Nov 15 08:43:39 2023: Server is using token UUID: '1f21750b-265d-4e67-8842-8db50a0174af'
-Wed Nov 15 08:43:39 2023: Attempting to start server on port '41221'
-Wed Nov 15 08:43:39 2023: XRC main fifo: created main fifo '/tmp/xrcmain1f21750b-265d-4e67-8842-8db50a0174af', fd read = 11
-Wed Nov 15 08:43:39 2023: Running Rule Check Server
-Wed Nov 15 08:43:39 2023: Version 1.6.1
-Wed Nov 15 08:43:41 2023: Rule Check Server: Accepted socket connection from client
-Wed Nov 15 08:43:42 2023: EXCHANGE_TOKEN received, server token: 1f21750b-265d-4e67-8842-8db50a0174af, passed token: 1f21750b-265d-4e67-8842-8db50a0174af
-Wed Nov 15 15:51:53 2023: STOP_SERVER received, server token: 1f21750b-265d-4e67-8842-8db50a0174af, passed token: 1f21750b-265d-4e67-8842-8db50a0174af
-Wed Nov 15 15:51:53 2023: Socket received request to stop server.
-Wed Nov 15 15:51:53 2023: SERVER: destructor for server bound to port 41221
+Wed Nov 15 15:52:50 2023: Server was asked to start on port: '38129'
+Wed Nov 15 15:52:50 2023: Server is using token UUID: 'e9f4c911-a46c-43e8-af3b-fb5768d243bc'
+Wed Nov 15 15:52:50 2023: Attempting to start server on port '38129'
+Wed Nov 15 15:52:50 2023: XRC main fifo: created main fifo '/tmp/xrcmaine9f4c911-a46c-43e8-af3b-fb5768d243bc', fd read = 11
+Wed Nov 15 15:52:50 2023: Running Rule Check Server
+Wed Nov 15 15:52:50 2023: Version 1.6.1
+Wed Nov 15 15:52:50 2023: Rule Check Server: Accepted socket connection from client
+Wed Nov 15 15:52:50 2023: EXCHANGE_TOKEN received, server token: e9f4c911-a46c-43e8-af3b-fb5768d243bc, passed token: e9f4c911-a46c-43e8-af3b-fb5768d243bc
+Wed Nov 15 15:55:06 2023: STOP_SERVER received, server token: e9f4c911-a46c-43e8-af3b-fb5768d243bc, passed token: e9f4c911-a46c-43e8-af3b-fb5768d243bc
+Wed Nov 15 15:55:06 2023: Socket received request to stop server.
+Wed Nov 15 15:55:06 2023: SERVER: destructor for server bound to port 38129

@@ -124,6 +124,10 @@ def MontExp(X, E, N):
     R  = 2**1024
     RN = R % N
     R2N = (R*R) % N;
+
+    print ("RN               = ", hex(RN))
+    print ("R2N              = ", hex(R2N))
+
     A  = RN;
     X_tilde = MontMul(X,R2N,N)
     t = helpers.bitlen(E)
@@ -155,6 +159,8 @@ def MontExp_MontPowerLadder(X, E, N):
     R  = 2**1024
     RN = R % N
     R2N = (R*R) % N
+    print ("RN               = ", hex(RN))
+    print ("R2N              = ", hex(R2N))
     A  = RN
     X_tilde = MontMul(X,R2N,N)
     t = helpers.bitlen(E)
@@ -175,6 +181,8 @@ def MontExp_MontPowerLadder_TwoBitScan(X, E, N):
     R  = 2**1024
     RN = R % N
     R2N = (R*R) % N
+    print ("RN               = ", hex(RN))
+    print ("R2N              = ", hex(R2N))
     A  = RN
     X_tilde = MontMul_2bW(X,R2N,N)
     t = helpers.bitlen(E)

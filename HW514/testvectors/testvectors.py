@@ -118,12 +118,14 @@ if operation == 4:
   C = HW.MontExp_MontPowerLadder(X, E, M)
   D = helpers.Modexp(X, E, M)
   e = C - D
+  
 
   print ("X                = ", hex(X))           # 1024-bits
   print ("E                = ", hex(E))           # 8-bits
   print ("M                = ", hex(M))           # 1024-bits
   print ("(X^E) mod M      = ", hex(C))           # 1024-bits
   print ("(X^E) mod M      = ", hex(D))           # 1024-bits
+
   print ("error            = ", hex(e))
 
 #####################################################

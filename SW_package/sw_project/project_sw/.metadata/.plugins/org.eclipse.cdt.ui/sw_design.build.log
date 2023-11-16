@@ -1,4 +1,4 @@
-15:39:52 **** Incremental Build of configuration Debug for project sw_design ****
+15:54:12 **** Incremental Build of configuration Debug for project sw_design ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 make --no-print-directory pre-build
@@ -28,5 +28,5 @@ Finished building: sw_design.elf.size
  
 make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 
-15:39:53 Build Finished (took 516ms)
+15:54:13 Build Finished (took 526ms)
 

@@ -1,6 +1,6 @@
 Nothing to build in platform 'rsa_project_wrapper'
 
-15:39:52 **** Incremental Build of configuration Debug for project sw_design ****
+15:54:12 **** Incremental Build of configuration Debug for project sw_design ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
 make --no-print-directory pre-build
@@ -29,7 +29,7 @@ arm-none-eabi-size sw_design.elf  |tee "sw_design.elf.size"
 Finished building: sw_design.elf.size
  
 make[1]: Leaving directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design/Debug'
-15:39:53 **** Incremental Build of configuration Debug for project sw_design_system ****
+15:54:13 **** Incremental Build of configuration Debug for project sw_design_system ****
 make all 
 make[1]: Entering directory '/users/students/r0792566/Documents/DDP/SW_package/sw_project/project_sw/sw_design_system/Debug'
 Generating bif file for the system project
