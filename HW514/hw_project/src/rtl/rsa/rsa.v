@@ -172,7 +172,7 @@ module ladder(
     input start,
     input [1023:0] in_x,
     input [1023:0] in_m,
-    input [127:0]  in_e,
+    input [7:0]  in_e,
     input [1023:0] in_r,
     input [1023:0] in_r2,
     input [31:0]   lene,
@@ -185,7 +185,6 @@ module ladder(
     
     
     reg           regX_en;
-    wire [1023:0] regX_in;
     reg  [1023:0] regX_out;
     always @(posedge clk)
     begin
@@ -203,7 +202,6 @@ module ladder(
     end
     
     reg           regM_en;
-    wire [1023:0] regM_in;
     reg  [1023:0] regM_out;
     always @(posedge clk)
     begin
@@ -212,13 +210,12 @@ module ladder(
     end
     
     reg          regE_en;
-    wire [127:0] regE_in;
-    reg  [127:0] regE_out;
+    reg  [7:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
         if(~resetn)         regE_out <= 128'd0;
-        else if (shiftE)    regE_out <= regE_in << 1;
+        else if (shiftE)    regE_out <= regE_out << 1;
         else if (regE_en)   regE_out <= in_e;
     end
     
@@ -231,7 +228,7 @@ module ladder(
     end
     
     wire          Ei;
-    assign Ei = regE_out[127];
+    assign Ei = regE_out[7];
     
     
     reg           regA_en;
@@ -244,7 +241,6 @@ module ladder(
     end
     
     reg           regR2_en;
-    wire [1023:0] regR2_in;
     reg  [1023:0] regR2_out;
     always @(posedge clk)
     begin
@@ -266,16 +262,20 @@ module ladder(
     
     wire [1023:0] Res;
     wire Done2;
+    reg reset2;
     reg start2;
     
     
     
     
-    montgomery mult(clk, res, start2, operandA, operandB, operandM, Res, Done2);
+    montgomery mult(clk, reset2, start2, operandA, operandB, operandM, Res, Done2);
     
-    assign regA_in = Res;
-    assign RegXX_in = Res;
+    assign regXX_in = Res;
+    assign regA_in = (state == 4'd0)? in_r: Res;
+    
 
+
+    assign result = regA_out;
     
     
     reg [8:0] count;
@@ -285,19 +285,16 @@ module ladder(
       else if (count_en)  count <= count +1;
     end
 
-    // Task 11
     // Describe state machine registers
-    // Think about how many bits you will need
 
     reg [3:0] state, nextstate;
 
     always @(posedge clk)
     begin
-        if(~resetn)	state <= 2'd0;
+        if(~resetn)	state <= 4'd0;
         else        state <= nextstate;
     end
 
-// Task 12
     // Define your states
     // Describe your signals at each state
     always @(*)
@@ -305,104 +302,203 @@ module ladder(
         case(state)
 
             // Idle state; Here the FSM waits for the start signal
-            // Enable input registers to fetch the inputs A and B when start is received
-            2'd0: begin
+            // Enable input registers 
+            4'd0: begin
                 regX_en <= 1'b1;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b1;
                 regM_en <= 1'b1;
                 regA_en <= 1'b1;
                 regR2_en <= 1'b1;
+                reglene_en <= 1'b1;
                 select1 <= 2'b00;
                 select2 <= 2'b00;
-                shiftE <= 1'b0;
                 count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
             end
 
-            // Enable registers, switch muxsel, no carryin
-            // Calculate the first addition
-            2'd1: begin
+            4'd1: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
+            end
+            
+            4'd2: begin
                 regX_en <= 1'b0;
                 regXX_en <= 1'b1;
                 regE_en <= 1'b0;
                 regM_en <= 1'b0;
                 regA_en <= 1'b0;
                 regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
                 select1 <= 2'b11;
                 select2 <= 2'b00;
-                shiftE <= 1'b0;
                 count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
             end
-
-            // Calculate the second addition
-            2'd2: begin
+            
+            4'd10: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
+            end
+            
+            
+            
+            4'd3: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b01;
+                select2 <= 2'b10;
+                count_en <= 1'b1;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
+            end
+            
+            4'd4: begin
                 regX_en <= 1'b0;
                 regXX_en <= ~Ei;
                 regE_en <= 1'b0;
                 regM_en <= 1'b0;
                 regA_en <= Ei;
                 regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
                 select1 <= 2'b01;
                 select2 <= 2'b10;
-                shiftE <= 1'b0;
                 count_en <= 1'b0;
-
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
             end
             
-            2'd3: begin
+            4'd11: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
+            end
+            
+            4'd5: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= {Ei,~Ei};
+                select2 <= {Ei,~Ei};
+                count_en <= 1'b0;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
+            end
+            
+            4'd6: begin
                 regX_en <= 1'b0;
                 regXX_en <= Ei;
                 regE_en <= 1'b0;
                 regM_en <= 1'b0;
                 regA_en <= ~Ei;
                 regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
                 select1 <= {Ei,~Ei};
                 select2 <= {Ei,~Ei};
-                shiftE <= 1'b0;
                 count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
             end
             
-            2'd4: begin
+            4'd12: begin
                 regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
                 regM_en <= 1'b0;
                 regA_en <= 1'b0;
                 regR2_en <= 1'b0;
-                select1 <= 2'b00;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
                 select2 <= 2'b00;
-                shiftE <= 1'b1;
-                count_en <= 1'b1;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
             end
             
-            2'd5: begin
+            4'd7: begin
                 regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
                 regM_en <= 1'b0;
                 regA_en <= 1'b1;
                 regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
                 select1 <= 2'b01;
                 select2 <= 2'b11;
-                shiftE <= 1'b0;
                 count_en <= 1'b0;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
             end
-            2'd6: begin
+            4'd8: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b1;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <=  2'b00;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
+            end
+            
+            4'd9: begin
                 regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
                 regM_en <= 1'b0;
                 regA_en <= 1'b0;
                 regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
                 select1 <=  2'b00;
-                select2 <= 2'b00;
-                shiftE <= 1'b0;
+                select2 <= 2'b00;      
                 count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
             end
        
-            
-            
-         
             default: begin
                 regX_en <= 1'b0;
                 regXX_en <= 1'b0;
@@ -410,10 +506,12 @@ module ladder(
                 regM_en <= 1'b0;
                 regA_en <= 1'b0;
                 regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
                 select1 <= 2'b0;
                 select2 <= 2'b0;
-                shiftE <= 1'b0;
                 count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
             end
 
         endcase
@@ -425,31 +523,50 @@ module ladder(
     always @(*)
     begin
         case(state)
-            2'd0: begin
-                if(start) begin
-                    nextstate <= 2'd1;
-                    start2    <= 3'd1; 
-                end else
-                    nextstate <= 2'd0;
+            4'd0: begin
+                if(start) 
+                    nextstate <= 4'd1;
+                else 
+                    nextstate <= 4'd0;
                 end
-            2'd1 : if(Done2) nextstate <= 3'd2;
-                   else      nextstate <= 3'd1;
+            4'd1 : nextstate <= 4'd2;
+ 
+            4'd2 : begin
+                if(Done2) nextstate <= 4'd10;
+                else      nextstate <= 4'd2;
+                end
+            4'd10 : begin
+                nextstate <= 4'd3;
+                shiftE <= 1'b0; end
+            4'd3 : nextstate <= 4'd4;
             
-            2'd2 : if(Done2) nextstate <= 3'd3;
-                   else      nextstate <= 3'd2;
+            4'd4 : begin
+                if(Done2) nextstate <= 4'd11;
+                else      nextstate <= 4'd4;
+                end
+            4'd11 : nextstate <= 4'd5;
+            4'd5 : nextstate <= 4'd6;
             
-            3'd3 : if(Done2) nextstate <= 3'd4;
-                   else      nextstate <= 3'd3;
-            3'd4 : if(count==reglene_out) nextstate <= 3'd5;
-                   else              nextstate <= 3'd2;
+            4'd6 : begin 
+                if(Done2) begin
+                  if (count==reglene_out) begin
+                    nextstate <= 4'd12;
+                  end else begin
+                    nextstate <= 4'd10;
+                    shiftE <= 1'b1; end
+                end else begin
+                    nextstate <= 4'd6; end
+                end
+            4'd12 : nextstate <= 4'd7;
+            4'd7 : nextstate <= 4'd8;
             
-            3'd5 : if(Done2)  nextstate <= 3'd6;
-                   else       nextstate <= 3'd5;
+            4'd8 : if(Done2)  nextstate <= 4'd9;
+                   else       nextstate <= 4'd8;
             
-            3'd6 : nextstate <= 3'd0;
+            4'd9 : nextstate <= 4'd0;
                    
            
-            default: nextstate <= 2'd0;
+            default: nextstate <= 4'd0;
         endcase
     end
 
@@ -460,8 +577,8 @@ module ladder(
                 reg regDone;
                 always @(posedge clk)
                 begin
-                    if(~resetn) regDone <= 1'd0;
-                    else        regDone <= (state==3'd6) ? 1'b1 : 1'b0;;
+                    if(~resetn) regDone <= 1'b0;
+                    else        regDone <= (state==4'd9) ? 1'b1 : 1'b0;;
                 end
 
                 assign done = regDone;
