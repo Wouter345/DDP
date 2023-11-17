@@ -60,7 +60,11 @@ module rsa (
   // The state machine
   reg [2:0] state = STATE_IDLE;
   reg [2:0] next_state;
-
+  reg start;
+  reg reset2;
+  reg done;
+  
+  
   always@(*) begin
     // defaults
     next_state   <= STATE_IDLE;
@@ -70,9 +74,11 @@ module rsa (
       // Wait in IDLE state till a compute command
       STATE_IDLE: begin
         next_state <= (isCmdComp) ? STATE_RX : state;
+        start <= 1'b0;
+        reset2 <=1'b0;
       end
 
-      // Wait, if dma is not idle. Otherwise, start dma operation and go to
+      // Wait, if dma is dma_idlenot idle. Otherwise, start dma operation and go to
       // next state to wait its completion.
       STATE_RX: begin
         next_state <= (~dma_idle) ? STATE_RX_WAIT : state;
@@ -81,12 +87,14 @@ module rsa (
       // Wait the completion of dma.
       STATE_RX_WAIT : begin
         next_state <= (dma_done) ? STATE_COMPUTE : state;
+        reset2 <= 1'b1;
       end
 
       // A state for dummy computation for this example. Because this
       // computation takes only single cycle, go to TX state immediately
       STATE_COMPUTE : begin
-        next_state <= STATE_TX;
+        next_state <= (done) ? STATE_TX : state;    
+        start <= 1'b1;
       end
 
       // Wait, if dma is not idle. Otherwise, start dma operation and go to
@@ -126,6 +134,15 @@ module rsa (
   always@(posedge clk)
     state <= (~resetn) ? STATE_IDLE : next_state;
 
+  wire [1027:0] Res;
+  wire donemult;
+  montgomery mult(clk, reset2, start, 1024'h2, 1024'h3, 1024'h8, Res, donemult);
+  always @(posedge clk) begin
+    case (state)
+     STATE_COMPUTE : done <= donemult;
+     default : done<= 1'b0;
+   endcase
+  end
 
   // Here is a register for the computation. Sample the dma data input in
   // STATE_RX_WAIT. Update the data with a dummy operation in STATE_COMP.
@@ -135,7 +152,8 @@ module rsa (
   always@(posedge clk)
     case (state)
       STATE_RX_WAIT : r_data <= (dma_done) ? dma_rx_data : r_data;
-      STATE_COMPUTE : r_data <= {32'h00000000, r_data[991:0]};
+//      STATE_COMPUTE : r_data <= {32'hDEADBEEF, r_data[991:0]};
+      STATE_COMPUTE : r_data <= Res;
     endcase
   assign dma_tx_data = r_data;
 
@@ -144,5 +162,427 @@ module rsa (
   wire isStateIdle = (state == STATE_IDLE);
   wire isStateDone = (state == STATE_DONE);
   assign status = {29'b0, dma_error, isStateIdle, isStateDone};
+
+endmodule
+
+
+module ladder(
+    input clk,
+    input resetn,
+    input start,
+    input [1023:0] in_x,
+    input [1023:0] in_m,
+    input [7:0]  in_e,
+    input [1023:0] in_r,
+    input [1023:0] in_r2,
+    input [31:0]   lene,
+    output [1023:0] result,
+    output          done
+ );
+
+
+    // Save inputs in registers
+    
+    
+    reg           regX_en;
+    reg  [1023:0] regX_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regX_out <= 1024'd0;
+        else if (regX_en)   regX_out <= in_x;
+    end
+    
+    reg           regXX_en;
+    wire [1023:0] regXX_in;
+    reg  [1023:0] regXX_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)          regXX_out <= 1024'd0;
+        else if (regXX_en)   regXX_out <= regXX_in;
+    end
+    
+    reg           regM_en;
+    reg  [1023:0] regM_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regM_out <= 1024'd0;
+        else if (regM_en)   regM_out <= in_m;
+    end
+    
+    reg          regE_en;
+    reg  [7:0] regE_out;
+    reg shiftE;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regE_out <= 128'd0;
+        else if (shiftE)    regE_out <= regE_out << 1;
+        else if (regE_en)   regE_out <= in_e;
+    end
+    
+    reg          reglene_en;
+    reg  [31:0] reglene_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         reglene_out <= 128'd0;
+        else if (reglene_en)   reglene_out <= lene;
+    end
+    
+    wire          Ei;
+    assign Ei = regE_out[7];
+    
+    
+    reg           regA_en;
+    wire [1023:0] regA_in;
+    reg  [1023:0] regA_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regA_out <= 1024'd0;
+        else if (regA_en)   regA_out <= regA_in;
+    end
+    
+    reg           regR2_en;
+    reg  [1023:0] regR2_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)          regR2_out <= 1024'd0;
+        else if (regR2_en)   regR2_out <= in_r2;
+    end
+    
+    // initiate montgomery multiplier
+    wire [1023:0] operandA;
+    wire [1023:0] operandB;
+    wire [1023:0] operandM;
+    
+    reg [1:0] select1;
+    reg [1:0] select2;
+    assign operandA = select1[1]? (select1[0]? regX_out: regXX_out) : (select1[0]? regA_out: regR2_out);
+    assign operandB = select2[1]? (select2[0]? 1023'd1: regXX_out) : (select2[0]? regA_out: regR2_out);
+    assign operandM = regM_out;
+      
+    
+    wire [1023:0] Res;
+    wire Done2;
+    reg reset2;
+    reg start2;
+    
+    
+    
+    
+    montgomery mult(clk, reset2, start2, operandA, operandB, operandM, Res, Done2);
+    
+    assign regXX_in = Res;
+    assign regA_in = (state == 4'd0)? in_r: Res;
+    
+
+
+    assign result = regA_out;
+    
+    
+    reg [8:0] count;
+    reg count_en;
+    always @(posedge clk) begin
+      if (~resetn) count <= 8'b0;
+      else if (count_en)  count <= count +1;
+    end
+
+    // Describe state machine registers
+
+    reg [3:0] state, nextstate;
+
+    always @(posedge clk)
+    begin
+        if(~resetn)	state <= 4'd0;
+        else        state <= nextstate;
+    end
+
+    // Define your states
+    // Describe your signals at each state
+    always @(*)
+    begin
+        case(state)
+
+            // Idle state; Here the FSM waits for the start signal
+            // Enable input registers 
+            4'd0: begin
+                regX_en <= 1'b1;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b1;
+                regM_en <= 1'b1;
+                regA_en <= 1'b1;
+                regR2_en <= 1'b1;
+                reglene_en <= 1'b1;
+                select1 <= 2'b00;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
+            end
+
+            4'd1: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
+            end
+            
+            4'd2: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b1;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
+            end
+            
+            4'd10: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
+            end
+            
+            
+            
+            4'd3: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b01;
+                select2 <= 2'b10;
+                count_en <= 1'b1;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
+            end
+            
+            4'd4: begin
+                regX_en <= 1'b0;
+                regXX_en <= ~Ei;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= Ei;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b01;
+                select2 <= 2'b10;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
+            end
+            
+            4'd11: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
+            end
+            
+            4'd5: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= {Ei,~Ei};
+                select2 <= {Ei,~Ei};
+                count_en <= 1'b0;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
+            end
+            
+            4'd6: begin
+                regX_en <= 1'b0;
+                regXX_en <= Ei;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= ~Ei;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= {Ei,~Ei};
+                select2 <= {Ei,~Ei};
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
+            end
+            
+            4'd12: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b11;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
+            end
+            
+            4'd7: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b1;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b01;
+                select2 <= 2'b11;
+                count_en <= 1'b0;
+                start2 <= 1'b1;
+                reset2 <= 1'b1;
+            end
+            4'd8: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b1;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <=  2'b00;
+                select2 <= 2'b00;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
+            end
+            
+            4'd9: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <=  2'b00;
+                select2 <= 2'b00;      
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b0;
+            end
+       
+            default: begin
+                regX_en <= 1'b0;
+                regXX_en <= 1'b0;
+                regE_en <= 1'b0;
+                regM_en <= 1'b0;
+                regA_en <= 1'b0;
+                regR2_en <= 1'b0;
+                reglene_en <= 1'b0;
+                select1 <= 2'b0;
+                select2 <= 2'b0;
+                count_en <= 1'b0;
+                start2 <= 1'b0;
+                reset2 <= 1'b1;
+            end
+
+        endcase
+    end
+
+// Task 13
+    // Describe next_state logic
+
+    always @(*)
+    begin
+        case(state)
+            4'd0: begin
+                if(start) 
+                    nextstate <= 4'd1;
+                else 
+                    nextstate <= 4'd0;
+                end
+            4'd1 : nextstate <= 4'd2;
+ 
+            4'd2 : begin
+                if(Done2) nextstate <= 4'd10;
+                else      nextstate <= 4'd2;
+                end
+            4'd10 : begin
+                nextstate <= 4'd3;
+                shiftE <= 1'b0; end
+            4'd3 : nextstate <= 4'd4;
+            
+            4'd4 : begin
+                if(Done2) nextstate <= 4'd11;
+                else      nextstate <= 4'd4;
+                end
+            4'd11 : nextstate <= 4'd5;
+            4'd5 : nextstate <= 4'd6;
+            
+            4'd6 : begin 
+                if(Done2) begin
+                  if (count==reglene_out) begin
+                    nextstate <= 4'd12;
+                  end else begin
+                    nextstate <= 4'd10;
+                    shiftE <= 1'b1; end
+                end else begin
+                    nextstate <= 4'd6; end
+                end
+            4'd12 : nextstate <= 4'd7;
+            4'd7 : nextstate <= 4'd8;
+            
+            4'd8 : if(Done2)  nextstate <= 4'd9;
+                   else       nextstate <= 4'd8;
+            
+            4'd9 : nextstate <= 4'd0;
+                   
+           
+            default: nextstate <= 4'd0;
+        endcase
+    end
+
+    // Task 14
+    // Describe done signal
+    // It should be high at the same clock cycle when the output ready
+
+                reg regDone;
+                always @(posedge clk)
+                begin
+                    if(~resetn) regDone <= 1'b0;
+                    else        regDone <= (state==4'd9) ? 1'b1 : 1'b0;;
+                end
+
+                assign done = regDone;
+                
+
 
 endmodule
