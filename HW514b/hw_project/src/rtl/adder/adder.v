@@ -24,11 +24,9 @@ module mpadder(
         else if (regA_en)   regA_out <= in_a[1026:514];
     end
     
-   
-// Task 2   
-    // Describe a 2 input mux choosing B or ~B+1
-    wire [1026:0] MuxBin_Out;
-    assign MuxBin_Out = (subtract == 0)? in_b : ~in_b;
+  
+    wire [1026:0] MuxB;
+    assign MuxB = subtract? (muxOperandB_sel? ~in_b : regB_out) : (muxOperandB_sel? in_b : regB_out);
     
     
 // Task 3
@@ -39,7 +37,7 @@ module mpadder(
     always @(posedge clk)
     begin
         if(~resetn)         regB_out <= 514'd0;
-        else if (regB_en)   regB_out <= MuxBin_Out[1026:514];
+        else if (regB_en)   regB_out <= MuxB[1026:514];
     end
     
     
@@ -52,7 +50,7 @@ module mpadder(
     reg muxOperandB_sel;
     
     assign operandA = (muxOperandA_sel == 0) ? in_a: regA_out;
-    assign operandB = (muxOperandB_sel == 0) ? MuxBin_Out: regB_out;
+    assign operandB = MuxB;
     
     
 // Task 5
@@ -60,10 +58,8 @@ module mpadder(
     
     wire      carry_in;
     reg       muxsub_sel;
-    wire      muxsub_in;
-    assign muxsub_in = (muxsub_sel == 0) ? regCout : subtract;
+    assign carry_in = (muxsub_sel == 0) ? regCout : subtract;
     
-    assign carry_in = muxsub_in;
     
     
 // Task 6
@@ -132,7 +128,7 @@ module mpadder(
                 regCout_en     <= 1'b1;
                 muxsub_sel     <= 1'b1;
                 muxOperandA_sel <= 1'b0;
-                muxOperandB_sel <= 1'b0;
+                muxOperandB_sel <= 1'b1;
             end
 
             // Enable registers, switch muxsel, no carryin
@@ -144,7 +140,7 @@ module mpadder(
                                 regCout_en     <= 1'b1;
                                 muxsub_sel     <= 1'b0;
                                 muxOperandA_sel <= 1'b1;
-                                muxOperandB_sel <= 1'b1;
+                                muxOperandB_sel <= 1'b0;
             end
 
 
