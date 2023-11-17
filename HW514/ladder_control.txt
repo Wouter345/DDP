@@ -1,0 +1,16 @@
+State 10-12 are buffer states to reset montgomery multiplier, don't do anything else.
+State (10),3-6,(12) implement the for-loop  ::: 12->10 or 12->7 
+
+State 0 	Load Inputs
+State 1		Start/initiate Mont(x,R2)
+State 2		Wait for Done2
+State 10	Reset montgomery -- buffer state
+State 3		Start Mont(A,XX)
+State 4		Wait for Done2
+State 11	Reset montgomery -- buffer state
+State 5		Start Mont(A,A) or Mont(XX,XX)
+State 6		Wait for Done2				
+State 12	Reset montgomery -- buffer state
+State 7		Start Mont(A,1)
+State 8		Wait for Done2
+State 9		Calculation finished
