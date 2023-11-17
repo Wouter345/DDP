@@ -4,35 +4,29 @@
 `define CLK_PERIOD 10
 `define CLK_HALF 5
 
-module tb_ladder();
+module tb_adder();
 
     // Define internal regs and wires
     reg           clk;
     reg           resetn;
+    reg  [1026:0] in_a;
+    reg  [1026:0] in_b;
     reg           start;
-    reg  [1023:0] in_x;
-    reg  [1023:0] in_m;
-    reg  [127:0]  in_e;
-    reg  [1023:0] in_r;
-    reg  [1023:0] in_r2;
-    reg  [31:0]   lene;
-    wire [1023:0] result;
+    reg           subtract;
+    wire [1027:0] result;
     wire          done;
 
-    reg  [1023:0] expected;
+    reg  [1027:0] expected;
     reg           result_ok;
 
     // Instantiating adder
-    ladder dut (
+    mpadder dut (
         .clk      (clk     ),
         .resetn   (resetn  ),
         .start    (start   ),
-        .in_x (in_x),
-        .in_m     (in_m    ),
-        .in_e     (in_e    ),
-        .in_r     (in_r    ),
-        .in_r2     (in_r2    ),
-        .lene     (lene    ),
+        .subtract (subtract),
+        .in_a     (in_a    ),
+        .in_b     (in_b    ),
         .result   (result  ),
         .done     (done    ));
 
@@ -42,16 +36,12 @@ module tb_ladder();
         forever #`CLK_HALF clk = ~clk;
     end
 
-    // Initialize signals         input [1026:0] b;to zero
+    // Initialize signals to zero
     initial begin
-        in_m     <= 0;
-        in_e     <= 0;
-        in_x     <= 0;
-        in_r     <= 0;
-        in_r2    <= 0;
-        lene     <= 0;
+        in_a     <= 0;
+        in_b     <= 0;
+        subtract <= 0;
         start    <= 0;
-        resetn   <= 0;
     end
 
     // Reset the circuit
@@ -61,30 +51,36 @@ module tb_ladder();
         resetn = 1;
     end
 
-    task perform_exp;
-        input [1023:0] x;
-        input [1023:0] m;
-        input [127:0]  e;
-        input [1023:0] r;
-        input [1023:0] r2;
-        input [31:0]   l;
-        
+    task perform_add;
+        input [1026:0] a;
+        input [1026:0] b;
         begin
-            in_x <= x;
-            in_m <= m;
-            in_e <= e;
-            in_r <= r;
-            in_r2 <= r2;
-            lene <= l;
-            
+            in_a <= a;
+            in_b <= b;
             start <= 1'd1;
+            subtract <= 1'd0;
             #`CLK_PERIOD;
             start <= 1'd0;
             wait (done==1);
             #`CLK_PERIOD;
         end
     endtask
-    
+
+    task perform_sub;
+        input [1026:0] a;
+        input [1026:0] b;
+        begin
+            in_a <= a;
+            in_b <= b;
+            start <= 1'd1;
+            subtract <= 1'd1;
+            #`CLK_PERIOD;
+            start <= 1'd0;
+            wait (done==1);
+            #`CLK_PERIOD;
+        end
+    endtask
+
     initial begin
 
     #`RESET_TIME
@@ -95,14 +91,9 @@ module tb_ladder();
     
     // Check if 1+1=2
     #`CLK_PERIOD;
-     perform_exp(1024'hea132c164b791291d956c29d7d55c70b2f6d9bb2938b5cba145e268c162be86a24884a4eb2b32f5080a47c1aaec4e4793ad045598404ee9d81ac18e0fc8ae892ce30bc0738bfb937846b50470057075f08fdf52501b93e63e66c6e844aed030c61606436db4ffcbb6eec116e1df61006ae2ab0260b537e7c7a65f0407a6e75f5, 
-                1024'ha4e2010b06082b0ebec377a8955c0aecddc25e1ec59cd6df72b890a32442b812154bdc9edb482e160fb28dbf1530eb09b943a41b2419e74f6a2fd6e7d7bb9c7595b65c8ad9917d50c0cbee16dc4df7c0d74c5d5dd908ad146d138a626443890a7eabd01aab72ad5774e5dab41d1b5b57ae99b304d96e1505c771a7c2c677823d,
-                128'heb,
-                1024'h5b1dfef4f9f7d4f1413c88576aa3f513223da1e13a6329208d476f5cdbbd47edeab4236124b7d1e9f04d7240eacf14f646bc5be4dbe618b095d029182844638a6a49a375266e82af3f3411e923b2083f28b3a2a226f752eb92ec759d9bbc76f581542fe5548d52a88b1a254be2e4a4a851664cfb2691eafa388e583d39887dc3,
-                1024'h85f3b8aa14a91171c7439f689098098dadce671bd56d521b457dae49155cf364b81959638f836b864759ede397a4f6fa7d3e6998aa586a4701dd79a730892e2ca1cec8729e2c64eb03ea521541fc93ca7677f29ae3c51e51258af5fdd88357643130eb6fda24d36d3998604427255f759ac36b2f6cb37e97985bce027856d908,
-                4'd8
-                );
-    expected  = 1024'h491240bb421d34c4e2ca3b1e5b6df9589c5c19e240f1dccb0d69f416ab947e93458b716f6edcb26e4d5c57d5eb8babd10e5944cf1bcb1aff3198154d3268f5709201343270b489b712124c869453dccaae46d52aa460671c0ca0e6b03a4d5167f297288f3d5bf5037d031ea45769512161065d128b4fda1ac2aad49214d4f5de;
+     perform_add(1027'h443c9713694a86d1a7469342f8798d18cba2c46faed845b0ba460cd742a58b5178555c7579827dfefc3753d3af0d86918e2ccd7353aa6293cb673c197502eb1fadbaebf6fafd450533874904ae87820e1d9aecc5b0988f91d29dab6145bf7b0ab62bda229d84382e68099fbbe41284be3b43d64568bf47f9b3b35d25d071ce054, 
+                1027'h5f4ff1841f006de67fab4c0ca3aec5f05425a86115410c6023ccb495e40f9636b6cc2605d3176e4013400b26a71a37166073b74b6b34988c5cd30e354891398b5eed783eccff409df5aae60a51f49238c9fe5c4924fbf46aefdc0f53df1e5608ff9950c86e94361f920af2ed350af598f087685ad416a883fe0489887dcdabb24);
+    expected  = 1028'ha38c8897884af4b826f1df4f9c2853091fc86cd0c4195210de12c16d26b521882f21827b4c99ec3f0f775efa5627bda7eea084bebedefb20283a4a4ebd9424ab0ca86435c7fc85a329322f0f007c1446e799490ed59483fcc279bab524ddd113b5c52aeb0c186e4dfa1492a9191d7a572bcb3ea03cd5f07db1b7e6ae4e3f79b78;
     wait (done==1);
     result_ok = (expected==result);
     $display("result calculated=%x", result);
@@ -110,7 +101,55 @@ module tb_ladder();
     $display("error            =%x", expected-result);
     $display("result_ok = %x", result_ok);
     #`CLK_PERIOD;   
-     
+    
+    
+    $display("\nAddition with 5testvector 2");
+
+    // Test addition with large test vectors. 
+    // You can generate your own vectors with testvector generator python script.
+    perform_add(1027'h5c5e73dcf394531550048dc95d5d36860fe8d4b76495a357a73f5f8251e3ad3e6f9d8f9becb3ad91fcb139302e752da54bb8176a178ef7854d77a3adb8564122972eb6e5fa57a9efe69b353e92177bbeb73c67385bcaf495813bbdf1b3663500202bd57940cef64c3dcedf6bcacdc0f8dde3229b46f1285388eef248e344ac794, 
+                1027'h5464c48c2f6d1723b283f54c2ad25ea58b479a624ef83d64688d397511cb679ceddd184be85f21747bcd2a3d360c2fffcdd70dc1467c3cc0951f6e16a43120f2bcc38a827b25f10bf4778b31b34b04f13a4cd3045c3a22bb291c466eb791c2c12db1c50cb611bafa77627f80eec035ef284fb9458b9cd2a288d87dc9619f6d770);
+    expected  = 1028'hb0c3386923016a3902888315882f952b9b306f19b38de0bc0fcc98f763af14db5d7aa7e7d512cf06787e636d64815da5198f252b5e0b3445e29711c45c87621553f24168757d9afbdb12c070456280aff1893a3cb8051750aa5804606af7f7c14ddd9a85f6e0b146b5315eecb98df6e80632dbe0d28dfaf611c7701244e419f04;
+    wait (done==1);
+    result_ok = (expected==result);
+    $display("result calculated=%x", result);
+    $display("result expected  =%x", expected);
+    $display("error            =%x", expected-result);
+    $display("result_ok = %x", result_ok);
+    #`CLK_PERIOD;     
+    
+    /*************TEST SUBTRACTION*************/
+
+    $display("\nSubtraction with testvector 1");
+    
+    // Check if 1-1=0
+    #`CLK_PERIOD;
+    perform_sub(1027'h443c9713694a86d1a7469342f8798d18cba2c46faed845b0ba460cd742a58b5178555c7579827dfefc3753d3af0d86918e2ccd7353aa6293cb673c197502eb1fadbaebf6fafd450533874904ae87820e1d9aecc5b0988f91d29dab6145bf7b0ab62bda229d84382e68099fbbe41284be3b43d64568bf47f9b3b35d25d071ce054, 
+                1027'h5f4ff1841f006de67fab4c0ca3aec5f05425a86115410c6023ccb495e40f9636b6cc2605d3176e4013400b26a71a37166073b74b6b34988c5cd30e354891398b5eed783eccff409df5aae60a51f49238c9fe5c4924fbf46aefdc0f53df1e5608ff9950c86e94361f920af2ed350af598f087685ad416a883fe0489887dcdabb24);
+    expected  = 1028'he4eca58f4a4a18eb279b473654cac728777d1c0e99973950967958415e95f51ac189366fa66b0fbee8f748ad07f34f7b2db91627e875ca076e942de42c71b1944ecd73b82dfe04673ddc62fa5c92efd5539c907c8b9c9b26e2c19c0d66a12501b692895a2ef0020ed5feacceaf078f254abc6dea94a89f75b5aed39d52a422530;
+    wait (done==1);
+    result_ok = (expected==result);
+    $display("result calculated=%x", result);
+    $display("result expected  =%x", expected);
+    $display("error            =%x", expected-result);
+    $display("result_ok = %x", result_ok);
+    #`CLK_PERIOD;    
+
+
+    $display("\nSubtraction with testvector 2");
+
+    // Test subtraction with large test vectors. 
+    // You can generate your own vectors with testvector generator python script.
+    perform_sub(1027'h6fb734834375c10c35cd8b58baecd83e32a5249d46f5ff6def02094d2a8733ddd742f92c882b522402700bd74004776e7498e7545abccda330761b80d520326d8762484d6b60908f74f31fd320bb8b6cc5cef91632e1a4bac9b7b946602af8bb662889e6e8ed52c178506c1f3a064581c926c23b8ff85c247827b578aff2ef518,
+                1027'h716dd59f485e8c4487b824d5e6500bd021216a91d1d85cb048560a974db668281526d378533bae9acd8c1bf1099f39cfec93111fa7dcf31d2e75410d88769068da07ecdf7bf562167e52817720d03a6d6bbcd76e997dfdb5e95e393446cdfe1601b2a424b06501d121037587cc0895c7bcc96a13e3312785ad637fa6fcb330218);
+    expected  = 1028'hfe495ee3fb1734c7ae156682d49ccc6e1183ba0b751da2bda6abfeb5dcd0cbb5c21c25b434efa38934e3efe636653d9e8805d634b2dfda860200da734ca9a204ad5a5b6def6b2e78f6a09e5bffeb50ff5a1221a79963a704e0598012195cfaa56475e5c2388850f0574cf6976dfdafba0c5d5827acc7349ecac435d1b33fbf300;
+    wait (done==1);
+    result_ok = (expected==result);
+    $display("result calculated=%x", result);
+    $display("result expected  =%x", expected);
+    $display("error            =%x", expected-result);
+    $display("result_ok = %x", result_ok);
+    #`CLK_PERIOD;    
     
     $finish;
 
