@@ -213,6 +213,7 @@ module rsa (
     regR2_en <= 1'b0;
     start <= 1'b0;
     regRes_en <= 1'b0;
+  
     
     case (state)
         //read inputs
@@ -594,6 +595,7 @@ module ladder(
 
     always @(*)
     begin
+        shiftE <= 1'b0;
         case(state)
             4'd0: begin
                 if(start) 

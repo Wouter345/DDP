@@ -103,6 +103,7 @@ module tb_ladder();
                 4'd8
                 );
     expected  = 1024'h491240bb421d34c4e2ca3b1e5b6df9589c5c19e240f1dccb0d69f416ab947e93458b716f6edcb26e4d5c57d5eb8babd10e5944cf1bcb1aff3198154d3268f5709201343270b489b712124c869453dccaae46d52aa460671c0ca0e6b03a4d5167f297288f3d5bf5037d031ea45769512161065d128b4fda1ac2aad49214d4f5de;
+    
     wait (done==1);
     result_ok = (expected==result);
     $display("result calculated=%x", result);

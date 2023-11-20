@@ -120,6 +120,7 @@ if operation == 4:
   e = C - D
   
 
+
   print ("X                = ", hex(X))           # 1024-bits
   print ("E                = ", hex(E))           # 8-bits
   print ("M                = ", hex(M))           # 1024-bits
@@ -183,20 +184,5 @@ if operation == 5:
   Pt = HW.MontExp_MontPowerLadder(Ct, d, N)       # 1024-bit exponentiation
   print ("Plaintext    = ", hex(Pt))              # 1024-bits
 
-M = 0xa4e2010b06082b0ebec377a8955c0aecddc25e1ec59cd6df72b890a32442b812154bdc9edb482e160fb28dbf1530eb09b943a41b2419e74f6a2fd6e7d7bb9c7595b65c8ad9917d50c0cbee16dc4df7c0d74c5d5dd908ad146d138a626443890a7eabd01aab72ad5774e5dab41d1b5b57ae99b304d96e1505c771a7c2c677823d
-A = 0x68f4ad3483d46902bce30a7c5407a955ec07321b9a9ccf63ec0cc1a4321800f715f549d36293920928a8d819784427bb1318c81257150857d8824775f695ee40f3e1889dccc20ac12f07e32d0d06a114e283ec2f294288a2bada1beb24ce87fee10ca1288def82d18f720759fdc38d76938c7fa0b87a81f511822232dd9f0590
 
-B = 0x68f4ad3483d46902bce30a7c5407a955ec07321b9a9ccf63ec0cc1a4321800f715f549d36293920928a8d819784427bb1318c81257150857d8824775f695ee40f3e1889dccc20ac12f07e32d0d06a114e283ec2f294288a2bada1beb24ce87fee10ca1288def82d18f720759fdc38d76938c7fa0b87a81f511822232dd9f0590
-
-C = SW.MontMul(A, B, M)
-D = HW.MontMul(A, B, M)
-
-e = (C - D)
-
-print ("A                = ", hex(A))           # 1024-bits
-print ("B                = ", hex(B))           # 1024-bits
-print ("M                = ", hex(M))           # 1024-bits
-print ("(A*B*R^-1) mod M = ", hex(C))           # 1024-bits
-print ("(A*B*R^-1) mod M = ", hex(D))           # 1024-bits
-print ("error            = ", hex(e))
 

@@ -38,11 +38,8 @@ int main() {
   alignas(128) uint32_t res[32];
 
   // Initialize odata to all zero's
-  memset(odata,0,128);
+  memset(res,0,128);
 
-  for (int i=0; i<32; i++) {
-    idata[i] = i+1;
-  }
 
   HWreg[1] = (uint32_t)&N;
   HWreg[2] = (uint32_t)&e;
