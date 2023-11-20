@@ -32,13 +32,10 @@ int main() {
   volatile uint32_t* HWreg = (volatile uint32_t*)0x40400000;
 
   #define COMMAND 0
-  #define RXADDR  1
-  #define TXADDR  2
   #define STATUS  0
 
   // Aligned input and output memory shared with FPGA
-  alignas(128) uint32_t idata[32];
-  alignas(128) uint32_t odata[32];
+  alignas(128) uint32_t res[32];
 
   // Initialize odata to all zero's
   memset(odata,0,128);
@@ -47,19 +44,16 @@ int main() {
     idata[i] = i+1;
   }
 
-  HWreg[0] = (uint32_t)&idata; // store address idata in reg1
-  HWreg[1] = (uint32_t)&idata; // store address odata in reg2
-  HWreg[2] = (uint32_t)&idata; // store address odata in reg3
+  HWreg[1] = (uint32_t)&N;
+  HWreg[2] = (uint32_t)&e;
+  HWreg[3] = (uint32_t)&M;
+  HWreg[4] = (uint32_t)&R_N;
+  HWreg[5] = (uint32_t)&R2_N;
+  HWreg[6] = (uint32_t)e_len;
+  HWreg[7] = (uint32_t)&res;
 
 
-  printf("RXADDR %08X\r\n", (unsigned int)HWreg[RXADDR]);
-  printf("TXADDR %08X\r\n", (unsigned int)HWreg[TXADDR]);
-
-  printf("STATUS %08X\r\n", (unsigned int)HWreg[STATUS]);
-  printf("REG[3] %08X\r\n", (unsigned int)HWreg[3]);
-  printf("REG[4] %08X\r\n", (unsigned int)HWreg[4]);
-
-START_TIMING
+  START_TIMING
   HWreg[COMMAND] = 0x01;
   // Wait until FPGA is done
   while((HWreg[STATUS] & 0x01) == 0);
@@ -67,17 +61,11 @@ STOP_TIMING
   
   HWreg[COMMAND] = 0x00;
 
-  printf("STATUS 0 %08X | Done %d | Idle %d | Error %d \r\n", (unsigned int)HWreg[STATUS], ISFLAGSET(HWreg[STATUS],0), ISFLAGSET(HWreg[STATUS],1), ISFLAGSET(HWreg[STATUS],2));
-  printf("STATUS 1 %08X\r\n", (unsigned int)HWreg[1]);
-  printf("STATUS 2 %08X\r\n", (unsigned int)HWreg[2]);
-  printf("STATUS 3 %08X\r\n", (unsigned int)HWreg[3]);
-  printf("STATUS 4 %08X\r\n", (unsigned int)HWreg[4]);
-  printf("STATUS 5 %08X\r\n", (unsigned int)HWreg[5]);
-  printf("STATUS 6 %08X\r\n", (unsigned int)HWreg[6]);
-  printf("STATUS 7 %08X\r\n", (unsigned int)HWreg[7]);
+  xil_printf("STATUS 0 %08X | Done %d | Idle %d | Error %d \r\n", (unsigned int)HWreg[STATUS], ISFLAGSET(HWreg[STATUS],0), ISFLAGSET(HWreg[STATUS],1), ISFLAGSET(HWreg[STATUS],2));
 
-  printf("\r\nI_Data:\r\n"); print_array_contents(idata);
-  printf("\r\nO_Data:\r\n"); print_array_contents(odata);
+  xil_printf("\rFinished calculations\n\r");
+  print_array_contents(res);
+
 
 
   cleanup_platform();
