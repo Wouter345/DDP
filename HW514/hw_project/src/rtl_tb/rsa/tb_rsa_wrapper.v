@@ -174,12 +174,19 @@ module tb_rsa_wrapper();
               R1  = 4, // r1
               R2  = 8, // r2
               R3 = 12,
+              R4 = 16,
+              R5 = 20,
+              R6 = 24,
+              R7 = 28,
               STATUS  = 0;
 
   // Byte Addresses of 1024-bit distant memory locations
-  localparam  MEM0_ADDR  = 16'h00,
-              MEM1_ADDR  = 16'h80,
-              MEM2_ADDR  = 16'h100;
+  localparam  MEM1_ADDR  = 16'd00,
+              MEM2_ADDR  = 16'd128,
+              MEM3_ADDR  = 16'd256,
+              MEM4_ADDR  = 16'd384,
+              MEM5_ADDR  = 16'd512,
+              MEM6_ADDR  = 16'd640;
 
   reg [31:0] reg_status;
 
@@ -187,13 +194,19 @@ module tb_rsa_wrapper();
 
     #`LONG_WAIT
 
-    mem_write(MEM0_ADDR, 1024'd2);
-    mem_write(MEM1_ADDR, 1024'd3);
-    mem_write(MEM2_ADDR, 1024'd8);
+    mem_write(MEM1_ADDR, 1024'd2);
+    mem_write(MEM2_ADDR, 1024'd3);
+    mem_write(MEM3_ADDR, 1024'd4);
+    mem_write(MEM4_ADDR, 1024'd5);
+    mem_write(MEM5_ADDR, 1024'd6);
 
-    reg_write(R1, MEM0_ADDR);
-    reg_write(R2, MEM1_ADDR);
-    reg_write(R3, MEM2_ADDR);
+    reg_write(R1, MEM1_ADDR);
+    reg_write(R2, MEM2_ADDR);
+    reg_write(R3, MEM3_ADDR);
+    reg_write(R4, MEM4_ADDR);
+    reg_write(R5, MEM5_ADDR);
+    reg_write(R6, 16'd2);
+    reg_write(R5, MEM6_ADDR);
 
     reg_write(COMMAND, 32'h00000001);
     
@@ -207,7 +220,7 @@ module tb_rsa_wrapper();
     
     reg_write(COMMAND, 32'h00000000);
 
-    mem_read(MEM1_ADDR);
+    mem_read(MEM6_ADDR);
 
     $finish;
 
