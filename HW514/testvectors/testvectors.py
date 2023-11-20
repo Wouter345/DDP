@@ -4,6 +4,35 @@ import SW
 
 import sys
 
+def WriteConstants(number):
+
+    wordLenInBits = 32
+
+    charlen = wordLenInBits >> 2
+
+    text   = hex(number)
+
+    # Remove unwanted characters 0x....L
+    if text[-1] == "L":
+        text = text[2:-1]
+    else:
+        text = text[2:]
+ 
+    while (len(text)%4):
+        text = "0"+text
+    
+    
+    # Split the number into word-bit chunks
+    text   = text.zfill(len(text) + len(text) % charlen)  
+    # result = ' '.join("0x"+text[i: i+charlen]+"," for i in range(0, len(text), charlen)) 
+    result = ' '.join("0x"+text[i: i+charlen]+"," for i in reversed(range(0, len(text), charlen))) 
+
+    # Remove the last comma
+    result = result[:-1]
+
+    return result
+
+
 operation = 0
 seed = "random"
 
