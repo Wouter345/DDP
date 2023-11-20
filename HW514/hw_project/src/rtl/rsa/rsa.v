@@ -62,13 +62,13 @@ module rsa (
         else if (regM_en)   regM_out <= dma_rx_data;
     end
     
-    reg          regE_en;
-    reg  [7:0] regE_out;
+    reg           regE_en;
+    reg  [1023:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
-        if(~resetn)         regE_out <= 128'd0;
-        else if (regE_en)   regE_out <= dma_rx_data[7:0];
+        if(~resetn)         regE_out <= 1024'd0;
+        else if (regE_en)   regE_out <= dma_rx_data;
     end
     
     reg           regA_en;
@@ -245,7 +245,7 @@ module ladder(
     input start,
     input [1023:0] in_x,
     input [1023:0] in_m,
-    input [7:0]  in_e,
+    input [1023:0] in_e_reverse,
     input [1023:0] in_r,
     input [1023:0] in_r2,
     input [31:0]   lene,
@@ -283,13 +283,13 @@ module ladder(
     end
     
     reg          regE_en;
-    reg  [7:0] regE_out;
+    reg  [1023:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
-        if(~resetn)         regE_out <= 128'd0;
-        else if (shiftE)    regE_out <= regE_out << 1;
-        else if (regE_en)   regE_out <= in_e;
+        if(~resetn)         regE_out <= 1024'd0;
+        else if (shiftE)    regE_out <= regE_out >> 1;
+        else if (regE_en)   regE_out <= in_e_reverse;
     end
     
     reg          reglene_en;
@@ -301,7 +301,7 @@ module ladder(
     end
     
     wire          Ei;
-    assign Ei = regE_out[7];
+    assign Ei = regE_out[0];
     
     
     reg           regA_en;

@@ -22,6 +22,18 @@ void print_array_contents(uint32_t* src) {
       src[i+3], src[i+2], src[i+1], src[i]);
 }
 
+uint32_t reverseBits(uint32_t num, uint32_t len) {
+
+
+	uint32_t reverse_num = 0;
+	int i;
+	for (i=0; i<len; i++) {
+		if ((num & (1<<i)))
+			reverse_num |= 1 << ((len - 1) - i);
+	}
+	return reverse_num;
+}
+
 int main() {
 
   init_platform();
@@ -38,12 +50,18 @@ int main() {
   // Aligned input and output memory shared with FPGA
   alignas(128) uint32_t res[32];
 
+  // pass the reverse bit order of e to the FPGA
+  alignas(128) uint32_t e_reverse;
+  xil_printf("%x\n\r",e[0]);
+  e_reverse = reverseBits(e[0], e_len);
+  xil_printf("%x\n\r", e_reverse);
+
   // Initialize res to all zero's
   memset(res,0,128);
 
 
   HWreg[1] = (uint32_t)&N;
-  HWreg[2] = (uint32_t)&e;
+  HWreg[2] = (uint32_t)&e_reverse;
   HWreg[3] = (uint32_t)&M;
   HWreg[4] = (uint32_t)&R_N;
   HWreg[5] = (uint32_t)&R2_N;
