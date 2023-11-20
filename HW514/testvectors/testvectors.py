@@ -148,6 +148,10 @@ if operation == 4:
   D = helpers.Modexp(X, E, M)
   e = C - D
   
+  print("alignas(128) uint32_t N[32] 	= {", WriteConstants(M), "};")
+  print("alignas(128) uint32_t e[32] 	= {", WriteConstants(E), "};") 
+  print("alignas(128) uint32_t M[32] 	= {", WriteConstants(X), "};")
+  print("alignas(128) uint32_t exp[32]  = {", WriteConstants(C), "};")
 
 
   print ("X                = ", hex(X))           # 1024-bits

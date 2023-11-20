@@ -10,7 +10,8 @@ extern uint32_t N[32],    // modulus
                 d_len,    // decryption exponent length
                 M[32],    // message
                 R_N[32],  // 2^1024 mod N
-                R2_N[32];// (2^1024)^2 mod N
+                R2_N[32],// (2^1024)^2 mod N
+				exp[32];
 
 #define ISFLAGSET(REG,BIT) ( (REG & (1<<BIT)) ? 1 : 0 )
 
@@ -37,7 +38,7 @@ int main() {
   // Aligned input and output memory shared with FPGA
   alignas(128) uint32_t res[32];
 
-  // Initialize odata to all zero's
+  // Initialize res to all zero's
   memset(res,0,128);
 
 
@@ -62,10 +63,25 @@ STOP_TIMING
 
   xil_printf("\rFinished calculations\n\r");
   print_array_contents(res);
+  int length = sizeof(res) / sizeof(res[0]);
 
+	int correct = 1;
+	for (int i=0; i<length; i++) {
+		if (exp[i] != res[i]) {
+			correct = 0;
+		}
+	}
 
+	if (correct) {
+		xil_printf("CORRECT!\n\n");
+	}
+	else {
+		xil_printf("WRONG\n\r");
+	}
 
   cleanup_platform();
+
+  xil_printf("Finished\n\r");
 
   return 0;
 }

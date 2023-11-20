@@ -8,6 +8,34 @@ import helpers
 # so that if needed students can debug
 # their code by printing the intermediate values.
 
+def WriteConstants(number):
+
+    wordLenInBits = 32
+
+    charlen = wordLenInBits >> 2
+
+    text   = hex(number)
+
+    # Remove unwanted characters 0x....L
+    if text[-1] == "L":
+        text = text[2:-1]
+    else:
+        text = text[2:]
+ 
+    while (len(text)%4):
+        text = "0"+text
+    
+    
+    # Split the number into word-bit chunks
+    text   = text.zfill(len(text) + len(text) % charlen)  
+    # result = ' '.join("0x"+text[i: i+charlen]+"," for i in range(0, len(text), charlen)) 
+    result = ' '.join("0x"+text[i: i+charlen]+"," for i in reversed(range(0, len(text), charlen))) 
+
+    # Remove the last comma
+    result = result[:-1]
+
+    return result
+
 def MultiPrecisionAddSub_1026(A, B, addsub):
     # returns (A + B) mod 2^1026 if   addsub == "add"
     #         (A - B) mod 2^1026 else
@@ -159,6 +187,8 @@ def MontExp_MontPowerLadder(X, E, N):
     R  = 2**1024
     RN = R % N
     R2N = (R*R) % N
+    print("alignas(128) uint32_t R_N[32] 	= {", WriteConstants(RN), "};")
+    print("alignas(128) uint32_t R2_N[32] 	= {", WriteConstants(R2N), "};")
     print ("RN               = ", hex(RN))
     print ("R2N              = ", hex(R2N))
     A  = RN
@@ -181,6 +211,9 @@ def MontExp_MontPowerLadder_TwoBitScan(X, E, N):
     R  = 2**1024
     RN = R % N
     R2N = (R*R) % N
+
+    print("alignas(128) uint32_t R_N[32] 	= {", WriteConstants(RN), "};")
+    print("alignas(128) uint32_t R2_N[32] 	= {", WriteConstants(R2N), "};")
     print ("RN               = ", hex(RN))
     print ("R2N              = ", hex(R2N))
     A  = RN
