@@ -58,13 +58,13 @@ int main() {
   memset(decoded_message,0,128);
 
 
-  HWreg[1] = (uint32_t)&N;
-  HWreg[2] = (uint32_t)&e;
-  HWreg[3] = (uint32_t)&M;
-  HWreg[4] = (uint32_t)&R_N;
-  HWreg[5] = (uint32_t)&R2_N;
+  HWreg[1] = (uint32_t)N;
+  HWreg[2] = (uint32_t)e;
+  HWreg[3] = (uint32_t)M;
+  HWreg[4] = (uint32_t)R_N;
+  HWreg[5] = (uint32_t)R2_N;
   HWreg[6] = (uint32_t)e_len;
-  HWreg[7] = (uint32_t)&encoded_message;
+  HWreg[7] = (uint32_t)encoded_message;
 
 
 
@@ -82,13 +82,13 @@ STOP_TIMING
   xil_printf("Finished Encoding\n\r");
 
   // set decoding registers
-  HWreg[1] = (uint32_t)&N;
-  HWreg[2] = (uint32_t)&d;
-  HWreg[3] = (uint32_t)&encoded_message;
-  HWreg[4] = (uint32_t)&R_N;
-  HWreg[5] = (uint32_t)&R2_N;
+  HWreg[1] = (uint32_t)N;
+  HWreg[2] = (uint32_t)d;
+  HWreg[3] = (uint32_t)encoded_message;
+  HWreg[4] = (uint32_t)R_N;
+  HWreg[5] = (uint32_t)R2_N;
   HWreg[6] = (uint32_t)d_len;
-  HWreg[7] = (uint32_t)&decoded_message;
+  HWreg[7] = (uint32_t)decoded_message;
 
   // wait for FPGA to be in Idle state
   while(HWreg[STATUS] != 0x02){
@@ -108,7 +108,7 @@ STOP_TIMING
   xil_printf("Finished Decoding\n\r");
 
 
-  
+
 
 
   //xil_printf("STATUS 0 %08X | Done %d | Idle %d | Error %d \r\n", (unsigned int)HWreg[STATUS], ISFLAGSET(HWreg[STATUS],0), ISFLAGSET(HWreg[STATUS],1), ISFLAGSET(HWreg[STATUS],2));
