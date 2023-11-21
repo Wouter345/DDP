@@ -190,7 +190,7 @@ target2.write(
 
 
 
-loops = 10
+loops = 50
 for i in range(loops):
   seed = str(int(seed) + i)
 
@@ -234,20 +234,10 @@ for i in range(loops-1):
     target1.write("e"+str(i)+", ")
 target1.write("e"+str(loops-1)+"};\n")
 
-target1.write("uint32_t *liste_len["+str(loops)+"] = {")
-for i in range(loops-1):
-    target1.write("e_len"+str(i)+", ")
-target1.write("e_len"+str(loops-1)+"};\n")
-
 target1.write("uint32_t *listd["+str(loops)+"] = {")
 for i in range(loops-1):
     target1.write("d"+str(i)+", ")
 target1.write("d"+str(loops-1)+"};\n")
-
-target1.write("uint32_t *listd_len["+str(loops)+"] = {")
-for i in range(loops-1):
-    target1.write("d_len"+str(i)+", ")
-target1.write("d_len"+str(loops-1)+"};\n")
 
 target1.write("uint32_t *listM["+str(loops)+"] = {")
 for i in range(loops-1):
@@ -267,10 +257,22 @@ target1.write("R_N"+str(loops-1)+"};\n")
 target1.write("uint32_t *listR2_N["+str(loops)+"] = {")
 for i in range(loops-1):
     target1.write("R2_N"+str(i)+", ")
-target1.write("R2_N"+str(loops-1)+"};\n")
+target1.write("R2_N"+str(loops-1)+"};\n\n\n")
 
-target2.write("extern uint32_t *listN["+str(loops)+"], *liste["+str(loops)+"], *liste_len["+str(loops)+"], *listd["+str(loops)+"], *listd_len["+str(loops)+"], *listM["+str(loops)+"], *listCt["+str(loops)+"], *listR_N["+str(loops)+"], *listR2_N["+str(loops)+"];")
+target1.write("uint32_t liste_len["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("e_len"+str(i)+", ")
+target1.write("e_len"+str(loops-1)+"};\n")
+
+target1.write("uint32_t listd_len["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("d_len"+str(i)+", ")
+target1.write("d_len"+str(loops-1)+"};\n")
+
+target2.write("extern uint32_t *listN["+str(loops)+"], *liste["+str(loops)+"], *listd["+str(loops)+"], *listM["+str(loops)+"], *listCt["+str(loops)+"], *listR_N["+str(loops)+"], *listR2_N["+str(loops)+"];")
 target2.write( "\n# endif /* tests_ */    \n")
+
+
 
 target1.close()
 target2.close()

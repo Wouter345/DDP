@@ -64,11 +64,11 @@ module rsa (
     end
     
     reg           regE_en;
-    reg  [1023:0] regE_out;
+    reg  [1024:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
-        if(~resetn)         regE_out <= 1024'd0;
+        if(~resetn)         regE_out <= 1025'd0;
         else if (regE_en)   regE_out <= dma_rx_data;
     end
     
@@ -285,11 +285,11 @@ module ladder(
     end
     
     reg          regE_en;
-    reg  [1023:0] regE_out;
+    reg  [1024:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
-        if(~resetn)         regE_out <= 1024'd0;
+        if(~resetn)         regE_out <= 1025'd0;
         else if (shiftE)    regE_out <= regE_out << 1;
         else if (regE_en)   regE_out <= in_e;
     end
@@ -303,7 +303,7 @@ module ladder(
     end
     
     wire          Ei;
-    assign Ei = regE_out[1023];
+    assign Ei = regE_out[1024];
     
     
     reg           regA_en;
@@ -609,7 +609,7 @@ module ladder(
     end
     
     wire Es;
-    assign Es = regE_out[1022];
+    assign Es = regE_out[1023];
     reg s;   
     always @(posedge clk)
     begin
