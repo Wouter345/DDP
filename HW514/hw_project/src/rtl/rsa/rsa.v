@@ -245,7 +245,7 @@ module ladder(
     input start,
     input [1023:0] in_x,
     input [1023:0] in_m,
-    input [1023:0] in_e_reverse,
+    input [1023:0] in_e,
     input [1023:0] in_r,
     input [1023:0] in_r2,
     input [31:0]   lene,
@@ -288,8 +288,8 @@ module ladder(
     always @(posedge clk)
     begin
         if(~resetn)         regE_out <= 1024'd0;
-        else if (shiftE)    regE_out <= regE_out >> 1;
-        else if (regE_en)   regE_out <= in_e_reverse;
+        else if (shiftE)    regE_out <= regE_out << 1;
+        else if (regE_en)   regE_out <= in_e;
     end
     
     reg          reglene_en;
@@ -301,7 +301,7 @@ module ladder(
     end
     
     wire          Ei;
-    assign Ei = regE_out[0];
+    assign Ei = regE_out[1023];
     
     
     reg           regA_en;
@@ -589,6 +589,17 @@ module ladder(
 
         endcase
     end
+    
+    wire Es;
+    assign Es = regE_out[1022];
+    reg s;   
+    always @(posedge clk)
+    begin
+        if (state == 4'd2) s <= 1'b0;
+        if (state == 4'd10) begin
+            if (~s) s<= Es;
+        end
+    end
 
 // Task 13
     // Describe next_state logic
@@ -610,8 +621,13 @@ module ladder(
                 else      nextstate <= 4'd2;
                 end
             4'd10 : begin
-                nextstate <= 4'd3;
-                shiftE <= 1'b0; end
+                if (s) begin
+                    nextstate <= 4'd3;
+                    shiftE <= 1'b0; end
+                else begin
+                    nextstate <= 4'd10;
+                    shiftE <= 1'b1; end
+                end
             4'd3 : nextstate <= 4'd4;
             
             4'd4 : begin

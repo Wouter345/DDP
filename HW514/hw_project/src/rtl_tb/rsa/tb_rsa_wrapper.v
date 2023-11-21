@@ -198,7 +198,7 @@ module tb_rsa_wrapper();
     // write modulus M
     mem_write(MEM1_ADDR, 1024'ha4e2010b06082b0ebec377a8955c0aecddc25e1ec59cd6df72b890a32442b812154bdc9edb482e160fb28dbf1530eb09b943a41b2419e74f6a2fd6e7d7bb9c7595b65c8ad9917d50c0cbee16dc4df7c0d74c5d5dd908ad146d138a626443890a7eabd01aab72ad5774e5dab41d1b5b57ae99b304d96e1505c771a7c2c677823d);
     // write exponent E
-    mem_write(MEM2_ADDR, 1024'hd7);
+    mem_write(MEM2_ADDR, 1024'heb);
     // write message X
     mem_write(MEM3_ADDR, 1024'hea132c164b791291d956c29d7d55c70b2f6d9bb2938b5cba145e268c162be86a24884a4eb2b32f5080a47c1aaec4e4793ad045598404ee9d81ac18e0fc8ae892ce30bc0738bfb937846b50470057075f08fdf52501b93e63e66c6e844aed030c61606436db4ffcbb6eec116e1df61006ae2ab0260b537e7c7a65f0407a6e75f5);
     // write A

@@ -51,17 +51,14 @@ int main() {
   alignas(128) uint32_t res[32];
 
   // pass the reverse bit order of e to the FPGA
-  alignas(128) uint32_t e_reverse;
-  xil_printf("%x\n\r",e[0]);
-  e_reverse = reverseBits(e[0], e_len);
-  xil_printf("%x\n\r", e_reverse);
+  print_array_contents(e);
 
   // Initialize res to all zero's
   memset(res,0,128);
 
 
   HWreg[1] = (uint32_t)&N;
-  HWreg[2] = (uint32_t)&e_reverse;
+  HWreg[2] = (uint32_t)&e;
   HWreg[3] = (uint32_t)&M;
   HWreg[4] = (uint32_t)&R_N;
   HWreg[5] = (uint32_t)&R2_N;
