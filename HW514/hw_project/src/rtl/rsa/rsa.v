@@ -257,8 +257,6 @@ module ladder(
 
 
     // Save inputs in registers
-    
-    
     reg           regX_en;
     reg  [1023:0] regX_out;
     always @(posedge clk)

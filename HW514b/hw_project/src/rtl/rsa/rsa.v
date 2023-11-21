@@ -22,18 +22,18 @@ module rsa (
     input  wire          dma_error
   );
 
-  // In this example three input registers are used.
-  // The first one is used for giving a command to FPGA.
-  // The others are for setting DMA input and output data addresses.
   wire [31:0] command;
   assign command        = rin0; // use rin0 as command
-  assign dma_rx_address = rin1; // use rin1 as input  data address
-  assign dma_tx_address = rin2; // use rin2 as output data address
+  
+  reg [31:0] address;
+  assign dma_rx_address = address; // read data from address
+  assign dma_tx_address = rin7; // write to address in rin7
 
   // Only one output register is used. It will the status of FPGA's execution.
   wire [31:0] status;
+  wire current_state;
   assign rout0 = status; // use rout0 as status
-  assign rout1 = 32'b0;  // not used
+  assign rout1 = current_state; 
   assign rout2 = 32'b0;  // not used
   assign rout3 = 32'b0;  // not used
   assign rout4 = 32'b0;  // not used
@@ -42,28 +42,79 @@ module rsa (
   assign rout7 = 32'b0;  // not used
 
 
-  // In this example we have only one computation command.
+  // we have only one computation command.
   wire isCmdComp = (command == 32'd1);
   wire isCmdIdle = (command == 32'd0);
+  
+  // Define registers
+    reg           regX_en;
+    reg  [1023:0] regX_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regX_out <= 1024'd0;
+        else if (regX_en)   regX_out <= dma_rx_data;
+    end
+        
+    reg           regM_en;
+    reg  [1023:0] regM_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regM_out <= 1024'd0;
+        else if (regM_en)   regM_out <= dma_rx_data;
+    end
+    
+    reg           regE_en;
+    reg  [1024:0] regE_out;
+    reg shiftE;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regE_out <= 1025'd0;
+        else if (regE_en)   regE_out <= dma_rx_data;
+    end
+    
+    reg           regA_en;
+    wire [1023:0] regA_in;
+    reg  [1023:0] regA_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)         regA_out <= 1024'd0;
+        else if (regA_en)   regA_out <= dma_rx_data;
+    end
+    
+    reg           regR2_en;
+    reg  [1023:0] regR2_out;
+    always @(posedge clk)
+    begin
+        if(~resetn)          regR2_out <= 1024'd0;
+        else if (regR2_en)   regR2_out <= dma_rx_data;
+    end
+    
 
 
   // Define state machine's states
   localparam
-    STATE_IDLE     = 3'd0,
-    STATE_RX       = 3'd1,
-    STATE_RX_WAIT  = 3'd2,
-    STATE_COMPUTE  = 3'd3,
-    STATE_TX       = 3'd4,
-    STATE_TX_WAIT  = 3'd5,
-    STATE_DONE     = 3'd6;
+    STATE_IDLE     = 4'd0,
+    STATE_RX1       = 4'd1,
+    STATE_RX_WAIT1  = 4'd2,
+    STATE_RX2       = 4'd3,
+    STATE_RX_WAIT2  = 4'd4,
+    STATE_RX3       = 4'd5,
+    STATE_RX_WAIT3  = 4'd6,
+    STATE_RX4       = 4'd7,
+    STATE_RX_WAIT4  = 4'd8,
+    STATE_RX5       = 4'd9,
+    STATE_RX_WAIT5  = 4'd10,
+    STATE_COMPUTE  = 4'd11,
+    STATE_COMPUTE_WAIT = 4'd12,
+    STATE_TX       = 4'd13,
+    STATE_TX_WAIT  = 4'd14,
+    STATE_DONE     = 4'd15;
 
   // The state machine
-  reg [2:0] state = STATE_IDLE;
-  reg [2:0] next_state;
+  reg [3:0] state = STATE_IDLE;
+  reg [3:0] next_state;
+  wire done;
   reg start;
-  reg reset2;
-  reg done;
-  
   
   always@(*) begin
     // defaults
@@ -72,41 +123,35 @@ module rsa (
     // state defined logic
     case (state)
       // Wait in IDLE state till a compute command
-      STATE_IDLE: begin
-        next_state <= (isCmdComp) ? STATE_RX : state;
-        start <= 1'b0;
-        reset2 <=1'b0;
-      end
+      STATE_IDLE: next_state <= (isCmdComp) ? STATE_RX1 : state;
+    
+      // READ MODULUS M (called N in software)
+      STATE_RX1: next_state <= (~dma_idle) ? STATE_RX_WAIT1 : state;
+      STATE_RX_WAIT1: next_state <= (dma_done) ? STATE_RX2 : state;
+      
+      // READ EXPONENT E
+      STATE_RX2: next_state <= (~dma_idle) ? STATE_RX_WAIT2 : state;
+      STATE_RX_WAIT2: next_state <= (dma_done) ? STATE_RX3 : state;
+      
+      // READ MESSAGE X (called M in software)
+      STATE_RX3: next_state <= (~dma_idle) ? STATE_RX_WAIT3 : state;
+      STATE_RX_WAIT3: next_state <= (dma_done) ? STATE_RX4 : state;
+      
+      // READ R_N
+      STATE_RX4: next_state <= (~dma_idle) ? STATE_RX_WAIT4 : state;
+      STATE_RX_WAIT4: next_state <= (dma_done) ? STATE_RX5 : state;
+      
+      // READ R2_N
+      STATE_RX5: next_state <= (~dma_idle) ? STATE_RX_WAIT5 : state;
+      STATE_RX_WAIT5: next_state <= (dma_done) ? STATE_COMPUTE : state;
+      
+      // PERFORM EXPONENTIATION
+      STATE_COMPUTE: next_state <= STATE_COMPUTE_WAIT;    
+      STATE_COMPUTE_WAIT: next_state <= (done)? STATE_TX : state;
 
-      // Wait, if dma is dma_idlenot idle. Otherwise, start dma operation and go to
-      // next state to wait its completion.
-      STATE_RX: begin
-        next_state <= (~dma_idle) ? STATE_RX_WAIT : state;
-      end
-
-      // Wait the completion of dma.
-      STATE_RX_WAIT : begin
-        next_state <= (dma_done) ? STATE_COMPUTE : state;
-        reset2 <= 1'b1;
-      end
-
-      // A state for dummy computation for this example. Because this
-      // computation takes only single cycle, go to TX state immediately
-      STATE_COMPUTE : begin
-        next_state <= (done) ? STATE_TX : state;    
-        start <= 1'b1;
-      end
-
-      // Wait, if dma is not idle. Otherwise, start dma operation and go to
-      // next state to wait its completion.
-      STATE_TX : begin
-        next_state <= (~dma_idle) ? STATE_TX_WAIT : state;
-      end
-
-      // Wait the completion of dma.
-      STATE_TX_WAIT : begin
-        next_state <= (dma_done) ? STATE_DONE : state;
-      end
+      // WRITE RESULT
+      STATE_TX: next_state <= (~dma_idle) ? STATE_TX_WAIT : state;
+      STATE_TX_WAIT:  next_state <= (dma_done) ? STATE_DONE : state;
 
       // The command register might still be set to compute state. Hence, if
       // we go back immediately to the IDLE state, another computation will
@@ -125,7 +170,22 @@ module rsa (
     dma_rx_start <= 1'b0;
     dma_tx_start <= 1'b0;
     case (state)
-      STATE_RX: dma_rx_start <= 1'b1;
+      STATE_RX1: begin
+        dma_rx_start <= 1'b1;
+        address <= rin1; end
+      STATE_RX2: begin
+        dma_rx_start <= 1'b1;
+        address <= rin2; end
+      STATE_RX3: begin
+        dma_rx_start <= 1'b1;
+        address <= rin3; end
+      STATE_RX4: begin
+        dma_rx_start <= 1'b1;
+        address <= rin4; end
+      STATE_RX5: begin
+        dma_rx_start <= 1'b1;
+        address <= rin5; end
+      
       STATE_TX: dma_tx_start <= 1'b1;
     endcase
   end
@@ -134,34 +194,49 @@ module rsa (
   always@(posedge clk)
     state <= (~resetn) ? STATE_IDLE : next_state;
 
-  wire [1027:0] Res;
-  wire donemult;
-  montgomery mult(clk, reset2, start, 1024'h2, 1024'h3, 1024'h8, Res, donemult);
-  always @(posedge clk) begin
-    case (state)
-     STATE_COMPUTE : done <= donemult;
-     default : done<= 1'b0;
-   endcase
+  wire [1023:0] result;
+  ladder exp(clk, resetn, start, regX_out, regM_out, regE_out, regA_out, regR2_out, rin6, result, done);
+  
+  reg           regRes_en;
+  reg  [1023:0] regRes_out;
+  always @(posedge clk)
+    begin
+      if(~resetn)          regRes_out <= 1024'd0;
+      else if (regRes_en)   regRes_out <= result;
   end
 
-  // Here is a register for the computation. Sample the dma data input in
-  // STATE_RX_WAIT. Update the data with a dummy operation in STATE_COMP.
-  // In this example, the dummy operation sets most-significant 32-bit to zeros.
-  // Use this register also for the data output.
-  reg [1023:0] r_data = 1024'h0;
-  always@(posedge clk)
+  always @(*) begin
+    //default
+    regM_en <= 1'b0;
+    regE_en <= 1'b0;
+    regX_en <= 1'b0;
+    regA_en <= 1'b0;
+    regR2_en <= 1'b0;
+    start <= 1'b0;
+    regRes_en <= 1'b0;
+  
+    
     case (state)
-      STATE_RX_WAIT : r_data <= (dma_done) ? dma_rx_data : r_data;
-//      STATE_COMPUTE : r_data <= {32'hDEADBEEF, r_data[991:0]};
-      STATE_COMPUTE : r_data <= Res;
-    endcase
-  assign dma_tx_data = r_data;
-
+        //read inputs
+        STATE_RX_WAIT1: regM_en <= 1'b1;
+        STATE_RX_WAIT2: regE_en <= 1'b1;
+        STATE_RX_WAIT3: regX_en <= 1'b1;
+        STATE_RX_WAIT4: regA_en <= 1'b1;
+        STATE_RX_WAIT5: regR2_en <= 1'b1;
+        
+        // compute
+        STATE_COMPUTE: start <= 1'b1;
+        STATE_COMPUTE_WAIT: regRes_en <= (done)? 1'b1: 1'b0;
+   endcase
+  end
+  
+  assign dma_tx_data = regRes_out;
 
   // Status signals to the CPU
   wire isStateIdle = (state == STATE_IDLE);
   wire isStateDone = (state == STATE_DONE);
   assign status = {29'b0, dma_error, isStateIdle, isStateDone};
+  assign current_state = {28'b0, state};
 
 endmodule
 
@@ -172,7 +247,7 @@ module ladder(
     input start,
     input [1023:0] in_x,
     input [1023:0] in_m,
-    input [7:0]  in_e,
+    input [1023:0] in_e,
     input [1023:0] in_r,
     input [1023:0] in_r2,
     input [31:0]   lene,
@@ -182,8 +257,6 @@ module ladder(
 
 
     // Save inputs in registers
-    
-    
     reg           regX_en;
     reg  [1023:0] regX_out;
     always @(posedge clk)
@@ -210,11 +283,11 @@ module ladder(
     end
     
     reg          regE_en;
-    reg  [7:0] regE_out;
+    reg  [1024:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
-        if(~resetn)         regE_out <= 128'd0;
+        if(~resetn)         regE_out <= 1025'd0;
         else if (shiftE)    regE_out <= regE_out << 1;
         else if (regE_en)   regE_out <= in_e;
     end
@@ -228,7 +301,7 @@ module ladder(
     end
     
     wire          Ei;
-    assign Ei = regE_out[7];
+    assign Ei = regE_out[1024];
     
     
     reg           regA_en;
@@ -278,10 +351,12 @@ module ladder(
     assign result = regA_out;
     
     
-    reg [8:0] count;
+    reg [10:0] count;
+    reg reset_count;
     reg count_en;
     always @(posedge clk) begin
-      if (~resetn) count <= 8'b0;
+      if (~resetn) count <= 10'b0;
+      if (reset_count) count <= 10'b0;
       else if (count_en)  count <= count +1;
     end
 
@@ -300,7 +375,7 @@ module ladder(
     always @(*)
     begin
         case(state)
-
+            
             // Idle state; Here the FSM waits for the start signal
             // Enable input registers 
             4'd0: begin
@@ -316,6 +391,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b1;
             end
 
             4'd1: begin
@@ -331,6 +407,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd2: begin
@@ -346,6 +423,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd10: begin
@@ -361,6 +439,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
             
             
@@ -378,6 +457,7 @@ module ladder(
                 count_en <= 1'b1;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd4: begin
@@ -393,6 +473,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd11: begin
@@ -408,6 +489,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
             
             4'd5: begin
@@ -423,6 +505,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd6: begin
@@ -438,6 +521,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd12: begin
@@ -453,6 +537,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
             
             4'd7: begin
@@ -468,6 +553,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             4'd8: begin
                 regX_en <= 1'b0;
@@ -482,6 +568,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd9: begin
@@ -497,6 +584,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
        
             default: begin
@@ -512,9 +600,21 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
 
         endcase
+    end
+    
+    wire Es;
+    assign Es = regE_out[1023];
+    reg s;   
+    always @(posedge clk)
+    begin
+        if (state == 4'd2) s <= 1'b0;
+        if (state == 4'd10) begin
+            if (~s) s<= Es;
+        end
     end
 
 // Task 13
@@ -522,6 +622,7 @@ module ladder(
 
     always @(*)
     begin
+        shiftE <= 1'b0;
         case(state)
             4'd0: begin
                 if(start) 
@@ -536,8 +637,13 @@ module ladder(
                 else      nextstate <= 4'd2;
                 end
             4'd10 : begin
-                nextstate <= 4'd3;
-                shiftE <= 1'b0; end
+                if (s) begin
+                    nextstate <= 4'd3;
+                    shiftE <= 1'b0; end
+                else begin
+                    nextstate <= 4'd10;
+                    shiftE <= 1'b1; end
+                end
             4'd3 : nextstate <= 4'd4;
             
             4'd4 : begin
