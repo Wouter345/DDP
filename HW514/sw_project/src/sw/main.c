@@ -9,6 +9,7 @@ extern uint32_t N[32],    // modulus
                 d[32],    // decryption exponent
                 d_len,    // decryption exponent length
                 M[32],    // message
+				Ct[32],
                 R_N[32],  // 2^1024 mod N
                 R2_N[32];// (2^1024)^2 mod N
 
@@ -20,6 +21,15 @@ void print_array_contents(uint32_t* src) {
   for (i=32-4; i>=0; i-=4)
     xil_printf("%08x %08x %08x %08x\n\r",
       src[i+3], src[i+2], src[i+1], src[i]);
+}
+
+int compare_arrays(uint32_t *a1, uint32_t *a2) {
+	for (int i=0; i< 32; i++) {
+		if(a1[i] != a2[i]) {
+			return 0;
+		}
+	}
+	return 1;
 }
 
 
@@ -57,16 +67,19 @@ int main() {
   HWreg[7] = (uint32_t)&encoded_message;
 
 
-  START_TIMING
+
 
   xil_printf("Start Encoding\n\r");
+
+START_TIMING
   // Start encoding
   HWreg[COMMAND] = 0x01;
   // Wait until FPGA is done
   while((HWreg[STATUS] & 0x01) == 0);
+STOP_TIMING
   HWreg[COMMAND] = 0x00;
+
   xil_printf("Finished Encoding\n\r");
-  print_array_contents(encoded_message);
 
   // set decoding registers
   HWreg[1] = (uint32_t)&N;
@@ -83,17 +96,18 @@ int main() {
   }
 
   xil_printf("Start Decoding\n\r");
+
+START_TIMING
   // Start decoding
   HWreg[COMMAND] = 0x01;
   // Wait until FPGA is done
-  while((HWreg[STATUS] & 0x01) == 0){
-	  //xil_printf("Current State: %x\n\r", (unsigned int)HWreg[1]);
-	  //xil_printf("STATUS 0 %08X | Done %d | Idle %d | Error %d \r\n", (unsigned int)HWreg[STATUS], ISFLAGSET(HWreg[STATUS],0), ISFLAGSET(HWreg[STATUS],1), ISFLAGSET(HWreg[STATUS],2));
-  }
+  while((HWreg[STATUS] & 0x01) == 0);
+STOP_TIMING
   HWreg[COMMAND] = 0x00;
+
   xil_printf("Finished Decoding\n\r");
 
-STOP_TIMING
+
   
 
 
@@ -101,28 +115,27 @@ STOP_TIMING
 
   xil_printf("\rFinished calculations\n\r");
 
-  print_array_contents(decoded_message);
-  xil_printf("\n\r");
-  print_array_contents(M);
+//  print_array_contents(decoded_message);
+//  xil_printf("\n\r");
+//  print_array_contents(M);
 
 
+  int correct1 = compare_arrays(M, decoded_message);
+  int correct2 = compare_arrays(Ct, encoded_message);
 
+  	if (correct2) {
+  		xil_printf("Encoded_message is CORRECT!\n\r");
+  	}
+  	else {
+  		xil_printf("Encoded_message is WRONG\n\r");
+  	}
 
-//  int length = sizeof(res) / sizeof(res[0]);
-//
-//	int correct = 1;
-//	for (int i=0; i<length; i++) {
-//		if (exp[i] != res[i]) {
-//			correct = 0;
-//		}
-//	}
-//
-//	if (correct) {
-//		xil_printf("CORRECT!\n\n");
-//	}
-//	else {
-//		xil_printf("WRONG\n\r");
-//	}
+	if (correct1) {
+		xil_printf("Decoded_message is CORRECT!\n\r");
+	}
+	else {
+		xil_printf("Decoded_message is WRONG\n\r");
+	}
 
   cleanup_platform();
 

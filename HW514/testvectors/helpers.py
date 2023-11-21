@@ -142,7 +142,7 @@ def WriteConstants(number, size):
     
     # print (out)
 
-def CreateConstants(seed, N, e, d, M):
+def CreateConstants(seed, N, e, d, M, Ct):
     target = open("../sw_project/src/sw/testvector.c", 'w')
     target.truncate()
 
@@ -189,9 +189,17 @@ def CreateConstants(seed, N, e, d, M):
     "                                                                              \n" +
     "// the message                                                                \n" +
     "alignas(128) uint32_t M[32]       = {" + WriteConstants(M,32) + "};           \n" +
+    "alignas(128) uint32_t Ct[32]      = {" + WriteConstants(Ct,32) + "};          \n" +
     "                                                                              \n" +
     "// R mod N, and R^2 mod N, (R = 2^1024)                                       \n" +
     "alignas(128) uint32_t R_N[32]     = {" + WriteConstants(R_N ,32) + "};        \n" +
     "alignas(128) uint32_t R2_N[32]    = {" + WriteConstants(R2_N,32) + "};        \n" )
 
     target.close()
+
+
+
+
+
+
+

@@ -168,13 +168,13 @@ if operation == 5:
 
   print ("Test Vector for RSA\n")
 
-  print ("\n--- Precomputed Values")
+  #print ("\n--- Precomputed Values")
 
   # Generate two primes (p,q), and modulus
   [p,q,N] = helpers.getModuli(1024)
 
-  print ("p            = ", hex(p))               # 512-bits
-  print ("q            = ", hex(q))               # 512-bits
+  #print ("p            = ", hex(p))               # 512-bits
+  #print ("q            = ", hex(q))               # 512-bits
   print ("Modulus      = ", hex(N))               # 1024-bits
 
   # Generate Exponents
@@ -185,14 +185,6 @@ if operation == 5:
 
   # Generate Message
   M     = helpers.getRandomMessage(1024,N)
-
-  print ("Message      = ", hex(M))               # 1024-bits
-
-  if len(sys.argv) == 4:
-    if (sys.argv[3].upper() != "NOWRITE"):
-      helpers.CreateConstants(seed, N, e, d, M)
-  else:
-    helpers.CreateConstants(seed, N, e, d, M)
 
   #####################################################
 
@@ -216,6 +208,16 @@ if operation == 5:
   # Decrypt
   Pt = HW.MontExp_MontPowerLadder(Ct, d, N)       # 1024-bit exponentiation
   print ("Plaintext    = ", hex(Pt))              # 1024-bits
+
+  print ("Message      = ", hex(M))               # 1024-bits
+
+  if len(sys.argv) == 4:
+    if (sys.argv[3].upper() != "NOWRITE"):
+      helpers.CreateConstants(seed, N, e, d, M, Ct)
+  else:
+    helpers.CreateConstants(seed, N, e, d, M, Ct)
+
+
 
 
 
