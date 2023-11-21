@@ -31,8 +31,9 @@ module rsa (
 
   // Only one output register is used. It will the status of FPGA's execution.
   wire [31:0] status;
+  wire current_state;
   assign rout0 = status; // use rout0 as status
-  assign rout1 = 32'b0;  // not used
+  assign rout1 = current_state; 
   assign rout2 = 32'b0;  // not used
   assign rout3 = 32'b0;  // not used
   assign rout4 = 32'b0;  // not used
@@ -235,6 +236,7 @@ module rsa (
   wire isStateIdle = (state == STATE_IDLE);
   wire isStateDone = (state == STATE_DONE);
   assign status = {29'b0, dma_error, isStateIdle, isStateDone};
+  assign current_state = {28'b0, state};
 
 endmodule
 
@@ -351,10 +353,12 @@ module ladder(
     assign result = regA_out;
     
     
-    reg [8:0] count;
+    reg [10:0] count;
+    reg reset_count;
     reg count_en;
     always @(posedge clk) begin
-      if (~resetn) count <= 8'b0;
+      if (~resetn) count <= 10'b0;
+      if (reset_count) count <= 10'b0;
       else if (count_en)  count <= count +1;
     end
 
@@ -373,7 +377,7 @@ module ladder(
     always @(*)
     begin
         case(state)
-
+            
             // Idle state; Here the FSM waits for the start signal
             // Enable input registers 
             4'd0: begin
@@ -389,6 +393,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b1;
             end
 
             4'd1: begin
@@ -404,6 +409,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd2: begin
@@ -419,6 +425,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd10: begin
@@ -434,6 +441,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
             
             
@@ -451,6 +459,7 @@ module ladder(
                 count_en <= 1'b1;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd4: begin
@@ -466,6 +475,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd11: begin
@@ -481,6 +491,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
             
             4'd5: begin
@@ -496,6 +507,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd6: begin
@@ -511,6 +523,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd12: begin
@@ -526,6 +539,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
             
             4'd7: begin
@@ -541,6 +555,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b1;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             4'd8: begin
                 regX_en <= 1'b0;
@@ -555,6 +570,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
             
             4'd9: begin
@@ -570,6 +586,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b0;
+                reset_count <= 1'b0;
             end
        
             default: begin
@@ -585,6 +602,7 @@ module ladder(
                 count_en <= 1'b0;
                 start2 <= 1'b0;
                 reset2 <= 1'b1;
+                reset_count <= 1'b0;
             end
 
         endcase
