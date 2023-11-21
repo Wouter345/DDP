@@ -4,33 +4,7 @@ import SW
 
 import sys
 
-def WriteConstants(number):
 
-    wordLenInBits = 32
-
-    charlen = wordLenInBits >> 2
-
-    text   = hex(number)
-
-    # Remove unwanted characters 0x....L
-    if text[-1] == "L":
-        text = text[2:-1]
-    else:
-        text = text[2:]
- 
-    while (len(text)%4):
-        text = "0"+text
-    
-    
-    # Split the number into word-bit chunks
-    text   = text.zfill(len(text) + len(text) % charlen)  
-    # result = ' '.join("0x"+text[i: i+charlen]+"," for i in range(0, len(text), charlen)) 
-    result = ' '.join("0x"+text[i: i+charlen]+"," for i in reversed(range(0, len(text), charlen))) 
-
-    # Remove the last comma
-    result = result[:-1]
-
-    return result
 
 
 operation = 0
@@ -170,53 +144,104 @@ print ("Test Vector for RSA\n")
 
 target1 = open("../sw_project/src/sw/tests.c", 'w')
 target1.truncate()
-
 target1.write(
 "#include <stdint.h>                                              \n" +
 "#include <stdalign.h>                                            \n" +
-"                                                                 \n" +);
+"                                                                 \n" +)
 
-loops = 50;
-for i in range(loops)
-
-
-[p,q,N] = helpers.getModuli(1024)
-[e,d] = helpers.getRandomExponents(p,q)
-M     = helpers.getRandomMessage(1024,N)
-Ct = SW.MontExp(M, e, N)                        # 1024-bit exponentiation
-R    = 2**1024
-R_N  = R % N
-R2_N = (R*R) % N
+target2 = open("../sw_project/src/sw/tests.h", 'w')
+target2.truncate()
+target2.write(
+  "# ifndef tests_    \n" +
+  "# define tests_    \n" +
+  "# include <stdint.h>   \n")
 
 
 
+loops = 50
+for i in range(loops):
+  seed = seed + i
 
+  [p,q,N] = helpers.getModuli(1024)
+  [e,d] = helpers.getRandomExponents(p,q)
+  M     = helpers.getRandomMessage(1024,N)
+  Ct = SW.MontExp(M, e, N)                        # 1024-bit exponentiation
+  R    = 2**1024
+  R_N  = R % N
+  R2_N = (R*R) % N
 
+  target1.write(
+  "alignas(128) uint32_t N"+str(i)+"[32]       = {" + WriteConstants(N,32) + "};           \n" +
+  "alignas(128) uint32_t e"+str(i)+"[32]       = {" + WriteConstants(e,1) + "};            \n" +
+  "alignas(128) uint32_t e_len"+str(i)+"       = 16;                                       \n" +
+  "alignas(128) uint32_t d"+str(i)+"[32]       = {" + WriteConstants(d,32) + "};           \n" +
+  "alignas(128) uint32_t d_len"+str(i)+"       =  " + str(int(math.log(d, 2)) + 1) + ";    \n" +
+  "alignas(128) uint32_t M"+str(i)+"[32]       = {" + WriteConstants(M,32) + "};           \n" +
+  "alignas(128) uint32_t Ct"+str(i)+"[32]      = {" + WriteConstants(Ct,32) + "};          \n" +
+  "alignas(128) uint32_t R_N"+str(i)+"[32]     = {" + WriteConstants(R_N ,32) + "};        \n" +
+  "alignas(128) uint32_t R2_N"+str(i)+"[32]    = {" + WriteConstants(R2_N,32) + "};        \n" )
 
+  target1.write(
+  "extern uint32_t N"+str(i)+"[32];\n" +
+  "extern uint32_t e"+str(i)+"[32];\n" +
+  "extern uint32_t e_len"+str(i)+";\n" +
+  "extern uint32_t d"+str(i)+"[32];\n" +
+  "extern uint32_t d_len"+str(i)+";\n" +
+  "extern uint32_t M"+str(i)+"[32];\n" +
+  "extern uint32_t Ct"+str(i)+"[32];\n" +
+  "extern uint32_t R_N"+str(i)+"[32];\n" +
+  "extern uint32_t R2_N"+str(i)+"[32];\n" )
 
+target1.write("uint32_t *listN["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("N"+str(i)+", ")
+target1.write("N"+str(loops-1)+"};\n")
 
+target1.write("uint32_t *liste["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("e"+str(i)+", ")
+target1.write("e"+str(loops-1)+"};\n")
 
+target1.write("uint32_t *liste_len["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("e_len"+str(i)+", ")
+target1.write("e_len"+str(loops-1)+"};\n")
 
-"// modulus                                                       \n" +
-"alignas(128) uint32_t N[32]       = {" + WriteConstants(N,32) + "};           \n" +
-"                                                                              \n" +
-"// encryption exponent                                                        \n" +
-"alignas(128) uint32_t e[32]       = {" + WriteConstants(e,1) + "};            \n" +
-"alignas(128) uint32_t e_len       = 16;                                       \n" +
-"                                                                              \n" +
-"// decryption exponent, reduced to p and q                                    \n" +
-"alignas(128) uint32_t d[32]       = {" + WriteConstants(d,32) + "};           \n" +
-"alignas(128) uint32_t d_len       =  " + str(int(math.log(d, 2)) + 1) + ";    \n" +    
-"                                                                              \n" +
-"// the message                                                                \n" +
-"alignas(128) uint32_t M[32]       = {" + WriteConstants(M,32) + "};           \n" +
-"alignas(128) uint32_t Ct[32]      = {" + WriteConstants(Ct,32) + "};          \n" +
-"                                                                              \n" +
-"// R mod N, and R^2 mod N, (R = 2^1024)                                       \n" +
-"alignas(128) uint32_t R_N[32]     = {" + WriteConstants(R_N ,32) + "};        \n" +
-"alignas(128) uint32_t R2_N[32]    = {" + WriteConstants(R2_N,32) + "};        \n" )
+target1.write("uint32_t *listd["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("d"+str(i)+", ")
+target1.write("d"+str(loops-1)+"};\n")
 
-target.close()
+target1.write("uint32_t *listd_len["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("d_len"+str(i)+", ")
+target1.write("d_len"+str(loops-1)+"};\n")
+
+target1.write("uint32_t *listM["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("M"+str(i)+", ")
+target1.write("M"+str(loops-1)+"};\n")
+
+target1.write("uint32_t *listCt["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("Ct"+str(i)+", ")
+target1.write("Ct"+str(loops-1)+"};\n")
+
+target1.write("uint32_t *listR_N["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("R_N"+str(i)+", ")
+target1.write("R_N"+str(loops-1)+"};\n")
+
+target1.write("uint32_t *listR2_N["+str(loops)+"] = {")
+for i in range(loops-1):
+    target1.write("R2_N"+str(i)+", ")
+target1.write("R2_N"+str(loops-1)+"};\n")
+
+target2.write("extern uint32_t *listN["+str(loops)+"], *liste["+str(loops)+"], *liste_len["+str(loops)+"], *listd["+str(loops)+"], *listd_len["+str(loops)+"], *listM["+str(loops)+"], *listCt["+str(loops)+"], *listR_N["+str(loops)+"], *listR2_N["+str(loops)+"];")
+target2.write( "\n# endif /* tests_ */    \n")
+
+target1.close()
+target2.close()
 
 
 
