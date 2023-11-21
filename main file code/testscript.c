@@ -37,7 +37,7 @@ int main() {
   #define COMMAND 0
   #define STATUS  0
 
-  for (int k=0; k<10; k++) {
+  for (int k=0; k<50; k++) {
 	  // Aligned input and output memory shared with FPGA
 	  alignas(128) uint32_t encoded_message[32];
 	  alignas(128) uint32_t decoded_message[32];
@@ -46,13 +46,14 @@ int main() {
 	  memset(encoded_message,0,128);
 	  memset(decoded_message,0,128);
 
-	  HWreg[1] = (uint32_t)listN[k];
-	  HWreg[2] = (uint32_t)liste[k];
-	  HWreg[3] = (uint32_t)listM[k];
-	  HWreg[4] = (uint32_t)listR_N[k];
-	  HWreg[5] = (uint32_t)listR2_N[k];
+
+	  HWreg[1] = (uint32_t)&listN[k];
+	  HWreg[2] = (uint32_t)&liste[k];
+	  HWreg[3] = (uint32_t)&listM[k];
+	  HWreg[4] = (uint32_t)&listR_N[k];
+	  HWreg[5] = (uint32_t)&listR2_N[k];
 	  HWreg[6] = (uint32_t)liste_len[k];
-	  HWreg[7] = (uint32_t)encoded_message;
+	  HWreg[7] = (uint32_t)&encoded_message;
 
 	//START_TIMING
 	  HWreg[COMMAND] = 0x01;
@@ -60,13 +61,13 @@ int main() {
 	//STOP_TIMING
 	  HWreg[COMMAND] = 0x00;
 
-	  HWreg[1] = (uint32_t)listN[k];
-	  HWreg[2] = (uint32_t)listd[k];
-	  HWreg[3] = (uint32_t)encoded_message;
-	  HWreg[4] = (uint32_t)listR_N[k];
-	  HWreg[5] = (uint32_t)listR2_N[k];
+	  HWreg[1] = (uint32_t)&listN[k];
+	  HWreg[2] = (uint32_t)&listd[k];
+	  HWreg[3] = (uint32_t)&encoded_message;
+	  HWreg[4] = (uint32_t)&listR_N[k];
+	  HWreg[5] = (uint32_t)&listR2_N[k];
 	  HWreg[6] = (uint32_t)listd_len[k];
-	  HWreg[7] = (uint32_t)decoded_message;
+	  HWreg[7] = (uint32_t)&decoded_message;
 
 	  // wait for FPGA to be in Idle state
 	  while(HWreg[STATUS] != 0x02);
@@ -81,22 +82,23 @@ int main() {
 	  int correct2 = compare_arrays(listCt[k], encoded_message);
 
 		if (correct2) {
-			xil_printf("Encoded_message number %d is CORRECT!\n\r", k);
+			//xil_printf("Encoded_message number %d is CORRECT!\n\r", k);
 		}
 		else {
 			xil_printf("Encoded_message number %d is WRONG\n\r", k);
 		}
 
 		if (correct1) {
-			xil_printf("Decoded_message number %d is CORRECT!\n\r", k);
+			//xil_printf("Decoded_message number %d is CORRECT!\n\r", k);
 		}
 		else {
 			xil_printf("Decoded_message number %d is WRONG\n\r", k);
 		}
+
+	  cleanup_platform();
+
+	  xil_printf("Finished\n\r");
+
+	  return 0;
   }
-  cleanup_platform();
-
-  	  xil_printf("Finished\n\r");
-
-  	  return 0;
 }

@@ -1,10 +1,42 @@
 import helpers
 import HW
 import SW
-
+import math
 import sys
 
+def WriteConstants(number, size):
 
+    # wordLenInBits = 32
+
+    # charlen = wordLenInBits / 4
+
+    # text   = hex(number)
+
+    # # Remove unwanted characters 0x....L
+    # if text[-1] == "L":
+    #     text = text[2:-1]
+    # else:
+    #     text = text[2:]
+    
+    # # Split the number into word-bit chunks
+    # text   = text.zfill(len(text) + len(text) % charlen)  
+    # # result = ' '.join("0x"+text[i: i+charlen]+"," for i in range(0, len(text), charlen)) 
+    # result = ' '.join("0x"+text[i: i+charlen]+"," for i in reversed(range(0, len(text), charlen))) 
+
+    # # Remove the last comma
+    # result = result[:-1]
+
+    # return result
+
+    # size=32
+
+    out = ''
+
+    for i in range(size):
+        out += '0x{:08x}'.format(number & 0xFFFFFFFF)
+        number >>= 32
+        out += ', ' if i<(size - 1) else ''
+    return out
 
 
 operation = 0
@@ -147,7 +179,7 @@ target1.truncate()
 target1.write(
 "#include <stdint.h>                                              \n" +
 "#include <stdalign.h>                                            \n" +
-"                                                                 \n" +)
+"                                                                 \n")
 
 target2 = open("../sw_project/src/sw/tests.h", 'w')
 target2.truncate()
@@ -158,9 +190,9 @@ target2.write(
 
 
 
-loops = 50
+loops = 10
 for i in range(loops):
-  seed = seed + i
+  seed = str(int(seed) + i)
 
   [p,q,N] = helpers.getModuli(1024)
   [e,d] = helpers.getRandomExponents(p,q)
@@ -181,7 +213,7 @@ for i in range(loops):
   "alignas(128) uint32_t R_N"+str(i)+"[32]     = {" + WriteConstants(R_N ,32) + "};        \n" +
   "alignas(128) uint32_t R2_N"+str(i)+"[32]    = {" + WriteConstants(R2_N,32) + "};        \n" )
 
-  target1.write(
+  target2.write(
   "extern uint32_t N"+str(i)+"[32];\n" +
   "extern uint32_t e"+str(i)+"[32];\n" +
   "extern uint32_t e_len"+str(i)+";\n" +
