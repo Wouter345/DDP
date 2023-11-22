@@ -1,0 +1,6 @@
+64_bit select_carry_Adder:	31 adders
+				WNS=0.151ns Default
+				WNS=1.112   ExplorePostRoute
+				LUT=2547
+				FFs=2023
+	 

@@ -11,15 +11,15 @@ module mpadder (
   output wire done
 );
 
-  wire [1026:0] MuxB = (subtract) ? ~in_b : in_b;
-      wire [1027:0] Sum;
-  
-
-wire [1027:0] sumA;
-wire [1027:0] sumB;
-
-wire [14:0] carryA;
-wire [14:0] carryB;
+    wire [1026:0] MuxB = (subtract) ? ~in_b : in_b;
+    wire [1027:0] Sum;
+    
+    
+    wire [1027:0] sumA;
+    wire [1027:0] sumB;
+    
+    wire [14:0] carryA;
+    wire [14:0] carryB;
     
     wire carry1;
     wire carry2;
@@ -53,7 +53,7 @@ wire [14:0] carryB;
   add64 A13(in_a[831:768], MuxB[831:768],sumA[831:768], carryA[12], sumB[831:768], carryB[12]);
   add64 A14(in_a[895:832], MuxB[895:832],sumA[895:832], carryA[13], sumB[895:832], carryB[13]);
   add64 A15(in_a[959:896], MuxB[959:896],sumA[959:896], carryA[14], sumB[959:896], carryB[14]);
-  add68 A16(in_a[1026:960], MuxB[1026:960],sumA[1027:960], sumB[1027:960]);
+  add67 A16(in_a[1026:960], MuxB[1026:960],sumA[1027:960], sumB[1027:960]);
   
 
     
@@ -71,7 +71,7 @@ wire [14:0] carryB;
     regcB <= carryB;
   end  
   
-  assign carry1 = regcA[0];
+    assign carry1 = regcA[0];
     assign carry2 = carry1? regcA[1]: regcB[1];
     assign carry3 = carry2? regcA[2]: regcB[2];
     assign carry4 = carry3? regcA[3]: regcB[3];
@@ -109,10 +109,8 @@ wire [14:0] carryB;
   assign result = {carry_out, Sum[1026:0]};
 
   reg regDone;
-  always @(posedge clk or negedge resetn) begin
-    if (~resetn)
-      regDone <= 1'b0;
-    else if (start)
+  always @(posedge clk) begin
+    if (start)
       regDone <= 1'b1;
     else
       regDone <= 1'b0;
@@ -137,7 +135,7 @@ module add64(
     
 endmodule
 
-module add68(
+module add67(
     input wire [66:0] a,
     input wire [66:0] b,
     output wire [67:0] suma,
