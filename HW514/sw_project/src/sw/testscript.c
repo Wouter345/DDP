@@ -23,8 +23,6 @@
 //
 //
 //int main() {
-//	uint32_t liste_len[50] = {e_len0, e_len1, e_len2, e_len3, e_len4, e_len5, e_len6, e_len7, e_len8, e_len9, e_len10, e_len11, e_len12, e_len13, e_len14, e_len15, e_len16, e_len17, e_len18, e_len19, e_len20, e_len21, e_len22, e_len23, e_len24, e_len25, e_len26, e_len27, e_len28, e_len29, e_len30, e_len31, e_len32, e_len33, e_len34, e_len35, e_len36, e_len37, e_len38, e_len39, e_len40, e_len41, e_len42, e_len43, e_len44, e_len45, e_len46, e_len47, e_len48, e_len49};
-//	uint32_t listd_len[50] = {d_len0, d_len1, d_len2, d_len3, d_len4, d_len5, d_len6, d_len7, d_len8, d_len9, d_len10, d_len11, d_len12, d_len13, d_len14, d_len15, d_len16, d_len17, d_len18, d_len19, d_len20, d_len21, d_len22, d_len23, d_len24, d_len25, d_len26, d_len27, d_len28, d_len29, d_len30, d_len31, d_len32, d_len33, d_len34, d_len35, d_len36, d_len37, d_len38, d_len39, d_len40, d_len41, d_len42, d_len43, d_len44, d_len45, d_len46, d_len47, d_len48, d_len49};
 //
 //  init_platform();
 //  init_performance_counters(0);

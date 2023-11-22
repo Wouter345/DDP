@@ -205,9 +205,9 @@ for i in range(loops):
   target1.write(
   "alignas(128) uint32_t N"+str(i)+"[32]       = {" + WriteConstants(N,32) + "};           \n" +
   "alignas(128) uint32_t e"+str(i)+"[32]       = {" + WriteConstants(e,1) + "};            \n" +
-  "alignas(128) uint32_t e_len"+str(i)+"       = 16;                                       \n" +
+  "alignas(128) const uint32_t e_len"+str(i)+"       = 16;                                       \n" +
   "alignas(128) uint32_t d"+str(i)+"[32]       = {" + WriteConstants(d,32) + "};           \n" +
-  "alignas(128) uint32_t d_len"+str(i)+"       =  " + str(int(math.log(d, 2)) + 1) + ";    \n" +
+  "alignas(128) const uint32_t d_len"+str(i)+"       =  " + str(int(math.log(d, 2)) + 1) + ";    \n" +
   "alignas(128) uint32_t M"+str(i)+"[32]       = {" + WriteConstants(M,32) + "};           \n" +
   "alignas(128) uint32_t Ct"+str(i)+"[32]      = {" + WriteConstants(Ct,32) + "};          \n" +
   "alignas(128) uint32_t R_N"+str(i)+"[32]     = {" + WriteConstants(R_N ,32) + "};        \n" +
@@ -216,9 +216,9 @@ for i in range(loops):
   target2.write(
   "extern uint32_t N"+str(i)+"[32];\n" +
   "extern uint32_t e"+str(i)+"[32];\n" +
-  "extern uint32_t e_len"+str(i)+";\n" +
+  "extern const uint32_t e_len"+str(i)+";\n" +
   "extern uint32_t d"+str(i)+"[32];\n" +
-  "extern uint32_t d_len"+str(i)+";\n" +
+  "extern const uint32_t d_len"+str(i)+";\n" +
   "extern uint32_t M"+str(i)+"[32];\n" +
   "extern uint32_t Ct"+str(i)+"[32];\n" +
   "extern uint32_t R_N"+str(i)+"[32];\n" +
@@ -269,7 +269,7 @@ for i in range(loops-1):
     target1.write("d_len"+str(i)+", ")
 target1.write("d_len"+str(loops-1)+"};\n")
 
-target2.write("extern uint32_t *listN["+str(loops)+"], *liste["+str(loops)+"], *listd["+str(loops)+"], *listM["+str(loops)+"], *listCt["+str(loops)+"], *listR_N["+str(loops)+"], *listR2_N["+str(loops)+"];")
+target2.write("extern uint32_t *listN["+str(loops)+"], *liste["+str(loops)+"], *listd["+str(loops)+"], *listM["+str(loops)+"], *liste_len["+str(loops)+"], *listd_len["+str(loops)+"], *listCt["+str(loops)+"], *listR_N["+str(loops)+"], *listR2_N["+str(loops)+"];")
 target2.write( "\n# endif /* tests_ */    \n")
 
 
