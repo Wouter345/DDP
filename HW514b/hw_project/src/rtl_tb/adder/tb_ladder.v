@@ -29,7 +29,7 @@ module tb_ladder();
         .start    (start   ),
         .in_x (in_x),
         .in_m     (in_m    ),
-        .in_e_reverse     (in_e    ),
+        .in_e     (in_e    ),
         .in_r     (in_r    ),
         .in_r2     (in_r2    ),
         .lene     (lene    ),
@@ -97,7 +97,7 @@ module tb_ladder();
     #`CLK_PERIOD;
      perform_exp(1024'hea132c164b791291d956c29d7d55c70b2f6d9bb2938b5cba145e268c162be86a24884a4eb2b32f5080a47c1aaec4e4793ad045598404ee9d81ac18e0fc8ae892ce30bc0738bfb937846b50470057075f08fdf52501b93e63e66c6e844aed030c61606436db4ffcbb6eec116e1df61006ae2ab0260b537e7c7a65f0407a6e75f5, 
                 1024'ha4e2010b06082b0ebec377a8955c0aecddc25e1ec59cd6df72b890a32442b812154bdc9edb482e160fb28dbf1530eb09b943a41b2419e74f6a2fd6e7d7bb9c7595b65c8ad9917d50c0cbee16dc4df7c0d74c5d5dd908ad146d138a626443890a7eabd01aab72ad5774e5dab41d1b5b57ae99b304d96e1505c771a7c2c677823d,
-                1024'hd7,
+                1024'heb,
                 1024'h5b1dfef4f9f7d4f1413c88576aa3f513223da1e13a6329208d476f5cdbbd47edeab4236124b7d1e9f04d7240eacf14f646bc5be4dbe618b095d029182844638a6a49a375266e82af3f3411e923b2083f28b3a2a226f752eb92ec759d9bbc76f581542fe5548d52a88b1a254be2e4a4a851664cfb2691eafa388e583d39887dc3,
                 1024'h85f3b8aa14a91171c7439f689098098dadce671bd56d521b457dae49155cf364b81959638f836b864759ede397a4f6fa7d3e6998aa586a4701dd79a730892e2ca1cec8729e2c64eb03ea521541fc93ca7677f29ae3c51e51258af5fdd88357643130eb6fda24d36d3998604427255f759ac36b2f6cb37e97985bce027856d908,
                 4'd8

@@ -1,6 +1,6 @@
 #include "common.h"
 #include <stdalign.h>
-  
+
 // These variables are defined in the testvector.c
 // that is created by the testvector generator python script
 extern uint32_t N[32],    // modulus

@@ -14,3 +14,14 @@ State 12	Reset montgomery -- buffer state
 State 7		Start Mont(A,1)
 State 8		Wait for Done2
 State 9		Calculation finished
+
+State 0 	Load Inputs
+State 1		Start/initiate Mont(x,R2)
+State 2		Wait for Done1
+State 10	Reset montgomery -- buffer state
+State 3		Start Mont(A,XX) and Start Mont(A,A) or Mont(XX,XX)
+State 4		Wait for Done1 and Done2			
+State 12	Reset montgomery -- buffer state
+State 7		Start Mont(A,1)
+State 8		Wait for Done1
+State 9		Calculation finished

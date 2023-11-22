@@ -195,7 +195,7 @@ module rsa (
     state <= (~resetn) ? STATE_IDLE : next_state;
 
   wire [1023:0] result;
-  ladder exp(clk, resetn, start, regX_out, regM_out, regE_out, regA_out, regR2_out, rin6, result, done);
+  ladder2 exp(clk, resetn, start, regX_out, regM_out, regE_out, regA_out, regR2_out, rin6, result, done);
   
   reg           regRes_en;
   reg  [1023:0] regRes_out;
