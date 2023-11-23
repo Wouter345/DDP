@@ -62,11 +62,11 @@ module rsa (
     end
     
     reg           regE_en;
-    reg  [1024:0] regE_out;
+    reg  [1023:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
-        if (regE_en)   regE_out <= {1'b0, dma_rx_data};
+        if (regE_en)   regE_out <= dma_rx_data;
     end
     
     reg           regA_en;

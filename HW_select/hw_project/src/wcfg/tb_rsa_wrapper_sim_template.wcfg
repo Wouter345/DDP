@@ -13,15 +13,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="650.810 ns"></ZoomEndTime>
-      <Cursor1Time time="25.000 ns"></Cursor1Time>
+      <ZoomStartTime time="309,039.166 ns"></ZoomStartTime>
+      <ZoomEndTime time="309,910.167 ns"></ZoomEndTime>
+      <Cursor1Time time="309,765.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="209"></NameColumnWidth>
       <ValueColumnWidth column_width="169"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="13" />
+   <WVObjectSize size="12" />
    <wvobject type="logic" fp_name="/tb_rsa_wrapper/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -210,9 +210,14 @@
          <obj_property name="ObjectShortName">rout7[31:0]</obj_property>
       </wvobject>
    </wvobject>
+   <wvobject type="array" fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/state">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+   </wvobject>
    <wvobject type="group" fp_name="group1126">
       <obj_property name="label">Memory</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="array" fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/tb_mem_0/inst/mem[0]">
          <obj_property name="ElementShortName">[0][1023:0]</obj_property>
          <obj_property name="ObjectShortName">[0][1023:0]</obj_property>
@@ -281,13 +286,5 @@
          <obj_property name="ElementShortName">[2048][1023:0]</obj_property>
          <obj_property name="ObjectShortName">[2048][1023:0]</obj_property>
       </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/regE_out">
-      <obj_property name="ElementShortName">regE_out[1024:0]</obj_property>
-      <obj_property name="ObjectShortName">regE_out[1024:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/exp/regE_out">
-      <obj_property name="ElementShortName">regE_out[1024:0]</obj_property>
-      <obj_property name="ObjectShortName">regE_out[1024:0]</obj_property>
    </wvobject>
 </wave_config>
