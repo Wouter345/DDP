@@ -14,7 +14,7 @@
 				FFs=2025
 
 64_bit Montgomery:		WNS=0.665ns Default
-				WNS=0.687ns ExplorePostRoute
+3067 cycles			WNS=0.687ns ExplorePostRoute
 				LUT=4348
 				FFs=5116
 
@@ -27,3 +27,13 @@
 				WNS=0.968ns ExplorePostRoute
 				LUT=4347
 				FFs=5124
+
+128_bit RSA:			WNS=0.002ns Default
+encrypt: 369_510 cycles soft	WNS=0.065ns ExplorePostRoute
+decrypt: 20_569_443 cycles	LUT=13_168
+				FFs=25_053
+
+
+
+
+
