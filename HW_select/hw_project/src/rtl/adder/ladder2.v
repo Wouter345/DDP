@@ -279,25 +279,6 @@ module ladder2(
                 reset_count <= 1'b0;
             end
             
-            4'd12: begin
-                regX_en <= 1'b0;
-                regXX_en <= 1'b0;
-                regE_en <= 1'b0;
-                regM_en <= 1'b0;
-                regA_en <= 1'b0;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
-                select1 <= 1'b0;
-                select2 <= 2'b00;
-                select3 <= 1'b0;
-                select_res <= 1'b0;
-                count_en <= 1'b0;
-                start1 <= 1'b0;
-                start2 <= 1'b0;
-                reset2 <= 1'b0;
-                reset_count <= 1'b0;
-            end
-            
             4'd7: begin
                 regX_en <= 1'b0;
                 regXX_en <= 1'b0;
@@ -419,14 +400,13 @@ module ladder2(
             4'd4 : begin
                 if(save_done1 && save_done2) begin
                     if (count==reglene_out) begin
-                        nextstate <= 4'd12;
+                        nextstate <= 4'd7;
                     end else begin
                         nextstate <= 4'd10;
                         shiftE <= 1'b1; end
                 end else begin
                     nextstate <= 4'd4; end
                 end
-            4'd12 : nextstate <= 4'd7;
             4'd7 : nextstate <= 4'd8;
             
             4'd8 : if(Done1)  nextstate <= 4'd9;
