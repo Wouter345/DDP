@@ -13,7 +13,7 @@ module hweval_adder (
     wire          done;
        
     // Instantiate the adder    
-    mpadder dut (
+    mpadder3 dut (
         .clk      (clk     ),
         .resetn   (resetn  ),
         .start    (start   ),

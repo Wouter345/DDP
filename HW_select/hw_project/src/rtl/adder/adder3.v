@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module mpadder (
+module mpadder3 (
   input wire clk,
   input wire resetn,
   input wire start,
@@ -18,8 +18,8 @@ module mpadder (
     wire [1027:0] sumA;
     wire [1027:64] sumB;
     
-    wire [14:0] carryA;
-    wire [14:1] carryB;
+    wire [15:0] carryA;
+    wire [15:1] carryB;
     
     wire carry1;
     wire carry2;
@@ -36,6 +36,7 @@ module mpadder (
     wire carry13;
     wire carry14;
     wire carry15;
+    wire carry16;
     
   assign {carryA[0],sumA[63:0]} = in_a[63:0] + MuxB[63:0] + subtract;   
   //assign {carryB[0],sumB[63:0]} = 65'b0;
@@ -53,7 +54,8 @@ module mpadder (
   add64 A13(in_a[831:768], MuxB[831:768],sumA[831:768], carryA[12], sumB[831:768], carryB[12]);
   add64 A14(in_a[895:832], MuxB[895:832],sumA[895:832], carryA[13], sumB[895:832], carryB[13]);
   add64 A15(in_a[959:896], MuxB[959:896],sumA[959:896], carryA[14], sumB[959:896], carryB[14]);
-  add67 A16(in_a[1026:960], MuxB[1026:960],sumA[1027:960], sumB[1027:960]);
+  add64 A16(in_a[1023:960], MuxB[1023:960],sumA[1023:960], carryA[15], sumB[1023:960], carryB[15]);
+  add3 A17(in_a[1026:1024], MuxB[1026:1024],sumA[1027:1024], sumB[1027:1024]);
   
 
     
@@ -61,8 +63,8 @@ module mpadder (
 
   reg [1027:0] regA;
   reg [1027:64] regB;
-  reg [14:0] regcA;
-  reg [14:1] regcB;
+  reg [15:0] regcA;
+  reg [15:1] regcB;
   always @(posedge clk) 
   begin
     regA <= sumA;
@@ -86,6 +88,7 @@ module mpadder (
     assign carry13 = carry12? regcB[12]: regcA[12];
     assign carry14 = carry13? regcB[13]: regcA[13];
     assign carry15 = carry14? regcB[14]: regcA[14];
+    assign carry16 = carry15? regcB[15]: regcA[15];
   
     assign Sum[63:0] = regA[63:0];
     assign Sum[127:64] = carry1? regB[127:64]: regA[127:64];
@@ -102,7 +105,8 @@ module mpadder (
     assign Sum[831:768] = carry12? regB[831:768]: regA[831:768];
     assign Sum[895:832] = carry13? regB[895:832]: regA[895:832];
     assign Sum[959:896] = carry14? regB[959:896]: regA[959:896];
-    assign Sum[1027:960] = carry15? regB[1027:960]: regA[1027:960];
+    assign Sum[1023:960] = carry15? regB[1023:960]: regA[1023:960];
+    assign Sum[1027:1024] = carry16? regB[1027:1024]: regA[1027:1024];
   
 
   wire carry_out = subtract ^ Sum[1027];
@@ -135,11 +139,11 @@ module add64(
     
 endmodule
 
-module add67(
-    input wire [66:0] a,
-    input wire [66:0] b,
-    output wire [67:0] suma,
-    output wire [67:0] sumb
+module add3(
+    input wire [2:0] a,
+    input wire [2:0] b,
+    output wire [3:0] suma,
+    output wire [3:0] sumb
     );
     
     assign suma= a+b;
