@@ -15,4 +15,12 @@
 				LUT=2553
 				FFs=2025
 
-	 
+64_bit Montgomery:		WNS=0.665ns Default
+				WNS=0.687ns ExplorePostRoute
+				LUT=4348
+				FFs=5116
+
+128_bit Montgomery:		WNS=0.816ns Default
+				WNS=0.816ns ExplorePostRoute
+				LUT=4271
+				FFs=5052

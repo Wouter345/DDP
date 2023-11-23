@@ -20,8 +20,7 @@ module montgomery(
     reg  [1023:0] regA_out;
     always @(posedge clk)
     begin
-        if(~resetn)         regA_out <= 1024'd0;
-        else if (regA_en)   regA_out <= regA_in;
+        if (regA_en)   regA_out <= regA_in;
     end
     
 // Task 2
@@ -32,20 +31,19 @@ module montgomery(
     reg  [1023:0] regB_out;
     always @(posedge clk)
     begin
-        if(~resetn)         regB_out <= 1024'd0;
-        else if (regBM_en)   regB_out <= in_b;
+        if (regBM_en)   regB_out <= in_b;
     end
   
   // Task 3
     // Describe a 1024-bit register for M
 
-    wire [1023:0] regM_in;
-    reg  [1023:0] regM_out;
-    always @(posedge clk)
-    begin
-        if(~resetn)         regM_out <= 1024'd0;
-        else if (regBM_en)   regM_out <= in_m;
-    end
+//    wire [1023:0] regM_in;
+//    reg  [1023:0] regM_out;
+//    always @(posedge clk)
+//    begin
+//        if(~resetn)         regM_out <= 1024'd0;
+//        else if (regBM_en)   regM_out <= in_m;
+//    end
     
   // Task 4
     // Describe a 1028 bit register for result
@@ -55,8 +53,7 @@ module montgomery(
     reg shiftC;
     always @(posedge clk)
     begin
-        if(~resetn)         regC_out <= 1028'd0;
-        else if(reset)     regC_out <= 1028'd0;
+        if(reset)     regC_out <= 1028'd0;
         else if (regC_en)   regC_out <= regC_in;
         else if (shiftC)  regC_out <= regC_out >> 1;
     end
@@ -83,7 +80,7 @@ module montgomery(
 
     assign operandA = regA_out;
     assign operandB = regB_out;
-    assign operandM = regM_out;
+    assign operandM = in_m;
     assign operandC = regC_out;
     
   // Task 8
@@ -96,7 +93,7 @@ module montgomery(
     
     reg subtract;
     reg start_signal;
-    mpadder adder(clk,1'b1,start_signal,subtract,operandC,{3'b0,muxInput2_Out},Sum,done2);
+    mpadder2 adder(clk,1'b1,start_signal,subtract,operandC,{3'b0,muxInput2_Out},Sum,done2);
 
   
     
@@ -107,8 +104,7 @@ module montgomery(
     reg count_en;
     reg reset;
     always @(posedge clk) begin
-      if (~resetn) count <= 10'b0;
-      else if (reset) count <= 10'b0;
+      if (reset) count <= 10'b0;
       else if (count_en)  count <= count +1;
     end
     
