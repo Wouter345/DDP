@@ -16,49 +16,24 @@ module ladder2(
 
 
     // Save inputs in registers
-    reg           regX_en;
-    reg  [1023:0] regX_out;
-    always @(posedge clk)
-    begin
-        if(~resetn)         regX_out <= 1024'd0;
-        else if (regX_en)   regX_out <= in_x;
-    end
-    
     reg           regXX_en;
     wire [1023:0] regXX_in;
     reg  [1023:0] regXX_out;
     always @(posedge clk)
     begin
-        if(~resetn)          regXX_out <= 1024'd0;
-        else if (regXX_en)   regXX_out <= regXX_in;
+        if (regXX_en)   regXX_out <= regXX_in;
     end
     
-    reg           regM_en;
-    reg  [1023:0] regM_out;
-    always @(posedge clk)
-    begin
-        if(~resetn)         regM_out <= 1024'd0;
-        else if (regM_en)   regM_out <= in_m;
-    end
     
     reg          regE_en;
     reg  [1024:0] regE_out;
     reg shiftE;
     always @(posedge clk)
     begin
-        if(~resetn)         regE_out <= 1025'd0;
-        else if (shiftE)    regE_out <= regE_out << 1;
+        if (shiftE)    regE_out <= regE_out << 1;
         else if (regE_en)   regE_out <= in_e;
     end
-    
-    reg          reglene_en;
-    reg  [31:0] reglene_out;
-    always @(posedge clk)
-    begin
-        if(~resetn)         reglene_out <= 128'd0;
-        else if (reglene_en)   reglene_out <= lene;
-    end
-    
+
     wire          Ei;
     assign Ei = regE_out[1024];
     
@@ -68,17 +43,9 @@ module ladder2(
     reg  [1023:0] regA_out;
     always @(posedge clk)
     begin
-        if(~resetn)         regA_out <= 1024'd0;
-        else if (regA_en)   regA_out <= regA_in;
+        if (regA_en)   regA_out <= regA_in;
     end
     
-    reg           regR2_en;
-    reg  [1023:0] regR2_out;
-    always @(posedge clk)
-    begin
-        if(~resetn)          regR2_out <= 1024'd0;
-        else if (regR2_en)   regR2_out <= in_r2;
-    end
     
     // initiate montgomery multiplier
     wire [1023:0] operandA1;
@@ -88,9 +55,9 @@ module ladder2(
     
     reg select1;
     reg [1:0] select2;
-    assign operandA1 = select1? regX_out: regA_out;
-    assign operandB1 = select2[1]? (select2[0]? 1023'd1: regXX_out) : (regR2_out);
-    assign operandM = regM_out;
+    assign operandA1 = select1? in_x: regA_out;
+    assign operandB1 = select2[1]? (select2[0]? 1023'd1: regXX_out) : (in_r2);
+    assign operandM = in_m;
     
     reg select3;
     wire [1023:0] operandA2;
@@ -140,7 +107,6 @@ module ladder2(
     reg reset_count;
     reg count_en;
     always @(posedge clk) begin
-      if (~resetn) count <= 10'b0;
       if (reset_count) count <= 10'b0;
       else if (count_en)  count <= count +1;
     end
@@ -164,13 +130,9 @@ module ladder2(
             // Idle state; Here the FSM waits for the start signal
             // Enable input registers 
             4'd0: begin
-                regX_en <= 1'b1;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b1;
-                regM_en <= 1'b1;
                 regA_en <= 1'b1;
-                regR2_en <= 1'b1;
-                reglene_en <= 1'b1;
                 select1 <= 1'b0;
                 select2 <= 2'b00;
                 select3 <= 1'b0;
@@ -183,13 +145,9 @@ module ladder2(
             end
 
             4'd1: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b0;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <= 1'b1;
                 select2 <= 2'b00;
                 select3 <= 1'b0;
@@ -202,13 +160,9 @@ module ladder2(
             end
             
             4'd2: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b1;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b0;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <= 1'b1;
                 select2 <= 2'b00;
                 select3 <= 1'b0;
@@ -221,13 +175,9 @@ module ladder2(
             end
             
             4'd10: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b0;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <= 1'b0;
                 select2 <= 2'b00;
                 select3 <= 1'b0;
@@ -242,13 +192,9 @@ module ladder2(
             
             
             4'd3: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b0;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <= 1'b0;
                 select2 <= 2'b10;
                 select3 <= ~Ei;
@@ -261,13 +207,9 @@ module ladder2(
             end
             
             4'd4: begin
-                regX_en <= 1'b0;
                 regXX_en <= enableXX;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= enableA;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <= 1'b0;
                 select2 <= 2'b10;
                 select3 <= ~Ei;
@@ -280,13 +222,9 @@ module ladder2(
             end
             
             4'd7: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b1;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <= 1'b0;
                 select2 <= 2'b11;
                 select3 <= 1'b0;
@@ -298,13 +236,9 @@ module ladder2(
                 reset_count <= 1'b0;
             end
             4'd8: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b1;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <=  1'b00;
                 select2 <= 1'b11;
                 select3 <= 1'b0;
@@ -317,13 +251,9 @@ module ladder2(
             end
             
             4'd9: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b0;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <=  1'b0;
                 select2 <= 2'b00;
                 select3 <= 1'b0;   
@@ -336,13 +266,9 @@ module ladder2(
             end
        
             default: begin
-                regX_en <= 1'b0;
                 regXX_en <= 1'b0;
                 regE_en <= 1'b0;
-                regM_en <= 1'b0;
                 regA_en <= 1'b0;
-                regR2_en <= 1'b0;
-                reglene_en <= 1'b0;
                 select1 <= 1'b0;
                 select2 <= 2'b0;
                 select3 <= 1'b0;
@@ -399,7 +325,7 @@ module ladder2(
             
             4'd4 : begin
                 if(save_done1 && save_done2) begin
-                    if (count==reglene_out) begin
+                    if (count==lene) begin
                         nextstate <= 4'd7;
                     end else begin
                         nextstate <= 4'd10;

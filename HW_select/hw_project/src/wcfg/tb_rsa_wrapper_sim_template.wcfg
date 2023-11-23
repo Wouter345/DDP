@@ -13,15 +13,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="153.640 ns"></ZoomStartTime>
-      <ZoomEndTime time="713.273 ns"></ZoomEndTime>
-      <Cursor1Time time="620.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="650.810 ns"></ZoomEndTime>
+      <Cursor1Time time="25.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="209"></NameColumnWidth>
-      <ValueColumnWidth column_width="173"></ValueColumnWidth>
+      <ValueColumnWidth column_width="169"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="14" />
+   <WVObjectSize size="13" />
    <wvobject type="logic" fp_name="/tb_rsa_wrapper/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -126,21 +126,9 @@
       <obj_property name="ElementShortName">COMMAND[31:0]</obj_property>
       <obj_property name="ObjectShortName">COMMAND[31:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/tb_rsa_wrapper/RXADDR">
-      <obj_property name="ElementShortName">RXADDR[31:0]</obj_property>
-      <obj_property name="ObjectShortName">RXADDR[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_rsa_wrapper/TXADDR">
-      <obj_property name="ElementShortName">TXADDR[31:0]</obj_property>
-      <obj_property name="ObjectShortName">TXADDR[31:0]</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/tb_rsa_wrapper/STATUS">
       <obj_property name="ElementShortName">STATUS[31:0]</obj_property>
       <obj_property name="ObjectShortName">STATUS[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/tb_rsa_wrapper/MEM0_ADDR">
-      <obj_property name="ElementShortName">MEM0_ADDR[15:0]</obj_property>
-      <obj_property name="ObjectShortName">MEM0_ADDR[15:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/tb_rsa_wrapper/MEM1_ADDR">
       <obj_property name="ElementShortName">MEM1_ADDR[15:0]</obj_property>
@@ -293,5 +281,13 @@
          <obj_property name="ElementShortName">[2048][1023:0]</obj_property>
          <obj_property name="ObjectShortName">[2048][1023:0]</obj_property>
       </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/regE_out">
+      <obj_property name="ElementShortName">regE_out[1024:0]</obj_property>
+      <obj_property name="ObjectShortName">regE_out[1024:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/tb_rsa_wrapper/dut/tb_rsa_project_i/rsa_0/inst/exp/regE_out">
+      <obj_property name="ElementShortName">regE_out[1024:0]</obj_property>
+      <obj_property name="ObjectShortName">regE_out[1024:0]</obj_property>
    </wvobject>
 </wave_config>

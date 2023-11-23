@@ -51,16 +51,14 @@ module rsa (
     reg  [1023:0] regX_out;
     always @(posedge clk)
     begin
-        if(~resetn)         regX_out <= 1024'd0;
-        else if (regX_en)   regX_out <= dma_rx_data;
+        if (regX_en)   regX_out <= dma_rx_data;
     end
         
     reg           regM_en;
     reg  [1023:0] regM_out;
     always @(posedge clk)
     begin
-        if(~resetn)         regM_out <= 1024'd0;
-        else if (regM_en)   regM_out <= dma_rx_data;
+        if (regM_en)   regM_out <= dma_rx_data;
     end
     
     reg           regE_en;
@@ -68,8 +66,7 @@ module rsa (
     reg shiftE;
     always @(posedge clk)
     begin
-        if(~resetn)         regE_out <= 1025'd0;
-        else if (regE_en)   regE_out <= dma_rx_data;
+        if (regE_en)   regE_out <= {1'b0, dma_rx_data};
     end
     
     reg           regA_en;
@@ -77,16 +74,14 @@ module rsa (
     reg  [1023:0] regA_out;
     always @(posedge clk)
     begin
-        if(~resetn)         regA_out <= 1024'd0;
-        else if (regA_en)   regA_out <= dma_rx_data;
+        if (regA_en)   regA_out <= dma_rx_data;
     end
     
     reg           regR2_en;
     reg  [1023:0] regR2_out;
     always @(posedge clk)
     begin
-        if(~resetn)          regR2_out <= 1024'd0;
-        else if (regR2_en)   regR2_out <= dma_rx_data;
+        if (regR2_en)   regR2_out <= dma_rx_data;
     end
     
 
@@ -201,8 +196,7 @@ module rsa (
   reg  [1023:0] regRes_out;
   always @(posedge clk)
     begin
-      if(~resetn)          regRes_out <= 1024'd0;
-      else if (regRes_en)   regRes_out <= result;
+      if (regRes_en)   regRes_out <= result;
   end
 
   always @(*) begin

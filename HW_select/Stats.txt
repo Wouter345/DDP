@@ -29,9 +29,9 @@
 				FFs=5124
 
 128_bit RSA:			WNS=0.002ns Default
-encrypt: 369_510 cycles soft	WNS=0.065ns ExplorePostRoute
-decrypt: 20_569_443 cycles	LUT=13_168
-				FFs=25_053
+encrypt: 369_510 cycles soft	WNS=0.238ns ExplorePostRoute
+decrypt: 20_569_443 cycles	LUT=13_165
+				FFs=21_941
 
 
 

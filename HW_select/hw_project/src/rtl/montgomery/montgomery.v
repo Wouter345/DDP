@@ -33,18 +33,7 @@ module montgomery(
     begin
         if (regBM_en)   regB_out <= in_b;
     end
-  
-  // Task 3
-    // Describe a 1024-bit register for M
 
-//    wire [1023:0] regM_in;
-//    reg  [1023:0] regM_out;
-//    always @(posedge clk)
-//    begin
-//        if(~resetn)         regM_out <= 1024'd0;
-//        else if (regBM_en)   regM_out <= in_m;
-//    end
-    
   // Task 4
     // Describe a 1028 bit register for result
     reg           regC_en;
@@ -112,11 +101,11 @@ module montgomery(
     // Describe state machine registers
     // Think about how many bits you will need
 
-    reg [3:0] state, nextstate;
+    reg [2:0] state, nextstate;
 
     always @(posedge clk)
     begin
-        if(~resetn)	state <= 4'd0;
+        if(~resetn)	state <= 3'd0;
         else        state <= nextstate;
     end
 
@@ -129,7 +118,7 @@ module montgomery(
 
             // Idle state; Here the FSM waits for the start signal
             // Enable input registers to fetch the inputs A and B when start is received
-            4'd0: begin
+            3'd0: begin
                 regA_en <= 1'b1;
                 regBM_en <= 1'b1;
                 regC_en <= 1'b0;
@@ -142,7 +131,7 @@ module montgomery(
                 shiftC <= 1'b0;
             end
 
-            4'd1: begin
+            3'd1: begin
                 regA_en <= 1'b1;
                 regBM_en <= 1'b0;
                 regC_en <= 1'b0;
@@ -155,7 +144,7 @@ module montgomery(
                 shiftC <= 1'b0;
             end
             
-            4'd2: begin
+            3'd2: begin
                 regA_en <= 1'b0;
                 regBM_en <= 1'b0;
                 regC_en <= 1'b1;
@@ -168,7 +157,7 @@ module montgomery(
                 shiftC <= 1'b0;
             end
 
-            4'd3: begin
+            3'd3: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= 1'b0;
@@ -181,7 +170,7 @@ module montgomery(
                 shiftC <= 1'b1;
             end
             
-            4'd4: begin
+            3'd4: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= 1'b1;
@@ -194,7 +183,7 @@ module montgomery(
                 shiftC <= 1'b1;
             end
             
-            4'd5: begin
+            3'd5: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= 1'b0;
@@ -207,7 +196,7 @@ module montgomery(
                 shiftC <= 1'b0;
             end
             
-            4'd6: begin
+            3'd6: begin
                 regA_en <= 1'b0;
                 regBM_en  <= 1'b0;
                 regC_en <= ~Sum[1027];
@@ -245,24 +234,24 @@ module montgomery(
     always @(*)
     begin
         case(state)
-            4'd0: begin
-                if(start) nextstate <= 4'd1;
-                else      nextstate <= 4'd0; end
-            4'd1 : begin
-                if(operandA) nextstate <= 4'd2;
-                else nextstate <= 4'd3; end
-            4'd2 : nextstate <= 4'd3;
-            4'd3 : begin
-                if(operandC[0]) nextstate <= 4'd4;
-                else if (count == 11'd1024) nextstate <= 4'd5;
-                else nextstate <= 4'd1; end
-            4'd4 : begin
-                if (count == 11'd1024) nextstate <= 4'd5;
-                else nextstate <= 4'd1; end
-             4'd5 : nextstate <= 4'd6;
-             4'd6 : nextstate <= 4'd0;
+            3'd0: begin
+                if(start) nextstate <= 3'd1;
+                else      nextstate <= 3'd0; end
+            3'd1 : begin
+                if(operandA) nextstate <= 3'd2;
+                else nextstate <= 3'd3; end
+            3'd2 : nextstate <= 3'd3;
+            3'd3 : begin
+                if(operandC[0]) nextstate <= 3'd4;
+                else if (count == 11'd1024) nextstate <= 3'd5;
+                else nextstate <= 3'd1; end
+            3'd4 : begin
+                if (count == 11'd1024) nextstate <= 3'd5;
+                else nextstate <= 3'd1; end
+             3'd5 : nextstate <= 3'd6;
+             3'd6 : nextstate <= 3'd0;
             
-             default: nextstate <= 4'd0;
+             default: nextstate <= 3'd0;
         endcase
     end
 
@@ -274,7 +263,7 @@ module montgomery(
                 always @(posedge clk)
                 begin
                     if(~resetn) regDone <= 1'd0;
-                    else        regDone <= (state==4'd6) ? 1'b1 : 1'b0;
+                    else        regDone <= (state==3'd6) ? 1'b1 : 1'b0;
                 end
 
                 assign done = regDone;
