@@ -4,8 +4,52 @@ import SW
 
 import sys
 
+def WriteConstants(number):
+
+    wordLenInBits = 32
+
+    charlen = wordLenInBits >> 2
+
+    text   = hex(number)
+
+    # Remove unwanted characters 0x....L
+    if text[-1] == "L":
+        text = text[2:-1]
+    else:
+        text = text[2:]
+ 
+    while (len(text)%4):
+        text = "0"+text
+    
+    
+    # Split the number into word-bit chunks
+    text   = text.zfill(len(text) + len(text) % charlen)  
+    # result = ' '.join("0x"+text[i: i+charlen]+"," for i in range(0, len(text), charlen)) 
+    result = ' '.join("0x"+text[i: i+charlen]+"," for i in reversed(range(0, len(text), charlen))) 
+
+    # Remove the last comma
+    result = result[:-1]
+
+    return result
+
+
 operation = 0
 seed = "random"
+
+seed = 2023
+M = helpers.getModulus(1024)
+A = helpers.getRandomInt(1024) % M
+B = helpers.getRandomInt(1024) % M
+
+C = SW.MontMul(A, B, M)
+D = HW.MontMul(A, B, M)
+
+e = (C - D)
+print("in_a    <= 1024'h", str(hex(A))[2:], ";")  # 1024-bits
+print("in_b    <= 1024'h", str(hex(B))[2:], ";")  # 1024-bits
+print("in_m    <= 1024'h", str(hex(M))[2:], ";")  # 1024-bits
+print("expected <= 1024'h", str(hex(D))[2:], ";")
+print("(A*B*R^-1) mod M = ", hex(C))  # 102
 
 print ("TEST VECTOR GENERATOR FOR DDP\n")
 
@@ -103,12 +147,19 @@ if operation == 4:
   C = HW.MontExp_MontPowerLadder(X, E, M)
   D = helpers.Modexp(X, E, M)
   e = C - D
+  
+  print("alignas(128) uint32_t N[32] 	= {", WriteConstants(M), "};")
+  print("alignas(128) uint32_t e[32] 	= {", WriteConstants(E), "};") 
+  print("alignas(128) uint32_t M[32] 	= {", WriteConstants(X), "};")
+  print("alignas(128) uint32_t exp[32]  = {", WriteConstants(C), "};")
+
 
   print ("X                = ", hex(X))           # 1024-bits
   print ("E                = ", hex(E))           # 8-bits
   print ("M                = ", hex(M))           # 1024-bits
   print ("(X^E) mod M      = ", hex(C))           # 1024-bits
   print ("(X^E) mod M      = ", hex(D))           # 1024-bits
+
   print ("error            = ", hex(e))
 
 #####################################################
@@ -117,13 +168,13 @@ if operation == 5:
 
   print ("Test Vector for RSA\n")
 
-  print ("\n--- Precomputed Values")
+  #print ("\n--- Precomputed Values")
 
   # Generate two primes (p,q), and modulus
   [p,q,N] = helpers.getModuli(1024)
 
-  print ("p            = ", hex(p))               # 512-bits
-  print ("q            = ", hex(q))               # 512-bits
+  #print ("p            = ", hex(p))               # 512-bits
+  #print ("q            = ", hex(q))               # 512-bits
   print ("Modulus      = ", hex(N))               # 1024-bits
 
   # Generate Exponents
@@ -134,14 +185,6 @@ if operation == 5:
 
   # Generate Message
   M     = helpers.getRandomMessage(1024,N)
-
-  print ("Message      = ", hex(M))               # 1024-bits
-
-  if len(sys.argv) == 4:
-    if (sys.argv[3].upper() != "NOWRITE"):
-      helpers.CreateConstants(seed, N, e, d, M)
-  else:
-    helpers.CreateConstants(seed, N, e, d, M)
 
   #####################################################
 
@@ -165,3 +208,16 @@ if operation == 5:
   # Decrypt
   Pt = HW.MontExp_MontPowerLadder(Ct, d, N)       # 1024-bit exponentiation
   print ("Plaintext    = ", hex(Pt))              # 1024-bits
+
+  print ("Message      = ", hex(M))               # 1024-bits
+
+  if len(sys.argv) == 4:
+    if (sys.argv[3].upper() != "NOWRITE"):
+      helpers.CreateConstants(seed, N, e, d, M, Ct)
+  else:
+    helpers.CreateConstants(seed, N, e, d, M, Ct)
+
+
+
+
+
