@@ -37,8 +37,19 @@ decrypt: 20_569_443 cycles	LUT=13_165
 
 
 ----------FAST MONTGOMERY PROJECT---------------
+64 bit super fast mont 		WNS=0.032ns ExplorePostRoute
+1_548 cycles			LUT=4551
+				FFs=5146
 
+128 bit super fast mont 	WNS=-0.449ns ExplorePostRoute
+				Lut=4532
+				FFs=5078
 
+64+3 bit super fast mont 	WNS=-0.0.048 ExplorePostRoute
+				Lut=4593
+				FFs=5156
+
+64 bit RSA WNS=-0.777ns
 
 
 

@@ -13,7 +13,7 @@ module hweval_adder (
     wire          done;
        
     // Instantiate the adder    
-    mpadder4 dut (
+    mpadder1 dut (
         .clk      (clk     ),
         .in_a     (in_a    ),
         .in_b     (in_b    ),

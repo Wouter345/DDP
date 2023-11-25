@@ -2,13 +2,10 @@
 
 module mpadder (
   input wire clk,
-  input wire resetn,
-  input wire start,
   input wire subtract,
   input wire [1026:0] in_a,
   input wire [1026:0] in_b,
-  output wire [1027:0] result,
-  output wire done
+  output wire [1027:0] result
 );
 
     wire [1026:0] MuxB = (subtract) ? ~in_b : in_b;
@@ -63,12 +60,14 @@ module mpadder (
   reg [1027:64] regB;
   reg [14:0] regcA;
   reg [14:1] regcB;
+  reg sub;
   always @(posedge clk) 
   begin
     regA <= sumA;
     regB <= sumB;
     regcA <= carryA;
     regcB <= carryB;
+    sub <= subtract;
   end  
   
     assign carry1 = regcA[0];
@@ -105,18 +104,9 @@ module mpadder (
     assign Sum[1027:960] = carry15? regB[1027:960]: regA[1027:960];
   
 
-  wire carry_out = subtract ^ Sum[1027];
+  wire carry_out = sub ^ Sum[1027];
   assign result = {carry_out, Sum[1026:0]};
 
-  reg regDone;
-  always @(posedge clk) begin
-    if (start)
-      regDone <= 1'b1;
-    else
-      regDone <= 1'b0;
-  end
-
-  assign done = regDone;
 
 endmodule
 

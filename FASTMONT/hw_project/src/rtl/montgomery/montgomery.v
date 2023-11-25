@@ -71,7 +71,7 @@ module montgomery(
     
     
     reg subtract;
-    mpadder2 adder(clk,subtract,Res,{3'b0,muxInput2_Out},Sum);
+    mpadder adder(clk,subtract,Res,{3'b0,muxInput2_Out},Sum);
 
 
     assign result = regC_out;
