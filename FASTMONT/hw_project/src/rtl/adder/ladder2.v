@@ -80,10 +80,7 @@ module ladder2(
     assign regXX_in = select_res? Res1: Res2;
     assign regA_in = (state == 3'd0)? (in_r): (select_res? Res2: Res1);
     
-    wire enableXX;
-    wire enableA;
-    assign enableXX = select_res? ~save_done1: ~save_done2;
-    assign enableA = select_res? ~save_done2: ~save_done1;
+    
     
     
     reg save_done1;
@@ -98,7 +95,8 @@ module ladder2(
             if (~save_done1) save_done1 <= Done1; 
             if (~save_done2) save_done2 <= Done2; end
     end
-    
+    wire bothdone;
+    assign bothdone = save_done1 && save_done2;
 
 
     assign result = regA_out;
@@ -195,9 +193,9 @@ module ladder2(
             end
             
             3'd4: begin
-                regXX_en <= enableXX;
+                regXX_en <= bothdone;
                 regE_en <= 1'b0;
-                regA_en <= enableA;
+                regA_en <= bothdone;
                 select1 <= 1'b0;
                 select2 <= 2'b10;
                 select3 <= ~Ei;
@@ -300,7 +298,7 @@ module ladder2(
             3'd3 : nextstate <= 3'd4;
             
             3'd4 : begin
-                if(save_done1 && save_done2) begin
+                if(bothdone) begin
                     if (count==lene) begin
                         nextstate <= 3'd5;
                     end else begin

@@ -10,10 +10,6 @@ module montgomery(
   output [1023:0] result,
   output          done
     );
-  
-  // Task 1
-    // Describe a 1024-bit register for A
-    // It will save the input data when enable signal is high
 
     reg           regA_en;
     reg           shiftA;
@@ -24,60 +20,51 @@ module montgomery(
         else if (shiftA) regA_out <= regA_out >> 1;
     end
     
-
-// Task 2
-    // Describe a 1024-bit register for B
-
-    reg           regB_en;
-    reg  [1023:0] regB_out;
+    // This reg will save The value B+M (1024bits+1024bits-->1025bits)
+    reg           regBM_en;
+    reg  [1027:0] regBM_out;
     always @(posedge clk)
     begin
-        if (regB_en)   regB_out <= in_b;
+        if (regBM_en)   regBM_out <= Sum;
     end
-
-  // Task 4
-    // Describe a 1028 bit register for result
+    
     reg           regC_en;
     reg  [1027:0] regC_out;
-    reg reset;
     always @(posedge clk)
     begin
-        if(reset)     regC_out <= 1028'd0;
-        else if (regC_en)   regC_out <= Res;
+        if (reset)     regC_out <= 1028'd0;
+        else if (regC_en)   regC_out <= Sum>>1;
     end
     
     
     
-   // Task 7 
-     //If ai = 1 do C+B
-    wire [1023:0] operandB;
-    wire [1023:0] operandM;
-    wire [1027:0] Sum;
-    wire [1027:0] Res;
-
-    assign operandB = regB_out;
-    assign operandM = in_m;
+    /// Calculation of C0_new based on A0, B0, C0
+    wire C0_new;
+    assign C0_new = regA_out[0]? (in_b[0]^regC_out[0]):regC_out[0];
     
-    reg shiftC;
-    reg zero;
-    assign Res = ~zero? (shiftC? Sum>>1: Sum): (shiftC? regC_out >> 1: 1028'b0);
     
-  // Task 8
-    // design Multiplexer to choose between adder input B or M;
-    reg           muxInput2_sel;
-    wire [1023:0] muxInput2_Out;
-    assign muxInput2_Out = muxInput2_sel? operandM : operandB;
+    // select operand1 and operand2
+    reg operand1_sel;
+    wire [1026:0] operand1;
+    assign operand1 = operand1_sel? regC_out: in_b; 
    
+    wire [1026:0] operand2;
+    reg [1:0] operand2_sel;
+    assign operand2 = operand2_sel[1]? (operand2_sel[0]? regBM_out : {3'b0,in_b}) : (operand2_sel[0]? {3'b0,in_m} : 1027'b0);
     
     
     reg subtract;
-    mpadder adder(clk,subtract,Res,{3'b0,muxInput2_Out},Sum);
+    wire [1027:0] Sum;
+    wire [1027:0] Res;
+    mpadder adder(clk,subtract,operand1,operand2,Sum);
+    
 
 
-    assign result = regC_out;
+    assign result = regBM_out[1027]? regC_out: regBM_out; //At the end C-M will be stored in regBM_out
     
     reg [9:0] count;
     reg count_en; 
+    reg reset;
     always @(posedge clk) begin
       if (reset) count <= 10'b0;
       else if (count_en)  count <= count +1;
@@ -94,9 +81,7 @@ module montgomery(
         if(~resetn)	state <= 3'd0;
         else        state <= nextstate;
     end
-    
-    reg camefrom4;
-    reg camefrom3;
+
     
 // Task 12
     // Define your states
@@ -109,107 +94,98 @@ module montgomery(
             // Enable input registers to fetch the inputs A and B when start is received
             3'd0: begin
                 regA_en <= 1'b1;
-                shiftA  <= 1'b0;
-                regB_en <= 1'b1;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
                 regC_en <= 1'b0;
-                muxInput2_sel <= 1'b0;
-                shiftC <= 1'b0;
-                zero <= 1'b1;
-                count_en <= 1'b0;
+                operand1_sel <= 1'b0;
+                operand2_sel <= 2'b00;
                 subtract <= 1'b0;
-                reset <= 1'b1;
+                count_en <= 1'b0;
+                reset <= 1'b0;
             end
-
+            
             3'd1: begin
                 regA_en <= 1'b0;
-                shiftA  <= 1'b0;
-                regB_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
                 regC_en <= 1'b0;
-                muxInput2_sel <= 1'b0;
-                shiftC <= 1'b0;
-                zero <= 1'b1;
-                count_en <= 1'b1;
+                operand1_sel <= 1'b0;
+                operand2_sel <= 2'b01;
                 subtract <= 1'b0;
-                reset <= 1'b0;
+                count_en <= 1'b0;
+                reset <= 1'b1;
             end
             
             3'd2: begin
                 regA_en <= 1'b0;
-                shiftA  <= 1'b1;
-                regB_en <= 1'b0;
-                regC_en <= 1'b1;
-                muxInput2_sel <= 1'b1;
-                shiftC <= 1'b0;
-                zero <= ~regA_out;
-                count_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b1;
+                regC_en <= 1'b0;
+                operand1_sel <= 1'b1;
+                operand2_sel <= {regA_out[0], C0_new};
                 subtract <= 1'b0;
+                count_en <= 1'b0;
                 reset <= 1'b0;
             end
-
+            
             3'd3: begin
                 regA_en <= 1'b0;
-                shiftA  <= 1'b0;
-                regB_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
                 regC_en <= 1'b0;
-                muxInput2_sel <= 1'b0;
-                shiftC <= 1'b1;
-                zero <= ~regC_out[0];
-                count_en <= 1'b0;
+                operand1_sel <= 1'b1;
+                operand2_sel <= {regA_out[0], C0_new};
                 subtract <= 1'b0;
+                count_en <= 1'b0;
                 reset <= 1'b0;
             end
             
             3'd4: begin
                 regA_en <= 1'b0;
-                shiftA  <= 1'b1;
-                regB_en <= 1'b0;
+                shiftA <= 1'b1;
+                regBM_en <= 1'b0;
                 regC_en <= 1'b1;
-                muxInput2_sel <= 1'b1;
-                shiftC <= camefrom4;
-                zero <= ~(camefrom3 || regC_out[0]);
-                count_en <= 1'b1;
+                operand1_sel <= 1'b1;
+                operand2_sel <= {regA_out[0], C0_new};
                 subtract <= 1'b0;
+                count_en <= 1'b1;
                 reset <= 1'b0;
             end
             
             3'd5: begin
                 regA_en <= 1'b0;
-                shiftA  <= 1'b0;
-                regB_en <= 1'b0;
-                regC_en <= 1'b1;
-                muxInput2_sel <= 1'b1;
-                shiftC <= 1'b1;
-                zero <= ~regC_out[0];
-                count_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
+                regC_en <= 1'b0;
+                operand1_sel <= 1'b1;
+                operand2_sel <= 2'b01;
                 subtract <= 1'b1;
+                count_en <= 1'b0;
                 reset <= 1'b0;
             end
             
             3'd6: begin
                 regA_en <= 1'b0;
-                shiftA  <= 1'b0;
-                regB_en <= 1'b0;
-                regC_en <= ~Res[1027];
-                muxInput2_sel <= 1'b1;
-                shiftC <= 1'b0;
-                zero <= 1'b0;
-                count_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b1;
+                regC_en <= 1'b0;
+                operand1_sel <= 1'b1;
+                operand2_sel <= 2'b01;
                 subtract <= 1'b1;
+                count_en <= 1'b0;
                 reset <= 1'b0;
             end
-                        
-            
+
             default: begin
-                regA_en <= 1'b0;
-                shiftA  <= 1'b0;
-                regB_en <= 1'b0;
+                regA_en <= 1'b1;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
                 regC_en <= 1'b0;
-                muxInput2_sel <= 1'b1;
-                shiftC <= 1'b0;
-                zero <= 1'b0;
-                count_en <= 1'b0;
+                operand1_sel <= 1'b0;
+                operand2_sel <= 2'b00;
                 subtract <= 1'b0;
-                reset <= 1'b1;
+                count_en <= 1'b0;
+                reset <= 1'b0;
             end
         endcase
     end
@@ -222,32 +198,19 @@ module montgomery(
             3'd0: begin
                 if(start) nextstate <= 3'd1;
                 else      nextstate <= 3'd0; end
-            3'd1 : nextstate <= 3'd2;
-            3'd2 : begin
-                if (regA_out[1]) nextstate <= 3'd3; 
-                else nextstate <= 3'd4; end
-            3'd3 : nextstate <= 3'd4;
-            3'd4 : begin
-                if (count == 10'd1023)  nextstate <= 3'd5;
-                else if (regA_out[1])   nextstate <= 3'd3; 
-                else                    nextstate <= 3'd4; end
-             3'd5 : nextstate <= 3'd6;
-             3'd6 : nextstate <= 3'd0;
-            
-             default: nextstate <= 3'd0;
+            3'd1: nextstate <= 3'd2;
+            3'd2: nextstate <= 3'd3;
+            3'd3: nextstate <= 3'd4;
+            3'd4:begin
+                if (count == 10'd1023) nextstate <= 3'd5;
+                else nextstate <= 3'd3; end
+            3'd5: nextstate <= 3'd6;
+            3'd6: nextstate <= 3'd0;
+
+            default: nextstate <= 3'd0;
         endcase
     end
     
-    always @(posedge clk)
-    begin
-        camefrom4 <= 1'b0;
-        camefrom3 <= 1'b0;
-        case(state)
-            3'd2: camefrom4 <= 1'b1;
-            3'd3: camefrom3 <= 1'b1;
-            3'd4: camefrom4 <= 1'b1;
-        endcase
-    end   
 
     // Task 14
     // Describe done signal
