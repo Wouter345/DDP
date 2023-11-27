@@ -19,6 +19,12 @@ State 4		add regC_out + Sum1	<-- second adder
 		shiftA
 		count up
 
-State 5		
-		
+State 8		M+0			<-- first adder
+
+State 5		RegC_out-(Sum1=M)	<-- second adder
+
+State 6 	Write Sum2 to regBM
+
+State 0		where result = regC_out or regBM_out	
+			       (if C-M<0)  (ifC-M>0)	
 		
