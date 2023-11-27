@@ -26,7 +26,7 @@ module tb_adder4();
         .subtract (subtract),
         .in_a     (in_a    ),
         .in_b     (in_b    ),
-        .in_c     (in_c    ),
+//        .in_c     (in_c    ),
         .result   (result  ));
 
     // Generate Clock
@@ -95,7 +95,7 @@ module tb_adder4();
                  1027'h 1380208a9ad45f23d3b1a11df587fd2803bab6c398d88348a7eed8d14f06d3fef701966a0c381e88f38c0c8fd8712b8bc076f3787b9d179e06c0fd4f5f8130c4237730edfafbd67f9619699cfe1988ad9f06c144a025b413f8a9a021ea648a7dd06839eb905b6e6e307d4bedc51431193e6c3f3391a2b8f1ff1fd42a29755d4c1,
                  1027'h 2e901e35cd47d380d81f9c1f66c0f3459f79b17aeefba91fc803468b6b610a9f7f9270f4eb8b333a8e5446dd4552b82f6be3edc0a1ef2a4f04be03db0dc2574bdb94067edfe175330a11d459a2f978d8719999e3fa46d6753ec148cb48e73ca47ea90a8f0d66b829e6a8ac4ba05805975ed2f89d94a2f20aaf3c64af775a89294
                  );
-    expected  = 1028'h 5ee486a3c3a7a0349014211193693ec07e5689e407dcccc2dc386672569a2b36d04c18465eafeeebe81cfb95fb232ef65aa5e8077e005e67934d43f28ec3faf8c26730ffb77be814063e25600b7fee47c82eac2eb19da8137397cfe17b39147a00f4433331d6e9dbd828748681a4a26cea154bb433d4c1aaa777ae5e42f64194a;
+    expected  = 1028'h 3054686df65fccb3b7f484f22ca84b7adedcd86918e123a314351fe6eb39209750b9a7517324bbb159c8b4b8b5d076c6eec1fa46dc1134188e8f40178101a3ace6d32a80d79a72e0fc2c51066886756f5695124ab756d19e34d687163251d7d5824b38a4247031b1f17fc83ae14c9cd58b4253169f31cf9ff83b49aecb9bb86b6;
     #`CLK_PERIOD;
     result_ok = (expected==result);
     $display("result calculated=%x", result);

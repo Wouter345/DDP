@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module hweval_adder (
+module hweval_adder4 (
     input   clk     ,
     input   resetn  ,
     output  data_ok );
@@ -9,16 +9,19 @@ module hweval_adder (
     reg           subtract;
     reg  [1026:0] in_a;
     reg  [1026:0] in_b;
+    reg  [1026:0] in_c;
     wire [1027:0] result;
     wire          done;
        
     // Instantiate the adder    
-    mpadder dut (
+    mpadder5 dut (
         .clk      (clk     ),
         .subtract (subtract),
         .in_a     (in_a    ),
         .in_b     (in_b    ),
+        .in_c     (in_c    ),
         .result   (result  ));
+    assign done = 1;
 
     reg [1:0] state;
     assign done = 1'b1;
@@ -27,6 +30,7 @@ module hweval_adder (
         if (!resetn) begin
             in_a     <= 1027'b1;
             in_b     <= 1027'b1;
+            in_c     <= 1027'b1;
             subtract <= 1'b0;
                     
             start    <= 1'b0;           
@@ -37,6 +41,7 @@ module hweval_adder (
             if (state == 2'b00) begin
                 in_a     <= in_a;
                 in_b     <= in_b;
+                in_c     <= in_c;
                 subtract <= subtract;
                 
                 start    <= 1'b1;            
@@ -47,6 +52,7 @@ module hweval_adder (
             end else if(state == 2'b01) begin
                 in_a     <= in_a;
                 in_b     <= in_b;
+                in_c     <= in_c;
                 subtract <= subtract;
                         
                 start    <= 1'b0;           
@@ -57,6 +63,7 @@ module hweval_adder (
             else begin
                 in_a     <= in_b ^ result[1026:0];
                 in_b     <= result[1026:0];
+                in_c     <= result[1026:0];
                 subtract <= result[1027] & result[1026];
                                     
                 start    <= 1'b0;
