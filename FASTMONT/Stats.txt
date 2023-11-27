@@ -42,8 +42,16 @@ decrypt: 20_569_443 cycles	LUT=13_165
 
 64 bit RSA			WNS=0.167ns ExplorePostRoute
 20_591 cycles HW		LUT=15_506
-				FFS=22177
+				FFS=22_177
+----------SUPER FAST MONTGOMERY PROJECT---------------
 
+Montgomery3			WNS=0.276ns ExplorePostRoute
+(different adder sizes)		LUT=6_161
+1_032 cycles			FFs=7_086
+
+RSA				WNS=0.003ns ExploreWithRemap
+10_371 cycles HW		LUT=18_162
+				FFs=26086
 
 
 
