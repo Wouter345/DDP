@@ -39,7 +39,7 @@ module montgomery4(
         else if (regC_en)   regC_out <= regC_in; 
     end
     
-    // select operand1 and operand2 and operand3
+    // select operand1 and operand2
     wire [1026:0] operand1;
     reg [1:0] operand1_sel;
     assign operand1 = operand1_sel[1]? (operand1_sel[0]? regBM_out : {3'b0,in_b}) : (operand1_sel[0]? {3'b0,in_m} : 1027'b0); //Adder selection for first iteration
@@ -50,7 +50,7 @@ module montgomery4(
     
     wire [1027:0] Sum1;
     reg leftshift;
-    mpadder7 adder1(clk,leftshift, operand1,operand2,Sum1); //op2*2 --> after >>2 ---> opt/2
+    mpadder7 adder1(clk,leftshift, operand1,operand2,Sum1); 
     
     wire [1027:0] Sum2;
     wire [1027:0] Res1;

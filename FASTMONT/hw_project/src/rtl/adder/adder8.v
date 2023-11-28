@@ -2,120 +2,112 @@
 
 module mpadder8 (
   input wire clk,
-  input wire subtract,
+  input wire leftshift,
   input wire [1026:0] in_a,
   input wire [1026:0] in_b,
-  input wire [1026:0] in_c,
   output wire [1027:0] result
 );
 
-    wire [1026:0] MuxB = (subtract) ? ~in_b : in_b;
+    wire [1026:0] MuxB = leftshift? {in_b,1'b0} :in_b;
     wire [1027:0] Sum;
     
     
     wire [1027:0] sumA;
-    wire [1027:85] sumB;
-    wire [1027:85] sumC;
+    wire [1027:93] sumB;
     
-    wire [21:0] carryA;
-    wire [21:2] carryB;
-    wire [21:2] carryC;
-        
-    assign {carryA[1:0],sumA[84:0]} = in_a[84:0] + MuxB[84:0] + in_c[84:0] + subtract;  
+    wire [9:0] carryA;
+    wire [9:1] carryB;
     
-    add85 A2(in_a[169:85], MuxB[169:85], in_c[169:85], sumA[169:85], carryA[3:2], sumB[169:85], carryB[3:2], sumC[169:85], carryC[3:2]);
-    add85 A3(in_a[254:170], MuxB[254:170], in_c[254:170], sumA[254:170], carryA[5:4], sumB[254:170], carryB[5:4], sumC[254:170], carryC[5:4]);
-    add85 A4(in_a[339:255], MuxB[339:255], in_c[339:255], sumA[339:255], carryA[7:6], sumB[339:255], carryB[7:6], sumC[339:255], carryC[7:6]);
-    add85 A5(in_a[424:340], MuxB[424:340], in_c[424:340], sumA[424:340], carryA[9:8], sumB[424:340], carryB[9:8], sumC[424:340], carryC[9:8]);
-    add85 A6(in_a[509:425], MuxB[509:425], in_c[509:425], sumA[509:425], carryA[11:10], sumB[509:425], carryB[11:10], sumC[509:425], carryC[11:10]);
-    add85 A7(in_a[594:510], MuxB[594:510], in_c[594:510], sumA[594:510], carryA[13:12], sumB[594:510], carryB[13:12], sumC[594:510], carryC[13:12]);
-    add85 A8(in_a[679:595], MuxB[679:595], in_c[679:595], sumA[679:595], carryA[15:14], sumB[679:595], carryB[15:14], sumC[679:595], carryC[15:14]);
-    add85 A9(in_a[764:680], MuxB[764:680], in_c[764:680], sumA[764:680], carryA[17:16], sumB[764:680], carryB[17:16], sumC[764:680], carryC[17:16]);
-    add85 A10(in_a[849:765], MuxB[849:765], in_c[849:765], sumA[849:765], carryA[19:18], sumB[849:765], carryB[19:18], sumC[849:765], carryC[19:18]);
-    add85 A11(in_a[934:850], MuxB[934:850], in_c[934:850], sumA[934:850], carryA[21:20], sumB[934:850], carryB[21:20], sumC[934:850], carryC[21:20]);
-    add92 A12(in_a[1026:935], MuxB[1026:935], in_c[1026:935], sumA[1027:935], sumB[1027:935], sumC[1027:935]);
-      
+    wire carry1;
+    wire carry2;
+    wire carry3;
+    wire carry4;
+    wire carry5;
+    wire carry6;
+    wire carry7;
+    wire carry8;
+    wire carry9;
+    wire carry10;
+    
+    
+  assign {carryA[0],sumA[92:0]} = in_a[92:0] + MuxB[92:0];   
+    add93 A2(in_a[185:93], MuxB[185:93], sumA[185:93], carryA[1], sumB[185:93], carryB[1]);
+    add93 A3(in_a[278:186], MuxB[278:186], sumA[278:186], carryA[2], sumB[278:186], carryB[2]);
+    add93 A4(in_a[371:279], MuxB[371:279], sumA[371:279], carryA[3], sumB[371:279], carryB[3]);
+    add93 A5(in_a[464:372], MuxB[464:372], sumA[464:372], carryA[4], sumB[464:372], carryB[4]);
+    add93 A6(in_a[557:465], MuxB[557:465], sumA[557:465], carryA[5], sumB[557:465], carryB[5]);
+    add93 A7(in_a[650:558], MuxB[650:558], sumA[650:558], carryA[6], sumB[650:558], carryB[6]);
+    add93 A8(in_a[743:651], MuxB[743:651], sumA[743:651], carryA[7], sumB[743:651], carryB[7]);
+    add93 A9(in_a[836:744], MuxB[836:744], sumA[836:744], carryA[8], sumB[836:744], carryB[8]);
+    add93 A10(in_a[929:837], MuxB[929:837], sumA[929:837], carryA[9], sumB[929:837], carryB[9]);
+    add97 A11(in_a[1026:930], MuxB[1026:930], sumA[1027:930], sumB[1027:930]);
   
+
   reg [1027:0] regA;
-  reg [1027:85] regB;
-  reg [1027:85] regC;
-  reg [21:0] regcA;
-  reg [21:2] regcB;
-  reg [21:2] regcC;
-  reg sub;
+  reg [1027:93] regB;
+  reg [9:0] regcA;
+  reg [9:1] regcB;
   always @(posedge clk) 
   begin
     regA <= sumA;
     regB <= sumB;
-    regC <= sumC;
     regcA <= carryA;
     regcB <= carryB;
-    regcC <= carryC;
-    sub <= subtract;
   end  
   
-  wire [29:0] carry;
+    assign carry1 = regcA[0];
+    assign carry2 = carry1? regcA[1]: regcB[1];
+    assign carry3 = carry2? regcA[2]: regcB[2];
+    assign carry4 = carry3? regcA[3]: regcB[3];
+    assign carry5 = carry4? regcA[4]: regcB[4];
+    assign carry6 = carry5? regcA[5]: regcB[5];
+    assign carry7 = carry6? regcA[6]: regcB[6];
+    assign carry8 = carry7? regcA[7]: regcB[7];
+    assign carry9 = carry8? regcA[8]: regcB[8];
+    assign carry10 = carry9? regcA[9]: regcB[9];
+
   
-    assign carry[1:0] = regcA[1:0];
-    assign carry[3:2] = carry[1]? (regcC[3:2]): (carry[0]? regcB[3:2]: regcA[3:2]);
-    assign carry[5:4] = carry[3]? (regcC[5:4]): (carry[2]? regcB[5:4]: regcA[5:4]);
-    assign carry[7:6] = carry[5]? (regcC[7:6]): (carry[4]? regcB[7:6]: regcA[7:6]);
-    assign carry[9:8] = carry[7]? (regcC[9:8]): (carry[6]? regcB[9:8]: regcA[9:8]);
-    assign carry[11:10] = carry[9]? (regcC[11:10]): (carry[8]? regcB[11:10]: regcA[11:10]);
-    assign carry[13:12] = carry[11]? (regcC[13:12]): (carry[10]? regcB[13:12]: regcA[13:12]);
-    assign carry[15:14] = carry[13]? (regcC[15:14]): (carry[12]? regcB[15:14]: regcA[15:14]);
-    assign carry[17:16] = carry[15]? (regcC[17:16]): (carry[14]? regcB[17:16]: regcA[17:16]);
-    assign carry[19:18] = carry[17]? (regcC[19:18]): (carry[16]? regcB[19:18]: regcA[19:18]);
-    assign carry[21:20] = carry[19]? (regcC[21:20]): (carry[18]? regcB[21:20]: regcA[21:20]);
-      
-    assign Sum[84:0] = regA[84:0];
-    assign Sum[169:85] = carry[1]? (regC[169:85]) : (carry[0]? regB[169:85]: regA[169:85]);
-    assign Sum[254:170] = carry[3]? (regC[254:170]) : (carry[2]? regB[254:170]: regA[254:170]);
-    assign Sum[339:255] = carry[5]? (regC[339:255]) : (carry[4]? regB[339:255]: regA[339:255]);
-    assign Sum[424:340] = carry[7]? (regC[424:340]) : (carry[6]? regB[424:340]: regA[424:340]);
-    assign Sum[509:425] = carry[9]? (regC[509:425]) : (carry[8]? regB[509:425]: regA[509:425]);
-    assign Sum[594:510] = carry[11]? (regC[594:510]) : (carry[10]? regB[594:510]: regA[594:510]);
-    assign Sum[679:595] = carry[13]? (regC[679:595]) : (carry[12]? regB[679:595]: regA[679:595]);
-    assign Sum[764:680] = carry[15]? (regC[764:680]) : (carry[14]? regB[764:680]: regA[764:680]);
-    assign Sum[849:765] = carry[17]? (regC[849:765]) : (carry[16]? regB[849:765]: regA[849:765]);
-    assign Sum[934:850] = carry[19]? (regC[934:850]) : (carry[18]? regB[934:850]: regA[934:850]);
-    assign Sum[1027:935] = carry[21]? (regC[1027:935]) : (carry[20]? regB[1027:935]: regA[1027:935]);
-    
-  wire carry_out = sub ^ Sum[1027];
-  assign result = {carry_out, Sum[1026:0]};
+    assign Sum[92:0] = regA[92:0];
+    assign Sum[185:93] = carry1? regB[185:93]: regA[185:93];
+    assign Sum[278:186] = carry2? regB[278:186]: regA[278:186];
+    assign Sum[371:279] = carry3? regB[371:279]: regA[371:279];
+    assign Sum[464:372] = carry4? regB[464:372]: regA[464:372];
+    assign Sum[557:465] = carry5? regB[557:465]: regA[557:465];
+    assign Sum[650:558] = carry6? regB[650:558]: regA[650:558];
+    assign Sum[743:651] = carry7? regB[743:651]: regA[743:651];
+    assign Sum[836:744] = carry8? regB[836:744]: regA[836:744];
+    assign Sum[929:837] = carry9? regB[929:837]: regA[929:837];
+    assign Sum[1027:930] = carry10? regB[1027:930]: regA[1027:930];
+  
 
+  assign result = Sum;
 
 endmodule
 
-module add85(
-    input wire [84:0] a,
-    input wire [84:0] b,
-    input wire [84:0] c,
-    output wire [84:0] suma,
-    output wire [1:0] carrya,
-    output wire [84:0] sumb,
-    output wire [1:0] carryb,
-    output wire [84:0] sumc,
-    output wire [1:0] carryc
-    );
-    
-    assign {carrya, suma} = a+b+c;
-    assign {carryb, sumb} = a+b+c+2'b01;
-    assign {carryc, sumc} = a+b+c+2'b10;
-endmodule
-
-
-
-module add92(
-    input wire [91:0] a,
-    input wire [91:0] b,
-    input wire [91:0] c,
+module add93(
+    input wire [92:0] a,
+    input wire [92:0] b,
     output wire [92:0] suma,
+    output wire carrya,
     output wire [92:0] sumb,
-    output wire [92:0] sumc
+    output wire carryb
     );
     
-    assign suma= a+b+c;
-    assign sumb = a+b+c+2'b01;
-    assign sumc = a+b+c+2'b10;
+    assign {carrya, suma} = a+b;
+    assign {carryb, sumb} = a+b+1'b1;
+    
+    
+endmodule
+
+module add97(
+    input wire [96:0] a,
+    input wire [96:0] b,
+    output wire [97:0] suma,
+    output wire [97:0] sumb
+    );
+    
+    assign suma= a+b;
+    assign sumb = a+b+1'b1;
+    
+    
 endmodule
