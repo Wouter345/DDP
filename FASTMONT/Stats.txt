@@ -54,4 +54,13 @@ RSA				WNS=0.003ns ExploreWithRemap
 				FFs=26086
 
 
+----------SUPER DUPER FUCKING FAST MONTGOMERY PROJECT---------------
+
+Montgomery5
+521 cycles
+
+
+RSA				WNS=0.020ns ExploreWithRemap
+5758 cycles HW			LUT=20_704
+				FFs=28_410
 
