@@ -1,0 +1,30 @@
+Calculate 2 iterations at a time 
+use of 2 adders in series
+State 3 and 4 are the loop
+
+State 0 	Read Inputs
+
+State 1 	B+0  			<--first adder
+		Load RegC=in_m
+
+State 7		(Sum1=B)+(RegC_out=M)	<-- second adder
+		Reset=1
+
+State 2		Write B+M
+
+State 3		add operand1+operand2	<-- first adder
+		
+State 4		add regC_out + Sum1	<-- second adder
+		Figure out what action to take for 3rd and 4th iterations
+		shiftA
+		count up
+
+State 8		M+0			<-- first adder
+
+State 5		RegC_out-(Sum1=M)	<-- second adder
+
+State 6 	Write Sum2 to regBM
+
+State 0		where result = regC_out or regBM_out	
+			       (if C-M<0)  (ifC-M>0)	
+		

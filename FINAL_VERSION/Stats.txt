@@ -1,0 +1,66 @@
+64_bit select_carry_Adder:	31 adders
+				WNS=0.151ns Default
+				WNS=1.112ns ExplorePostRoute
+				LUT=2547
+				FFs=2023
+
+128_bit select_carry_Adder:	15 adders
+				WNS=0.326ns Default
+				LUT=2463
+				FFs=1948
+64+3_bit select_carry_Adder:	33 adders
+				WNS=1.006ns Default
+				LUT=2553
+				FFs=2025
+
+64_bit Montgomery:		WNS=0.665ns Default
+3067 cycles			WNS=0.687ns ExplorePostRoute
+				LUT=4348
+				FFs=5116
+
+128_bit Montgomery:		WNS=0.816ns Default
+				WNS=0.816ns ExplorePostRoute
+				LUT=4271
+				FFs=5052
+
+64+3_bit Montgomery:		WNS=0.639ns Default
+				WNS=0.968ns ExplorePostRoute
+				LUT=4347
+				FFs=5124
+
+128_bit RSA:			WNS=0.002ns Default
+encrypt: 369_510 cycles soft	WNS=0.238ns ExplorePostRoute
+decrypt: 20_569_443 cycles	LUT=13_165
+				FFs=21_941
+
+----------FAST MONTGOMERY PROJECT---------------
+64 bit fast mont		WNS=1.076ns ExplorePostRoute
+2_053 cycles			LUT=4_390
+				FFs=5_155
+
+
+
+64 bit RSA			WNS=0.167ns ExplorePostRoute
+20_591 cycles HW		LUT=15_506
+				FFS=22_177
+----------SUPER FAST MONTGOMERY PROJECT---------------
+
+Montgomery3			WNS=0.276ns ExplorePostRoute
+(different adder sizes)		LUT=6_161
+1_032 cycles			FFs=7_086
+
+RSA				WNS=0.003ns ExploreWithRemap
+10_371 cycles HW		LUT=18_162
+				FFs=26086
+
+
+----------SUPER DUPER FUCKING FAST MONTGOMERY PROJECT---------------
+
+Montgomery5
+521 cycles
+
+
+RSA				WNS=0.020ns ExploreWithRemap
+5758 cycles HW			LUT=20_704
+				FFs=28_410
+
