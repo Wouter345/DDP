@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module montgomery2(
+module montgomery7(
   input           clk,
   input           resetn,
   input           start,
@@ -11,7 +11,7 @@ module montgomery2(
   output          done
     );
     
-    // In this implementation we do 2 iterations at a time, taking 2 clock cycles to complete.
+    // In this implementation we do 4 iterations at a time, taking 1 clock cycles to complete.
     
     reg           regA_en;
     reg           shiftA;
@@ -19,7 +19,7 @@ module montgomery2(
     always @(posedge clk)
     begin
         if (regA_en)   regA_out <= in_a;
-        else if (shiftA) regA_out <= regA_out >> 2; //shift twice
+        else if (shiftA) regA_out <= regA_out >> 4; //shift four times
     end
     
     // This reg will save The value B+M and in state 6 the value C-M
@@ -27,7 +27,7 @@ module montgomery2(
     reg  [1027:0] regBM_out;
     always @(posedge clk)
     begin
-        if (regBM_en)   regBM_out <= Sum2;
+        if (regBM_en)   regBM_out <= Sum1;
     end
     
     reg           regC_en;
@@ -36,107 +36,134 @@ module montgomery2(
     always @(posedge clk)
     begin
         if (reset)     regC_out <= 1028'd0;
-        else if (regC_en)   regC_out <= regC_in; //shift twice
+        else if (regC_en)   regC_out <= regC_in; 
     end
     
-    // select operand1 and operand2 and operand3
+    // select operand1/2/3/4
     wire [1026:0] operand1;
-    reg [1:0] operand1_sel;
+    wire [1:0] operand1_sel;
     assign operand1 = operand1_sel[1]? (operand1_sel[0]? regBM_out : {3'b0,in_b}) : (operand1_sel[0]? {3'b0,in_m} : 1027'b0); //Adder selection for first iteration
     
     wire [1026:0] operand2;
-    reg [1:0] operand2_sel;
-    assign operand2 = operand2_sel[1]? (operand2_sel[0]? regBM_out : {3'b0,in_b}) : (operand2_sel[0]? {3'b0,in_m} : 1027'b0); //Adder selection for second iteration 
+    wire [1:0] operand2_sel;
+    reg leftshift;
+    assign operand2 = leftshift? (operand2_sel[1]? (operand2_sel[0]? {regBM_out,1'b0} : {3'b0,in_b,1'b0}) : (operand2_sel[0]? {3'b0,in_m,1'b0} : 1027'b0)): in_m; //Adder selection for second iteration 
     
+    wire [1027:0] operand3;//1028bits
+    wire [1:0] operand3_sel;
+    assign operand3 = operand3_sel[1]? (operand3_sel[0]? {regBM_out,2'b0} : {2'b0,in_b,2'b0}) : (operand3_sel[0]? {2'b0,in_m,2'b0} : 1028'b0); //Adder selection for first iteration
+
+    wire [1027:0] operand4;//1028bits
+    wire [1:0] operand4_sel;
+    assign operand4 = operand4_sel[1]? (operand4_sel[0]? {regBM_out,3'b0} : {1'b0,in_b,3'b0}) : (operand4_sel[0]? {1'b0,in_m,3'b0} : 1028'b0); //Adder selection for first iteration
+
     wire [1027:0] Sum1;
-    mpadder4 adder1(clk,operand1,{operand2,1'b0},Sum1); //op2*2 --> after >>2 ---> opt/2
+    wire [1028:0] Sum2;
+    reg reset_adder1;
+    reg reset_adder2;
+    mpadder11 adder1(clk, reset_adder1,  operand1,operand2,Sum1); 
+    mpadder12 adder2(clk, reset_adder2, operand3,operand4,Sum2);
     
-    wire [1027:0] Sum2;
+    wire [1028:0] Sum3;
+    reg reset_adder3;
+    mpadder13 adder3(clk, reset_adder3,  Sum1,Sum2,Sum3);
+    
+    wire [1028:0] Sum4;
+    wire [1027:0] Res1;
     reg subtract;
-    mpadder adder2(clk, subtract, regC_out, Sum1, Sum2);
+    reg reset_adder4;
+    mpadder14 adder4(clk, reset_adder4, subtract, Res1, Sum3, Sum4); //feed the output shifted 4 times directly back, use reset_adder to make output 0
     
-    wire [1027:0] Res1 = Sum2 >> 2;
-    reg selectC;
-    assign regC_in = selectC? Res1: in_m;
+    assign Res1 = Sum4 >> 4; //Actual new value of C after 2 iterations
     
-    reg first;
-    wire [3:0] Res2 = first? 2'b00 : Res1[3:0];
+    reg p;
+    assign regC_in = p? Sum2 : Res1; 
+     
+    ////////Logic to figure out regoperand 12 iterations down the line
+    wire [7:0] int;
+    assign int = (Sum1[11:0] + Sum2[11:0] + (Sum3[15:0] + Res1[15:0])>>4)>>4;
     
-    reg first_en;
-    always @(posedge clk)
-    begin
-        if (reset) first <= 1'b1;
-        if (first_en) first <= 1'b0;
-    end
+    wire [7:0] C1; //8 bits after +b first iteration
+    assign C1 = int[11:0]+ (in_b[11:0] & {regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0], regA_out[0]});
     
-//    /// Pre calculation of C0/C1 in different stages so as to choose the adder inputs for the 2 iterations
-//    wire C0_new; //C0 after +b 1st iteration
-//    assign C0_new = regA_out[0]? (in_b[0]^Res2[0]):Res2[0];
+    wire[6:0] C2; //7 bits after +b 2th iteration
+    assign C2 = ((C1 + (in_m[7:0] & {C1[0], C1[0], C1[0], C1[0], C1[0], C1[0], C1[0], C1[0], C1[0], C1[0], C1[0], C1[0]})) >> 1) + (in_b[6:0] & {regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1], regA_out[1]});
     
-//    wire C1_new; //C1 after +b 1st iteration
-//    assign C1_new = regA_out[0]? ((in_b[1]^Res2[1])^(in_b[0]&&Res2[0])):Res2[1];
+    wire[5:0] C3; //6 bits after +b 3th iteration
+    assign C3 = ((C2 + (in_m[6:0] & {C2[0], C2[0], C2[0], C2[0], C2[0], C2[0], C2[0], C2[0], C2[0], C2[0], C2[0], C2[0]})) >> 1) + (in_b[5:0] & {regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2], regA_out[2]});
     
-//    wire C1p;   //C1 after +m 1st iteration
-//    assign C1p = C0_new? ((in_m[1]^C1_new)^(in_m[0]&&C0_new)): C1_new;
+    wire[4:0] C4; //5 bits after +b 4th iteration
+    assign C4 = ((C3 + (in_m[5:0] & {C3[0], C3[0], C3[0], C3[0], C3[0], C3[0], C3[0], C3[0], C3[0], C3[0], C3[0], C3[0]})) >> 1) + (in_b[4:0] & {regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3], regA_out[3]});
     
-//    wire C1p_new; //C0 after +b 2nd iteration
-//    assign C1p_new = regA_out[1]? (in_b[0]^C1p):C1p;
+    wire[3:0] C5; //4 bits after +b 5th iteration
+    assign C5 = ((C4 + (in_m[4:0] & {C4[0], C4[0], C4[0], C4[0], C4[0], C4[0], C4[0], C4[0], C4[0], C4[0], C4[0], C4[0]})) >> 1) + (in_b[3:0] & {regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4], regA_out[4]});
     
+    wire[2:0] C6; //3 bits after +b 6th iteration
+    assign C6 = ((C5 + (in_m[3:0] & {C5[0], C5[0], C5[0], C5[0], C5[0], C5[0], C5[0], C5[0], C5[0], C5[0], C5[0], C5[0]})) >> 1) + (in_b[2:0] & {regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5], regA_out[5]});
     
-    wire [3:0] C_first; //4 bits after +b first iteration
-    assign C_first = regA_out[0]? (regC_out[3:0]+in_b[3:0]): regC_out[3:0];
+    wire[1:0] C7; //2 bits after +b 7th iteration
+    assign C7 = ((C6 + (in_m[2:0] & {C6[0], C6[0], C6[0], C6[0], C6[0], C6[0], C6[0], C6[0], C6[0], C6[0], C6[0], C6[0]})) >> 1) + (in_b[1:0] & {regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6], regA_out[6]});
     
-    wire [2:0] C_second; //3 bits after first entire iteration
-    wire [3:0] f;
-    assign f = (C_first+in_m[3:0]);
-    assign C_second = C_first[0]? f[3:1] :C_first[3:1];
-    
-    wire [2:0] C_third; //3bits after +b second iteration
-    assign C_third = regA_out[1]? (C_second+in_b[2:0]):C_second;
-    
-    wire [1:0] C_fourth; //2bits after second entire iteration
-    wire [2:0] g;
-    assign g = (C_third+in_m[2:0]);
-    assign C_fourth = C_third[0]? g[2:1]: C_third[2:1];
-    
-    wire [1:0] C_fifth;
-    assign C_fifth = regA_out[2]? (C_fourth+in_b[1:0]):C_fourth;
-    
-    wire C_sixth;
-    wire [1:0] h;
-    assign h = (C_fifth+in_m[1:0]);
-    assign C_sixth = C_fifth[0]? h[1]: C_fifth[1];
-    
-    wire C_seventh;
-    assign C_seventh = regA_out[3]? (C_sixth+in_b[0]):C_sixth;
+    wire C8; //1 bits after +b 8th iteration
+    assign C8 = ((C7 + (in_m[1:0] & {C7[0], C7[0], C7[0], C7[0], C7[0], C7[0], C7[0], C7[0], C7[0], C7[0], C7[0], C7[0]})) >> 1) + (in_b[0] & {regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7], regA_out[7]});
     
     
+    
+
     reg [1:0] regoperand1;
     reg [1:0] regoperand2;
-    reg ops;
+    reg [1:0] regoperand3;
+    reg [1:0] regoperand4;
     always @(posedge clk)
     begin
-        if(ops) begin
-            regoperand1<={regA_out[0], C_first[0]};
-            regoperand2<={regA_out[1], C_third[0]}; end
-        else begin
-            regoperand1<={regA_out[2], C_fifth[0]};
-            regoperand2<={regA_out[3], C_seventh}; end
+        if (count == 9'd253) begin //M+0 for subtraction of C-M
+            regoperand1<=2'b01;
+            regoperand2<=2'b00; 
+            regoperand3<=2'b00;
+            regoperand4<=2'b00; end
+            
+        else begin case(state)
+                    3'd0: begin //B+M
+                        regoperand1<=2'b10;
+                        regoperand2<=2'b01; 
+                        regoperand3<=2'b00;
+                        regoperand4<=2'b00; end
+                    3'd1: begin //0+0
+                        regoperand1<=2'b00;
+                        regoperand2<=2'b00; 
+                        regoperand3<=2'b00;
+                        regoperand4<=2'b00;end  
+                    3'd2: begin //save 1/2/3/4 iteration operands_sel
+                        regoperand1<={regA_out[0], C1[0]};
+                        regoperand2<={regA_out[1], C2[0]}; 
+                        regoperand3<={regA_out[2], C3[0]};
+                        regoperand4<={regA_out[3], C4[0]}; end
+                    default: begin //save next operands_sel
+                        regoperand1<={regA_out[4], C5[0]};
+                        regoperand2<={regA_out[5], C6[0]}; 
+                        regoperand3<={regA_out[6], C7[0]};
+                        regoperand4<={regA_out[7], C8}; end
+                 endcase end
     end
-
-    assign result = regBM_out[1027]? regC_out: regBM_out; //if bit 1028 is 0 then C-M>0 so C=C-M
     
-    reg [8:0] count;
+    assign operand1_sel = regoperand1;
+    assign operand2_sel = regoperand2;
+    assign operand3_sel = regoperand3;
+    assign operand4_sel = regoperand4;
+
+    assign result = regC_out; //if bit 1028 is 0 then C-M>0 so C=C-M
+    
+    reg [9:0] count;
     reg count_en; 
     reg reset;
     always @(posedge clk) begin
-      if (reset) count <= 9'b0;
+      if (reset) count <= 10'b0;
       else if (count_en)  count <= count +1;
     end
     
   // Task 11
     // Describe state machine registers
-    reg [3:0] state, nextstate;
+    reg [2:0] state, nextstate;
 
     always @(posedge clk)
     begin
@@ -158,149 +185,144 @@ module montgomery2(
                 shiftA <= 1'b0;
                 regBM_en <= 1'b0;
                 regC_en <= 1'b0;
-                operand1_sel <= 2'b00;
-                operand2_sel <= 2'b00;
                 subtract <= 1'b0;
                 count_en <= 1'b0;
                 reset <= 1'b0;
-                selectC <= 1'b0;
-                ops <= 1'b1;
-                first_en <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b0;
+                reset_adder1<=1'b1;
+                reset_adder2<=1'b1;
+                reset_adder3<=1'b1;
+                reset_adder4<=1'b1;
             end
             
-            3'd1: begin
+            3'd1: begin //Do B+M
                 regA_en <= 1'b0;
                 shiftA <= 1'b0;
                 regBM_en <= 1'b0;
                 regC_en <= 1'b1;
-                operand1_sel <= 2'b10; //B
-                operand2_sel <= 2'b00; //0
-                subtract <= 1'b0;
-                count_en <= 1'b0;
-                reset <= 1'b0;
-                selectC <= 1'b0;
-                ops <= 1'b1;
-                first_en <= 1'b0;
-            end
-            
-            3'd7: begin
-                regA_en <= 1'b0;
-                shiftA <= 1'b0;
-                regBM_en <= 1'b0;
-                regC_en <= 1'b0;
-                operand1_sel <= 2'b00;
-                operand2_sel <= 2'b00;
                 subtract <= 1'b0;
                 count_en <= 1'b0;
                 reset <= 1'b1;
-                selectC <= 1'b1;
-                ops <= 1'b1;
-                first_en <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b0;
+                reset_adder1<=1'b1;
+                reset_adder2<=1'b1;
+                reset_adder3<=1'b1;
+                reset_adder4<=1'b1;
             end
             
-            3'd2: begin
+            3'd2: begin //Save B+M
                 regA_en <= 1'b0;
                 shiftA <= 1'b0;
                 regBM_en <= 1'b1;
-                regC_en <= 1'b0;
-                operand1_sel <= 2'b00;
-                operand2_sel <= 2'b00;
-                subtract <= 1'b0;
-                count_en <= 1'b0;
-                reset <= 1'b0;
-                selectC <= 1'b1;
-                ops <= 1'b1;
-                first_en <= 1'b0;
-            end        
-            
-            3'd3: begin
-                regA_en <= 1'b0;
-                shiftA <= 1'b0;
-                regBM_en <= 1'b0;
                 regC_en <= 1'b1;
-                operand1_sel <= regoperand1;
-                operand2_sel <= regoperand2;
                 subtract <= 1'b0;
                 count_en <= 1'b0;
                 reset <= 1'b0;
-                selectC <= 1'b1;
-                ops <= 1'b0;
-                first_en <= 1'b0;
+                leftshift <= 1'b1;
+                p <= 1'b0;
+                reset_adder1<=1'b1;
+                reset_adder2<=1'b1;
+                reset_adder3<=1'b1;
+                reset_adder4<=1'b1;
             end
             
-            3'd4: begin
+            3'd3: begin // ADD 1/2/3/4 iteration
                 regA_en <= 1'b0;
                 shiftA <= 1'b1;
                 regBM_en <= 1'b0;
-                regC_en <= 1'b0;
-                operand1_sel <= 2'b00; 
-                operand2_sel <= 2'b00;
+                regC_en <= 1'b1;
+                subtract <= 1'b0;
+                count_en <= 1'b0;
+                reset <= 1'b0;
+                leftshift <= 1'b1;
+                p <= 1'b0;
+                reset_adder1<=1'b0;
+                reset_adder2<=1'b0;
+                reset_adder3<=1'b1;
+                reset_adder4<=1'b1;
+            end    
+            
+            3'd4: begin // ADD 5/6/7/8 iteration
+                regA_en <= 1'b0;
+                shiftA <= 1'b1;
+                regBM_en <= 1'b0;
+                regC_en <= 1'b1;
+                subtract <= 1'b0;
+                count_en <= 1'b0;
+                reset <= 1'b0;
+                leftshift <= 1'b1;
+                p <= 1'b0;
+                reset_adder1<=1'b0;
+                reset_adder2<=1'b0;
+                reset_adder3<=1'b0;
+                reset_adder4<=1'b1;
+            end         
+            
+            4'd5: begin //Loop
+                regA_en <= 1'b0;
+                shiftA <= 1'b1;
+                regBM_en <= 1'b0;
+                regC_en <= 1'b1;
                 subtract <= 1'b0;
                 count_en <= 1'b1;
                 reset <= 1'b0;
-                selectC <= 1'b1;
-                ops <= 1'b0;
-                first_en <= 1'b1;
+                leftshift <= 1'b1;
+                p <= 1'b0;
+                reset_adder1<=1'b0;
+                reset_adder2<=1'b0;
+                reset_adder3<=1'b0;
+                reset_adder4<=1'b0;
             end
             
-            4'd8: begin
+            4'd6: begin //C-M
                 regA_en <= 1'b0;
                 shiftA <= 1'b0;
                 regBM_en <= 1'b0;
-                regC_en <= 1'b1;
-                operand1_sel <= 2'b01;
-                operand2_sel <= 2'b00;
+                regC_en <= 1'b1; //Save final value of C before subtraction
                 subtract <= 1'b1;
                 count_en <= 1'b0;
                 reset <= 1'b0;
-                selectC <= 1'b1;
-                ops <= 1'b0;
-                first_en <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b0;
+                reset_adder1<=1'b0;
+                reset_adder2<=1'b0;
+                reset_adder3<=1'b0;
+                reset_adder4<=1'b0;
             end
             
-            3'd5: begin
+            4'd7: begin //Write C-M if ~Sum2[1027]
                 regA_en <= 1'b0;
                 shiftA <= 1'b0;
                 regBM_en <= 1'b0;
-                regC_en <= 1'b0;
-                operand1_sel <= 2'b00;
-                operand2_sel <= 2'b00;
+                regC_en <= ~Sum2[1027];
                 subtract <= 1'b1;
                 count_en <= 1'b0;
                 reset <= 1'b0;
-                selectC <= 1'b1;
-                ops <= 1'b0;
-                first_en <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b1;      //Save Sum2 instead of Res1=Sum2>>2
+                reset_adder1<=1'b0;
+                reset_adder2<=1'b0;
+                reset_adder3<=1'b0;
+                reset_adder4<=1'b0;
             end
             
-            3'd6: begin
-                regA_en <= 1'b0;
-                shiftA <= 1'b0;
-                regBM_en <= 1'b1;
-                regC_en <= 1'b0;
-                operand1_sel <= 2'b00;
-                operand2_sel <= 2'b00;
-                subtract <= 1'b1;
-                count_en <= 1'b0;
-                reset <= 1'b0;
-                selectC <= 1'b1;
-                ops <= 1'b0;
-                first_en <= 1'b0;
-            end
 
             default: begin
                 regA_en <= 1'b1;
                 shiftA <= 1'b0;
                 regBM_en <= 1'b0;
                 regC_en <= 1'b0;
-                operand1_sel <= 1'b0;
-                operand2_sel <= 2'b00;
                 subtract <= 1'b0;
                 count_en <= 1'b0;
                 reset <= 1'b0;
-                selectC <= 1'b1;
-                ops <= 1'b0;
-                first_en <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b0;
+                reset_adder1<=1'b1;
+                reset_adder2<=1'b1;
+                reset_adder3<=1'b1;
+                reset_adder4<=1'b1;
             end
         endcase
     end
@@ -314,16 +336,15 @@ module montgomery2(
             3'd0: begin
                 if(start) nextstate <= 3'd1;
                 else      nextstate <= 3'd0; end
-            3'd1: nextstate <= 3'd7;
-            3'd7: nextstate <= 3'd2;
+            3'd1: nextstate <= 3'd2;
             3'd2: nextstate <= 3'd3;
             3'd3: nextstate <= 3'd4;
-            3'd4:begin
-                if (count == 10'd511) nextstate <= 4'd8;
-                else nextstate <= 3'd3; end
-            4'd8: nextstate <= 3'd5;    
-            3'd5: nextstate <= 3'd6;
-            3'd6: nextstate <= 3'd0;
+            3'd4: nextstate <= 3'd5;
+            4'd5:begin
+                if (count == 10'd255) nextstate <= 4'd6;
+                else nextstate <= 4'd5; end
+            4'd6: nextstate <= 4'd7;    
+            4'd7: nextstate <= 3'd0;
 
             default: nextstate <= 3'd0;
         endcase
@@ -338,7 +359,7 @@ module montgomery2(
                 always @(posedge clk)
                 begin
                     if(~resetn) regDone <= 1'd0;
-                    else        regDone <= (state==3'd6) ? 1'b1 : 1'b0;
+                    else        regDone <= (state==4'd7) ? 1'b1 : 1'b0;
                 end
 
                 assign done = regDone;

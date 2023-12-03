@@ -62,7 +62,7 @@ module ladder4(
     reg select3;
     wire [1023:0] operandA2;
     assign operandA2 = select3? regA_out: regXX_out;
-      
+       
     
     wire [1023:0] Res1;
     wire [1023:0] Res2;
@@ -72,8 +72,8 @@ module ladder4(
     reg start1;
     reg start2;
 
-    montgomery5 mult1(clk, reset2, start1, operandA1, operandB1, operandM, Res1, Done1);
-    montgomery5 mult2(clk, reset2, start2, operandA2, operandA2, operandM, Res2, Done2);
+    montgomery6 mult1(clk, reset2, start1, operandA1, operandB1, operandM, Res1, Done1);
+    montgomery6 mult2(clk, reset2, start2, operandA2, operandA2, operandM, Res2, Done2);
     
     
     reg select_res;

@@ -19,7 +19,7 @@ module tb_montgomery();
     reg          result_ok;
     
     //Instantiating montgomery module
-    montgomery4 montgomery_instance( .clk    (clk    ),
+    montgomery7 montgomery_instance( .clk    (clk    ),
                                     .resetn (resetn ),
                                     .start  (start  ),
                                     .in_a   (in_a   ),
