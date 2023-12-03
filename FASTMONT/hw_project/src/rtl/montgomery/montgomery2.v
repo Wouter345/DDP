@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module montgomery7(
+module montgomery2(
   input           clk,
   input           resetn,
   input           start,

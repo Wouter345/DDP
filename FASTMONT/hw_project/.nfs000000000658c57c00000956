@@ -1,0 +1,403 @@
+/*
+
+AMD Vivado v2023.1 (64-bit) [Major: 2023, Minor: 1]
+SW Build: 3865809 on Sun May  7 15:04:56 MDT 2023
+IP Build: 3864474 on Sun May  7 20:36:21 MDT 2023
+IP Build: 3864474 on Sun May  7 20:36:21 MDT 2023
+
+Process ID (PID): 140766
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Sun Dec 03 06:25:25 CET 2023
+Time zone: 	Central European Standard Time (Europe/Brussels)
+
+OS: Rocky Linux release 8.9 (Green Obsidian)
+OS Version: 4.18.0-513.9.1.el8_9.x86_64
+OS Architecture: amd64
+Available processors (cores): 4
+
+Display: 1
+Screen size: 1920x983
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+OS font scaling: 100%
+
+Java version: 	17.0.3 64-bit
+JavaFX version: 17.0.1
+Java home: 	/esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/tps/lnx64/jre17.0.3_7
+Java executable: 	/esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/tps/lnx64/jre17.0.3_7/bin/java
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Djdk.gtk.version=2, -Dsun.java2d.uiScale.enabled=false, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, -XX:+UseStringDeduplication, -XX:MaxGCPauseMillis=200, -XX:+ParallelRefProcEnabled, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, --add-opens=java.desktop/sun.awt.X11=ALL-UNNAMED, -XX:NewSize=80m, -XX:MaxNewSize=80m, -Xms512m, -Xmx4072m, -Xss10m, -Xrs]
+Java initial memory (-Xms): 	512 MB
+Java maximum memory (-Xmx):	 3 GB
+
+User name: 	r0792566
+User home directory: /users/students/r0792566
+User working directory: /users/students/r0792566/Documents/DDP/FASTMONT/hw_project
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado
+HDI_APPROOT: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1
+RDI_DATADIR: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/data
+RDI_BINDIR: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/bin
+
+Vivado preferences file: /users/students/r0792566/.Xilinx/Vivado/2023.1/vivado.xml
+Vivado preferences directory: /users/students/r0792566/.Xilinx/Vivado/2023.1/
+Vivado layouts directory: /users/students/r0792566/.Xilinx/Vivado/2023.1/data/layouts
+PlanAhead jar file: 	/esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/lib/classes/planAhead.jar
+Vivado log file: 	/users/students/r0792566/Documents/DDP/FASTMONT/hw_project/vivado.log
+Vivado journal file: 	/users/students/r0792566/Documents/DDP/FASTMONT/hw_project/vivado.jou
+Engine tmp dir: 	/tmp/.Xil_r0792566/Vivado-140766-stud-r8-spice-8.esat.kuleuven.be
+Non-Default Parameters:	[]
+
+Xilinx & AMD Environment Variables
+--------------------------------------------------------------------------------------------
+RDI_APPROOT: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1
+RDI_BASEROOT: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado
+RDI_BINROOT: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/bin
+RDI_BUILD: yes
+RDI_DATADIR: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/data
+RDI_INSTALLROOT: /esat/micas-data/software/Xilinx/vitis_2023.1
+RDI_INSTALLVER: 2023.1
+RDI_JAVA_PLATFORM: 
+RDI_JAVA_VERSION: 17.0.3_7
+RDI_LIBDIR: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/lib/lnx64.o/Default:/esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/lib/lnx64.o
+RDI_OPT_EXT: .o
+RDI_PATCHROOT: 
+RDI_PLATFORM: lnx64
+RDI_PREPEND_PATH: /esat/micas-data/software/Xilinx/vitis_2023.1/Vitis/2023.1/bin:/esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/ids_lite/ISE/bin/lin64
+RDI_PROG: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/bin/unwrapped/lnx64.o/vivado
+RDI_SESSION_INFO: /users/students/r0792566/Documents/DDP/FASTMONT/hw_project:stud-r8-spice-8.esat.kuleuven.be_1701581108_140682
+RDI_SHARED_DATA: /esat/micas-data/software/Xilinx/vitis_2023.1/SharedData/2023.1/data
+RDI_TPS_ROOT: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/tps/lnx64
+RDI_USE_JDK17: True
+SHELL: /bin/bash
+XILINX: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/ids_lite/ISE
+XILINXD_LICENSE_FILE: 2100@licserv
+XILINX_DSP: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/ids_lite/ISE
+XILINX_HLS: /esat/micas-data/software/Xilinx/vitis_2023.1/Vitis_HLS/2023.1
+XILINX_PLANAHEAD: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1
+XILINX_SDK: /esat/micas-data/software/Xilinx/vitis_2023.1/Vitis/2023.1
+XILINX_VITIS: /esat/micas-data/software/Xilinx/vitis_2023.1/Vitis/2023.1
+XILINX_VIVADO: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1
+XILINX_VIVADO_HLS: /esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1
+
+
+GUI allocated memory:	512 MB
+GUI max memory:		4,072 MB
+Engine allocated memory: 1,437 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 100 MB (+102518kb) [00:00:07]
+// [Engine Memory]: 1,337 MB (+1250458kb) [00:00:07]
+// Opening Vivado Project: project_hw/project_hw.xpr. Version: Vivado v2023.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project project_hw/project_hw.xpr 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,508 MB. GUI used memory: 69 MB. Current time: 12/3/23, 6:25:26 AM CET
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: MSGMGR_REFRESH_MSG
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 126 MB (+22081kb) [00:00:18]
+// [Engine Memory]: 1,705 MB (+315408kb) [00:00:18]
+// WARNING: HEventQueue.dispatchEvent() is taking  2114 ms.
+// Tcl Message: open_project project_hw/project_hw.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories 
+// Tcl Message: INFO: [IP_Flow 19-2207] Repository '/users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_ipcores' already exists; ignoring attempt to add it again. 
+// Tcl Message: INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/esat/micas-data/software/Xilinx/vitis_2023.1/Vivado/2023.1/data/ip'. 
+// Project name: project_hw; location: /users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw; part: xc7z020clg400-1
+// Tcl Message: open_project: Time (s): cpu = 00:00:23 ; elapsed = 00:00:12 . Memory (MB): peak = 8109.906 ; gain = 363.020 ; free physical = 4122 ; free virtual = 13891 
+// [GUI Memory]: 141 MB (+8658kb) [00:00:20]
+dismissDialog("Open Project"); // bq
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// [GUI Memory]: 148 MB (+383kb) [00:00:23]
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: IP_LOCK_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// [Engine Memory]: 1,807 MB (+17493kb) [00:00:24]
+// HMemoryUtils.trashcanNow. Engine heap size: 1,818 MB. GUI used memory: 77 MB. Current time: 12/3/23, 6:25:41 AM CET
+// Elapsed Time for: 'L.f': 22s
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 24 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources]", 0); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, rsa_project_wrapper (rsa_project_wrapper.v)]", 2); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, rsa_project_wrapper (rsa_project_wrapper.v), rsa_project_i : rsa_project (rsa_project.bd)]", 3); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, rsa_project_wrapper (rsa_project_wrapper.v), rsa_project_i : rsa_project (rsa_project.bd), rsa_project_rsa_0_0 (Module Reference Wrapper)]", 5); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, rsa_project_wrapper (rsa_project_wrapper.v), rsa_project_i : rsa_project (rsa_project.bd), rsa_project_rsa_0_0 (Module Reference Wrapper), rsa (rsa.v)]", 7); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, rsa_project_wrapper (rsa_project_wrapper.v), rsa_project_i : rsa_project (rsa_project.bd), rsa_project_rsa_0_0 (Module Reference Wrapper), rsa (rsa.v), exp : ladder4 (ladder4.v)]", 8); // E
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation]", 17, true, false, false, false, true, false); // f - Popup Trigger - Node
+selectMenuItem(PAResourceCommand.PACommandNames_IMPL_SETTINGS, "Implementation Settings..."); // ao
+// Run Command: PAResourceCommand.PACommandNames_IMPL_SETTINGS
+// Tcl (Dont Echo) Command: 'rdi::info_commands {device::*}'
+// Tcl (Dont Echo) Command: 'rdi::info_commands {debug::*}'
+// Tcl (Dont Echo) Command: 'rdi::info_commands {*}'
+// WARNING: HEventQueue.dispatchEvent() is taking  1942 ms.
+// HMemoryUtils.trashcanNow. Engine heap size: 1,857 MB. GUI used memory: 99 MB. Current time: 12/3/23, 6:26:13 AM CET
+selectTree("PAResourceOtoP.ProgramOptionsPanelImpl_STRATEGY", "[Run Strategies, Vivado Strategies, Vivado Implementation 2023, Performance_ExploreWithRemap]", 9, false); // TreeChooserPanel.d
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// TclEventType: RUN_OPTIONS_MODIFIED
+// TclEventType: RUN_MODIFY
+// Tcl Message: set_property strategy Performance_ExploreWithRemap [get_runs impl_1] 
+dismissDialog("Settings"); // d
+// [GUI Memory]: 182 MB (+27714kb) [00:01:03]
+// [GUI Memory]: 192 MB (+892kb) [00:01:03]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation, Run Implementation]", 18, false); // f
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+selectButton("OptionPane.button", "OK"); // JButton
+// TclEventType: LOAD_FEATURE
+// Tcl Message: launch_runs impl_1 -jobs 2 
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: LOAD_FEATURE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// Tcl Message: INFO: [BD 41-1662] The design 'rsa_project.bd' is already validated. Therefore parameter propagation will not be re-run. 
+// [Engine Memory]: 2,038 MB (+148046kb) [00:01:10]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: Verilog Output written to : /users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw/project_hw.gen/sources_1/bd/rsa_project/synth/rsa_project.v Verilog Output written to : /users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw/project_hw.gen/sources_1/bd/rsa_project/sim/rsa_project.v Verilog Output written to : /users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw/project_hw.gen/sources_1/bd/rsa_project/hdl/rsa_project_wrapper.v 
+// Tcl Message: INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'M_AXI_GP0'. A default connection has been created. INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'S_AXI_ACP'. A default connection has been created. 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RSB_CLOSE_DIAGRAM
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// TclEventType: FILE_SET_NEW
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block processing_system7_0 . INFO: [BD 41-1029] Generation completed for the IP Integrator block ARCACHE . INFO: [BD 41-1029] Generation completed for the IP Integrator block ARUSER . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_interconnect_0/s00_couplers/auto_pc . 
+// Tcl Message: INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'S_AXI'. A default connection has been created. INFO: [IP_Flow 19-5611] Unable to find an associated reset port for the interface 'M_AXI'. A default connection has been created. INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_interconnect_1/s00_couplers/auto_ds . 
+// Tcl Message: INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_interconnect_1/s00_couplers/auto_pc . INFO: [BD 41-1029] Generation completed for the IP Integrator block rst_ps7_0_100M . INFO: [BD 41-1029] Generation completed for the IP Integrator block rsa_0 . INFO: [BD 41-1029] Generation completed for the IP Integrator block interfacer_0 . 
+// Tcl Message: Exporting to file /users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw/project_hw.gen/sources_1/bd/rsa_project/hw_handoff/rsa_project.hwh Generated Hardware Definition File /users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw/project_hw.gen/sources_1/bd/rsa_project/synth/rsa_project.hwdef 
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// [Engine Memory]: 2,144 MB (+4269kb) [00:01:31]
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// HMemoryUtils.trashcanNow. Engine heap size: 2,207 MB. GUI used memory: 96 MB. Current time: 12/3/23, 6:26:46 AM CET
+// TclEventType: RUN_ADD
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// TclEventType: FILE_SET_NEW
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_ADD
+// HMemoryUtils.trashcanNow. Engine heap size: 2,286 MB. GUI used memory: 144 MB. Current time: 12/3/23, 6:26:50 AM CET
+// [Engine Memory]: 2,666 MB (+434661kb) [00:01:36]
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_MODIFY
+// Tcl Message: [Sun Dec  3 06:26:56 2023] Launched impl_1... Run output will be captured here: /users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw/project_hw.runs/impl_1/runme.log 
+// Tcl Message: launch_runs: Time (s): cpu = 00:00:42 ; elapsed = 00:00:36 . Memory (MB): peak = 8753.086 ; gain = 525.375 ; free physical = 3607 ; free virtual = 13398 
+// Elapsed Time for: 'C.c': 36s
+// 'a' command handler elapsed time: 38 seconds
+// Elapsed time: 36 seconds
+dismissDialog("Starting Design Runs"); // bq
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed Time for: 'L.f': 01m:24s
+// WARNING: HSwingWorker (Refresh Filesets Swing Worker) is taking 2359 ms. Increasing delay to 7077 ms.
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 140 seconds
+expandTreeTable(PAResourceEtoH.ExpRunTreePanel_EXP_RUN_TREE_TABLE, "Out-of-Context Module Runs ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ;  ; ", 2); // ao
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// [GUI Memory]: 206 MB (+4676kb) [00:05:02]
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'L.f': 05m:32s
+// HMemoryUtils.trashcanNow. Engine heap size: 2,680 MB. GUI used memory: 108 MB. Current time: 12/3/23, 6:31:06 AM CET
+// Elapsed Time for: 'L.f': 05m:38s
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed Time for: 'L.f': 06m:02s
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed Time for: 'L.f': 06m:10s
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// RDIResource.RDIViews_PROPERTIES: Properties: close view
+// PAResourceOtoP.PAViews_PROJECT_SUMMARY: Project Summary: close view
+// Elapsed time: 284 seconds
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // t
+// PAPropertyPanels.initPanels (montgomery6.v) elapsed time: 0.3s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, montgomery6 (montgomery6.v)]", 13, true); // E - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, montgomery6 (montgomery6.v)]", 13, true, false, false, false, false, true); // E - Double Click - Node
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 14 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, tb_rsa_wrapper (tb_rsa_wrapper.v)]", 31); // E
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Libraries", 2); // g
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Verilog, xil_defaultlib, montgomery7.v]", 6, false); // E
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Verilog, xil_defaultlib, montgomery7.v]", 6, false, false, false, false, false, true); // E - Double Click
+// Elapsed time: 219 seconds
+selectTreeTableHeader(PAResourceEtoH.ExpRunTreePanel_EXP_RUN_TREE_TABLE, "LUT", 4); // ao
+selectTreeTableHeader(PAResourceEtoH.ExpRunTreePanel_EXP_RUN_TREE_TABLE, "FF", 5); // ao
+// Elapsed time: 1054 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+unMinimizeFrame(PAResourceOtoP.PAViews_DESIGN_RUNS, "Design Runs"); // R
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectCodeEditor("montgomery7.v", 320, 320); // ad
+selectCodeEditor("montgomery7.v", 335, 321); // ad
+// Elapsed time: 46 seconds
+unMinimizeFrame(PAResourceOtoP.PAViews_DESIGN_RUNS, "Design Runs"); // R
+unMinimizeFrame(PAResourceOtoP.PAViews_DESIGN_RUNS, "Design Runs"); // R
+selectTab(PAResourceEtoH.FileSetView_TABBED_PANE, (HResource) null, "Hierarchy", 0); // g
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, tb_rsa_wrapper (tb_rsa_wrapper.v), dut : tb_rsa_project_wrapper (tb_rsa_project_wrapper.v), tb_rsa_project_i : tb_rsa_project (tb_rsa_project.bd)]", 33); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, tb_rsa_wrapper (tb_rsa_wrapper.v), dut : tb_rsa_project_wrapper (tb_rsa_project_wrapper.v), tb_rsa_project_i : tb_rsa_project (tb_rsa_project.bd), tb_rsa_project_rsa_0_0 (Module Reference Wrapper)]", 35); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, tb_rsa_wrapper (tb_rsa_wrapper.v), dut : tb_rsa_project_wrapper (tb_rsa_project_wrapper.v), tb_rsa_project_i : tb_rsa_project (tb_rsa_project.bd), tb_rsa_project_rsa_0_0 (Module Reference Wrapper), rsa (rsa.v)]", 37); // E
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources, sim_1, tb_rsa_wrapper (tb_rsa_wrapper.v), dut : tb_rsa_project_wrapper (tb_rsa_project_wrapper.v), tb_rsa_project_i : tb_rsa_project (tb_rsa_project.bd), tb_rsa_project_rsa_0_0 (Module Reference Wrapper), rsa (rsa.v), exp : ladder4 (ladder4.v)]", 38); // E
+selectCodeEditor("montgomery7.v", 227, 416); // ad
+selectCodeEditor("montgomery7.v", 125, 153); // ad
+selectCodeEditor("montgomery7.v", 192, 177); // ad
+selectCodeEditor("montgomery7.v", 266, 182); // ad
+selectCodeEditor("montgomery7.v", 172, 188); // ad
+selectCodeEditor("montgomery7.v", 231, 187); // ad
+selectCodeEditor("montgomery7.v", 341, 187); // ad
+selectCodeEditor("montgomery7.v", 141, 228); // ad
+selectCodeEditor("montgomery7.v", 299, 223); // ad
+selectCodeEditor("montgomery7.v", 453, 233); // ad
+selectCodeEditor("montgomery7.v", 692, 228); // ad
+selectCodeEditor("montgomery7.v", 906, 273); // ad
+selectCodeEditor("montgomery7.v", 766, 321); // ad
+selectCodeEditor("montgomery7.v", 653, 391); // ad
+selectCodeEditor("montgomery7.v", 672, 366); // ad
+selectCodeEditor("montgomery7.v", 322, 398); // ad
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectCodeEditor("montgomery6.v", 72, 393); // ad
+selectCodeEditor("montgomery6.v", 85, 407); // ad
+selectCodeEditor("montgomery6.v", 84, 398); // ad
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectCodeEditor("montgomery6.v", 114, 400); // ad
+unMinimizeFrame(PAResourceOtoP.PAViews_DESIGN_RUNS, "Design Runs"); // R
+// Elapsed time: 78 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+unMinimizeFrame(PAResourceOtoP.PAViews_TCL_CONSOLE, "Tcl Console"); // R
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectCodeEditor("montgomery7.v", 87, 215); // ad
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery6.v", 0); // o
+selectCodeEditor("montgomery6.v", 48, 421); // ad
+typeControlKey((HResource) null, "montgomery6.v", 'c'); // ad
+selectCodeEditor("montgomery6.v", 26, 342, false, true, false, false, false); // ad - Control Key
+selectCodeEditor("montgomery6.v", 39, 440); // ad
+selectCodeEditor("montgomery6.v", 50, 428); // ad
+selectCodeEditor("montgomery6.v", 52, 428); // ad
+typeControlKey((HResource) null, "montgomery6.v", 'c'); // ad
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "montgomery7.v", 1); // o
+selectCodeEditor("montgomery7.v", 379, 214); // ad
+unMinimizeFrame(PAResourceOtoP.PAViews_DESIGN_RUNS, "Design Runs"); // R
+closeMainWindow("project_hw - [/users/students/r0792566/Documents/DDP/FASTMONT/hw_project/project_hw/project_hw.xpr] - Vivado 2023.1"); // aK
+// Run Command: PAResourceCommand.PACommandNames_EXIT
+selectButton(PAResourceQtoS.SaveProjectUtils_DONT_SAVE, "Don't Save"); // a
+dismissDialog("Save Project"); // W.d
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Exit Vivado"); // u
