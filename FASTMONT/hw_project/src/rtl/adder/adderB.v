@@ -1,5 +1,3 @@
-`timescale 1ns / 1ps
-
 module mpadderB (
   input wire clk,
   input wire [1027:0] in_a,         //1028bits

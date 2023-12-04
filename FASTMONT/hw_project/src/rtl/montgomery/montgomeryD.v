@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module montgomeryC(
+module montgomeryD(
   input           clk,
   input           resetn,
   input           start,
@@ -20,6 +20,16 @@ module montgomeryC(
     begin
         if (regA_en)   regA_out <= in_a;
         else if (shiftA) regA_out <= regA_out >> 4; //shift four times
+    end
+    
+    reg regB_en;
+    reg regM_en;
+    reg [1023:0] regB_out;
+    reg [1023:0] regM_out;
+    always@(posedge clk)
+    begin
+        regB_out <= in_b;
+        regM_out <= in_m;
     end
     
     // This reg will save The value B+M 
@@ -42,20 +52,20 @@ module montgomeryC(
     // select operand1/2/3/4
     wire [1025:0] operand1;//1026 bits
     reg [1:0] operand1_sel;
-    assign operand1 = operand1_sel[1]? (operand1_sel[0]? regBM_out : {2'b0,in_b}) : (operand1_sel[0]? {2'b0,in_m} : 1026'b0); //Adder selection for first iteration
+    assign operand1 = operand1_sel[1]? (operand1_sel[0]? regBM_out : {2'b0,regB_out}) : (operand1_sel[0]? {2'b0,regM_out} : 1026'b0); //Adder selection for first iteration
     
     wire [1025:0] operand2;//1026 bits
     reg [1:0] operand2_sel;
     reg leftshift;
-    assign operand2 = leftshift? (operand2_sel[1]? (operand2_sel[0]? {regBM_out,1'b0} : {1'b0,in_b,1'b0}) : (operand2_sel[0]? {1'b0,in_m,1'b0} : 1026'b0)): {2'b0,in_m}; //Adder selection for second iteration 
+    assign operand2 = leftshift? (operand2_sel[1]? (operand2_sel[0]? {regBM_out,1'b0} : {1'b0,regB_out,1'b0}) : (operand2_sel[0]? {1'b0,regM_out,1'b0} : 1026'b0)): {2'b0,regM_out}; //Adder selection for second iteration 
     
     wire [1027:0] operand3;//1028bits
     reg [1:0] operand3_sel;
-    assign operand3 = operand3_sel[1]? (operand3_sel[0]? {1'b0,regBM_out,2'b0} : {2'b0,in_b,2'b0}) : (operand3_sel[0]? {2'b0,in_m,2'b0} : 1028'b0); //Adder selection for first iteration
+    assign operand3 = operand3_sel[1]? (operand3_sel[0]? {1'b0,regBM_out,2'b0} : {2'b0,regB_out,2'b0}) : (operand3_sel[0]? {2'b0,regM_out,2'b0} : 1028'b0); //Adder selection for first iteration
 
     wire [1027:0] operand4;//1028bits
     reg [1:0] operand4_sel;
-    assign operand4 = operand4_sel[1]? (operand4_sel[0]? {regBM_out,3'b0} : {1'b0,in_b,3'b0}) : (operand4_sel[0]? {1'b0,in_m,3'b0} : 1028'b0); //Adder selection for first iteration
+    assign operand4 = operand4_sel[1]? (operand4_sel[0]? {regBM_out,3'b0} : {1'b0,regB_out,3'b0}) : (operand4_sel[0]? {1'b0,regM_out,3'b0} : 1028'b0); //Adder selection for first iteration
 
 
     reg [1025:0] reg_operand1;
@@ -80,17 +90,14 @@ module montgomeryC(
     
     reg [1026:0] reg_Sum1;
     reg [1028:0] reg_Sum2;
-    reg [1029:0] reg_Sum3;
     always @(posedge clk)
     begin
         if (reset_adder3) begin
             reg_Sum1<=1027'b0;
-            reg_Sum2<=1029'b0;
-            reg_Sum3<=1030'b0;
+            reg_Sum2<=1029'b0; 
         end else begin
             reg_Sum1<=Sum1;
-            reg_Sum2<=Sum2;
-            reg_Sum3<=Sum3; end
+            reg_Sum2<=Sum2; end
     end
     
     wire [1029:0] Sum3;//1030bits
@@ -101,10 +108,10 @@ module montgomeryC(
     
     wire [1030:0] Sum4;//1030bits
     wire [1026:0] Res4;//shifted by 4 --> 1027bits
-    wire [27:0] prediction4;
+    wire [23:0] prediction4;
     reg subtract;
     reg reset_adder4;
-    mpadderD adder4(clk, reset_adder4, subtract, {3'b0,Res4}, reg_Sum3, Sum4, prediction4); //feed the output shifted 4 times directly back, use reset_adder4 to make output 0
+    mpadderD adder4(clk, reset_adder4, subtract, {3'b0,Res4}, Sum3, Sum4, prediction4); //feed the output shifted 4 times directly back, use reset_adder4 to make output 0
      
     assign Res4 = Sum4 >> 4;
     
@@ -119,7 +126,7 @@ module montgomeryC(
 
     wire [7:0] prediction_sum1;
     wire [7:0] prediction_sum2;
-    assign prediction_sum1 = ((((((((prediction4>>4)+Sum3[23:0])>>4)+prediction3)>>4)+Sum1[15:0]+Sum2[15:0])>>4)+ prediction1+prediction2)>>4;
+    assign prediction_sum1 = ((((((prediction4>>4)+prediction3)>>4)+Sum1[15:0]+Sum2[15:0])>>4)+prediction1+prediction2)>>4;
     assign prediction_sum2 = {operandsum};
     
     
@@ -135,22 +142,27 @@ module montgomeryC(
     assign C_new = (predict1+predict2)>>4;
     
     wire [3:0] C1; //4 bits after +b first iteration
-    assign C1 = C_new[3:0]+ (in_b[3:0] & {regA_out[0], regA_out[0], regA_out[0], regA_out[0]});
+    assign C1 = C_new[3:0]+ (regB_out[3:0] & {regA_out[0], regA_out[0], regA_out[0], regA_out[0]});
     
     wire [2:0] C2; //3 bits after +b second iteration
-    assign C2 = ((C1 + (in_m[3:0] & {C1[0], C1[0], C1[0], C1[0]}))>>1) + (in_b[2:0] & {regA_out[1], regA_out[1], regA_out[1]});
+    assign C2 = ((C1 + (regM_out[3:0] & {C1[0], C1[0], C1[0], C1[0]}))>>1) + (regB_out[2:0] & {regA_out[1], regA_out[1], regA_out[1]});
     
     wire [1:0] C3; //2 bits after +b third iteration
-    assign C3 = ((C2 + (in_m[2:0] & {C2[0], C2[0], C2[0]}))>>1) + (in_b[1:0] & {regA_out[2], regA_out[2]});
+    assign C3 = ((C2 + (regM_out[2:0] & {C2[0], C2[0], C2[0]}))>>1) + (regB_out[1:0] & {regA_out[2], regA_out[2]});
     
     wire C4; //1 bits after +b fourth iteration
-    assign C4 = ((C3 + (in_m[1:0] & {C3[0], C3[0]}))>>1) + (in_b[0] & {regA_out[3]});
+    assign C4 = ((C3 + (regM_out[1:0] & {C3[0], C3[0]}))>>1) + (regB_out[0] & {regA_out[3]});
     
 
     always @(*)
     begin
         case(state)
-            3'd0: begin //B+M
+            3'd0: begin //zeros
+                operand1_sel <= 2'b00;
+                operand2_sel <= 2'b00; 
+                operand3_sel <= 2'b00;
+                operand4_sel <= 2'b00; end
+            4'd14: begin //B+M
                 operand1_sel <= 2'b10;
                 operand2_sel <= 2'b01; 
                 operand3_sel <= 2'b00;
@@ -209,11 +221,29 @@ module montgomeryC(
     // Describe your signals at each state
     always @(*)
     begin
+        regM_en <= 1'b0;
+        regB_en <= 1'b0;
         case(state)
 
             // Idle state; Here the FSM waits for the start signal
             3'd0: begin
                 regA_en <= 1'b1;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
+                regM_en <= 1'b1;
+                regB_en <= 1'b1;
+                regC_en <= 1'b0;
+                subtract <= 1'b0;
+                count_en <= 1'b0;
+                reset <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b0;
+                reset_adder3<=1'b1;
+                reset_adder4<=1'b1;
+            end
+            
+            4'd14: begin
+                regA_en <= 1'b0;
                 shiftA <= 1'b0;
                 regBM_en <= 1'b0;
                 regC_en <= 1'b0;
@@ -325,20 +355,6 @@ module montgomeryC(
                 reset_adder4<=1'b0;
             end
             
-            4'd14: begin //wait for M to reach adder 4
-                regA_en <= 1'b0;
-                shiftA <= 1'b0;
-                regBM_en <= 1'b0;
-                regC_en <= 1'b1; 
-                subtract <= 1'b0;
-                count_en <= 1'b1;
-                reset <= 1'b0;
-                leftshift <= 1'b0;
-                p <= 1'b0;
-                reset_adder3<=1'b0;
-                reset_adder4<=1'b0;
-            end
-            
             4'd15: begin //wait for M to reach adder 4
                 regA_en <= 1'b0;
                 shiftA <= 1'b0;
@@ -352,6 +368,7 @@ module montgomeryC(
                 reset_adder3<=1'b0;
                 reset_adder4<=1'b0;
             end
+            
             
             4'd7: begin //DO C-M
                 regA_en <= 1'b0;
@@ -405,8 +422,9 @@ module montgomeryC(
     begin
         case(state)
             3'd0: begin
-                if(start) nextstate <= 3'd1;
+                if(start) nextstate <= 4'd14;
                 else      nextstate <= 3'd0; end
+            4'd14: nextstate <= 3'd1;
             3'd1: nextstate <= 3'd2;
             3'd2: nextstate <= 4'd10;
             4'd10: nextstate <= 3'd3;
@@ -415,8 +433,7 @@ module montgomeryC(
                 else nextstate <= 4'd3; end
             4'd4: nextstate <= 4'd5;   
             4'd5: nextstate <= 4'd6;  
-            4'd6: nextstate <= 4'd14;
-            4'd14: nextstate <= 4'd15;
+            4'd6: nextstate <= 4'd15;
             4'd15: nextstate <= 3'd7;
             4'd7: nextstate <= 4'd8;
             4'd8: nextstate <= 3'd0;
