@@ -4,7 +4,8 @@ module mpadderB (
   input wire clk,
   input wire [1027:0] in_a,         //1028bits
   input wire [1027:0] in_b,         //1028bits
-  output wire [1028:0] result       //1029bits
+  output wire [1028:0] result,       //1029bits
+  output wire [15:0] prediction
 );   
     
     wire [1027:0] MuxB = in_b;
@@ -24,7 +25,7 @@ module mpadderB (
     wire carry5;
     wire carry6;
     wire carry7;
-    
+  assign prediction = sumA[15:0];  
   assign {carryA[0],sumA[127:0]} = in_a[127:0] + MuxB[127:0];   
   //assign {carryB[0],sumB[63:0]} = 65'b0;
     add128 A2(in_a[255:128], MuxB[255:128],sumA[255:128], carryA[1], sumB[255:128], carryB[1]);

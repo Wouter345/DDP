@@ -13,7 +13,7 @@ module hweval_montgomery(
     wire         done;
     
     //Instantiating montgomery module
-    montgomeryA montgomery_instance( .clk    (clk      ),
+    montgomeryB montgomery_instance( .clk    (clk      ),
                                     .resetn (resetn   ),
                                     .start  (start    ),
                                     .in_a   (in_a     ),
