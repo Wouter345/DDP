@@ -72,8 +72,8 @@ module ladder4(
     reg start1;
     reg start2;
 
-    montgomery7 mult1(clk, reset2, start1, operandA1, operandB1, operandM, Res1, Done1);
-    montgomery7 mult2(clk, reset2, start2, operandA2, operandA2, operandM, Res2, Done2);
+    montgomery8 mult1(clk, reset2, start1, operandA1, operandB1, operandM, Res1, Done1);
+    montgomery8 mult2(clk, reset2, start2, operandA2, operandA2, operandM, Res2, Done2);
     
     
     reg select_res;
