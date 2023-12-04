@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module montgomeryB(
+module montgomeryC(
   input           clk,
   input           resetn,
   input           start,
@@ -78,17 +78,33 @@ module montgomeryB(
     mpadderA adder1(clk, reg_operand1, reg_operand2, Sum1, prediction1); 
     mpadderB adder2(clk, reg_operand3, reg_operand4, Sum2, prediction2);
     
+    reg [1026:0] reg_Sum1;
+    reg [1028:0] reg_Sum2;
+    reg [1029:0] reg_Sum3;
+    always @(posedge clk)
+    begin
+        if (reset_adder3) begin
+            reg_Sum1<=1027'b0;
+            reg_Sum2<=1029'b0;
+            reg_Sum3<=1030'b0;
+        end else begin
+            reg_Sum1<=Sum1;
+            reg_Sum2<=Sum2;
+            reg_Sum3<=Sum3; end
+    end
+    
     wire [1029:0] Sum3;//1030bits
     reg reset_adder3;
-    wire [15:0] prediction3;
-    mpadderC adder3(clk, reset_adder3, {2'b0,Sum1}, Sum2, Sum3, prediction3);
+    wire [19:0] prediction3;
+    mpadderC adder3(clk, reset_adder3, {2'b0,reg_Sum1}, reg_Sum2, Sum3, prediction3);
+    
     
     wire [1030:0] Sum4;//1030bits
     wire [1026:0] Res4;//shifted by 4 --> 1027bits
-    wire [19:0] prediction4;
+    wire [27:0] prediction4;
     reg subtract;
     reg reset_adder4;
-    mpadderD adder4(clk, reset_adder4, subtract, {3'b0,Res4}, Sum3, Sum4, prediction4); //feed the output shifted 4 times directly back, use reset_adder4 to make output 0
+    mpadderD adder4(clk, reset_adder4, subtract, {3'b0,Res4}, reg_Sum3, Sum4, prediction4); //feed the output shifted 4 times directly back, use reset_adder4 to make output 0
      
     assign Res4 = Sum4 >> 4;
     
@@ -96,21 +112,28 @@ module montgomeryB(
     assign regC_in = p? Sum4 : Res4; //to choose between shifting and not shifting Sum4 (for C-M)
      
     ////////Logic to figure out the next four iterations 
-    wire [7:0] prediction_sum;
-    assign prediction_sum = ((((prediction4>>4)+prediction3)>>4)+prediction1 + prediction2)>>4;
+//    wire [7:0] prediction_sum;
+//    assign prediction_sum = ((((((((prediction4>>4)+Sum3[23:0])>>4)+prediction3)>>4)+Sum1[15:0]+Sum2[15:0])>>4)+prediction1+prediction2)>>4;
     wire [7:0] operandsum;
     assign operandsum = operand1[7:0] + operand2[7:0] + operand3[7:0] + operand4[7:0];
+
+    wire [11:0] prediction_sum1;
+    wire [11:0] prediction_sum2;
+    assign prediction_sum1 = (((((((prediction4>>4)+Sum3[23:0])>>4)+prediction3)>>4)+Sum1[15:0]+Sum2[15:0])>>4);
+    assign prediction_sum2 = prediction1+prediction2+{operandsum,4'b0};
     
-    reg [7:0] predict;
-    reg [7:0] reg_operandsum;
+    
+    reg [11:0] predict1;
+    reg [11:0] predict2;
     always @(posedge clk)
     begin
-        predict <= prediction_sum;
-        reg_operandsum <= operandsum;
+        predict1 <= prediction_sum1;
+        predict2 <= prediction_sum2;
+        
     end
     
     wire [3:0] C_new; 
-    assign C_new = (predict+reg_operandsum)>>4;
+    assign C_new = (predict1+predict2)>>8;
     
     wire [3:0] C1; //4 bits after +b first iteration
     assign C1 = C_new[3:0]+ (in_b[3:0] & {regA_out[0], regA_out[0], regA_out[0], regA_out[0]});
@@ -139,6 +162,11 @@ module montgomeryB(
                 operand3_sel <= 2'b00;
                 operand4_sel <= 2'b00; end
             3'd2: begin//all zeros
+                operand1_sel <= 2'b00;
+                operand2_sel <= 2'b00; 
+                operand3_sel <= 2'b00;
+                operand4_sel <= 2'b00; end
+            4'd10: begin//all zeros
                 operand1_sel <= 2'b00;
                 operand2_sel <= 2'b00; 
                 operand3_sel <= 2'b00;
@@ -227,6 +255,20 @@ module montgomeryB(
                 reset_adder4<=1'b1;
             end
             
+            4'd10: begin //Save B+M
+                regA_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
+                regC_en <= 1'b0;
+                subtract <= 1'b0;
+                count_en <= 1'b0;
+                reset <= 1'b0;
+                leftshift <= 1'b1;
+                p <= 1'b0;
+                reset_adder3<=1'b1;
+                reset_adder4<=1'b1;
+            end
+            
             3'd3: begin  //LOOP
                 regA_en <= 1'b0;
                 shiftA <= 1'b1;
@@ -271,6 +313,34 @@ module montgomeryB(
             end
             
             4'd6: begin //wait for M to reach adder 4
+                regA_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
+                regC_en <= 1'b1; 
+                subtract <= 1'b0;
+                count_en <= 1'b1;
+                reset <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b0;
+                reset_adder3<=1'b0;
+                reset_adder4<=1'b0;
+            end
+            
+            4'd14: begin //wait for M to reach adder 4
+                regA_en <= 1'b0;
+                shiftA <= 1'b0;
+                regBM_en <= 1'b0;
+                regC_en <= 1'b1; 
+                subtract <= 1'b0;
+                count_en <= 1'b1;
+                reset <= 1'b0;
+                leftshift <= 1'b0;
+                p <= 1'b0;
+                reset_adder3<=1'b0;
+                reset_adder4<=1'b0;
+            end
+            
+            4'd15: begin //wait for M to reach adder 4
                 regA_en <= 1'b0;
                 shiftA <= 1'b0;
                 regBM_en <= 1'b0;
@@ -339,13 +409,16 @@ module montgomeryB(
                 if(start) nextstate <= 3'd1;
                 else      nextstate <= 3'd0; end
             3'd1: nextstate <= 3'd2;
-            3'd2: nextstate <= 3'd3;
+            3'd2: nextstate <= 4'd10;
+            4'd10: nextstate <= 3'd3;
             4'd3:begin
                 if (count == 10'd255) nextstate <= 4'd4;
                 else nextstate <= 4'd3; end
             4'd4: nextstate <= 4'd5;   
             4'd5: nextstate <= 4'd6;  
-            4'd6: nextstate <= 3'd7;
+            4'd6: nextstate <= 4'd14;
+            4'd14: nextstate <= 4'd15;
+            4'd15: nextstate <= 3'd7;
             4'd7: nextstate <= 4'd8;
             4'd8: nextstate <= 3'd0;
 
