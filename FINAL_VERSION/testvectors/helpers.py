@@ -158,6 +158,8 @@ def CreateConstants(seed, N, e, d, M, Ct):
     R    = 2**1024
     R_N  = R % N
     R2_N = (R*R) % N
+    print("R_N", hex(R_N))
+    print("R2_N",hex(R2_N))
 
     target.write(
     "#include <stdint.h>                                              \n" +

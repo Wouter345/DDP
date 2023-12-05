@@ -107,7 +107,7 @@ module tb_rsa_wrapper();
       reg_data <= axil_rdata;
       #`CLK_PERIOD;
       axil_rready  <= 1'b0;
-      $display("reg[%x] <= %x", reg_address, reg_data);
+      //$display("reg[%x] <= %x", reg_address, reg_data);
       #`CLK_PERIOD;
       #`RESET_TIME;
     end
@@ -138,7 +138,7 @@ module tb_rsa_wrapper();
       wait (axil_bvalid);
       #`CLK_PERIOD;
       axil_bready <= 1'b0;
-      $display("reg[%x] <= %x", reg_address, reg_data);
+      //$display("reg[%x] <= %x", reg_address, reg_data);
       #`CLK_PERIOD;
       #`RESET_TIME;
     end
@@ -154,7 +154,7 @@ module tb_rsa_wrapper();
       mem_we   <= {128{1'b1}};
       #`CLK_PERIOD;
       mem_we   <= {128{1'b0}};
-      $display("mem[%x] <= %x", address, data);
+      //$display("mem[%x] <= %x", address, data);
       #`CLK_PERIOD;
     end
   endtask
@@ -190,6 +190,9 @@ module tb_rsa_wrapper();
               MEM7_ADDR  = 16'd768;
 
   reg [31:0] reg_status;
+  reg  [1023:0] expected1;
+  reg  [1023:0] expected2;
+  reg           result_ok;
 
   initial begin
 
@@ -197,23 +200,23 @@ module tb_rsa_wrapper();
     
     // WRITE TESTVECTORS TO MEMORY
     // write modulus M
-    mem_write(MEM1_ADDR, 1024'ha4e2010b06082b0ebec377a8955c0aecddc25e1ec59cd6df72b890a32442b812154bdc9edb482e160fb28dbf1530eb09b943a41b2419e74f6a2fd6e7d7bb9c7595b65c8ad9917d50c0cbee16dc4df7c0d74c5d5dd908ad146d138a626443890a7eabd01aab72ad5774e5dab41d1b5b57ae99b304d96e1505c771a7c2c677823d);
+    mem_write(MEM1_ADDR, 1024'h8871ad3ad598e0460d066a2e032249f2ee69fe596fd34a5df46b6ead84e27d53f92e6e1dedc7fddeca94afa0847f327fc0fa706f926449a2e8fd51674efaba62e81f9807795aeae93a66adae3a2db29d007d88b9670db890153ce2ae3a3e80c9403f7482ee441baf0f6012d9ecc4cb364ae9cacf04c12020a3fed5ecbdcaa551);
     // write exponent E
-    mem_write(MEM2_ADDR, 1024'heb);
+    mem_write(MEM2_ADDR, 1024'ha6c9);
     // write message X
-    mem_write(MEM3_ADDR, 1024'hea132c164b791291d956c29d7d55c70b2f6d9bb2938b5cba145e268c162be86a24884a4eb2b32f5080a47c1aaec4e4793ad045598404ee9d81ac18e0fc8ae892ce30bc0738bfb937846b50470057075f08fdf52501b93e63e66c6e844aed030c61606436db4ffcbb6eec116e1df61006ae2ab0260b537e7c7a65f0407a6e75f5);
+    mem_write(MEM3_ADDR, 1024'h84d0602019b57d24fcb0c4b988343a8715c118246d7ee8659e39a1d76c842e0377f9507da73a4761db9ca41ede8b214b1f9fb7b3babe8f21517e85ec001c52bca19aa82e659f7cc9356f7ec8fbcb972e5ed8baac1e6e899ac37e8cd5822b05be123e8933c85c1b4ff35ed09335e455cf439c0857820425d183930c415d20342a);
     // write A
-    mem_write(MEM4_ADDR, 1024'h5b1dfef4f9f7d4f1413c88576aa3f513223da1e13a6329208d476f5cdbbd47edeab4236124b7d1e9f04d7240eacf14f646bc5be4dbe618b095d029182844638a6a49a375266e82af3f3411e923b2083f28b3a2a226f752eb92ec759d9bbc76f581542fe5548d52a88b1a254be2e4a4a851664cfb2691eafa388e583d39887dc3);
+    mem_write(MEM4_ADDR, 1024'h778e52c52a671fb9f2f995d1fcddb60d119601a6902cb5a20b9491527b1d82ac06d191e212380221356b505f7b80cd803f058f906d9bb65d1702ae98b105459d17e067f886a51516c5995251c5d24d62ff82774698f2476feac31d51c5c17f36bfc08b7d11bbe450f09fed26133b34c9b5163530fb3edfdf5c012a1342355aaf);
     // write R2
-    mem_write(MEM5_ADDR, 1024'h85f3b8aa14a91171c7439f689098098dadce671bd56d521b457dae49155cf364b81959638f836b864759ede397a4f6fa7d3e6998aa586a4701dd79a730892e2ca1cec8729e2c64eb03ea521541fc93ca7677f29ae3c51e51258af5fdd88357643130eb6fda24d36d3998604427255f759ac36b2f6cb37e97985bce027856d908);
-
+    mem_write(MEM5_ADDR, 1024'h6ef7ff6bfd20abc32782986bf306fc38ff57094e701b3d1987fdb29cbb58924c4922c850871e72bedd5397970086ae34016a3c843bad109111a1473f7d0e5aad14e105e00e5d91019ef42707f0a44f796e935bdd430c6d63a446761e03c6597c32a25bb6f3b38f174f415d7ba50787975d144fa72cb8ac75bb1b24ad69c0fd33);
+    expected1 = 1024'h130d6f824a1d28f774af86d34e849cb8b9f021c89eb219496f13d817b53fa177fc6636e31b6858a6d2537b90f014caffead434036e34a315ff4c1b228ca3b5eeda99650cddcfcf04f62419d9815f4b5f72b4690f8f738d14b19217bd0760cb4e281b39f1ba5dd264efeaf014b4d430b7802dd5b8be880200b7f1f3378a9093b6;
     // WRITE VALUES TO REGISTERS
     reg_write(R1, MEM1_ADDR);
     reg_write(R2, MEM2_ADDR);
     reg_write(R3, MEM3_ADDR);
     reg_write(R4, MEM4_ADDR);
     reg_write(R5, MEM5_ADDR);
-    reg_write(R6, 16'd8); // length of exponent
+    reg_write(R6, 16'd16); // length of exponent
     reg_write(R7, MEM6_ADDR);
 
     reg_write(COMMAND, 32'h00000001);
@@ -228,25 +231,26 @@ module tb_rsa_wrapper();
     
     reg_write(COMMAND, 32'h00000000);
     
+    
     // WRITE TESTVECTORS TO MEMORY
     // write modulus M
-    mem_write(MEM1_ADDR, 1024'ha4e2010b06082b0ebec377a8955c0aecddc25e1ec59cd6df72b890a32442b812154bdc9edb482e160fb28dbf1530eb09b943a41b2419e74f6a2fd6e7d7bb9c7595b65c8ad9917d50c0cbee16dc4df7c0d74c5d5dd908ad146d138a626443890a7eabd01aab72ad5774e5dab41d1b5b57ae99b304d96e1505c771a7c2c677823d);
+    mem_write(MEM1_ADDR, 1024'h8871ad3ad598e0460d066a2e032249f2ee69fe596fd34a5df46b6ead84e27d53f92e6e1dedc7fddeca94afa0847f327fc0fa706f926449a2e8fd51674efaba62e81f9807795aeae93a66adae3a2db29d007d88b9670db890153ce2ae3a3e80c9403f7482ee441baf0f6012d9ecc4cb364ae9cacf04c12020a3fed5ecbdcaa551);
     // write exponent E
-    mem_write(MEM2_ADDR, 1024'heb);
-    // write message X
-    mem_write(MEM3_ADDR, 1024'hea132c164b791291d956c29d7d55c70b2f6d9bb2938b5cba145e268c162be86a24884a4eb2b32f5080a47c1aaec4e4793ad045598404ee9d81ac18e0fc8ae892ce30bc0738bfb937846b50470057075f08fdf52501b93e63e66c6e844aed030c61606436db4ffcbb6eec116e1df61006ae2ab0260b537e7c7a65f0407a6e75f5);
+    mem_write(MEM2_ADDR, 1024'h4936464328d839be4e03ae8b1f9e48f48b7c6a45277a999518e9022b542cce71caf8f015be302afc62940c55af7c606524541619ded64b1d2701b87d1d68c9e8fb0c951921df37252ba7f728e6913b51a2fba212843ef4077132a84285ab6865fcf4a940975222e991ad0a2ef4eadb23d3893d247703e88572cce918e43d48f9);
+    // write message X, this is the encrypted message
+    mem_write(MEM3_ADDR, 1024'h130d6f824a1d28f774af86d34e849cb8b9f021c89eb219496f13d817b53fa177fc6636e31b6858a6d2537b90f014caffead434036e34a315ff4c1b228ca3b5eeda99650cddcfcf04f62419d9815f4b5f72b4690f8f738d14b19217bd0760cb4e281b39f1ba5dd264efeaf014b4d430b7802dd5b8be880200b7f1f3378a9093b6);
     // write A
-    mem_write(MEM4_ADDR, 1024'h5b1dfef4f9f7d4f1413c88576aa3f513223da1e13a6329208d476f5cdbbd47edeab4236124b7d1e9f04d7240eacf14f646bc5be4dbe618b095d029182844638a6a49a375266e82af3f3411e923b2083f28b3a2a226f752eb92ec759d9bbc76f581542fe5548d52a88b1a254be2e4a4a851664cfb2691eafa388e583d39887dc3);
+    mem_write(MEM4_ADDR, 1024'h778e52c52a671fb9f2f995d1fcddb60d119601a6902cb5a20b9491527b1d82ac06d191e212380221356b505f7b80cd803f058f906d9bb65d1702ae98b105459d17e067f886a51516c5995251c5d24d62ff82774698f2476feac31d51c5c17f36bfc08b7d11bbe450f09fed26133b34c9b5163530fb3edfdf5c012a1342355aaf);
     // write R2
-    mem_write(MEM5_ADDR, 1024'h85f3b8aa14a91171c7439f689098098dadce671bd56d521b457dae49155cf364b81959638f836b864759ede397a4f6fa7d3e6998aa586a4701dd79a730892e2ca1cec8729e2c64eb03ea521541fc93ca7677f29ae3c51e51258af5fdd88357643130eb6fda24d36d3998604427255f759ac36b2f6cb37e97985bce027856d908);
-
+    mem_write(MEM5_ADDR, 1024'h6ef7ff6bfd20abc32782986bf306fc38ff57094e701b3d1987fdb29cbb58924c4922c850871e72bedd5397970086ae34016a3c843bad109111a1473f7d0e5aad14e105e00e5d91019ef42707f0a44f796e935bdd430c6d63a446761e03c6597c32a25bb6f3b38f174f415d7ba50787975d144fa72cb8ac75bb1b24ad69c0fd33);
+    expected2 = 1024'h84d0602019b57d24fcb0c4b988343a8715c118246d7ee8659e39a1d76c842e0377f9507da73a4761db9ca41ede8b214b1f9fb7b3babe8f21517e85ec001c52bca19aa82e659f7cc9356f7ec8fbcb972e5ed8baac1e6e899ac37e8cd5822b05be123e8933c85c1b4ff35ed09335e455cf439c0857820425d183930c415d20342a;
     // WRITE VALUES TO REGISTERS
     reg_write(R1, MEM1_ADDR);
     reg_write(R2, MEM2_ADDR);
     reg_write(R3, MEM3_ADDR);
     reg_write(R4, MEM4_ADDR);
     reg_write(R5, MEM5_ADDR);
-    reg_write(R6, 16'd8); // length of exponent
+    reg_write(R6, 16'd1023); // length of exponent
     reg_write(R7, MEM7_ADDR);
 
     reg_write(COMMAND, 32'h00000001);
@@ -261,7 +265,18 @@ module tb_rsa_wrapper();
     
     reg_write(COMMAND, 32'h00000000);
 
+    reg_write(COMMAND, 32'h00000000);
+    
+    
     mem_read(MEM6_ADDR);
+    $display("encryption result expected  =%x", expected1);
+    result_ok = (expected1==mem_dout);
+    $display("encryption result_ok = %x", result_ok);
+    
+    mem_read(MEM7_ADDR);
+    $display("decryption result expected  =%x", expected2);
+    result_ok = (expected2==mem_dout);
+    $display("decryption result_ok = %x", result_ok);
 
     $finish;
 

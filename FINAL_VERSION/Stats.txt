@@ -1,0 +1,19 @@
+Montgomery 267 cycles
+			Default: 	WNS=-0.120ns
+				 	LUT=13_310 smallest area
+				 	FFs=20_220
+				 	Power=0.517W
+
+			RefinePlace:	WNS=0.142ns Best timing
+				 	LUT=13_310
+				 	FFs=20_220
+				 	Power=0.517W
+
+			NetDelayLow:	WNS=0.008ns lowest power
+				 	LUT=13_344 higher others
+				 	FFs=20_220
+				 	Power=0.513W
+
+RSA encryption: in HW 5_625 cycles, decryption: 275_767 cycles
+			
+			
