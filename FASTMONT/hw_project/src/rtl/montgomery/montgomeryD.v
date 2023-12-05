@@ -83,7 +83,7 @@ module montgomeryD(
 
     wire [1026:0] Sum1;//1027bits
     wire [1028:0] Sum2;//1029bits
-    wire [11:0] prediction1;
+    wire [11:0] prediction1;//12LSB of the sum available immediatly, in the same clock cycle
     wire [11:0] prediction2;
     mpadderA adder1(clk, reg_operand1, reg_operand2, Sum1, prediction1); 
     mpadderB adder2(clk, reg_operand3, reg_operand4, Sum2, prediction2);
