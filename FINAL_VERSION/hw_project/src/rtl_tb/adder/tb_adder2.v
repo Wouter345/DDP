@@ -9,24 +9,23 @@ module tb_adder2();
     // Define internal regs and wires
     reg           clk;
     reg           resetn;
-    reg  [1026:0] in_a;
-    reg  [1026:0] in_b;
-    reg  [1026:0] in_c;
+    reg  [1030:0] in_a;
+    reg  [1030:0] in_b;
     reg           start;
     reg           subtract;
-    wire [1027:0] result;
+    wire [1030:0] result;
     wire          done;
 
-    reg  [1027:0] expected;
+    reg  [1030:0] expected;
     reg           result_ok;
 
     // Instantiating adder
-    mpadder4 dut (
+    mpadderD dut (
         .clk      (clk     ),
+        .reset    (~resetn ),
         .subtract (subtract),
         .in_a     (in_a    ),
         .in_b     (in_b    ),
-//        .in_c     (in_c    ),
         .result   (result  ));
 
     // Generate Clock
@@ -39,7 +38,6 @@ module tb_adder2();
     initial begin
         in_a     <= 0;
         in_b     <= 0;
-        in_c     <= 0;
         subtract <= 0;
         start    <= 0;
     end
@@ -52,13 +50,11 @@ module tb_adder2();
     end
 
     task perform_add;
-        input [1026:0] a;
-        input [1026:0] b;
-        input [1026:0] c;
+        input [1030:0] a;
+        input [1030:0] b;
         begin
             in_a <= a;
             in_b <= b;
-            in_c <= c;
             start <= 1'd1;
             subtract <= 1'd0;
             #`CLK_PERIOD;
@@ -67,13 +63,11 @@ module tb_adder2();
     endtask
 
     task perform_sub;
-        input [1026:0] a;
-        input [1026:0] b;
-        input [1026:0] c;
+        input [1030:0] a;
+        input [1030:0] b;
         begin
             in_a <= a;
             in_b <= b;
-            in_c <= c;
             start <= 1'd1;
             subtract <= 1'd1;
             #`CLK_PERIOD;
@@ -91,11 +85,12 @@ module tb_adder2();
     
     
     #`CLK_PERIOD;
-     perform_add(1027'h 1cd447e35b8b6d8fe442e3d437204e52db2221a58008a05a6c4647159c324c9859b810e766ec9d28663ca828dd5f4b3b2e4b06ce60741c7a87ce42c8218072e8c35bf992dc9e9c616612e7696a6cecc1b78e510617311d8a3c2ce6f447ed4d57b1e2feb89414c343c1027c4d1c386bbc4cd613e30d8f16adf91b7584a2265b1f5,
-                 1027'h 1380208a9ad45f23d3b1a11df587fd2803bab6c398d88348a7eed8d14f06d3fef701966a0c381e88f38c0c8fd8712b8bc076f3787b9d179e06c0fd4f5f8130c4237730edfafbd67f9619699cfe1988ad9f06c144a025b413f8a9a021ea648a7dd06839eb905b6e6e307d4bedc51431193e6c3f3391a2b8f1ff1fd42a29755d4c1,
-                 1027'h 2e901e35cd47d380d81f9c1f66c0f3459f79b17aeefba91fc803468b6b610a9f7f9270f4eb8b333a8e5446dd4552b82f6be3edc0a1ef2a4f04be03db0dc2574bdb94067edfe175330a11d459a2f978d8719999e3fa46d6753ec148cb48e73ca47ea90a8f0d66b829e6a8ac4ba05805975ed2f89d94a2f20aaf3c64af775a89294
+     perform_add(1030'h ff7d5ec09bc03e20af2529cad670a8382054fa816e7c0c6a07ac5fed4b6ea010bea4256e36c2a4c7d885bbac88043e5f1221b5a22155a41c2ff7c0fcbbe8f88da415c4c839a44721de85eb9025ac45a0aa8b230f3b05e392a6ea1c0d2f8b9e9de3d6e4b9d96e182dcd502d42af1ffe0de8d79f49af6d114c4a6f188a424e617b,
+                 1030'h 385d3c6201abb4da1c6df8ccf6fb3e7196906b630c8cb950a5c147eea8e5f31bed7c9df9403be93fb8d9959a625b1196f741b79d35e08409f0cb348bfb23b6bd8ff306dc016fcfd73dbea7f23973790dfbd38cadcd432ff218ce5915e6e36b0753cf4b1858cb4ac8b4df0c841f15bf54df258ececbd59a0625469d3e78fe339eca
+
+
                  );
-    expected  = 1028'h 3054686df65fccb3b7f484f22ca84b7adedcd86918e123a314351fe6eb39209750b9a7517324bbb159c8b4b8b5d076c6eec1fa46dc1134188e8f40178101a3ace6d32a80d79a72e0fc2c51066886756f5695124ab756d19e34d687163251d7d5824b38a4247031b1f17fc83ae14c9cd58b4253169f31cf9ff83b49aecb9bb86b6;
+    expected  = 1031'h 395cb9c0c24775183d1d1df6c1d1af19ceb0c05d8dfb355d0fc8f44e963161bbfe3b421eae72abe480b21b560ee315d55653d952d801d9ae0cfb2c4cf7df9fb61d971ca0c9a9741e5f9d2dddc99925539c7e17d0dc7e35d5ab754331f412f6a5f1b321fd12a4b8e0e2ac5cb161c4df52ed0e666e1585071771910c570340820045;
     #`CLK_PERIOD;
     result_ok = (expected==result);
     $display("result calculated=%x", result);
@@ -105,11 +100,11 @@ module tb_adder2();
     #`CLK_PERIOD;   
     
     #`CLK_PERIOD;
-     perform_sub(1027'h 1cd447e35b8b6d8fe442e3d437204e52db2221a58008a05a6c4647159c324c9859b810e766ec9d28663ca828dd5f4b3b2e4b06ce60741c7a87ce42c8218072e8c35bf992dc9e9c616612e7696a6cecc1b78e510617311d8a3c2ce6f447ed4d57b1e2feb89414c343c1027c4d1c386bbc4cd613e30d8f16adf91b7584a2265b1f5,
-                 1027'h 1380208a9ad45f23d3b1a11df587fd2803bab6c398d88348a7eed8d14f06d3fef701966a0c381e88f38c0c8fd8712b8bc076f3787b9d179e06c0fd4f5f8130c4237730edfafbd67f9619699cfe1988ad9f06c144a025b413f8a9a021ea648a7dd06839eb905b6e6e307d4bedc51431193e6c3f3391a2b8f1ff1fd42a29755d4c1,
-                 1027'h 0
+     perform_sub(1030'h 10cecf4f4e5ba8078050cef798e6c648e7deeda8b23927f7d64375d0341e4f6f2ae8af30f7c70b53bf64d0b50f658c6762df7142dcaf29e6f877744cca4d909eb2732242fda8902e3212979bfcbbeb508f4a800646417a8105bc3199944567ceb13f372617f0baef3a86f0ce2ea6ec39c1c15521b1b3dca50a9daa37e51b591d75,
+                 1030'h 69b872a76e57b37e7704b3d09ef2eab42fd8cfe3395522f9a67574c0261c2df96fa5e2d63daa4ed3c3454fae446287225154d1eb0071d14815649f8e998466a921f7ea79c11e760a5a6d5b30a02b7075d2a3a0c78467c0714a9fbd797aa59c1698d242349293a9acc2652f8ff842a2f9da1b4ba07a1fa7d4acde560db5c54e05b
+
                  );
-    expected  = 1028'h 9542758c0b70e6c109142b64198512ad7676ae1e7301d11c4576e444d2b789962b67a7d5ab47e9f72b09b9904ee1faf6dd41355e4d704dc810d4578c1ff42249fe4c8a4e1a2c5e1cff97dcc6c53641418878fc1770b6976438346d25d88c2d9e17ac4cd03b954d59085305f57243aa30e69d4af7bec5dbbf9fba15a78b0fdd34;
+    expected  = 1031'h a334824d7762ccf98e083ba8ef7979da4e160aa7ea3d5c83bdc1e8431bc8c8f93ee510393ec666683307bba2b1f63f53dca24242ca80cd277212a53e0b54a342053a39b6196a8cd8c6bc1e8f2b93449322045f9cdfafe79f11235c1fc9b0e0d47b21302cec780546e609dd52f22c20a241fa067aa11e227bfcfc4d709bf043d1a;
     #`CLK_PERIOD;
     result_ok = (expected==result);
     $display("result calculated=%x", result);

@@ -1,16 +1,19 @@
-module mpadder2 (
+module mpadderD (
   input wire clk,
-  input wire [1026:0] in_a,
-  input wire [1026:0] in_b,
-  output wire [1027:0] result
+  input wire reset,
+  input wire subtract,
+  input wire [1029:0] in_a,     //1030bits
+  input wire [1029:0] in_b,     //1030bits
+  output wire [1030:0] result,   //1031bits
+  output wire [27:0] prediction
 );
 
-    wire [1026:0] MuxB = in_b;
-    wire [1027:0] Sum;
+    wire [1029:0] MuxB = (subtract) ? ~in_b : in_b;
+    wire [1030:0] Sum;
     
     
-    wire [1027:0] sumA;
-    wire [1027:64] sumB;
+    wire [1030:0] sumA;
+    wire [1030:64] sumB;
     
     wire [14:0] carryA;
     wire [14:1] carryB;
@@ -31,39 +34,49 @@ module mpadder2 (
     wire carry14;
     wire carry15;
     
-  assign {carryA[0],sumA[63:0]} = in_a[63:0] + MuxB[63:0];   
+  assign prediction = sumA[27:0];
+  assign {carryA[0],sumA[63:0]} = in_a[63:0] + MuxB[63:0] + subtract;   
   //assign {carryB[0],sumB[63:0]} = 65'b0;
-  add64q A2(in_a[127:64], MuxB[127:64],sumA[127:64], carryA[1], sumB[127:64], carryB[1]);
-  add64q A3(in_a[191:128], MuxB[191:128],sumA[191:128], carryA[2], sumB[191:128], carryB[2]);
-  add64q A4(in_a[255:192], MuxB[255:192],sumA[255:192], carryA[3], sumB[255:192], carryB[3]);
-  add64q A5(in_a[319:256], MuxB[319:256],sumA[319:256], carryA[4], sumB[319:256], carryB[4]);
-  add64q A6(in_a[383:320], MuxB[383:320],sumA[383:320], carryA[5], sumB[383:320], carryB[5]);
-  add64q A7(in_a[447:384], MuxB[447:384],sumA[447:384], carryA[6], sumB[447:384], carryB[6]);
-  add64q A8(in_a[511:448], MuxB[511:448],sumA[511:448], carryA[7], sumB[511:448], carryB[7]);
-  add64q A9(in_a[575:512], MuxB[575:512],sumA[575:512], carryA[8], sumB[575:512], carryB[8]);
-  add64q A10(in_a[639:576], MuxB[639:576],sumA[639:576], carryA[9], sumB[639:576], carryB[9]);
-  add64q A11(in_a[703:640], MuxB[703:640],sumA[703:640], carryA[10], sumB[703:640], carryB[10]);
-  add64q A12(in_a[767:704], MuxB[767:704],sumA[767:704], carryA[11], sumB[767:704], carryB[11]);
-  add64q A13(in_a[831:768], MuxB[831:768],sumA[831:768], carryA[12], sumB[831:768], carryB[12]);
-  add64q A14(in_a[895:832], MuxB[895:832],sumA[895:832], carryA[13], sumB[895:832], carryB[13]);
-  add64q A15(in_a[959:896], MuxB[959:896],sumA[959:896], carryA[14], sumB[959:896], carryB[14]);
-  add67q A16(in_a[1026:960], MuxB[1026:960],sumA[1027:960], sumB[1027:960]);
+  add64p A2(in_a[127:64], MuxB[127:64],sumA[127:64], carryA[1], sumB[127:64], carryB[1]);
+  add64p A3(in_a[191:128], MuxB[191:128],sumA[191:128], carryA[2], sumB[191:128], carryB[2]);
+  add64p A4(in_a[255:192], MuxB[255:192],sumA[255:192], carryA[3], sumB[255:192], carryB[3]);
+  add64p A5(in_a[319:256], MuxB[319:256],sumA[319:256], carryA[4], sumB[319:256], carryB[4]);
+  add64p A6(in_a[383:320], MuxB[383:320],sumA[383:320], carryA[5], sumB[383:320], carryB[5]);
+  add64p A7(in_a[447:384], MuxB[447:384],sumA[447:384], carryA[6], sumB[447:384], carryB[6]);
+  add64p A8(in_a[511:448], MuxB[511:448],sumA[511:448], carryA[7], sumB[511:448], carryB[7]);
+  add64p A9(in_a[575:512], MuxB[575:512],sumA[575:512], carryA[8], sumB[575:512], carryB[8]);
+  add64p A10(in_a[639:576], MuxB[639:576],sumA[639:576], carryA[9], sumB[639:576], carryB[9]);
+  add64p A11(in_a[703:640], MuxB[703:640],sumA[703:640], carryA[10], sumB[703:640], carryB[10]);
+  add64p A12(in_a[767:704], MuxB[767:704],sumA[767:704], carryA[11], sumB[767:704], carryB[11]);
+  add64p A13(in_a[831:768], MuxB[831:768],sumA[831:768], carryA[12], sumB[831:768], carryB[12]);
+  add64p A14(in_a[895:832], MuxB[895:832],sumA[895:832], carryA[13], sumB[895:832], carryB[13]);
+  add64p A15(in_a[959:896], MuxB[959:896],sumA[959:896], carryA[14], sumB[959:896], carryB[14]);
+  add70 A16(in_a[1029:960], MuxB[1029:960],sumA[1030:960], sumB[1030:960]);
   
 
     
 
 
-  reg [1027:0] regA;
-  reg [1027:64] regB;
+  reg [1030:0] regA;
+  reg [1030:64] regB;
   reg [14:0] regcA;
   reg [14:1] regcB;
   reg sub;
   always @(posedge clk) 
   begin
+    if (reset) begin
+        regA <= 1031'b0;
+        regB <= 1031'b0;
+        regcA <= 15'b0;
+        regcB <= 15'b0;
+        sub <= 1'b0;
+    end else begin
         regA <= sumA;
         regB <= sumB;
         regcA <= carryA;
         regcB <= carryB;
+        sub <= subtract;
+    end
   end  
   
     assign carry1 = regcA[0];
@@ -97,15 +110,16 @@ module mpadder2 (
     assign Sum[831:768] = carry12? regB[831:768]: regA[831:768];
     assign Sum[895:832] = carry13? regB[895:832]: regA[895:832];
     assign Sum[959:896] = carry14? regB[959:896]: regA[959:896];
-    assign Sum[1027:960] = carry15? regB[1027:960]: regA[1027:960];
+    assign Sum[1030:960] = carry15? regB[1030:960]: regA[1030:960];
   
 
-  assign result = Sum;
+  wire carry_out = sub ^ Sum[1030];
+  assign result = {carry_out, Sum[1029:0]};
 
 
 endmodule
 
-module add64q(
+module add64p(
     input wire [63:0] a,
     input wire [63:0] b,
     output wire [63:0] suma,
@@ -120,11 +134,11 @@ module add64q(
     
 endmodule
 
-module add67q(
-    input wire [66:0] a,
-    input wire [66:0] b,
-    output wire [67:0] suma,
-    output wire [67:0] sumb
+module add70(
+    input wire [69:0] a,
+    input wire [69:0] b,
+    output wire [70:0] suma,
+    output wire [70:0] sumb
     );
     
     assign suma= a+b;

@@ -233,4 +233,3 @@ module rsa (
   assign current_state = {28'b0, state};
 
 endmodule
-

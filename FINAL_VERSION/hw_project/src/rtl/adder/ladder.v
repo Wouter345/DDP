@@ -47,7 +47,7 @@ module ladder(
     end
     
     
-    // initiate montgomery multiplier///// 2 montgomeries working in parallel
+    // initiate montgomery multiplier
     wire [1023:0] operandA1;
     wire [1023:0] operandB1;
     
@@ -62,7 +62,8 @@ module ladder(
     reg select3;
     wire [1023:0] operandA2;
     assign operandA2 = select3? regA_out: regXX_out;
-      
+       
+       
     
     wire [1023:0] Res1;
     wire [1023:0] Res2;
@@ -82,7 +83,7 @@ module ladder(
     
     
     
-    // Save done values to know when both montgomeries are done
+    
     reg save_done1;
     reg save_done2;
     reg reset3;
@@ -275,6 +276,7 @@ module ladder(
     end
     
 
+// Task 13
     // Describe next_state logic
 
     always @(*)
@@ -317,6 +319,7 @@ module ladder(
         endcase
     end
 
+    // Task 14
     // Describe done signal
     // It should be high at the same clock cycle when the output ready
 

@@ -20,7 +20,7 @@ module tb_adder();
     reg           result_ok;
 
     // Instantiating adder
-    mpadder dut (
+    mpadder2 dut (
         .clk      (clk     ),
         .resetn   (resetn  ),
         .start    (start   ),

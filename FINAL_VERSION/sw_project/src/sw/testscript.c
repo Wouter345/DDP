@@ -35,6 +35,7 @@
 //  #define COMMAND 0
 //  #define STATUS  0
 //
+//  int all_correct = 1;
 //  for (int k=0; k<1000; k++) {
 //	  // Aligned input and output memory shared with FPGA
 //	  alignas(128) uint32_t encoded_message[32];
@@ -83,6 +84,7 @@
 //		}
 //		else {
 //			xil_printf("Encoded_message number %d is WRONG\n\r", k);
+//			all_correct = 0;
 //		}
 //
 //		if (correct1) {
@@ -90,10 +92,13 @@
 //		}
 //		else {
 //			xil_printf("Decoded_message number %d is WRONG\n\r", k);
+//			all_correct = 0;
 //		}
 //  }
 //  cleanup_platform();
-//
+//  	  if (all_correct) {
+//  		  xil_printf("All are correct\n\r");
+//  	  }
 //  	  xil_printf("Finished\n\r");
 //
 //  	  return 0;
