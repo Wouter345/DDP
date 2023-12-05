@@ -12,6 +12,8 @@ module montgomery(
     );
     
     // In this implementation we do 4 iterations at a time, taking 1 clock cycles to complete.
+    // 4 Adders in total working in a pipeline
+    // B+M is calculated at the start and stored in regBM_out
     
     reg           regA_en;
     reg           shiftA;
@@ -37,7 +39,7 @@ module montgomery(
     reg  [1024:0] regBM_out;//1025bits
     always @(posedge clk)
     begin
-        if (regBM_en)   regBM_out <= Sum1;
+        if (regBM_en)   regBM_out <= Sum1; //result of adder1
     end
     
     reg           regC_en;
@@ -46,7 +48,7 @@ module montgomery(
     always @(posedge clk)
     begin
         if (reset)     regC_out <= 1024'd0;
-        else if (regC_en)   regC_out <= regC_in; 
+        else if (regC_en)   regC_out <= regC_in; //this will store the final value of C
     end
     
     // select operand1/2/3/4
@@ -56,7 +58,7 @@ module montgomery(
     
     wire [1025:0] operand2;//1026 bits
     reg [1:0] operand2_sel;
-    reg leftshift;
+    reg leftshift;//choose input for iteration2 or M for calculating B+M
     assign operand2 = leftshift? (operand2_sel[1]? (operand2_sel[0]? {regBM_out,1'b0} : {1'b0,regB_out,1'b0}) : (operand2_sel[0]? {1'b0,regM_out,1'b0} : 1026'b0)): {2'b0,regM_out}; //Adder selection for second iteration 
     
     wire [1027:0] operand3;//1028bits
@@ -424,19 +426,19 @@ module montgomery(
             3'd0: begin
                 if(start) nextstate <= 4'd14;
                 else      nextstate <= 3'd0; end
-            4'd14: nextstate <= 3'd1;
-            3'd1: nextstate <= 3'd2;
-            3'd2: nextstate <= 4'd10;
-            4'd10: nextstate <= 3'd3;
-            4'd3:begin
+            4'd14: nextstate <= 3'd1; //added bc B and M are now loaded into registers first 
+            3'd1: nextstate <= 3'd2; //start B+M
+            3'd2: nextstate <= 4'd10;//Write B+M
+            4'd10: nextstate <= 3'd3;//added bc Sum1 is not 0 in state 2--> prediction logic would be wrong
+            4'd3:begin //Loop 
                 if (count == 10'd255) nextstate <= 4'd4;
                 else nextstate <= 4'd3; end
-            4'd4: nextstate <= 4'd5;   
-            4'd5: nextstate <= 4'd6;  
-            4'd6: nextstate <= 4'd15;
-            4'd15: nextstate <= 3'd7;
-            4'd7: nextstate <= 4'd8;
-            4'd8: nextstate <= 3'd0;
+            4'd4: nextstate <= 4'd5;  //Load M, 0, 0, 0 
+            4'd5: nextstate <= 4'd6;  //Wait for pipeline to finish
+            4'd6: nextstate <= 4'd15; //Wait for pipeline to finish
+            4'd15: nextstate <= 3'd7; // Added bc extra register stage in pipeline causes one cycle delay more 
+            4'd7: nextstate <= 4'd8; //C-M
+            4'd8: nextstate <= 3'd0; //Write C-M if ~Sum4[1027]
 
             default: nextstate <= 3'd0;
         endcase

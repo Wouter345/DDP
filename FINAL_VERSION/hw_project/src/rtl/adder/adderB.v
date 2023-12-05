@@ -6,7 +6,7 @@ module mpadderB (
   output wire [15:0] prediction
 );   
     
-    wire [1027:0] MuxB = in_b;
+    wire [1027:0] MuxB = in_b; //No subtraction
     wire [1028:0] Sum;
     
     

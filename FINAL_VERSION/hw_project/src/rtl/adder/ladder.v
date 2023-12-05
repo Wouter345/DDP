@@ -87,7 +87,7 @@ module ladder(
     reg save_done1;
     reg save_done2;
     reg reset3;
-    always @(posedge clk) 
+    always @(posedge clk) ///This could be done by using smt like always @(posedge done1) but for some reason this like didnt work in implementation
     begin
         if (reset3) begin
             save_done1 <= 1'b0;
@@ -290,7 +290,7 @@ module ladder(
             3'd1 : nextstate <= 3'd2;
                 
             3'd2 : begin
-                if(save_done1&&Ei) nextstate <= 3'd3;
+                if(save_done1&&Ei) nextstate <= 3'd3; //Do first mont and shifting of e register in parallel
                 else      nextstate <= 3'd2; 
                 if(Ei)    shiftE <= 1'b0;
                 else      shiftE <= 1'b1;
