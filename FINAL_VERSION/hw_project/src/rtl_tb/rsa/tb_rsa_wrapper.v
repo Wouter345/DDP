@@ -165,6 +165,8 @@ module tb_rsa_wrapper();
     begin
       mem_addr <= address;
       #`CLK_PERIOD;
+      #`CLK_PERIOD;
+      #`CLK_PERIOD;
       $display("mem[%x] => %x", address, mem_dout);
     end
   endtask
@@ -269,11 +271,13 @@ module tb_rsa_wrapper();
     
     
     mem_read(MEM6_ADDR);
+    #`CLK_PERIOD;
     $display("encryption result expected  =%x", expected1);
     result_ok = (expected1==mem_dout);
     $display("encryption result_ok = %x", result_ok);
     
     mem_read(MEM7_ADDR);
+    #`CLK_PERIOD;
     $display("decryption result expected  =%x", expected2);
     result_ok = (expected2==mem_dout);
     $display("decryption result_ok = %x", result_ok);
