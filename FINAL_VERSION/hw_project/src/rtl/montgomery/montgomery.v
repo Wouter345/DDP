@@ -136,8 +136,12 @@ module montgomery(
     reg [7:0] predict2;
     always @(posedge clk)
     begin
-        predict1 <= prediction_sum1;
-        predict2 <= prediction_sum2; 
+        if (reset_adder3) begin
+            predict1 <= 8'b0;
+            predict2 <= 8'b0; end
+        else begin
+            predict1 <= prediction_sum1;
+            predict2 <= prediction_sum2; end
     end
     
     wire [3:0] C_new; 
@@ -175,11 +179,6 @@ module montgomery(
                 operand3_sel <= 2'b00;
                 operand4_sel <= 2'b00; end
             3'd2: begin//all zeros
-                operand1_sel <= 2'b00;
-                operand2_sel <= 2'b00; 
-                operand3_sel <= 2'b00;
-                operand4_sel <= 2'b00; end
-            4'd10: begin//all zeros
                 operand1_sel <= 2'b00;
                 operand2_sel <= 2'b00; 
                 operand3_sel <= 2'b00;
@@ -277,20 +276,6 @@ module montgomery(
                 shiftA <= 1'b0;
                 regBM_en <= 1'b1;
                 regC_en <= 1'b1;
-                subtract <= 1'b0;
-                count_en <= 1'b0;
-                reset <= 1'b0;
-                leftshift <= 1'b1;
-                p <= 1'b0;
-                reset_adder3<=1'b1;
-                reset_adder4<=1'b1;
-            end
-            
-            4'd10: begin //Save B+M
-                regA_en <= 1'b0;
-                shiftA <= 1'b0;
-                regBM_en <= 1'b0;
-                regC_en <= 1'b0;
                 subtract <= 1'b0;
                 count_en <= 1'b0;
                 reset <= 1'b0;
@@ -428,8 +413,7 @@ module montgomery(
                 else      nextstate <= 3'd0; end
             4'd14: nextstate <= 3'd1; //added bc B and M are now loaded into registers first 
             3'd1: nextstate <= 3'd2; //start B+M
-            3'd2: nextstate <= 4'd10;//Write B+M
-            4'd10: nextstate <= 3'd3;//added bc Sum1 is not 0 in state 2--> prediction logic would be wrong
+            3'd2: nextstate <= 4'd3;//Write B+M
             4'd3:begin //Loop 
                 if (count == 10'd255) nextstate <= 4'd4;
                 else nextstate <= 4'd3; end
