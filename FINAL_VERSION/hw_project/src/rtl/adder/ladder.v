@@ -88,7 +88,7 @@ module ladder(
     reg save_done2;
     reg reset3;
     always @(posedge clk) ///This could be done by using smt like always @(posedge done1) but for some reason this like didnt work in implementation
-    begin
+    begin                 // Not even necessary anymore but im not gonna change it
         if (reset3) begin
             save_done1 <= 1'b0;
             save_done2 <= 1'b0; end

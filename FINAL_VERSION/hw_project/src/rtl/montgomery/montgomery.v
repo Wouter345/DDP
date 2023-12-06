@@ -121,8 +121,6 @@ module montgomery(
     assign regC_in = p? Sum4 : Res4; //to choose between shifting and not shifting Sum4 (for C-M)
      
     ////////Logic to figure out the next four iterations 
-//    wire [7:0] prediction_sum;
-//    assign prediction_sum = ((((((((prediction4>>4)+Sum3[23:0])>>4)+prediction3)>>4)+Sum1[15:0]+Sum2[15:0])>>4)+prediction1+prediction2)>>4;
     wire [7:0] operandsum;
     assign operandsum = operand1[7:0] + operand2[7:0] + operand3[7:0] + operand4[7:0];
 
@@ -147,6 +145,7 @@ module montgomery(
     wire [3:0] C_new; 
     assign C_new = (predict1+predict2)>>4;
     
+    ///Prediction logic
     wire [3:0] C1; //4 bits after +b first iteration
     assign C1 = C_new[3:0]+ (regB_out[3:0] & {regA_out[0], regA_out[0], regA_out[0], regA_out[0]});
     
