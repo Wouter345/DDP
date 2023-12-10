@@ -9,7 +9,7 @@ extern uint32_t N[32],    // modulus
                 d[32],    // decryption exponent
                 d_len,    // decryption exponent length
                 M[32],    // message
-				Ct[32],
+				Ct[32],   //Encoded message for verifying
                 R_N[32],  // 2^1024 mod N
                 R2_N[32];// (2^1024)^2 mod N
 
@@ -79,6 +79,9 @@ STOP_TIMING
 
   xil_printf("Finished Encoding\n\r");
 
+  xil_printf("Encoded_message: \n\r");
+  print_array_contents(encoded_message);
+
   // set decoding registers
   HWreg[1] = (uint32_t)N;
   HWreg[2] = (uint32_t)d;
@@ -113,7 +116,8 @@ STOP_TIMING
 
   xil_printf("\rFinished calculations\n\r");
 
-//  print_array_contents(decoded_message);
+  xil_printf("Decoded_message: \n\r");
+  print_array_contents(decoded_message);
 //  xil_printf("\n\r");
 //  print_array_contents(M);
 
