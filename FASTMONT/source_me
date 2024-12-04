@@ -1,3 +1,0 @@
-export ZYNQ=ok
-
-source ~micasusr/design/scripts/xilinx_vitis_2023.1.rc

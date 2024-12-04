@@ -1,9 +1,0 @@
-State 0 	Read Inputs
-State 1		if Ai C+B
-		shift A	
-State 2		Write result of C+B	
-State 3		if C0 (C+M)/2
-		else shift C
-State 4		Write result (C+M)/2
-State 5		Start C-M
-State 6		if x write C-M --> Done
